@@ -1,0 +1,25 @@
+\section{System Features}
+
+\subsection{Use-Cases}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-1}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 1                                                                                                                                                              \\
+Use Case Name     & Login                                                                                                                                                          \\
+Trigger           & An user wants to login to the webapplication                                                                                                                   \\
+Precondition      & The user has already an account on the webapplication                                                                                                          \\
+Basic Path        & \begin{enumerate}
+\item The user access the webapplication and selects the link "Login"
+\item The user enters his credentials for his account
+\item The user is redirected to the homepage
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user is logged-in                                                                                                                                          \\
+Exception Paths   & In step 2, if the user enters not valid credentials into the system, the system should exit with the error message, that the credentials were wrong            \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 1}
+\end{table}
