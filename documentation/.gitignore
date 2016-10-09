@@ -1,0 +1,11 @@
+*.toc
+*.out
+*.log
+*.dvi
+*.blg
+*.bbl
+*.aux
+*.synctex.gz
+*.pdf
+tempPartial*.tex
+!srs.pdf
