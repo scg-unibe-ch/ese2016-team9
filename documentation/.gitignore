@@ -7,3 +7,5 @@
 *.aux
 *.synctex.gz
 *.pdf
+tempPartial*.tex
+!srs.pdf
