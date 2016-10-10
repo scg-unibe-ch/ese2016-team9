@@ -8,7 +8,7 @@
 \begin{tabular}{|p{3cm}|p{10cm}}
 Use Case ID       & 1                                                                                                                                                              \\
 Use Case Name     & Login                                                                                                                                                          \\
-Trigger           & An user wants to login to the webapplication                                                                                                                   \\
+Trigger           & A user wants to login to the webapplication                                                                                                                   \\
 Precondition      & The user has already an account on the webapplication                                                                                                          \\
 Basic Path        & \begin{enumerate}
 \item The user access the webapplication and selects the link "Login"
@@ -22,4 +22,148 @@ Exception Paths   & In step 2, if the user enters not valid credentials into the
 Other             & n/a                                                                                                                                                                                                        
 \end{tabular}
 \caption{Use Case 1}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-2}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 2                                                         \\
+Use Case Name     & Post ad to sell property                                \\
+Trigger           & A user wants to sell a property					\\
+Precondition      & The user is logged in\\
+Basic Path        & \begin{enumerate}
+\item The user accesses the webapplication and selects the link 'Sell'
+\item The user is redirected to a form, where he can enter the information
+about the property he wants to sell. He can also add pictures and among other
+options he can select wheter he wants to sell directly or through an auction. 
+\item After submitting the form the user is redirected to the finished page of
+his ad
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user has the new ad attached to his account.                                                          
+\\
+Exception Paths   & None            \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 2}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-3}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 3                                                           \\
+Use Case Name     & Buy property directly                                                         \\
+Trigger           & A user wants buy the property described in an ad he saw directly \\
+Precondition      & The user is logged in and on the ad page of the property he wants to buy\\
+Basic Path        & \begin{enumerate}
+\item The user selects the link 'Buy'
+\item The user is redirected to a page with a form through which he can contact the seller
+\item After submitting the message and the contact data of the buyer is forwarded to the seller and the user is redirected to the ad page
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & None				\\
+Exception Paths   & None            \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 3}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-4}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 4                                                         \\
+Use Case Name     & Bid on a property                                                          \\
+Trigger           & A user wants to bid on the auction of a property                                          \\
+Precondition      & The user is logged in and on the auction page                                                  \\
+Basic Path        & \begin{enumerate}
+\item The user selects the specific auction he wants to participate in
+\item The user is redirected to the auction page, where information about the
+property and the auction itself (current bid, amount of bidders, time until
+the deadline etc.) is displayed
+\item The user can enter a bid of his own which has to be higher than the
+present highest bid. 
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The highest bid now displays the bid made by the user                                                       \\
+Exception Paths   & In step 3 if the bid is not higher than the present one an error flashes to point the fact out.					\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 4}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-5}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 5                                                         \\
+Use Case Name     & Search for porperties on sale                                                         \\
+Trigger           & A user wants to look for properties on sale                                         \\
+Precondition      & The user is logged in and on the search page                             \\
+Basic Path        & \begin{enumerate}
+\item The user selects in the search criterias that he wants to look for
+properties on sale
+\item All properties on sale (directly or through an auction) matching his other
+search criterias are displayed to the user
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & None                                                      \\
+Exception Paths   & None				\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 5}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-6}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 6                                                         \\
+Use Case Name     & Create a search alert                                                         \\
+Trigger           & A user wants to create a search alert                                         \\
+Precondition      & The user is logged in and on the search page                          \\
+Basic Path        & \begin{enumerate}
+\item The user selects the link 'Create search alert'
+\item The user is redirected to a form where he can select the search criterias
+he want to cover with his alert
+\item After submitting the form the user is redirected to the search page 
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The search alert is attached to the profile of the user and
+he gets an email notification every time a new ad for a property matching his
+alert criterias is created			\\
+Exception Paths   & None				\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 6}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-7}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 7                                                         \\
+Use Case Name     & Delete or disable a search alert                                      \\
+Trigger           & A user wants to delete or disable a previously created search alert	\\
+Precondition      & The user is logged in and on his profile page               \\
+Basic Path        & \begin{enumerate}
+\item The user selects the link 'Search Alerts'
+\item The user is redirected to the search alerts page, where all his search
+alerts are displayed. He can now delete or disable each search alert via the
+respective buttons. 
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user gets no longer notifications for disabled or deleted search alerts		\\
+Exception Paths   & None			\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 7}
 \end{table}
