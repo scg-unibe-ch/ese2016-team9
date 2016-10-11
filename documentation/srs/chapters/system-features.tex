@@ -480,3 +480,420 @@ Other             & n/a
 \end{tabular}
 \caption{Use Case 20}:
 \end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-21}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 21                                                           
+\\
+Use Case Name     & Bookmark an ad                                                          
+\\
+Trigger           & A client wants to add an ad to his bookmarks                                           
+\\
+Precondition      & The user is logged in and the ad isn't bookmarked yet                                                 
+\\
+Basic Path        & \begin{enumerate}
+\item The client visits an ad
+\item The client presses the 'Bookmark Ad' Button
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The ad is added to the list 'My Bookmarks' the 'Bookmark Ad'
+and Button turns to 'Bookmarked'
+\\
+Exception Paths   & None                          \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 21}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-22}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 22                                                           
+\\
+Use Case Name     & Set alert for ad                                                          
+\\
+Trigger           & A client wants to get alerted, when an ad that fulfills some
+criteria gets online
+\\
+Precondition      & The client is logged in                                                 
+\\
+Basic Path        & \begin{enumerate}
+\item The client selects 'Alerts' in the account menu
+\item The client specifies the criteria presented on the screen
+\item The client presses the Subscribe button
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The new alert shows up in the table 'Your active alerts'                                                          
+\\
+Exception Paths   & When not all criteria are filled in and the client clicks on
+subscribe, an error message next to the empty criteria shows up
+\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 22}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-23}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 23                                                           
+\\
+Use Case Name     & Delete an alert                                                         
+\\
+Trigger           & A user wants to unsubscribe to an alert                                          
+\\
+Precondition      & The user is logged in and has set an alert                                                
+\\
+Basic Path        & \begin{enumerate}
+\item The client selects 'Alerts' in the account menu
+\item The user presses the delete button next to the alert he wants to delete
+in the 'Your active alerts' table
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The alert dissapears from the table                                                         
+\\
+Exception Paths   & None                          \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 23}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-24}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 24                                                           
+\\
+Use Case Name     & See through list of ads                                                         
+\\
+Trigger           & A user wants to look at some ads/visits the website                                          
+\\
+Precondition      & None                                                 
+\\
+Basic Path        & \begin{enumerate}
+\item The user visits the home page by entering the url or when already on the
+page clicking on the 'flatfinder' logo
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user is on the homepage and sees the ads                                                          
+\\
+Exception Paths   & None                          \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 24}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-25}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 25                                                           
+\\
+Use Case Name     & Search for ad                                                          
+\\
+Trigger           & A client wants to search for a specific ad
+\\
+Precondition      & None                                                
+\\
+Basic Path        & \begin{enumerate}
+\item The client clicks on the 'Search' button
+\item The client specifies the criteria presented on the screen
+\item The client presses the 'Search' button
+\end{enumerate} 
+     \\
+Alternative Paths & The client presses the 'Cancel' button to reset the criteria                         
+\\
+Postconditions    & A table with all the ads, that fit the criteria is presented
+along with an overview of the used filter with additional criteria
+\\
+Exception Paths   & When not all criteria are filled in and the client clicks on
+search, an error message next to the empty criteria shows up
+\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 25}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-26}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 26                                                           
+\\
+Use Case Name     & See list of bookmarked ads                                                         
+\\
+Trigger           & A client wants to look at all his bookmarked ads                                          
+\\
+Precondition      & The user is logged in                                                
+\\
+Basic Path        & \begin{enumerate}
+\item The client selects 'My rooms' in the account menu
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The list 'My Bookmarks' is presented along with the list 'My
+Asvertisements'
+\\
+Exception Paths   & None                          \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 26}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-27}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 27                                                           
+\\
+Use Case Name     & Message user                                                        
+\\
+Trigger           & A link that should send some message to another user is
+clicked
+\\
+Precondition      & The user is logged in                                                
+\\
+Basic Path        & \begin{enumerate}
+\item A contact form opens
+\item The client types a subject
+\item The client types a message
+\item The client clicks on the send button
+\end{enumerate} 
+     \\
+Alternative Paths & The client clicks on the 'Cancel' button to abort                        
+\\
+Postconditions    & A message is sent to the receiver
+\\
+Exception Paths   & None                          \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 27}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-28}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 28                                                           
+\\
+Use Case Name     & Contact advertiser                                                         
+\\
+Trigger           & A client wants to contact of an ad                                          
+\\
+Precondition      & The user is logged in and on an 'Ad Description' page                                                
+\\
+Basic Path        & \begin{enumerate}
+\item The client clicks on the 'Contact Advertiser' button
+\item A contact form opens
+\item The client types a subject
+\item The client types a message
+\item The client clicks on the send button
+\end{enumerate} 
+     \\
+Alternative Paths & The client clicks on the 'Cancel' button to abort                        
+\\
+Postconditions    & A message is sent to the receiver
+\\
+Exception Paths   & None                          \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 28}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-29}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 29                                                           
+\\
+Use Case Name     & Send enquiry for visitation                                                         
+\\
+Trigger           & A client wants to send an enquiry for visitation to an
+advertiser
+\\
+Precondition      & The user is logged in and on an 'Ad Description' page                                                
+\\
+Basic Path        & \begin{enumerate}
+\item The client clicks on the 'Send enquiry to advertiser' button, located next
+to the preferred option
+\item A message that asks 'Send enquiry to advertiser?' shows up.
+\item The client clicks the 'Send' button
+\end{enumerate} 
+     \\
+Alternative Paths & The client clicks on the 'Cancel' button to abort                      
+\\
+Postconditions    & An enquiry is sent to the advertiser and the 'Send enquiry
+to advertiser' button turns grey saying 'Enquiry sent'
+\\
+Exception Paths   & None                          \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 29}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-30}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 30                                                           
+\\
+Use Case Name     & Send enquiry for visitation                                                         
+\\
+Trigger           & A client wants to send an enquiry for visitation to an
+advertiser
+\\
+Precondition      & The user is logged in and on an 'Ad Description' page                                                
+\\
+Basic Path        & \begin{enumerate}
+\item The client clicks on the 'Send enquiry to advertiser' button, located next
+to the preferred option
+\item A message that asks 'Send enquiry to advertiser?' shows up.
+\item The client clicks the 'Send' button
+\end{enumerate} 
+     \\
+Alternative Paths & The client clicks on the 'Cancel' button in step 3 to abort                      
+\\
+Postconditions    & An enquiry is sent to the advertiser and the 'Send enquiry
+to advertiser' button turns grey saying 'Enquiry sent'
+\\
+Exception Paths   & None                          \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 30}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-31}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 31                                                           
+\\
+Use Case Name     & Sign up                                                         
+\\
+Trigger           & A user wants to create a new profile
+advertiser
+\\
+Precondition      & The user is on the login page                                                
+\\
+Basic Path        & \begin{enumerate}
+\item The user clicks on 'sign up as a new user'
+\item The user enters his information in the form
+\item The use clicks the 'Sign up' button
+\item The user is redirected to the login page
+\end{enumerate} 
+     \\
+Alternative Paths & None                     
+\\
+Postconditions    & A new profile is created for the user
+\\
+Exception Paths   & If the user enters none or invalid information an error is
+generated. 
+\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 31}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-32}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 32                                                           
+\\
+Use Case Name     & See list of incoming/sent messages                                                         
+\\
+Trigger           & A user wants to see his incoming/sent messages
+advertiser
+\\
+Precondition      & The user is logged in                                                
+\\
+Basic Path        & \begin{enumerate}
+\item The user selects 'Messages' in the account menu
+\item The user clicks on 'Inbox' to see the list of all incoming messages
+\item The user clicks on a Message to see it in detail
+\end{enumerate} 
+     \\
+Alternative Paths & The user clicks in step 2 on 'Sent' to see the list of all
+sent messages
+\\
+Postconditions    & None
+\\
+Exception Paths   & None
+\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 32}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-33}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 33                                                           
+\\
+Use Case Name     & Message another user                                                         
+\\
+Trigger           & A user wants to send a message to another user
+\\
+Precondition      & The user is logged in and on the profile page of the
+receiver
+\\
+Basic Path        & \begin{enumerate}
+
+\item The user clicks on the 'Message' button
+\item A message form opens
+\item The user types a subject
+\item The user types a message
+\item The user clicks on the send button
+\end{enumerate} 
+     \\
+Alternative Paths & The client clicks on the 'Cancel' button to abort                        
+\\
+Postconditions    & A message is sent to the receiver
+\\
+Exception Paths   & None                          \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 33}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-34}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 34                                                           
+\\
+Use Case Name     & Edit public profile                                                        
+\\
+Trigger           & A user wants to edit or change his public profile
+advertiser
+\\
+Precondition      & The user is logged in
+\\
+Basic Path        & \begin{enumerate}
+
+\item The user selects 'Public profile' in the account menu
+\item The user clicks on the 'Edit profile' button
+\item The user changes the information he wants
+\item The user clicks on the 'Update' button
+\item The user is redirected to a page that says 'Your profile has been
+updated!'
+\end{enumerate} 
+     \\
+Alternative Paths & None                       
+\\
+Postconditions    & The information is updated on the public profile of the user
+\\
+Exception Paths   & None                          \\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 34}
+\end{table}
