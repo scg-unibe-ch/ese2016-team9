@@ -167,3 +167,316 @@ Other             & n/a
 \end{tabular}
 \caption{Use Case 7}
 \end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-8}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 8                                                         \\
+Use Case Name     & See schedule of presentations                                       \\
+Trigger           & A user wants to see the date, time and location of all his
+presentations \\
+Precondition      & The user is logged in               \\
+Basic Path        & \begin{enumerate}
+\item The user selects the link 'Schedule'  
+\item The user is redirected to the schedule page. 
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user can now see the date, time and location of all his
+presentations and get a list of all his visitors or visit the ad page of each
+presentation via the respective buttons. 		\\
+Exception Paths   & None			\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 8}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-9}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 9                                                        \\
+Use Case Name     & List of visitor                          \\
+Trigger           & A user wants to see all his visits\\
+Precondition      & The user is logged             \\
+Basic Path        & \begin{enumerate}
+\item The user selects the link 'Schdule' 
+\item The user is redirected to the page 'Schdule'. 
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user now sees below the table 'Your Presentations' a
+table where the location, time and date of all his visits and is able to visit
+the ad of each visit through a respective button.
+\\
+Exception Paths   & None			\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 9}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-10}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 10                                                        \\
+Use Case Name     & See list of visitors                            \\
+Trigger           & A user wants to see a list of all visitors of a presentation\\
+Precondition      & The user is logged in and on the schedule page             \\
+Basic Path        & \begin{enumerate}
+\item The user selects the button 'See List' in the row of the presentation hes
+interested in.
+\item The user is redirected to the page 'Visitor of your property'. 
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user now sees the name, username and rating of each
+visitor and is able to visit their profile page via a
+respective button.	\\
+Exception Paths   & None			\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 10}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-11}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 11                                                        \\
+Use Case Name     & Edit ad                            \\
+Trigger           & A user wants to edit one of his existing ads\\
+Precondition      & The user is logged in and on the homepage             \\
+Basic Path        & \begin{enumerate}
+\item The user selects his ad from the shown ads.
+\item The user then selects the 'Edit ad' button.  
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user ios now able to edit all information concerning his
+placed ad. \\
+respective button.	\\
+Exception Paths   & None			\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 11}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\label{table-use-case-12}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 12                                                        \\
+Use Case Name     & Place an ad                            \\
+Trigger           & A user wants to place an ad\\
+Precondition      & The user is logged in             \\
+Basic Path        & \begin{enumerate}
+\item The user selects the link 'Place an ad'
+\item The user is redirected to the page 'Place ad'. 
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user is now able to fill out a sheet of information to
+place a new ad	\\
+Exception Paths   & None			\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 12}
+\end{table}
+
+
+\begin{table}[H]
+\centering
+\label{table-use-case-13}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 13                                                      \\
+Use Case Name     & Place an ad                            \\
+Trigger           & A user wants to place an ad\\
+Precondition      & The user is logged in.             \\
+Basic Path        & \begin{enumerate}
+\item The user selects the link 'Place an ad'
+\item The user is redirected to the page 'Place ad'. 
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user is now able to fill out a sheet of information to
+place a new ad (see use cases 13-20)	\\
+Exception Paths   & None			\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 13}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-14}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 14                                                      \\
+Use Case Name     & Insert general information                            \\
+Trigger           & The user want to insertor change general information abaout
+an ad.
+\\
+Precondition      & The user is logged in and on the place/edit ad page.           
+\\
+Basic Path        & \begin{enumerate}
+\item		The user inserts/edits general information(Ad Title, Type, Street, City,
+move-in date, move-out date, prize per month and square meters) about his ad in
+the first box.
+\end{enumerate} \\
+Alternative Paths & None                          \\
+Postconditions    & The user now sees the changed information of his ad.	\\
+Exception Paths   & In point 1, when: \begin{enumerate}
+  \item 		City, Ad Title, move-in date, street is left empty.
+  \item			Prize per month or square meters are not filled in correct.
+\end{enumerate}			\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 14}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-15}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 15                                                      \\
+Use Case Name     & Describe room                            \\
+Trigger           & The user want describe the room he's placing an ad for.\\
+Precondition      & The user is logged in and on the place/edit ad page.            
+\\
+Basic Path        & \begin{enumerate}
+\item		The user adds the room information about his ad in the second box. 
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user now sees the filled in describtion of his room.	\\
+Exception Paths   & None			\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 15}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-16}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 16                                                      \\
+Use Case Name     & Insert pictures                            \\
+Trigger           & The user wants to add pictures of the room hes placing an.
+ad for. \\ 
+Precondition      & The user is logged in and on the place/edit ad page.            
+\\
+Basic Path        & \begin{enumerate}
+\item		The user selects the link 'Choose File' from the fifth box, which opens a
+new window.
+\item       In the new window the user is able to choose the wanted pictures
+			from his file system. He finishes with the 'Open' button.
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user sees the table 'Uploaded picture', where his
+selected pictures are listed.
+\\
+Exception Paths   & None			\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 16}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-17}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 17                                                      \\
+Use Case Name     & Add roommate                            \\
+Trigger           & The user wants to ad roommate to his ad\\
+Precondition      & The user is logged in, on the place/edit ad page and the
+roommate has an account on the website.
+\\
+Basic Path        & \begin{enumerate}
+\item		The user simply inserts the e-mail adress of the roommate he wants to add
+and selects the '+' button to add him.
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user sees the added roommate below the textfield where
+he entered the e-mail adress.
+\\
+Exception Paths   & In point 1, when a the roommates e-mail adress is misspelled
+or non existent.
+\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 17}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-18}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 18                                                      \\
+Use Case Name     & Describe roommate                            \\
+Trigger           & The user wants to ad roommate to his ad\\
+Precondition      & The user is logged in, on the place/edit ad page and the
+roommate doesn't have an account on the website.
+\\
+Basic Path        & \begin{enumerate}
+\item		The user enter a description of the roommate in the textfield below the
+button to ad a roommate with account.
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user has entered the description of the roommate.\\
+Exception Paths   & None			\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 18}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-19}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 19                                                      \\
+Use Case Name     & Describe preferences                            \\
+Trigger           & The user wants to add preferences to his ad\\
+Precondition      & The user is logged in and on the place/edit ad page
+\\
+Basic Path        & \begin{enumerate}
+\item		The user enters his preferences in the textfield in the fourth box.
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user has entered his preferences.\\
+Exception Paths   & None			\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 19}
+\end{table}
+
+\begin{table}[H]
+\centering
+\label{table-use-case-20}
+\begin{tabular}{|p{3cm}|p{10cm}}
+Use Case ID       & 20                                                      \\
+Use Case Name     & Inserting visiting hours                            \\
+Trigger           & The user wants to add the possible visiting hours \\
+Precondition      & The user is logged in and on the place/edit ad page
+\\
+Basic Path        & \begin{enumerate}
+\item		The user enters his preferes visiting date and time in the sixth box of
+the form.
+\item  		By selecting the '+' button he confirms his choices.
+\end{enumerate} 
+     \\
+Alternative Paths & None                          \\
+Postconditions    & The user now sees the chosen date and time for the visits.
+\\
+Exception Paths   & In point 1, when the end time of visit is entered as earlier
+as the start time.
+\\
+Other             & n/a                                                                                                                                                                                                        
+\end{tabular}
+\caption{Use Case 20}:
+\end{table}
