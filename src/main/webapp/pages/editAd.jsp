@@ -39,35 +39,7 @@
 			dateFormat : 'dd-mm-yy'
 		});
 		
-		$("#addbutton").click(function() {
-			var text = $("#roomFriends").val();
-			var alreadyAdded = $("#addedRoommates").html();
-			if(validateForm(text)) {
-				$.post("/profile/placeAd/validateEmail",{email: text, alreadyIn: alreadyAdded}, function(data) {
-					if(validateForm(data)) {
-						// length gibt die Anzahl der Elemente im input.roommateInput an. Dieser wird in index geschrieben und iteriert.
-						var index = $("#roommateCell input.roommateInput").length;
-						$("#roommateCell").append("<input class='roommateInput' type='hidden' name='registeredRoommateEmails[" + index + "]' value='" + data + "' />");
-						$("#addedRoommates").append(data + "; ");
-					} else {
-						alert(data);
-					}});
-			}
-			else {
-				alert("Please enter an e-mail adress");
-			}
-			 
-			// Validates the input for Email Syntax
-			function validateForm(text) {
-			    var positionAt = text.indexOf("@");
-			    var positionDot = text.lastIndexOf(".");
-			    if (positionAt< 1 || positionDot<positionAt+2 || positionDot+2>=text.length) {
-			        return false;
-			    } else {
-			    	return true;
-			    }
-			}
-		});
+		
 		
 		$("#addVisitButton").click(function() {
 			var date = $("#field-visitDay").val();
@@ -101,15 +73,7 @@
 			$("#addedVisits").append(label + input);
 		});
 		
-		$(".deleteRoommateButton").click(function()  {
-			var userId = $(this).attr("data-user-id");
-			var adId = $(this).attr("data-ad-id");
-			var row = $(this).parent().parent();
-			$.post("/profile/editAd/deleteRoommate", {userId: userId, adId: adId}, function() {
-				$(row).animate({opacity: 0}, 300, function() {$(row).remove(); } );
-			});
 		
-		});
 	});
 </script>
 
@@ -119,7 +83,7 @@
 <fmt:formatDate value="${ad.moveOutDate}" var="formattedMoveOutDate"
 	type="date" pattern="dd-MM-yyyy" />
 	
-<pre><a href="/">Home</a>   &gt;   <a href="/profile/myRooms">My Rooms</a>   &gt;   <a href="/ad?id=${ad.id}">Ad Description</a>   &gt;   Edit Ad</pre>
+<pre><a href="/">Home</a>   &gt;   <a href="/profile/myHouses">My Houses</a>   &gt;   <a href="/ad?id=${ad.id}">Ad Description</a>   &gt;   Edit Ad</pre>
 
 
 <h1>Edit Ad</h1>
@@ -136,22 +100,22 @@
 		<table class="placeAdTable">
 			<tr>
 				<td><label for="field-title">Ad Title</label></td>
-				<td><label for="type-room">Type:</label></td>
+				<td><label for="type-house">Type:</label></td>
 			</tr>
 
 			<tr>
 				<td><form:input id="field-title" path="title" value="${ad.title}" /></td>
 				<td>
 					<c:choose>
-						<c:when test="${ad.studio == 'true'}">
-							<form:radiobutton id="type-room" path="studio" value="1"
-								checked="checked" />Room <form:radiobutton id="type-studio"
-								path="studio" value="0" />Studio
+						<c:when test="${ad.flat == 'true'}">
+							<form:radiobutton id="type-house" path="flat" value="1"
+								checked="checked" />House <form:radiobutton id="type-flat"
+								path="flat" value="0" />Flat
 						</c:when>
 						<c:otherwise>
-							<form:radiobutton id="type-room" path="studio" value="0"
-								checked="checked" />Room <form:radiobutton id="type-studio"
-								path="studio" value="1" />Studio
+							<form:radiobutton id="type-house" path="flat" value="0"
+								checked="checked" />House <form:radiobutton id="type-flat"
+								path="flat" value="1" />Flat
 						</c:otherwise>
 					</c:choose>
 			</tr>
@@ -208,7 +172,7 @@
 
 	<br />
 	<fieldset>
-		<legend>Change Room Description</legend>
+		<legend>Change House Description</legend>
 
 		<table class="placeAdTable">
 			<tr>
@@ -331,61 +295,12 @@
 
 		</table>
 		<br />
-		<form:textarea path="roomDescription" rows="10" cols="100" value="${ad.roomDescription}" />
-		<form:errors path="roomDescription" cssClass="validationErrorText" />
+		<form:textarea path="houseDescription" rows="10" cols="100" value="${ad.houseDescription}" />
+		<form:errors path="houseDescription" cssClass="validationErrorText" />
 	</fieldset>
 
 
-	<br />
-	<fieldset>
-		<legend>Change roommates</legend>
-		
-		<h3>Add new roommates</h3>
-		<br />
-		<p>If your roommates have an account, simply add them by email.</p>
-
-		<table class="placeAdTable">
-			<tr>
-				<td><label for="roomFriends">Add by email</label></td>
-			</tr>
-
-			<tr>
-				<td id="roommateCell"><form:input type="text" id="roomFriends"
-						path="roomFriends" placeholder="email" /> 
-
-				<div id="addbutton" class="smallPlusButton">+</div></td>
-			</tr>
-			
-			<tr>
-				<td><p id="addedRoommates" path="addedRoommates">Newly added roommates: </p></td>
-			</tr>
-		</table>
-
-
-		<p>Edit the description of the roommates:</p>
-		<br />
-		<form:textarea path="roommates" rows="10" cols="100"
-			placeholder="Roommates" />
-		<form:errors path="roommates" cssClass="validationErrorText" />
-		<hr />
-		<h3>Delete existing roommates</h3>
-		<br />
-		<table class="styledTable">
-					<tr>
-						<th>Username</th>
-						<th>Delete</th>
-					</tr>
-					
-					<c:forEach var="user" items="${ad.registeredRoommates}">
-							<tr>
-								<td>${user.username}</td>
-								<td><button type="button" data-user-id="${user.id}" data-ad-id="${ad.id}" class="deleteRoommateButton">Delete</button></td>
-							</tr>
-							<tr>
-					</c:forEach>
-		</table>
-	</fieldset>
-
+	
 	<br />
 	<fieldset>
 		<legend>Change preferences</legend>

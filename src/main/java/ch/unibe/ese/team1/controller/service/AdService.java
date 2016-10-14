@@ -74,7 +74,7 @@ public class AdService {
 
 		ad.setStreet(placeAdForm.getStreet());
 
-		ad.setStudio(placeAdForm.getStudio());
+		ad.setFlat(placeAdForm.getFlat());
 
 		// take the zipcode - first four digits
 		String zip = placeAdForm.getCity().substring(0, 4);
@@ -112,9 +112,8 @@ public class AdService {
 		ad.setPrizePerMonth(placeAdForm.getPrize());
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
 
-		ad.setRoomDescription(placeAdForm.getRoomDescription());
+		ad.setHouseDescription(placeAdForm.getHouseDescription());
 		ad.setPreferences(placeAdForm.getPreferences());
-		ad.setRoommates(placeAdForm.getRoommates());
 
 		// ad description values
 		ad.setSmokers(placeAdForm.isSmokers());
@@ -139,19 +138,6 @@ public class AdService {
 		}
 		ad.setPictures(pictures);
 
-		/*
-		 * Roommates are saved in the form as strings. They need to be converted
-		 * into Users and saved as a List which will be accessible through the
-		 * ad object itself.
-		 */
-		List<User> registeredUserRommates = new LinkedList<>();
-		if (placeAdForm.getRegisteredRoommateEmails() != null) {
-			for (String userEmail : placeAdForm.getRegisteredRoommateEmails()) {
-				User roommateUser = userService.findUserByUsername(userEmail);
-				registeredUserRommates.add(roommateUser);
-			}
-		}
-		ad.setRegisteredRoommates(registeredUserRommates);
 
 		// visits
 		List<Visit> visits = new LinkedList<>();
@@ -239,15 +225,15 @@ public class AdService {
 	public Iterable<Ad> queryResults(SearchForm searchForm) {
 		Iterable<Ad> results = null;
 
-		// we use this method if we are looking for rooms AND studios
-		if (searchForm.getBothRoomAndStudio()) {
+		// we use this method if we are looking for houses AND flats
+		if (searchForm.getBothHouseAndFlat()) {
 			results = adDao
 					.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
 		}
-		// we use this method if we are looking EITHER for rooms OR for studios
+		// we use this method if we are looking EITHER for houses OR for flats
 		else {
-			results = adDao.findByStudioAndPrizePerMonthLessThan(
-					searchForm.getStudio(), searchForm.getPrize() + 1);
+			results = adDao.findByFlatAndPrizePerMonthLessThan(
+					searchForm.getFlat(), searchForm.getPrize() + 1);
 		}
 
 		// filter out zipcode

@@ -12,8 +12,8 @@ public class SearchForm {
 
 	private boolean filtered;
 
-	// studio: true, room: false
-	private boolean studio;
+	// flat: true, house: false
+	private boolean flat;
 
 	@NotBlank(message = "Required")
 	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
@@ -28,9 +28,9 @@ public class SearchForm {
 	private Integer prize;
 
 	@AssertFalse(message = "Please select either or both types")
-	private boolean noRoomNoStudio;
+	private boolean noHouseNoFlat;
 
-	private boolean bothRoomAndStudio;
+	private boolean bothHouseAndFlat;
 
 	public String getCity() {
 		return city;
@@ -56,28 +56,28 @@ public class SearchForm {
 		this.prize = prize;
 	}
 
-	public boolean getStudio() {
-		return studio;
+	public boolean getFlat() {
+		return flat;
 	}
 
-	public void setStudio(boolean studio) {
-		this.studio = studio;
+	public void setFlat(boolean flat) {
+		this.flat = flat;
 	}
 
-	public boolean getNoRoomNoStudio() {
-		return noRoomNoStudio;
+	public boolean getNoHouseNoFlat() {
+		return noHouseNoFlat;
 	}
 
-	public void setNoRoomNoStudio(boolean noRoomNoStudio) {
-		this.noRoomNoStudio = noRoomNoStudio;
+	public void setNoHouseNoFlat(boolean noHouseNoFlat) {
+		this.noHouseNoFlat = noHouseNoFlat;
 	}
 
-	public boolean getBothRoomAndStudio() {
-		return bothRoomAndStudio;
+	public boolean getBothHouseAndFlat() {
+		return bothHouseAndFlat;
 	}
 
-	public void setBothRoomAndStudio(boolean bothRoomAndStudio) {
-		this.bothRoomAndStudio = bothRoomAndStudio;
+	public void setBothHouseAndFlat(boolean bothHouseAndFlat) {
+		this.bothHouseAndFlat = bothHouseAndFlat;
 	}
 
 	// //////////////////
@@ -107,10 +107,10 @@ public class SearchForm {
 	private boolean garage;
 	private boolean internet;
 
-	private boolean roomHelper;
+	private boolean houseHelper;
 
 	// the ugly stuff
-	private boolean studioHelper;
+	private boolean flatHelper;
 
 	public boolean getSmokers() {
 		return smokers;
@@ -216,19 +216,19 @@ public class SearchForm {
 		this.latestMoveOutDate = latestMoveOutDate;
 	}
 
-	public boolean getStudioHelper() {
-		return studioHelper;
+	public boolean getFlatHelper() {
+		return flatHelper;
 	}
 
-	public void setStudioHelper(boolean helper) {
-		this.studioHelper = helper;
+	public void setFlatHelper(boolean helper) {
+		this.flatHelper = helper;
 	}
 
-	public boolean getRoomHelper() {
-		return roomHelper;
+	public boolean getHouseHelper() {
+		return houseHelper;
 	}
 
-	public void setRoomHelper(boolean helper) {
-		this.roomHelper = helper;
+	public void setHouseHelper(boolean helper) {
+		this.houseHelper = helper;
 	}
 }

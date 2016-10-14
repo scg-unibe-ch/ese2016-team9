@@ -43,7 +43,7 @@
 		</ul>
 		<br />
 
-		<h2>Roommates for AdBern</h2>
+		<h2>Dudes for AdBern</h2>
 		<ul class="test-users">
 			<li>Email: <i>hans@unibe.ch</i>, password: <i>password</i></li>
 			<li>Email: <i>mathilda@unibe.ch</i>, password: <i>password</i></li>

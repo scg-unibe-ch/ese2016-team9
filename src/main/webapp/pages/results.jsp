@@ -12,25 +12,25 @@
 <script>
 function validateType(form)
 {
-	var room = document.getElementById('room');
-	var studio = document.getElementById('studio');
+	var house = document.getElementById('house');
+	var flat = document.getElementById('flat');
 	var neither = document.getElementById('neither');
 	var both = document.getElementById('both');
 	var type = document.getElementById('type');
 	var filtered = document.getElementById('filtered');
 	
-	if(room.checked && studio.checked) {
+	if(house.checked && flat.checked) {
 		both.checked = true;
 		neither.checked = false;
 	}
-	else if(!room.checked && !studio.checked) {
+	else if(!house.checked && !flat.checked) {
 		both.checked = false;
 		neither.checked = true;
 	}
 	else {
 		both.checked = false;
 		neither.checked = false;
-		type.checked = studio.checked;
+		type.checked = flat.checked;
 	}
 	filtered.checked = true;
 }
@@ -153,8 +153,8 @@ function sort_div_attribute() {
 						<br />
 						<p>
 							<i><c:choose>
-									<c:when test="${ad.studio}">Studio</c:when>
-									<c:otherwise>Room</c:otherwise>
+									<c:when test="${ad.flat}">Flat</c:when>
+									<c:otherwise>House</c:otherwise>
 								</c:choose></i>
 						</p>
 					</div>
@@ -178,14 +178,14 @@ function sort_div_attribute() {
 
 	<div id="filterDiv">
 		<h2>Filter results:</h2>
-		<form:checkbox name="room" id="room" path="roomHelper" /><label>Room</label>
-		<form:checkbox name="studio" id="studio" path="studioHelper" /><label>Studio</label>
+		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
+		<form:checkbox name="flat" id="flat" path="flatHelper" /><label>Flat</label>
 	
-		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
-		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
-		<form:checkbox style="display:none" name="type" id="type" path="studio" />
+		<form:checkbox style="display:none" name="neither" id="neither" path="noHouseNoFlat" />
+		<form:checkbox style="display:none" name="both" id="both" path="bothHouseAndFlat" />
+		<form:checkbox style="display:none" name="type" id="type" path="flat" />
 		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
-		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" /> <br />
+		<form:errors path="noHouseNoFlat" cssClass="validationErrorText" /> <br />
 	
 		<label for="city">City / zip code:</label>
 		<form:input type="text" name="city" id="city" path="city"

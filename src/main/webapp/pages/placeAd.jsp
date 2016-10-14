@@ -43,23 +43,7 @@
 		});
 		
 
-		$("#addbutton").click(function() {
-			var text = $("#roomFriends").val();
-			var alreadyAdded = $("#addedRoommates").html();
-			if(validateForm(text)) {
-				$.post("/profile/placeAd/validateEmail",{email: text, alreadyIn: alreadyAdded}, function(data) {
-					if(validateForm(data)) {
-						var index = $("#roommateCell input.roommateInput").length;
-						$("#roommateCell").append("<input class='roommateInput' type='hidden' name='registeredRoommateEmails[" + index + "]' value='" + data + "' />");
-						$("#addedRoommates").append(data + "; ");
-					} else {
-						alert(data);
-					}});
-			}
-			else {
-				alert("Please enter an e-mail adress");
-			}
-			 
+		
 			// Validates the input for Email Syntax
 			function validateForm(text) {
 			    var positionAt = text.indexOf("@");
@@ -121,15 +105,15 @@
 		<table class="placeAdTable">
 			<tr>
 				<td><label for="field-title">Ad Title</label></td>
-				<td><label for="type-room">Type:</label></td>
+				<td><label for="type-house">Type:</label></td>
 			</tr>
 
 			<tr>
 				<td><form:input id="field-title" path="title"
 						placeholder="Ad Title" /></td>
-				<td><form:radiobutton id="type-room" path="studio" value="0"
-						checked="checked" />Room <form:radiobutton id="type-studio"
-						path="studio" value="1" />Studio</td>
+				<td><form:radiobutton id="type-house" path="flat" value="0"
+						checked="checked" />House <form:radiobutton id="type-flat"
+						path="flat" value="1" />Flat</td>
 			</tr>
 
 			<tr>
@@ -173,7 +157,7 @@
 
 	<br />
 	<fieldset>
-		<legend>Room Description</legend>
+		<legend>House Description</legend>
 
 		<table class="placeAdTable">
 			<tr>
@@ -207,43 +191,12 @@
 
 		</table>
 		<br />
-		<form:textarea path="roomDescription" rows="10" cols="100"
-			placeholder="Room Description" />
-		<form:errors path="roomDescription" cssClass="validationErrorText" />
+		<form:textarea path="houseDescription" rows="10" cols="100"
+			placeholder="House Description" />
+		<form:errors path="houseDescription" cssClass="validationErrorText" />
 	</fieldset>
 
-	<br />
-	<fieldset>
-		<legend>Roommates (optional)</legend>
-		<p>If your roommates have an account, simply add them by email.</p>
-
-		<table class="placeAdTable">
-			<tr>
-				<td><label for="roomFriends">Add by email</label></td>
-			</tr>
-
-			<tr>
-				<td id="roommateCell"><form:input type="text" id="roomFriends"
-						path="roomFriends" placeholder="email" />
-
-					<div id="addbutton" class="smallPlusButton">+</div></td>
-			</tr>
-			<tr>
-				<td><p id="addedRoommates" path="addedRoommates">Added
-						roommates:</p></td>
-			</tr>
-		</table>
-
-		<br />
-		<p>If the roommates do not have accounts or you wish to give
-			further information, you can add a text in which you describe the
-			roommates.</p>
-		<br/>
-		<form:textarea path="roommates" rows="10" cols="100"
-			placeholder="Roommates" />
-		<form:errors path="roommates" cssClass="validationErrorText" />
-	</fieldset>
-
+	
 	<br />
 	<fieldset>
 		<legend>Preferences (optional)</legend>

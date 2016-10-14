@@ -60,7 +60,7 @@ public class EditAdService {
 
 		ad.setStreet(placeAdForm.getStreet());
 
-		ad.setStudio(placeAdForm.getStudio());
+		ad.setFlat(placeAdForm.getFlat());
 
 		// take the zipcode - first four digits
 		String zip = placeAdForm.getCity().substring(0, 4);
@@ -98,9 +98,8 @@ public class EditAdService {
 		ad.setPrizePerMonth(placeAdForm.getPrize());
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
 
-		ad.setRoomDescription(placeAdForm.getRoomDescription());
+		ad.setHouseDescription(placeAdForm.getHouseDescription());
 		ad.setPreferences(placeAdForm.getPreferences());
-		ad.setRoommates(placeAdForm.getRoommates());
 
 		// ad description values
 		ad.setSmokers(placeAdForm.isSmokers());
@@ -129,23 +128,6 @@ public class EditAdService {
 		}
 		ad.setPictures(pictures);
 
-		/*
-		 * Roommates are saved in the form as strings. They need to be converted
-		 * into Users and saved as a List which will be accessible through the
-		 * ad object itself.
-		 */
-		List<User> registeredUserRommates = new LinkedList<>();
-		if (placeAdForm.getRegisteredRoommateEmails() != null) {
-			for (String userEmail : placeAdForm.getRegisteredRoommateEmails()) {
-				User roommateUser = userService.findUserByUsername(userEmail);
-				registeredUserRommates.add(roommateUser);
-			}
-		}
-		// add existing roommates
-		for (User roommates : ad.getRegisteredRoommates()) {
-			registeredUserRommates.add(roommates);
-		}
-		ad.setRegisteredRoommates(registeredUserRommates);
 
 		// visits
 		List<Visit> visits = new LinkedList<>();
@@ -207,27 +189,13 @@ public class EditAdService {
 	public PlaceAdForm fillForm(Ad ad) {
 		PlaceAdForm adForm = new PlaceAdForm();
 
-		adForm.setRoomDescription(ad.getRoomDescription());
+		adForm.setHouseDescription(ad.getHouseDescription());
 		adForm.setPreferences(ad.getPreferences());
-		adForm.setRoommates(ad.getRoommates());
+		
 
 		return adForm;
 	}
 
-	/**
-	 * Deletes the roommate with the given id from the ad with the given id.
-	 * 
-	 * @param roommateId
-	 *            the user to delete as roommate
-	 * @param adId
-	 *            the ad to delete the roommate from
-	 */
-	public void deleteRoommate(long roommateId, long adId) {
-		Ad ad = adService.getAdById(adId);
-		User roommate = userService.findUserById(roommateId);
-		ad.getRegisteredRoommates().remove(roommate);
-		adDao.save(ad);
-
-	}
+	
 
 }
