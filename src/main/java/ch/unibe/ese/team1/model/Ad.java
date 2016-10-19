@@ -59,18 +59,13 @@ public class Ad {
 
 	@Column(nullable = false)
 	@Lob
-	private String roomDescription;
+	private String houseDescription;
 
 	@Column(nullable = false)
 	@Lob
 	private String preferences;
 
-	@Column(nullable = false)
-	private String roommates;
-
-	@Fetch(FetchMode.SELECT)
-	@ManyToMany(fetch = FetchType.EAGER)
-	private List<User> registeredRoommates;
+	
 
 	@Column(nullable = false)
 	private boolean smokers;
@@ -99,9 +94,9 @@ public class Ad {
 	@Column(nullable = false)
 	private boolean internet;
 
-	// true if studio, false if room
+	// true if flat, false if house
 	@Column(nullable = false)
-	private boolean studio;
+	private boolean flat;
 
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -121,12 +116,12 @@ public class Ad {
 		this.creationDate = creationDate;
 	}
 
-	public boolean getStudio() {
-		return studio;
+	public boolean getFlat() {
+		return flat;
 	}
 
-	public void setStudio(boolean studio) {
-		this.studio = studio;
+	public void setFlat(boolean flat) {
+		this.flat = flat;
 	}
 
 	public boolean getSmokers() {
@@ -245,12 +240,12 @@ public class Ad {
 		this.squareFootage = squareFootage;
 	}
 
-	public String getRoomDescription() {
-		return roomDescription;
+	public String getHouseDescription() {
+		return houseDescription;
 	}
 
-	public void setRoomDescription(String roomDescription) {
-		this.roomDescription = roomDescription;
+	public void setHouseDescription(String houseDescription) {
+		this.houseDescription = houseDescription;
 	}
 
 	public String getPreferences() {
@@ -261,13 +256,7 @@ public class Ad {
 		this.preferences = preferences;
 	}
 
-	public String getRoommates() {
-		return roommates;
-	}
-
-	public void setRoommates(String roommates) {
-		this.roommates = roommates;
-	}
+	
 
 	public List<AdPicture> getPictures() {
 		return pictures;
@@ -318,14 +307,6 @@ public class Ad {
 			return moveInDate;
 		else
 			return moveOutDate;
-	}
-
-	public List<User> getRegisteredRoommates() {
-		return registeredRoommates;
-	}
-
-	public void setRegisteredRoommates(List<User> registeredRoommates) {
-		this.registeredRoommates = registeredRoommates;
 	}
 
 	public List<Visit> getVisits() {

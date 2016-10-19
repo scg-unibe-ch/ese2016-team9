@@ -19,7 +19,7 @@ function prepareRows() {
 	}, function() {
 		var color;
 		if($(this).hasClass("UNREAD"))
-			color = "#AFFFEE;";
+			color = "#D09900;";
 		else
 			color = "white";
 		$(this).children().css("background-color", color);

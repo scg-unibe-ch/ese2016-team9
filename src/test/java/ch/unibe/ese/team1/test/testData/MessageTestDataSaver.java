@@ -129,8 +129,8 @@ public class MessageTestDataSaver {
 
 	private String getDummyText1() {
 		return "I'm very interested in your advertisement, it looks just fabulous. The pictures give a good"
-				+ "impression of the room and the whole flat. Your roommates seem to be very nice. The price"
-				+ "seems fair. I've been living in many flats, I had a great time with various roommates."
+				+ "impression of the house and the whole flat. Your dudes seem to be very nice. The price"
+				+ "seems fair. I've been living in many flats, I had a great time with various dudes."
 				+ "My cooking skills are seriously impressive :). I like to chill out and drink some beer,"
 				+ "have a nice meal together. My hoobies are hiking, traveling, music, sports and books. I"
 				+ "really like to visit your flat, I sent you an enquiry for a visit.\n"
@@ -145,10 +145,10 @@ public class MessageTestDataSaver {
 
 	private String getDummyText3() {
 		return "Your flat just looks awesome, can't wait to see it myself. Those pictures are really promising,"
-				+ "and your roommates seem to be dope too. It would be so leet to chill around and smoke some"
+				+ "and your dudes seem to be dope too. It would be so leet to chill around and smoke some"
 				+ "ganja maybe, good old hippy-style man. I have a doggy, he hurts no one, apart from the police."
-				+ "Your roommates seem to be very nice. The price"
-				+ "seems fair. I've been living in many flats, I had a great time with various roommates."
+				+ "Your dudes seem to be very nice. The price"
+				+ "seems fair. I've been living in many flats, I had a great time with various dudes."
 				+ "My cooking skills are seriously impressive :). I like to chill out and drink some beer,"
 				+ "have a nice meal together. My hoobies are hiking, traveling, music, sports and books. I"
 				+ "really like to visit your flat, I sent you an enquiry for a visit.\n"

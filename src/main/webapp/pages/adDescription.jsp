@@ -12,7 +12,7 @@
 
 <c:import url="template/header.jsp" />
 
-<pre><a href="/">Home</a>   &gt;   <a href="/profile/myRooms">My Rooms</a>   &gt;   Ad Description</pre>
+<pre><a href="/">Home</a>   &gt;   <a href="/profile/myHouses">My Houses</a>   &gt;   Ad Description</pre>
 
 <script src="/js/image_slider.js"></script>
 <script src="/js/adDescription.js"></script>
@@ -161,8 +161,8 @@
 			<td><h2>Type</h2></td>
 			<td>
 				<c:choose>
-					<c:when test="${shownAd.studio}">Studio</c:when>
-					<c:otherwise>Room</c:otherwise>
+					<c:when test="${shownAd.flat}">Flat</c:when>
+					<c:otherwise>House</c:otherwise>
 				</c:choose>
 			</td>
 		</tr>
@@ -220,48 +220,12 @@
 <section>
 	<div id="descriptionTexts">
 		<div class="adDescDiv">
-			<h2>Room Description</h2>
-			<p>${shownAd.roomDescription}</p>
+			<h2>House Description</h2>
+			<p>${shownAd.houseDescription}</p>
 		</div>
 		<br />
 
-		<div class="adDescDiv">
-			<h2>Roommates</h2>
-			<p>${shownAd.roommates}</p>
-			<c:forEach var="mate" items="${shownAd.registeredRoommates}">
-				<div class="roommate">
-				<table id="mate">
-					<tr>
-						<td>
-						<a href="/user?id=${mate.id}">
-						<c:choose>
-							<c:when test="${mate.picture.filePath != null}">
-								<img src="${mate.picture.filePath}">
-							</c:when>
-							<c:otherwise>
-								<img src="/img/avatar.png">
-							</c:otherwise>
-						</c:choose>
-						</a>
-						</td>
-						<td>${mate.firstName} ${mate.lastName}</td>
-						<td>${mate.username}</td>
-						<td>
-						<c:choose>
-							<c:when test="${mate.gender == 'MALE'}">
-								male
-							</c:when>
-							<c:otherwise>
-								female
-							</c:otherwise>
-						</c:choose></td>
-					</tr>
-				</table>
-			</div>
-			</c:forEach>
-		</div>
-		<br />
-
+		
 		<div class="adDescDiv">
 			<h2>Preferences</h2>
 			<p>${shownAd.preferences}</p>
@@ -321,7 +285,7 @@
 		</tr>
 
 		<tr>
-			<td><h2>Furnished Room</h2></td>
+			<td><h2>Furnished House</h2></td>
 			<td>
 				<c:choose>
 					<c:when test="${shownAd.furnished}"><img src="/img/check-mark.png"></c:when>

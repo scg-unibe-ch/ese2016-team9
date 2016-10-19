@@ -129,15 +129,15 @@ public class AdController {
 	}
 
 	/**
-	 * Fetches information about bookmarked rooms and own ads and attaches this
-	 * information to the myRooms page in order to be displayed.
+	 * Fetches information about bookmarked houses and own ads and attaches this
+	 * information to the myHouses page in order to be displayed.
 	 */
-	@RequestMapping(value = "/profile/myRooms", method = RequestMethod.GET)
-	public ModelAndView myRooms(Principal principal) {
+	@RequestMapping(value = "/profile/myHouses", method = RequestMethod.GET)
+	public ModelAndView myHouses(Principal principal) {
 		ModelAndView model;
 		User user;
 		if (principal != null) {
-			model = new ModelAndView("myRooms");
+			model = new ModelAndView("myHouses");
 			String username = principal.getName();
 			user = userService.findUserByUsername(username);
 

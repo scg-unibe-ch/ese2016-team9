@@ -63,7 +63,7 @@ public class UserTestDataSaver {
 		oprah.setAboutMe(getDummyText());
 		userDao.save(oprah);
 		
-		// Dummy users to be added for Roommates
+		// Dummy users to be added for Dudes
 		User hans = createUser("hans@unibe.ch", "password", "Hans", "DummyOne",
 				Gender.MALE);
 		hans.setAboutMe("Hello, I am the dummy user Hans for the AdBern. I am living" +

@@ -20,16 +20,16 @@ function deleteAlert(button) {
 <script>
 function validateType(form)
 {
-	var room = document.getElementById('room');
-	var studio = document.getElementById('studio');
+	var house = document.getElementById('house');
+	var flat = document.getElementById('flat');
 	var neither = document.getElementById('neither');
 	var both = document.getElementById('both');
 	
-	if(room.checked && studio.checked) {
+	if(house.checked && flat.checked) {
 		both.checked = true;
 		neither.checked = false;
 	}
-	else if(!room.checked && !studio.checked) {
+	else if(!house.checked && !flat.checked) {
 		both.checked = false;
 		neither.checked = true;
 	}
@@ -42,12 +42,12 @@ function validateType(form)
 
 <script>
 function typeOfAlert(alert) {
-	if(alert.getBothRoomAndStudio())
+	if(alert.getBothHouseAndFlat())
 		return "Both"
-	else if(alert.getStudio())
-		return "Studio"
+	else if(alert.getFlat())
+		return "Flat"
 	else
-		return "Room"
+		return "House"
 }	
 </script>
 	
@@ -82,12 +82,12 @@ function typeOfAlert(alert) {
 	id="alertForm" autocomplete="off">
 
 	<fieldset>
-		<form:checkbox name="room" id="room" path="room" /><label>Room</label>
-		<form:checkbox name="studio" id="studio" path="studio" /><label>Studio</label>
+		<form:checkbox name="house" id="house" path="house" /><label>House</label>
+		<form:checkbox name="flat" id="flat" path="flat" /><label>Flat</label>
 		
-		<form:checkbox style="display:none" name="neither" id="neither" path="noRoomNoStudio" />
-		<form:checkbox style="display:none" name="both" id="both" path="bothRoomAndStudio" />
-		<form:errors path="noRoomNoStudio" cssClass="validationErrorText" /><br />
+		<form:checkbox style="display:none" name="neither" id="neither" path="noHouseNoFlat" />
+		<form:checkbox style="display:none" name="both" id="both" path="bothHouseAndFlat" />
+		<form:errors path="noHouseNoFlat" cssClass="validationErrorText" /><br />
 		
 		<label for="city">City / zip code:</label>
 		<form:input type="text" name="city" id="city" path="city"
@@ -133,14 +133,14 @@ function typeOfAlert(alert) {
 			<tr>
 				<td>
 				<c:choose>
-					<c:when test="${alert.bothRoomAndStudio}">
+					<c:when test="${alert.bothHouseAndFlat}">
 						Both
 					</c:when>
-					<c:when test="${alert.studio}">
-						Studio
+					<c:when test="${alert.flat}">
+						Flat
 					</c:when>
 					<c:otherwise>
-						Room
+						House
 					</c:otherwise>
 				</c:choose>
 				</td>

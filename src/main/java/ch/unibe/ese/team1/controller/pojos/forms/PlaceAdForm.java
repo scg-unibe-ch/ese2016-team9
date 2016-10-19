@@ -31,22 +31,16 @@ public class PlaceAdForm {
 	private int squareFootage;
 
 	@NotBlank(message = "Required")
-	private String roomDescription;
+	private String houseDescription;
 
 	private String preferences;
 
-	// optional free text description
-	private String roommates;
-	
-	// First user are added as strings, then transformed
-	// to Users and added to the DB in through adService
-	private List<String> registeredRoommateEmails;
-	
+
 	// optional for input
-	private String roomFriends;
+	private String houseFriends;
 	
-	//true if studio, false if room
-	private boolean studio;
+	//true if flat, false if house
+	private boolean flat;
 	
 	private boolean smokers;
 	private boolean animals;
@@ -76,12 +70,12 @@ public class PlaceAdForm {
 		this.prize = prize;
 	}
 
-	public String getRoomDescription() {
-		return roomDescription;
+	public String getHouseDescription() {
+		return houseDescription;
 	}
 
-	public void setRoomDescription(String roomDescription) {
-		this.roomDescription = roomDescription;
+	public void setHouseDescription(String houseDescription) {
+		this.houseDescription = houseDescription;
 	}
 
 	public String getPreferences() {
@@ -100,13 +94,7 @@ public class PlaceAdForm {
 		this.squareFootage = squareFootage;
 	}
 
-	public String getRoommates() {
-		return roommates;
-	}
-
-	public void setRoommates(String roommates) {
-		this.roommates = roommates;
-	}
+	
 
 	public boolean isSmokers() {
 		return smokers;
@@ -212,29 +200,23 @@ public class PlaceAdForm {
 		this.street = street;
 	}
 
-	public String getRoomFriends() {
-		return roomFriends;
+	public String getHouseFriends() {
+		return houseFriends;
 	}
 
-	public void setRoomFriends(String roomFriends) {
-		this.roomFriends = roomFriends;
+	public void setHouseFriends(String houseFriends) {
+		this.houseFriends = houseFriends;
 	}
 	
-	public boolean getStudio() {
-		return studio;
+	public boolean getFlat() {
+		return flat;
 	}
 	
-	public void setStudio(boolean studio) {
-		this.studio = studio;
+	public void setFlat(boolean flat) {
+		this.flat = flat;
 	}
 
-	public List<String> getRegisteredRoommateEmails() {
-		return registeredRoommateEmails;
-	}
-
-	public void setRegisteredRoommateEmails(List<String> registeredRoommateEmails) {
-		this.registeredRoommateEmails = registeredRoommateEmails;
-	}
+	
 
 	public List<String> getVisits() {
 		return visits;
