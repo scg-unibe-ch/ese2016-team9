@@ -46,6 +46,9 @@ public class User {
 
 	@Column(nullable = false)
 	private boolean enabled;
+	
+	@Column(nullable = false)
+	private boolean isPremium;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -119,6 +122,14 @@ public class User {
 		this.userRoles = userRoles;
 	}
 
+	public boolean isPremium() {
+		return this.isPremium;
+	}
+
+	public void setPremium(boolean premium) {
+		this.isPremium = premium;
+	}	
+	
 	public String getPassword() {
 		return password;
 	}
