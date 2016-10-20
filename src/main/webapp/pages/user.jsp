@@ -66,6 +66,8 @@
 		</c:otherwise>
 	</c:choose>
 	<p>
+        
+	<h2>IsPremium</h2>${user.premium}
 	<h2>Username</h2>${user.email}<p>
 	<h2>Name</h2>${user.firstName}
 	${user.lastName}
