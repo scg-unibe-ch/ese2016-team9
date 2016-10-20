@@ -44,18 +44,6 @@
 		
 
 		
-			// Validates the input for Email Syntax
-			function validateForm(text) {
-			    var positionAt = text.indexOf("@");
-			    var positionDot = text.lastIndexOf(".");
-			    if (positionAt< 1 || positionDot<positionAt+2 || positionDot+2>=text.length) {
-			        return false;
-			    } else {
-			    	return true;
-			    }
-			}
-		});
-		
 		$("#addVisitButton").click(function() {
 			var date = $("#field-visitDay").val();
 			if(date == ""){
