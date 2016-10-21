@@ -65,8 +65,6 @@ public class Ad {
 	@Lob
 	private String preferences;
 
-	
-
 	@Column(nullable = false)
 	private boolean smokers;
 
@@ -97,6 +95,28 @@ public class Ad {
 	// true if flat, false if house
 	@Column(nullable = false)
 	private boolean flat;
+
+	@Column(nullable = false)
+	private int numberOfRooms;
+	
+	@Column(nullable = false)
+	private int runningCosts;
+	
+	@Column(nullable = false)
+	private boolean basement;
+	
+	@Column
+	@Temporal(TemporalType.DATE)
+	private Date lastRenovation;
+	
+	@Column(nullable = false)
+	private int distanceToNearestSuperMarket;
+
+	@Column(nullable = false)
+	private int distanceToNearestPublicTransport;
+	
+	@Column(nullable = false)
+	private int distanceToNearestSchool;
 
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -315,6 +335,63 @@ public class Ad {
 
 	public void setVisits(List<Visit> visits) {
 		this.visits = visits;
+	}
+
+	
+	public int getRunningCosts() {
+		return runningCosts;
+	}
+
+	public void setRunningCosts(int runningCosts) {
+		this.runningCosts = runningCosts;
+	}
+
+	public int getNumberOfRooms() {
+		return numberOfRooms;
+	}
+
+	public void setNumberOfRooms(int numberOfRooms) {
+		this.numberOfRooms = numberOfRooms;
+	}
+
+	public boolean getBasement() {
+		return basement;
+	}
+
+	public void setBasement(boolean basement) {
+		this.basement = basement;
+	}
+
+	public Date getLastRenovation() {
+		return lastRenovation;
+	}
+
+	public void setLastRenovation(Date lastRenovation) {
+		this.lastRenovation = lastRenovation;
+	}
+
+	public int getDistanceToNearestSuperMarket() {
+		return distanceToNearestSuperMarket;
+	}
+
+	public void setDistanceToNearestSuperMarket(int distanceToNearestSuperMarket) {
+		this.distanceToNearestSuperMarket = distanceToNearestSuperMarket;
+	}
+
+	public int getDistanceToNearestPublicTransport() {
+		return distanceToNearestPublicTransport;
+	}
+
+	public void setDistanceToNearestPublicTransport(int distanceToNearestPublicTransport) {
+		this.distanceToNearestPublicTransport = distanceToNearestPublicTransport;
+	}
+
+	public int getDistanceToNearestSchool() {
+		return distanceToNearestSchool;
+	}
+
+	public void setDistanceToNearestSchool(int distanceToNearestSchool) {
+		this.distanceToNearestSchool = distanceToNearestSchool;
 	}
 
 	@Override
