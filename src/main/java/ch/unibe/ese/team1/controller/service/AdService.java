@@ -487,6 +487,17 @@ public class AdService {
 						iterator.remove();
 				}
 			}
+			
+			// square footage
+			if (searchForm.getSquareFootage() > 0) {
+				Iterator<Ad> iterator = locatedResults.iterator();
+				while (iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if (ad.getSquareFootage() > searchForm.getSquareFootage())
+						iterator.remove();
+				}
+			}
+			
 		}
 		return locatedResults;
 	}
