@@ -1,5 +1,6 @@
 package ch.unibe.ese.team1.controller.pojos.forms;
 
+
 import javax.validation.constraints.AssertFalse;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -106,6 +107,15 @@ public class SearchForm {
 	private boolean cable;
 	private boolean garage;
 	private boolean internet;
+	private boolean basement;
+	
+	private int squareFootage;
+	private int numberOfRooms;
+	private int runningCosts;
+	private String lastRenovation;
+	private int distanceToNearestSuperMarket;
+	private int distanceToNearestPublicTransport;
+	private int distanceToNearestSchool;
 
 	private boolean houseHelper;
 
@@ -194,6 +204,70 @@ public class SearchForm {
 
 	public String getLatestMoveInDate() {
 		return latestMoveInDate;
+	}
+
+	public boolean isBasement() {
+		return basement;
+	}
+
+	public void setBasement(boolean basement) {
+		this.basement = basement;
+	}
+
+	public int getSquareFootage() {
+		return squareFootage;
+	}
+
+	public void setSquareFootage(int squareFootage) {
+		this.squareFootage = squareFootage;
+	}
+
+	public int getNumberOfRooms() {
+		return numberOfRooms;
+	}
+
+	public void setNumberOfRooms(int numberOfRooms) {
+		this.numberOfRooms = numberOfRooms;
+	}
+
+	public int getRunningCosts() {
+		return runningCosts;
+	}
+
+	public void setRunningCosts(int runningCosts) {
+		this.runningCosts = runningCosts;
+	}
+
+	public String getLastRenovation() {
+		return lastRenovation;
+	}
+
+	public void setLastRenovation(String lastRenovation) {
+		this.lastRenovation = lastRenovation;
+	}
+
+	public int getDistanceToNearestSuperMarket() {
+		return distanceToNearestSuperMarket;
+	}
+
+	public void setDistanceToNearestSuperMarket(int distanceToNearestSuperMarket) {
+		this.distanceToNearestSuperMarket = distanceToNearestSuperMarket;
+	}
+
+	public int getDistanceToNearestPublicTransport() {
+		return distanceToNearestPublicTransport;
+	}
+
+	public void setDistanceToNearestPublicTransport(int distanceToNearestPublicTransport) {
+		this.distanceToNearestPublicTransport = distanceToNearestPublicTransport;
+	}
+
+	public int getDistanceToNearestSchool() {
+		return distanceToNearestSchool;
+	}
+
+	public void setDistanceToNearestSchool(int distanceToNearestSchool) {
+		this.distanceToNearestSchool = distanceToNearestSchool;
 	}
 
 	public void setLatestMoveInDate(String latestMoveInDate) {

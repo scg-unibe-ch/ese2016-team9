@@ -106,11 +106,27 @@ public class AdService {
 				calendar.set(yearMoveOut, monthMoveOut - 1, dayMoveOut);
 				ad.setMoveOutDate(calendar.getTime());
 			}
+			
+			if (placeAdForm.getLastRenovation().length() >= 1) {
+				int dayRenovate = Integer.parseInt(placeAdForm.getLastRenovation()
+						.substring(0, 2));
+				int monthRenovate = Integer.parseInt(placeAdForm.getLastRenovation()
+						.substring(3, 5));
+				int yearRenovate = Integer.parseInt(placeAdForm.getLastRenovation()
+						.substring(6, 10));
+				calendar.set(yearRenovate, monthRenovate - 1, dayRenovate);
+				ad.setMoveInDate(calendar.getTime());
+			}
 		} catch (NumberFormatException e) {
 		}
 
 		ad.setPrizePerMonth(placeAdForm.getPrize());
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
+		ad.setRunningCosts(placeAdForm.getRunningCosts());
+		
+		ad.setDistanceToNearestPublicTransport(placeAdForm.getDistanceToNearestPublicTransport());
+		ad.setDistanceToNearestSchool(placeAdForm.getDistanceToNearestSchool());
+		ad.setDistanceToNearestSuperMarket(placeAdForm.getDistanceToNearestSuperMarket());
 
 		ad.setHouseDescription(placeAdForm.getHouseDescription());
 		ad.setPreferences(placeAdForm.getPreferences());
@@ -125,6 +141,14 @@ public class AdService {
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
 		ad.setInternet(placeAdForm.getInternet());
+		ad.setBasement(placeAdForm.isBasement());
+		
+		// distance values
+		ad.setDistanceToNearestPublicTransport(placeAdForm.getDistanceToNearestPublicTransport());
+		ad.setDistanceToNearestSchool(placeAdForm.getDistanceToNearestSchool());
+		ad.setDistanceToNearestSuperMarket(placeAdForm.getDistanceToNearestSuperMarket());
+		
+		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		
 		/*
 		 * Save the paths to the picture files, the pictures are assumed to be
@@ -289,6 +313,7 @@ public class AdService {
 			Date latestInDate = null;
 			Date earliestOutDate = null;
 			Date latestOutDate = null;
+			Date lastRenovationDate = null;
 
 			// parse move-in and move-out dates
 			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -312,12 +337,17 @@ public class AdService {
 						.getLatestMoveOutDate());
 			} catch (Exception e) {
 			}
+			try {
+				lastRenovationDate = formatter.parse(searchForm.getLastRenovation());
+			} catch (Exception e) {
+				
+			}
 
 			// filtering by dates
 			locatedResults = validateDate(locatedResults, true, earliestInDate,
-					latestInDate);
+					latestInDate, lastRenovationDate);
 			locatedResults = validateDate(locatedResults, false,
-					earliestOutDate, latestOutDate);
+					earliestOutDate, latestOutDate, lastRenovationDate);
 
 			// filtering for the rest
 			// smokers
@@ -409,12 +439,71 @@ public class AdService {
 						iterator.remove();
 				}
 			}
+			
+			// basement
+			if (searchForm.isBasement()) {
+				Iterator<Ad> iterator = locatedResults.iterator();
+				while (iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if (!ad.getInternet())
+						iterator.remove();
+				}
+			}
+			
+			// distances
+			if (searchForm.getDistanceToNearestPublicTransport() > 0) {
+				Iterator<Ad> iterator = locatedResults.iterator();
+				while (iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if (ad.getDistanceToNearestPublicTransport() > searchForm.getDistanceToNearestPublicTransport())
+							iterator.remove();
+				}
+			}
+			
+			if (searchForm.getDistanceToNearestSchool() > 0) {
+				Iterator<Ad> iterator = locatedResults.iterator();
+				while (iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if (ad.getDistanceToNearestSchool() > searchForm.getDistanceToNearestSchool())
+							iterator.remove();
+				}
+			}
+			
+			if (searchForm.getDistanceToNearestSuperMarket() > 0) {
+				Iterator<Ad> iterator = locatedResults.iterator();
+				while (iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if (ad.getDistanceToNearestSuperMarket() > searchForm.getDistanceToNearestSuperMarket())
+						iterator.remove();
+				}
+			}
+			
+			// running costs
+			if (searchForm.getRunningCosts() > 0) {
+				Iterator<Ad> iterator = locatedResults.iterator();
+				while (iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if (ad.getRunningCosts() > searchForm.getRunningCosts())
+						iterator.remove();
+				}
+			}
+			
+			// square footage
+			if (searchForm.getSquareFootage() > 0) {
+				Iterator<Ad> iterator = locatedResults.iterator();
+				while (iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if (ad.getSquareFootage() > searchForm.getSquareFootage())
+						iterator.remove();
+				}
+			}
+			
 		}
 		return locatedResults;
 	}
 
 	private List<Ad> validateDate(List<Ad> ads, boolean inOrOut,
-			Date earliestDate, Date latestDate) {
+			Date earliestDate, Date latestDate, Date latestRenovation) {
 		if (ads.size() > 0) {
 			// Move-in dates
 			// Both an earliest AND a latest date to compare to
@@ -447,7 +536,17 @@ public class AdService {
 					if (ad.getDate(inOrOut).compareTo(latestDate) > 0)
 						iterator.remove();
 				}
-			} else {
+			} 
+			// a latest renovation date
+			else if (latestRenovation != null) {
+				Iterator<Ad> iterator = ads.iterator();
+				while (iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if (ad.getLastRenovation().compareTo(latestRenovation) > 0)
+						iterator.remove();
+				}
+			}
+			else {
 			}
 		}
 		return ads;

@@ -1,7 +1,10 @@
 package ch.unibe.ese.team1.controller.pojos.forms;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
@@ -51,8 +54,72 @@ public class PlaceAdForm {
 	private boolean cable;
 	private boolean garage;
 	private boolean internet;
+	private boolean basement;
+	
+	private int numberOfRooms;
+	private int runningCosts;
+	private String lastRenovation;
+	private int distanceToNearestSuperMarket;
+	private int distanceToNearestPublicTransport;
+	private int distanceToNearestSchool;
 	
 	private List<String> visits;
+
+	public boolean isBasement() {
+		return basement;
+	}
+
+	public void setBasement(boolean basement) {
+		this.basement = basement;
+	}
+
+	public int getNumberOfRooms() {
+		return numberOfRooms;
+	}
+
+	public void setNumberOfRooms(int numberOfRooms) {
+		this.numberOfRooms = numberOfRooms;
+	}
+
+	public int getRunningCosts() {
+		return runningCosts;
+	}
+
+	public void setRunningCosts(int runningCosts) {
+		this.runningCosts = runningCosts;
+	}
+
+	public String getLastRenovation() {
+		return lastRenovation;
+	}
+
+	public void setLastRenovation(String lastRenovation) {
+		this.lastRenovation = lastRenovation;
+	}
+
+	public int getDistanceToNearestSuperMarket() {
+		return distanceToNearestSuperMarket;
+	}
+
+	public void setDistanceToNearestSuperMarket(int distanceToNearestSuperMarket) {
+		this.distanceToNearestSuperMarket = distanceToNearestSuperMarket;
+	}
+
+	public int getDistanceToNearestPublicTransport() {
+		return distanceToNearestPublicTransport;
+	}
+
+	public void setDistanceToNearestPublicTransport(int distanceToNearestPublicTransport) {
+		this.distanceToNearestPublicTransport = distanceToNearestPublicTransport;
+	}
+
+	public int getDistanceToNearestSchool() {
+		return distanceToNearestSchool;
+	}
+
+	public void setDistanceToNearestSchool(int distanceToNearestSchool) {
+		this.distanceToNearestSchool = distanceToNearestSchool;
+	}
 
 	public String getCity() {
 		return city;
@@ -225,4 +292,6 @@ public class PlaceAdForm {
 	public void setVisits(List<String> visits) {
 		this.visits = visits;
 	}
+	
+
 }
