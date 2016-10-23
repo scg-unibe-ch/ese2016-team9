@@ -65,7 +65,7 @@ public class PlaceAdForm {
 	
 	private List<String> visits;
 
-	public boolean isBasement() {
+	public boolean getBasement() {
 		return basement;
 	}
 

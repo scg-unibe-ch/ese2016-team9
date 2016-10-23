@@ -206,7 +206,7 @@ public class SearchForm {
 		return latestMoveInDate;
 	}
 
-	public boolean isBasement() {
+	public boolean getBasement() {
 		return basement;
 	}
 
