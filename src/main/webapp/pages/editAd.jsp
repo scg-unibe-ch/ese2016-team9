@@ -39,6 +39,10 @@
 			dateFormat : 'dd-mm-yy'
 		});
 		
+		$("#field-lastRenovationDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+		
 		
 		
 		$("#addVisitButton").click(function() {
@@ -81,6 +85,8 @@
 <fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
 	type="date" pattern="dd-MM-yyyy" />
 <fmt:formatDate value="${ad.moveOutDate}" var="formattedMoveOutDate"
+	type="date" pattern="dd-MM-yyyy" />
+<fmt:formatDate value="${ad.lastRenovation}" var="formattedRenovationDate"
 	type="date" pattern="dd-MM-yyyy" />
 	
 <pre><a href="/">Home</a>   &gt;   <a href="/profile/myHouses">My Houses</a>   &gt;   <a href="/ad?id=${ad.id}">Ad Description</a>   &gt;   Edit Ad</pre>
@@ -151,19 +157,25 @@
 
 			<tr>
 				<td><label for="field-Prize">Prize per month</label></td>
+				<td><label for="field-RunningCosts">Running Costs per month</label></td>
 				<td><label for="field-SquareFootage">Square Meters</label></td>
 			</tr>
 			<tr>
 				<td>
 					<form:input id="field-Prize" type="number" path="prize"
-						placeholder="Prize per month" step="50" value="${ad.prizePerMonth }"/> <form:errors
-						path="prize" cssClass="validationErrorText" />
+						placeholder="e.g. 500" step="50" value="${ad.prizePerMonth }"/> <form:errors
+						path="prize" cssClass="validationErrorText" />CHF
+				</td>
+				<td>
+					<form:input id="field-RunningCosts" type="number" path="runningCosts"
+						placeholder="e.g. 140" step="50" value="${ad.runningCosts }"/> <form:errors
+						path="runningCosts" cssClass="validationErrorText" />CHF
 				</td>
 				<td>
 					<form:input id="field-SquareFootage" type="number"
-						path="squareFootage" placeholder="Prize per month" step="5" 
+						path="squareFootage" placeholder="e.g. 50" step="5" 
 						value="${ad.squareFootage }"/> <form:errors
-						path="squareFootage" cssClass="validationErrorText" />
+						path="squareFootage" cssClass="validationErrorText" />m²
 				</td>
 			</tr>
 		</table>
@@ -175,6 +187,44 @@
 		<legend>Change House Description</legend>
 
 		<table class="placeAdTable">
+			<tr>
+				<td><label for="lastRenovation">Last Renovation (Optional)</label></td>
+			</tr>
+			<tr>
+				<td><form:input type="text" id="field-lastRenovationDate"
+						path="lastRenovation" value="${formattedRenovationDate }" /></td>
+			</tr>
+			
+			<tr>
+				<td><label for="field-Floor">Floor</label>
+				<td><label for="field-NumberOfRooms">Number of Rooms</label></td>
+			</tr>
+			<tr>
+				<td><form:input id="field-Floor" type="number" path="floor"
+						placeholder="e.g. -1" step="1" value="${ad.floor }"/> <form:errors
+						path="floor" cssClass="validationErrorText" /></td>		
+				<td><form:input id="field-NumberOfRooms" type="number"
+						path="numberOfRooms" placeholder="e.g. 2" step="1" value="${ad.numberOfRooms }" /> <form:errors
+						path="numberOfRooms" cssClass="validationErrorText" /></td>
+			</tr>
+			
+			<tr>
+				<td><label for="field-DistanceToNearestSuperMarket">Distance to nearest Super Market</label>
+				<td><label for="field-DistanceToNearestPublicTransport">Distance to nearest Public Transport</label>
+				<td><label for="field-DistanceToNearestSchool">Distance to nearest School</label>
+			</tr>
+			<tr>
+				<td><form:input id="field-DistanceToNearestSuperMarket" type="number" path="distanceToNearestSuperMarket"
+						placeholder="e.g. 0.5" step="1" value="${ad.distanceToNearestSuperMarket }" /> <form:errors
+						path="DistanceToNearestSuperMarket" cssClass="validationErrorText" />meters</td>		
+				<td><form:input id="field-DistanceToNearestPublicTransport" type="number" path="distanceToNearestPublicTransport"
+						placeholder="e.g. 0.5" step="1" value="${ad.distanceToNearestPublicTransport }" /> <form:errors
+						path="DistanceToNearestPublicTransport" cssClass="validationErrorText" />meters</td>	
+				<td><form:input id="field-DistanceToNearestSchool" type="number" path="distanceToNearestSchool"
+						placeholder="e.g. 0.5" step="1" value="${ad.distanceToNearestSchool }"/> <form:errors
+						path="DistanceToNearestSchool" cssClass="validationErrorText" />meters</td>	
+			</tr>
+			
 			<tr>
 				<td>
 					<c:choose>
