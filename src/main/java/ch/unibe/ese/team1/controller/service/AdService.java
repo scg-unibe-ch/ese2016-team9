@@ -141,7 +141,7 @@ public class AdService {
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
 		ad.setInternet(placeAdForm.getInternet());
-		ad.setBasement(placeAdForm.getBasement());
+		ad.setBasement(placeAdForm.isBasement());
 		
 		// distance values
 		ad.setDistanceToNearestPublicTransport(placeAdForm.getDistanceToNearestPublicTransport());
@@ -441,7 +441,7 @@ public class AdService {
 			}
 			
 			// basement
-			if (searchForm.getBasement()) {
+			if (searchForm.isBasement()) {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
