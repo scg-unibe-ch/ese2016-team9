@@ -54,8 +54,8 @@ public class PlaceAdForm {
 	private boolean cable;
 	private boolean garage;
 	private boolean internet;
-	private boolean basement;
 	
+	private int floor;
 	private int numberOfRooms;
 	private int runningCosts;
 	private String lastRenovation;
@@ -65,12 +65,12 @@ public class PlaceAdForm {
 	
 	private List<String> visits;
 
-	public boolean isBasement() {
-		return basement;
+	public int getFloor() {
+		return floor;
 	}
 
-	public void setBasement(boolean basement) {
-		this.basement = basement;
+	public void setFloor(int floor) {
+		this.floor = floor;
 	}
 
 	public int getNumberOfRooms() {

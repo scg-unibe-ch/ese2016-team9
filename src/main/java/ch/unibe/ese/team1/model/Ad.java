@@ -18,6 +18,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.validator.constraints.Range;
 
 /** Describes an advertisement that users can place and search for. */
 @Entity
@@ -103,7 +104,8 @@ public class Ad {
 	private int runningCosts;
 	
 	@Column(nullable = false)
-	private boolean basement;
+	@Range(min=-1, max=100)
+	private int floor;
 	
 	@Column
 	@Temporal(TemporalType.DATE)
@@ -354,12 +356,12 @@ public class Ad {
 		this.numberOfRooms = numberOfRooms;
 	}
 
-	public boolean getBasement() {
-		return basement;
+	public int getFloor() {
+		return floor;
 	}
 
-	public void setBasement(boolean basement) {
-		this.basement = basement;
+	public void setFloor(int floor) {
+		this.floor = floor;
 	}
 
 	public Date getLastRenovation() {

@@ -42,6 +42,10 @@
 			dateFormat : 'dd-mm-yy'
 		});
 		
+		$("#field-lastRenovationDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+		
 
 		
 		$("#addVisitButton").click(function() {
@@ -129,15 +133,19 @@
 
 			<tr>
 				<td><label for="field-Prize">Prize per month</label></td>
+				<td><label for="field-RunningCosts">Running Costs per month</label>
 				<td><label for="field-SquareFootage">Square Meters</label></td>
 			</tr>
 			<tr>
 				<td><form:input id="field-Prize" type="number" path="prize"
-						placeholder="Prize per month" step="50" /> <form:errors
-						path="prize" cssClass="validationErrorText" /></td>
+						placeholder="e.g. 500" step="50" /> <form:errors
+						path="prize" cssClass="validationErrorText" />CHF</td>
+				<td><form:input id="field-RunningCosts" type="number" path="runningCosts"
+						placeholder="e.g. 140" step="10" /> <form:errors
+						path="runningCosts" cssClass="validationErrorText" />CHF</td>		
 				<td><form:input id="field-SquareFootage" type="number"
-						path="squareFootage" placeholder="Prize per month" step="5" /> <form:errors
-						path="squareFootage" cssClass="validationErrorText" /></td>
+						path="squareFootage" placeholder="e.g. 50" step="5" /> <form:errors
+						path="squareFootage" cssClass="validationErrorText" />m²</td>
 			</tr>
 		</table>
 	</fieldset>
@@ -148,6 +156,44 @@
 		<legend>House Description</legend>
 
 		<table class="placeAdTable">
+			<tr>
+				<td><label for="lastRenovation">Last Renovation (Optional)</label></td>
+			</tr>
+			<tr>
+				<td><form:input type="text" id="field-lastRenovationDate"
+						path="lastRenovation" /></td>
+			</tr>
+			
+			<tr>
+				<td><label for="field-Floor">Floor</label>
+				<td><label for="field-NumberOfRooms">Number of Rooms</label></td>
+			</tr>
+			<tr>
+				<td><form:input id="field-Floor" type="number" path="floor"
+						placeholder="e.g. -1" step="1" /> <form:errors
+						path="floor" cssClass="validationErrorText" /></td>		
+				<td><form:input id="field-NumberOfRooms" type="number"
+						path="numberOfRooms" placeholder="e.g. 2" step="1" /> <form:errors
+						path="numberOfRooms" cssClass="validationErrorText" /></td>
+			</tr>
+			
+			<tr>
+				<td><label for="field-DistanceToNearestSuperMarket">Distance to nearest Super Market</label>
+				<td><label for="field-DistanceToNearestPublicTransport">Distance to nearest Public Transport</label>
+				<td><label for="field-DistanceToNearestSchool">Distance to nearest School</label>
+			</tr>
+			<tr>
+				<td><form:input id="field-DistanceToNearestSuperMarket" type="number" path="distanceToNearestSuperMarket"
+						placeholder="e.g. 0.5" step="1" /> <form:errors
+						path="DistanceToNearestSuperMarket" cssClass="validationErrorText" />meters</td>		
+				<td><form:input id="field-DistanceToNearestPublicTransport" type="number" path="distanceToNearestPublicTransport"
+						placeholder="e.g. 0.5" step="1" /> <form:errors
+						path="DistanceToNearestPublicTransport" cssClass="validationErrorText" />meters</td>	
+				<td><form:input id="field-DistanceToNearestSchool" type="number" path="distanceToNearestSchool"
+						placeholder="e.g. 0.5" step="1" /> <form:errors
+						path="DistanceToNearestSchool" cssClass="validationErrorText" />meters</td>	
+			</tr>
+			
 			<tr>
 				<td><form:checkbox id="field-smoker" path="smokers" value="1" /><label>Animals
 						allowed</label></td>
