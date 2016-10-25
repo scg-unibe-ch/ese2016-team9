@@ -608,8 +608,14 @@ footer nav ul li {
 /* adDescription.jsp */
 
 #adDescTable {
-	width: 40%;
+	width: 55%;
 	float: left;
+	margin: 10px;
+}
+
+#additionalInformationTable {
+	margin: 4px;
+	width: 30%; 
 }
 
 #adDescTable h2 {
@@ -622,6 +628,7 @@ footer nav ul li {
 
 #checkBoxTable {
 	width: 27%;
+	float: right;
 }
 
 #checkBoxTable h2 {
@@ -633,7 +640,7 @@ footer nav ul li {
 }
 
 #descriptionTexts {
-	width: 55%;
+	width: 40%;
 	float: left
 }
 

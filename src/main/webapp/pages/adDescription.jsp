@@ -189,6 +189,11 @@
 			<td><h2>Monthly Rent</h2></td>
 			<td>${shownAd.prizePerMonth}&#32;CHF</td>
 		</tr>
+		
+		<tr>
+			<td><h2>Running Costs</h2></td>
+			<td>${shownAd.runningCosts}&#32;CHF</td>
+		</tr>
 
 		<tr>
 			<td><h2>Square Meters</h2></td>
@@ -354,6 +359,43 @@
 			</td>
 		</tr>
 
+	</table>
+	
+	<table id="additionalInformationTable" class="adDescDiv">
+		<tr>
+			<td><h2>Floor</h2></td>
+			<td>${shownAd.floor}</td>
+		</tr>
+		
+		<tr>
+			<td><h2>Number of Rooms</h2></td>
+			<td>${shownAd.numberOfRooms}</td>
+		</tr>
+		
+		<tr>
+			<td><h2>Last Renovation</h2></td>
+			<td>
+				<c:choose>
+					<c:when test="${shownAd.lastRenovation!=null}">${shownAd.lastRenovation }</c:when>
+					<c:otherwise>-</c:otherwise>
+				</c:choose>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><h2>Nearest Super Market</h2></td>
+			<td>${shownAd.distanceToNearestSuperMarket}m</td>
+		</tr>
+		
+		<tr>
+			<td><h2>Public Transport</h2></td>
+			<td>${shownAd.distanceToNearestPublicTransport}m</td>
+		</tr>
+		
+		<tr>
+			<td><h2>Nearest School</h2></td>
+			<td>${shownAd.distanceToNearestSchool}m</td>
+		</tr>
 	</table>
 </section>
 
