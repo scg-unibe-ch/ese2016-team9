@@ -9,14 +9,15 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome to FlatFindr</title>
+<title>Welcome to a-Bec!</title>
 </head>
 <body>
 
 <pre>Home</pre>
 
-<h1>Welcome to FlatFindr!</h1>
+<h1>Welcome to a-Bec!</h1>
 
+    <div class="container-fluid">
 <c:choose>
 	<c:when test="${empty newest}">
 		<h2>No ads placed yet</h2>
@@ -61,5 +62,5 @@
 		</div>
 	</c:otherwise>
 </c:choose>
-
+</div>
 <c:import url="template/footer.jsp" /><br />
