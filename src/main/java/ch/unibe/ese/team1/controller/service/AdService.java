@@ -115,7 +115,7 @@ public class AdService {
 				int yearRenovate = Integer.parseInt(placeAdForm.getLastRenovation()
 						.substring(6, 10));
 				calendar.set(yearRenovate, monthRenovate - 1, dayRenovate);
-				ad.setMoveInDate(calendar.getTime());
+				ad.setLastRenovation(calendar.getTime());
 			}
 		} catch (NumberFormatException e) {
 		}
@@ -124,10 +124,6 @@ public class AdService {
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
 		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		
-		ad.setDistanceToNearestPublicTransport(placeAdForm.getDistanceToNearestPublicTransport());
-		ad.setDistanceToNearestSchool(placeAdForm.getDistanceToNearestSchool());
-		ad.setDistanceToNearestSuperMarket(placeAdForm.getDistanceToNearestSuperMarket());
-
 		ad.setHouseDescription(placeAdForm.getHouseDescription());
 		ad.setPreferences(placeAdForm.getPreferences());
 
@@ -141,14 +137,13 @@ public class AdService {
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
 		ad.setInternet(placeAdForm.getInternet());
-		ad.setFloor(placeAdForm.getFloor());
 		
 		// distance values
+		ad.setFloor(placeAdForm.getFloor());
+		ad.setNumberOfRooms(placeAdForm.getNumberOfRooms());
 		ad.setDistanceToNearestPublicTransport(placeAdForm.getDistanceToNearestPublicTransport());
 		ad.setDistanceToNearestSchool(placeAdForm.getDistanceToNearestSchool());
 		ad.setDistanceToNearestSuperMarket(placeAdForm.getDistanceToNearestSuperMarket());
-		
-		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		
 		/*
 		 * Save the paths to the picture files, the pictures are assumed to be
