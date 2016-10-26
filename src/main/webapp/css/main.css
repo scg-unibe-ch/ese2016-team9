@@ -114,49 +114,21 @@ input[type="number"] {
 	width: 70px;
 }
 
-label {
-	margin-right: 10px;
-}
 
 button {
-	background-color: #FF9900;
-	color: white;
-	padding: 5px 10px;
-	border-radius: 5px;
-	border-color: white;
-	border-style: solid;
-	font-size: 1.1em;
+    
 }
 
 .inactiveButton {
-	background-color: #bbbbbb;
-	color: white;
-	border-color: white;
+    
 }
 
 .button {
-	background-color: #FF9900;
-	color: white;
-	padding: 5px 10px;
-	border-radius: 5px;
-	border-color: white;
-	border-style: solid;
-	font-size: 1.1em;
+    
 }
 
 .smallPlusButton {
-	display: inline;
-	font-decoration: none;
-	background-color: #FF9900;
-	color: white;
-	width: 15px;
-	height: 15px;
-	padding: 0px 5px;
-	text-align: center;
-	border-radius: 5px;
-	border-color: white;
-	border-style: solid;
-	font-size: 1.5em;
+    
 }
 
 #bookmarkButton {
@@ -311,12 +283,12 @@ header {
 
 footer {
 	color: white;
-	background: #FF9900;
+	background: #999   ;
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
-	height: 30px;
+	height: 40px;
 	text-align: center;
 	padding-top: 10px;
 }
@@ -326,7 +298,7 @@ footer nav {
 }
 
 footer .link {
-	color: #D09900;
+	color: #fff;
 }
 
 footer .link:hover {
@@ -474,9 +446,9 @@ footer nav ul li {
 	padding: 10px;
 	margin-top: 20px;
 	border-style: solid;
-	border-color: #FF9900;
-	border-width: 3px;
-	border-radius: 10px;
+	border-color: #999;
+	border-width: 2px;
+	border-radius: 3px;
 }
 
 #resultsDiv div:first-child {
@@ -907,5 +879,31 @@ footer nav ul li {
 }
 
 #bs-example-navbar-collapse-1 {
-    padding-left: 40em;
+    /*width: 30%;
+    padding-left: 50px;*/
+}
+
+div.resultText {
+    width: 65%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.resultImage {
+    width: 30%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.resultRight {
+    width: 30%;
+    text-align: right;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#resultsDiv .resultLeft {
+    width: 70%;
+    display: inline-block;
+    vertical-align: top;
 }

@@ -15,6 +15,7 @@
 
 <pre>About us</pre>
 
-<img id="about" src="/img/about.jpg">
-
+    <p align="center">
+        <img id="about" src="/img/logo.png">
+    </p>
 <c:import url="template/footer.jsp" /><br />

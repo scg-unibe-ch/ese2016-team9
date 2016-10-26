@@ -28,12 +28,15 @@
 			<c:forEach var="ad" items="${newest}">
 				<div class="resultAd">
 					<div class="resultLeft">
+                        <div class="resultImage">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
 							src="${ad.pictures[0].filePath}" /></a>
+                        </div>
+                        <div class="resultText">
 						<h2>
 							<a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a>
 						</h2>
-						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
+						<p class="resultAddress">${ad.street}, ${ad.zipcode} ${ad.city}</p>
 						<br />
 						<p>
 							<i><c:choose>
@@ -41,6 +44,7 @@
 									<c:otherwise>House</c:otherwise>
 								</c:choose></i>
 						</p>
+                        </div>
 					</div>
 					<div class="resultRight">
 						<h2>CHF ${ad.prize }</h2>
