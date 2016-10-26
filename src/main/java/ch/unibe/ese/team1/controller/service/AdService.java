@@ -115,7 +115,7 @@ public class AdService {
 				int yearRenovate = Integer.parseInt(placeAdForm.getLastRenovation()
 						.substring(6, 10));
 				calendar.set(yearRenovate, monthRenovate - 1, dayRenovate);
-				ad.setMoveInDate(calendar.getTime());
+				ad.setLastRenovation(calendar.getTime());
 			}
 		} catch (NumberFormatException e) {
 		}
@@ -124,10 +124,6 @@ public class AdService {
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
 		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		
-		ad.setDistanceToNearestPublicTransport(placeAdForm.getDistanceToNearestPublicTransport());
-		ad.setDistanceToNearestSchool(placeAdForm.getDistanceToNearestSchool());
-		ad.setDistanceToNearestSuperMarket(placeAdForm.getDistanceToNearestSuperMarket());
-
 		ad.setHouseDescription(placeAdForm.getHouseDescription());
 		ad.setPreferences(placeAdForm.getPreferences());
 
@@ -141,14 +137,13 @@ public class AdService {
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
 		ad.setInternet(placeAdForm.getInternet());
-		ad.setFloor(placeAdForm.getFloor());
 		
 		// distance values
+		ad.setFloor(placeAdForm.getFloor());
+		ad.setNumberOfRooms(placeAdForm.getNumberOfRooms());
 		ad.setDistanceToNearestPublicTransport(placeAdForm.getDistanceToNearestPublicTransport());
 		ad.setDistanceToNearestSchool(placeAdForm.getDistanceToNearestSchool());
 		ad.setDistanceToNearestSuperMarket(placeAdForm.getDistanceToNearestSuperMarket());
-		
-		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		
 		/*
 		 * Save the paths to the picture files, the pictures are assumed to be
@@ -248,16 +243,30 @@ public class AdService {
 	@Transactional
 	public Iterable<Ad> queryResults(SearchForm searchForm) {
 		Iterable<Ad> results = null;
-
-		// we use this method if we are looking for houses AND flats
-		if (searchForm.getBothHouseAndFlat()) {
-			results = adDao
-					.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
+		
+		if(searchForm.getIncludeRunningCosts()){
+			// we use this method if we are looking for houses AND flats
+			if (searchForm.getBothHouseAndFlat()) {
+				results = adDao
+						.findByPrizePerMonthIncludingRunningCostsLessThan(searchForm.getPrize() + 1);
+			}
+			// we use this method if we are looking EITHER for houses OR for flats
+			else {
+				results = adDao.findByFlatAndPrizePerMonthIncludingRunningCostsLessThan(
+						searchForm.getFlat(), searchForm.getPrize() + 1);
+			}
 		}
-		// we use this method if we are looking EITHER for houses OR for flats
-		else {
-			results = adDao.findByFlatAndPrizePerMonthLessThan(
-					searchForm.getFlat(), searchForm.getPrize() + 1);
+		else{
+			// we use this method if we are looking for houses AND flats
+			if (searchForm.getBothHouseAndFlat()) {
+				results = adDao
+						.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
+			}
+			// we use this method if we are looking EITHER for houses OR for flats
+			else {
+				results = adDao.findByFlatAndPrizePerMonthLessThan(
+						searchForm.getFlat(), searchForm.getPrize() + 1);
+			}
 		}
 
 		// filter out zipcode
@@ -478,15 +487,6 @@ public class AdService {
 				}
 			}
 			
-			// running costs
-			if (searchForm.getRunningCosts() > 0) {
-				Iterator<Ad> iterator = locatedResults.iterator();
-				while (iterator.hasNext()) {
-					Ad ad = iterator.next();
-					if (ad.getRunningCosts() > searchForm.getRunningCosts())
-						iterator.remove();
-				}
-			}
 			
 			// square footage
 			if (searchForm.getSquareFootage() > 0) {

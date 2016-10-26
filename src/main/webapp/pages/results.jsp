@@ -203,6 +203,8 @@ function sort_div_attribute() {
 		CHF
 		<form:errors path="prize" cssClass="validationErrorText" /><br />
 		
+		<br /><form:checkbox id="field-includeRunningCosts" path="includeRunningCosts" value="1" /><label>Running Costs included?</label>
+		
 		<hr class="slim">		
 		
 		<table style="width: 80%">

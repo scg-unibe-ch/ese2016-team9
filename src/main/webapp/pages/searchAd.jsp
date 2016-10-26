@@ -93,6 +93,8 @@ function validateType(form)
 			placeholder="e.g. 5" step="50" />
 		CHF
 		<form:errors path="prize" cssClass="validationErrorText" />
+		
+		<br /><form:checkbox id="field-includeRunningCosts" path="includeRunningCosts" value="1" /><label>Running Costs included?</label>
 		<br />
 
 		<button type="submit" tabindex="7" onClick="validateType(this.form)">Search</button>
