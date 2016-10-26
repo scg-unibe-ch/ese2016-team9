@@ -107,11 +107,11 @@ public class SearchForm {
 	private boolean cable;
 	private boolean garage;
 	private boolean internet;
+	private boolean includeRunningCosts;
 	
 	private int floor;
 	private int squareFootage;
 	private int numberOfRooms;
-	private int runningCosts;
 	private String lastRenovation;
 	private int distanceToNearestSuperMarket;
 	private int distanceToNearestPublicTransport;
@@ -230,12 +230,12 @@ public class SearchForm {
 		this.numberOfRooms = numberOfRooms;
 	}
 
-	public int getRunningCosts() {
-		return runningCosts;
+	public boolean getIncludeRunningCosts() {
+		return includeRunningCosts;
 	}
 
-	public void setRunningCosts(int runningCosts) {
-		this.runningCosts = runningCosts;
+	public void setRunningCosts(boolean includeRunningCosts) {
+		this.includeRunningCosts = includeRunningCosts;
 	}
 
 	public String getLastRenovation() {

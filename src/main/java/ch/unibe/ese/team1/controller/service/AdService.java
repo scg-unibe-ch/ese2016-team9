@@ -248,16 +248,30 @@ public class AdService {
 	@Transactional
 	public Iterable<Ad> queryResults(SearchForm searchForm) {
 		Iterable<Ad> results = null;
-
-		// we use this method if we are looking for houses AND flats
-		if (searchForm.getBothHouseAndFlat()) {
-			results = adDao
-					.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
+		
+		if(searchForm.getIncludeRunningCosts()){
+			// we use this method if we are looking for houses AND flats
+			if (searchForm.getBothHouseAndFlat()) {
+				results = adDao
+						.findByPrizePerMonthIncludingRunningCostsLessThan(searchForm.getPrize() + 1);
+			}
+			// we use this method if we are looking EITHER for houses OR for flats
+			else {
+				results = adDao.findByFlatAndPrizePerMonthIncludingRunningCostsLessThan(
+						searchForm.getFlat(), searchForm.getPrize() + 1);
+			}
 		}
-		// we use this method if we are looking EITHER for houses OR for flats
-		else {
-			results = adDao.findByFlatAndPrizePerMonthLessThan(
-					searchForm.getFlat(), searchForm.getPrize() + 1);
+		else{
+			// we use this method if we are looking for houses AND flats
+			if (searchForm.getBothHouseAndFlat()) {
+				results = adDao
+						.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
+			}
+			// we use this method if we are looking EITHER for houses OR for flats
+			else {
+				results = adDao.findByFlatAndPrizePerMonthLessThan(
+						searchForm.getFlat(), searchForm.getPrize() + 1);
+			}
 		}
 
 		// filter out zipcode
@@ -478,15 +492,6 @@ public class AdService {
 				}
 			}
 			
-			// running costs
-			if (searchForm.getRunningCosts() > 0) {
-				Iterator<Ad> iterator = locatedResults.iterator();
-				while (iterator.hasNext()) {
-					Ad ad = iterator.next();
-					if (ad.getRunningCosts() > searchForm.getRunningCosts())
-						iterator.remove();
-				}
-			}
 			
 			// square footage
 			if (searchForm.getSquareFootage() > 0) {
