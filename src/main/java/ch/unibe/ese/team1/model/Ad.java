@@ -96,6 +96,9 @@ public class Ad {
 	// true if flat, false if house
 	@Column(nullable = false)
 	private boolean flat;
+	
+	@Column(nullable = false)
+	private boolean forSale;
 
 	@Column(nullable = false)
 	private int numberOfRooms;
@@ -140,6 +143,14 @@ public class Ad {
 
 	public boolean getFlat() {
 		return flat;
+	}
+
+	public boolean isForSale() {
+		return forSale;
+	}
+
+	public void setForSale(boolean forSale) {
+		this.forSale = forSale;
 	}
 
 	public void setFlat(boolean flat) {

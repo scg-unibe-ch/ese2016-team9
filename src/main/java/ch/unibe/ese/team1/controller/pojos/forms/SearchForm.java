@@ -15,6 +15,7 @@ public class SearchForm {
 
 	// flat: true, house: false
 	private boolean flat;
+	private boolean forSale;
 
 	@NotBlank(message = "Required")
 	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
@@ -32,6 +33,10 @@ public class SearchForm {
 	private boolean noHouseNoFlat;
 
 	private boolean bothHouseAndFlat;
+	private boolean bothSellAndRent;
+	
+	@AssertFalse(message = "please select either or both types")
+	private boolean noSellNoRent;
 
 	public String getCity() {
 		return city;
@@ -61,6 +66,14 @@ public class SearchForm {
 		return flat;
 	}
 
+	public boolean isForSale() {
+		return forSale;
+	}
+
+	public void setForSale(boolean forSale) {
+		this.forSale = forSale;
+	}
+
 	public void setFlat(boolean flat) {
 		this.flat = flat;
 	}
@@ -81,6 +94,23 @@ public class SearchForm {
 		this.bothHouseAndFlat = bothHouseAndFlat;
 	}
 
+	
+	public boolean isBothSellAndRent() {
+		return bothSellAndRent;
+	}
+
+	public void setBothSellAndRent(boolean bothSellAndRent) {
+		this.bothSellAndRent = bothSellAndRent;
+	}
+
+	public boolean isNoSellNoRent() {
+		return noSellNoRent;
+	}
+
+	public void setNoSellNoRent(boolean noSellNoRent) {
+		this.noSellNoRent = noSellNoRent;
+	}
+	
 	// //////////////////
 	// Filtered results//
 	// //////////////////
