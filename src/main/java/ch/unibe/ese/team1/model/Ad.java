@@ -53,7 +53,7 @@ public class Ad {
 	private Date moveOutDate;
 
 	@Column(nullable = false)
-	private int prizePerMonth;
+	private int prize;
 
 	@Column(nullable = false)
 	private int squareFootage;
@@ -257,12 +257,12 @@ public class Ad {
 		this.moveOutDate = moveOutDate;
 	}
 
-	public int getPrizePerMonth() {
-		return prizePerMonth;
+	public int getPrize() {
+		return prize;
 	}
 
-	public void setPrizePerMonth(int prizePerMonth) {
-		this.prizePerMonth = prizePerMonth;
+	public void setPrize(int prizePerMonth) {
+		this.prize = prizePerMonth;
 	}
 
 	public int getSquareFootage() {

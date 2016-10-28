@@ -120,7 +120,7 @@ public class AdService {
 		} catch (NumberFormatException e) {
 		}
 
-		ad.setPrizePerMonth(placeAdForm.getPrize());
+		ad.setPrize(placeAdForm.getPrize());
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
 		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		

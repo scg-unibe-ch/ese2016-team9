@@ -232,12 +232,7 @@
 
 	
 	<br />
-	<fieldset>
-		<legend>Preferences (optional)</legend>
-		<form:textarea path="preferences" rows="5" cols="100"
-			placeholder="Preferences"></form:textarea>
-	</fieldset>
-
+	
 	<fieldset>
 		<legend>Pictures (optional)</legend>
 		<br /> <label for="field-pictures">Pictures</label> <input
