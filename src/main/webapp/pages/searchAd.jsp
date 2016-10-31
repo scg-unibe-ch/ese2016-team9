@@ -73,7 +73,7 @@ function validateType(form)
 	else {
 		bothS.checked = false;
 		neitherS.checked = false;
-		typeS.checked = flat.checked;
+		typeS.checked = sale.checked;
 	}
 	filtered.checked = false;
 }

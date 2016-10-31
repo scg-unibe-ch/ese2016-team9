@@ -49,7 +49,7 @@ function validateType(form)
 	else {
 		bothS.checked = false;
 		neitherS.checked = false;
-		typeS.checked = flat.checked;
+		typeS.checked = sale.checked;
 	}
 	filtered.checked = true;
 }
@@ -250,19 +250,19 @@ function sort_div_attribute() {
 			<tr>
 				<td><label for="distanceToNearestPublicTransport">Distance to nearest public transport (max.):</label></td>
 				<td><form:input id="distanceToNearestPublicTransportInput" type="number" path="distanceToNearestPublicTransport"
-					placeholder="e.g. 2" step="1" />km
+					placeholder="e.g. 2" step="1" />meters
 				</td>
 			</tr>
 			<tr>
 				<td><label for="distanceToNearestSuperMarket">Distance to nearest super market (max.):</label></td>
 				<td><form:input id="distanceToNearestSuperMarketInput" type="number" path="distanceToNearestSuperMarket"
-					placeholder="e.g. 2" step="1" />km
+					placeholder="e.g. 2" step="1" />meters
 				</td>
 			</tr>
 			<tr>
 				<td><label for="distanceToNearestSchool">Distance to nearest school (max.):</label></td>
 				<td><form:input id="distanceToNearestSchoolInput" type="number" path="distanceToNearestSchool"
-					placeholder="e.g. 2" step="1" />km
+					placeholder="e.g. 2" step="1" />meters
 				</td>
 			</tr>
 			<tr>

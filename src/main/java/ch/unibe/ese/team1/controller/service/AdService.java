@@ -481,7 +481,7 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDistanceToNearestPublicTransport()*1000 > searchForm.getDistanceToNearestPublicTransport())
+					if (ad.getDistanceToNearestPublicTransport() > searchForm.getDistanceToNearestPublicTransport())
 							iterator.remove();
 				}
 			}
@@ -490,7 +490,7 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDistanceToNearestSchool()*1000 > searchForm.getDistanceToNearestSchool())
+					if (ad.getDistanceToNearestSchool() > searchForm.getDistanceToNearestSchool())
 							iterator.remove();
 				}
 			}
@@ -499,7 +499,7 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDistanceToNearestSuperMarket()*1000 > searchForm.getDistanceToNearestSuperMarket())
+					if (ad.getDistanceToNearestSuperMarket() > searchForm.getDistanceToNearestSuperMarket())
 						iterator.remove();
 				}
 			}
