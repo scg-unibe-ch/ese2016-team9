@@ -145,7 +145,7 @@ public class Ad {
 		return flat;
 	}
 
-	public boolean isForSale() {
+	public boolean getForSale() {
 		return forSale;
 	}
 

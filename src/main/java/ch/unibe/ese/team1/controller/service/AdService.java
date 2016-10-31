@@ -247,21 +247,21 @@ public class AdService {
 		// we use this method if we are looking for houses AND flats
 		if (searchForm.getBothHouseAndFlat()) {
 			results = adDao
-					.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
+					.findByPrizeLessThan(searchForm.getPrize() + 1);
 			
 			//includes the running costs. 
 			if(searchForm.getIncludeRunningCosts()){
 				Iterator<Ad> iterator = results.iterator();
 				while(iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if(ad.getPrizePerMonth()+ad.getRunningCosts() > searchForm.getPrize())
+					if(ad.getPrize()+ad.getRunningCosts() > searchForm.getPrize())
 						iterator.remove();
 				}
 			}
 		}
 		// we use this method if we are looking EITHER for houses OR for flats
 		else {
-			results = adDao.findByFlatAndPrizePerMonthLessThan(
+			results = adDao.findByFlatAndPrizeLessThan(
 					searchForm.getFlat(), searchForm.getPrize() + 1);
 			
 			//includes the running costs. 
@@ -269,7 +269,7 @@ public class AdService {
 				Iterator<Ad> iterator = results.iterator();
 				while(iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if(ad.getPrizePerMonth()+ad.getRunningCosts() > searchForm.getPrize())
+					if(ad.getPrize()+ad.getRunningCosts() > searchForm.getPrize())
 						iterator.remove();
 				}
 			}
@@ -360,11 +360,11 @@ public class AdService {
 			}
 			
 			// filter out selling or renting
-			if (!searchForm.isBothSellAndRent()) {
+			if (!searchForm.getBothSellAndRent()) {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (searchForm.isForSale() != ad.isForSale())
+					if (searchForm.getForSale() != ad.getForSale())
 						iterator.remove();
 				}
 			}

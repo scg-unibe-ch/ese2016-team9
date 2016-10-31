@@ -280,7 +280,7 @@ public class PlaceAdForm {
 		return flat;
 	}
 	
-	public boolean isForSale() {
+	public boolean getForSale() {
 		return forSale;
 	}
 
