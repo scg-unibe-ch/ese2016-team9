@@ -28,6 +28,8 @@ public class SearchForm {
 	@NotNull(message = "Requires a number")
 	@Min(value = 0, message = "In your dreams.")
 	private Integer prize;
+	
+	private boolean includeRunningCosts;
 
 	@AssertFalse(message = "Please select either or both types")
 	private boolean noHouseNoFlat;
@@ -60,6 +62,14 @@ public class SearchForm {
 
 	public void setPrize(Integer prize) {
 		this.prize = prize;
+	}
+	
+	public boolean getIncludeRunningCosts() {
+		return includeRunningCosts;
+	}
+
+	public void setIncludeRunningCosts(boolean includeRunningCosts) {
+		this.includeRunningCosts = includeRunningCosts;
 	}
 
 	public boolean getFlat() {
@@ -137,7 +147,6 @@ public class SearchForm {
 	private boolean cable;
 	private boolean garage;
 	private boolean internet;
-	private boolean includeRunningCosts;
 	
 	private int floor;
 	private int squareFootage;
@@ -258,14 +267,6 @@ public class SearchForm {
 
 	public void setNumberOfRooms(int numberOfRooms) {
 		this.numberOfRooms = numberOfRooms;
-	}
-
-	public boolean getIncludeRunningCosts() {
-		return includeRunningCosts;
-	}
-
-	public void setRunningCosts(boolean includeRunningCosts) {
-		this.includeRunningCosts = includeRunningCosts;
 	}
 
 	public String getLastRenovation() {

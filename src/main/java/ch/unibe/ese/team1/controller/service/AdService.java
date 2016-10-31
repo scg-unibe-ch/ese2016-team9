@@ -244,31 +244,36 @@ public class AdService {
 	public Iterable<Ad> queryResults(SearchForm searchForm) {
 		Iterable<Ad> results = null;
 		
-		if(searchForm.getIncludeRunningCosts()){
-			// we use this method if we are looking for houses AND flats
-			if (searchForm.getBothHouseAndFlat()) {
-				results = adDao
-						.findByPrizePerMonthIncludingRunningCostsLessThan(searchForm.getPrize() + 1);
-			}
-			// we use this method if we are looking EITHER for houses OR for flats
-			else {
-				results = adDao.findByFlatAndPrizePerMonthIncludingRunningCostsLessThan(
-						searchForm.getFlat(), searchForm.getPrize() + 1);
-			}
-		}
-		else{
-			// we use this method if we are looking for houses AND flats
-			if (searchForm.getBothHouseAndFlat()) {
-				results = adDao
-						.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
-			}
-			// we use this method if we are looking EITHER for houses OR for flats
-			else {
-				results = adDao.findByFlatAndPrizePerMonthLessThan(
-						searchForm.getFlat(), searchForm.getPrize() + 1);
+		// we use this method if we are looking for houses AND flats
+		if (searchForm.getBothHouseAndFlat()) {
+			results = adDao
+					.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
+			
+			//includes the running costs. 
+			if(searchForm.getIncludeRunningCosts()){
+				Iterator<Ad> iterator = results.iterator();
+				while(iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if(ad.getPrizePerMonth()+ad.getRunningCosts() > searchForm.getPrize())
+						iterator.remove();
+				}
 			}
 		}
-		
+		// we use this method if we are looking EITHER for houses OR for flats
+		else {
+			results = adDao.findByFlatAndPrizePerMonthLessThan(
+					searchForm.getFlat(), searchForm.getPrize() + 1);
+			
+			//includes the running costs. 
+			if(searchForm.getIncludeRunningCosts()){
+				Iterator<Ad> iterator = results.iterator();
+				while(iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if(ad.getPrizePerMonth()+ad.getRunningCosts() > searchForm.getPrize())
+						iterator.remove();
+				}
+			}
+		}
 	
 
 		// filter out zipcode
