@@ -163,12 +163,12 @@
 			<tr>
 				<td>
 					<form:input id="field-Prize" type="number" path="prize"
-						placeholder="e.g. 500" step="50" value="${ad.prizePerMonth }"/> <form:errors
+						placeholder="e.g. 500" step="50" value="${ad.prize }"/> <form:errors
 						path="prize" cssClass="validationErrorText" />CHF
 				</td>
 				<td>
 					<form:input id="field-RunningCosts" type="number" path="runningCosts"
-						placeholder="e.g. 140" step="50" value="${ad.runningCosts }"/> <form:errors
+						placeholder="e.g. 140" step="10" value="${ad.runningCosts }"/> <form:errors
 						path="runningCosts" cssClass="validationErrorText" />CHF
 				</td>
 				<td>

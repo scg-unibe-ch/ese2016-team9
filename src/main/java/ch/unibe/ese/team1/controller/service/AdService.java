@@ -115,19 +115,15 @@ public class AdService {
 				int yearRenovate = Integer.parseInt(placeAdForm.getLastRenovation()
 						.substring(6, 10));
 				calendar.set(yearRenovate, monthRenovate - 1, dayRenovate);
-				ad.setMoveInDate(calendar.getTime());
+				ad.setLastRenovation(calendar.getTime());
 			}
 		} catch (NumberFormatException e) {
 		}
 
-		ad.setPrizePerMonth(placeAdForm.getPrize());
+		ad.setPrize(placeAdForm.getPrize());
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
 		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		
-		ad.setDistanceToNearestPublicTransport(placeAdForm.getDistanceToNearestPublicTransport());
-		ad.setDistanceToNearestSchool(placeAdForm.getDistanceToNearestSchool());
-		ad.setDistanceToNearestSuperMarket(placeAdForm.getDistanceToNearestSuperMarket());
-
 		ad.setHouseDescription(placeAdForm.getHouseDescription());
 		ad.setPreferences(placeAdForm.getPreferences());
 
@@ -141,14 +137,13 @@ public class AdService {
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
 		ad.setInternet(placeAdForm.getInternet());
-		ad.setFloor(placeAdForm.getFloor());
 		
 		// distance values
+		ad.setFloor(placeAdForm.getFloor());
+		ad.setNumberOfRooms(placeAdForm.getNumberOfRooms());
 		ad.setDistanceToNearestPublicTransport(placeAdForm.getDistanceToNearestPublicTransport());
 		ad.setDistanceToNearestSchool(placeAdForm.getDistanceToNearestSchool());
 		ad.setDistanceToNearestSuperMarket(placeAdForm.getDistanceToNearestSuperMarket());
-		
-		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		
 		/*
 		 * Save the paths to the picture files, the pictures are assumed to be
@@ -248,16 +243,37 @@ public class AdService {
 	@Transactional
 	public Iterable<Ad> queryResults(SearchForm searchForm) {
 		Iterable<Ad> results = null;
-
+		
 		// we use this method if we are looking for houses AND flats
 		if (searchForm.getBothHouseAndFlat()) {
 			results = adDao
-					.findByPrizePerMonthLessThan(searchForm.getPrize() + 1);
+					.findByPrizeLessThan(searchForm.getPrize() + 1);
 		}
 		// we use this method if we are looking EITHER for houses OR for flats
 		else {
-			results = adDao.findByFlatAndPrizePerMonthLessThan(
+			results = adDao.findByFlatAndPrizeLessThan(
 					searchForm.getFlat(), searchForm.getPrize() + 1);
+			
+		}
+		
+		//includes the running costs. 
+		if(searchForm.getIncludeRunningCosts()){
+			Iterator<Ad> iterator = results.iterator();
+			while(iterator.hasNext()) {
+				Ad ad = iterator.next();
+				if(ad.getPrize()+ad.getRunningCosts() > searchForm.getPrize())
+					iterator.remove();
+			}
+		}
+		
+		//filters between rent and buy if needed
+		if(!searchForm.getBothSellAndRent()){
+			Iterator<Ad> iterator = results.iterator();
+			while(iterator.hasNext()){
+				Ad ad = iterator.next();
+				if(ad.getForSale() != searchForm.getForSale())
+					iterator.remove();
+			}
 		}
 
 		// filter out zipcode
@@ -440,12 +456,22 @@ public class AdService {
 				}
 			}
 			
-			// floor
-			if (searchForm.getFloor() >= -1) {
+//			// floor
+//			if (searchForm.getFloor() >= -1) {
+//				Iterator<Ad> iterator = locatedResults.iterator();
+//				while (iterator.hasNext()) {
+//					Ad ad = iterator.next();
+//					if (ad.getFloor() != searchForm.getFloor())
+//						iterator.remove();
+//				}
+//			}
+			
+			//number of rooms
+			if(searchForm.getNumberOfRooms()>0){
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getFloor() != searchForm.getFloor())
+					if(ad.getNumberOfRooms() < searchForm.getNumberOfRooms())
 						iterator.remove();
 				}
 			}
@@ -455,7 +481,7 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDistanceToNearestPublicTransport() > searchForm.getDistanceToNearestPublicTransport())
+					if (ad.getDistanceToNearestPublicTransport()*1000 > searchForm.getDistanceToNearestPublicTransport())
 							iterator.remove();
 				}
 			}
@@ -464,7 +490,7 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDistanceToNearestSchool() > searchForm.getDistanceToNearestSchool())
+					if (ad.getDistanceToNearestSchool()*1000 > searchForm.getDistanceToNearestSchool())
 							iterator.remove();
 				}
 			}
@@ -473,27 +499,18 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDistanceToNearestSuperMarket() > searchForm.getDistanceToNearestSuperMarket())
+					if (ad.getDistanceToNearestSuperMarket()*1000 > searchForm.getDistanceToNearestSuperMarket())
 						iterator.remove();
 				}
 			}
 			
-			// running costs
-			if (searchForm.getRunningCosts() > 0) {
-				Iterator<Ad> iterator = locatedResults.iterator();
-				while (iterator.hasNext()) {
-					Ad ad = iterator.next();
-					if (ad.getRunningCosts() > searchForm.getRunningCosts())
-						iterator.remove();
-				}
-			}
 			
 			// square footage
 			if (searchForm.getSquareFootage() > 0) {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getSquareFootage() > searchForm.getSquareFootage())
+					if (ad.getSquareFootage() < searchForm.getSquareFootage())
 						iterator.remove();
 				}
 			}

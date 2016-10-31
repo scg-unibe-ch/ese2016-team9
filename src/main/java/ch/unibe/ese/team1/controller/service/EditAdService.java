@@ -92,10 +92,22 @@ public class EditAdService {
 				calendar.set(yearMoveOut, monthMoveOut - 1, dayMoveOut);
 				ad.setMoveOutDate(calendar.getTime());
 			}
+			
+			if (placeAdForm.getLastRenovation().length() >= 1) {
+				int dayRenovation = Integer.parseInt(placeAdForm.getLastRenovation()
+						.substring(0, 2));
+				int monthRenovation = Integer.parseInt(placeAdForm
+						.getLastRenovation().substring(3, 5));
+				int yearRenovation = Integer.parseInt(placeAdForm.getLastRenovation()
+						.substring(6, 10));
+				calendar.set(yearRenovation, monthRenovation - 1, dayRenovation);
+				ad.setLastRenovation(calendar.getTime());
+			}
 		} catch (NumberFormatException e) {
 		}
 
-		ad.setPrizePerMonth(placeAdForm.getPrize());
+		ad.setPrize(placeAdForm.getPrize());
+		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
 
 		ad.setHouseDescription(placeAdForm.getHouseDescription());
@@ -111,6 +123,13 @@ public class EditAdService {
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
 		ad.setInternet(placeAdForm.getInternet());
+		
+		ad.setFloor(placeAdForm.getFloor());
+		ad.setNumberOfRooms(placeAdForm.getNumberOfRooms());
+		ad.setDistanceToNearestPublicTransport(placeAdForm.getDistanceToNearestPublicTransport());
+		ad.setDistanceToNearestSchool(placeAdForm.getDistanceToNearestSchool());
+		ad.setDistanceToNearestSuperMarket(placeAdForm.getDistanceToNearestSuperMarket());
+		
 
 		/*
 		 * Save the paths to the picture files, the pictures are assumed to be

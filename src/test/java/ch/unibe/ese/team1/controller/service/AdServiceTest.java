@@ -99,7 +99,7 @@ public class AdServiceTest {
 		assertEquals(3018, ad.getZipcode());
 		assertEquals("Test preferences", ad.getPreferences());
 		assertEquals("Test House description", ad.getHouseDescription());
-		assertEquals(600, ad.getPrizePerMonth());
+		assertEquals(600, ad.getPrize());
 		assertEquals(50, ad.getSquareFootage());
 		assertEquals("title", ad.getTitle());
 		assertEquals("Hauptstrasse 13", ad.getStreet());

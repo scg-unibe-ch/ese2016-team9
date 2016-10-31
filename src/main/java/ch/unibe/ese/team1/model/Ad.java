@@ -53,7 +53,7 @@ public class Ad {
 	private Date moveOutDate;
 
 	@Column(nullable = false)
-	private int prizePerMonth;
+	private int prize;
 
 	@Column(nullable = false)
 	private int squareFootage;
@@ -96,6 +96,9 @@ public class Ad {
 	// true if flat, false if house
 	@Column(nullable = false)
 	private boolean flat;
+	
+	@Column(nullable = false)
+	private boolean forSale;
 
 	@Column(nullable = false)
 	private int numberOfRooms;
@@ -140,6 +143,14 @@ public class Ad {
 
 	public boolean getFlat() {
 		return flat;
+	}
+
+	public boolean getForSale() {
+		return forSale;
+	}
+
+	public void setForSale(boolean forSale) {
+		this.forSale = forSale;
 	}
 
 	public void setFlat(boolean flat) {
@@ -246,12 +257,12 @@ public class Ad {
 		this.moveOutDate = moveOutDate;
 	}
 
-	public int getPrizePerMonth() {
-		return prizePerMonth;
+	public int getPrize() {
+		return prize;
 	}
 
-	public void setPrizePerMonth(int prizePerMonth) {
-		this.prizePerMonth = prizePerMonth;
+	public void setPrize(int prizePerMonth) {
+		this.prize = prizePerMonth;
 	}
 
 	public int getSquareFootage() {

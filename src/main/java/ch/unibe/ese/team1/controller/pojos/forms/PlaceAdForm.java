@@ -44,6 +44,7 @@ public class PlaceAdForm {
 	
 	//true if flat, false if house
 	private boolean flat;
+	private boolean forSale;
 	
 	private boolean smokers;
 	private boolean animals;
@@ -279,6 +280,14 @@ public class PlaceAdForm {
 		return flat;
 	}
 	
+	public boolean getForSale() {
+		return forSale;
+	}
+
+	public void setForSale(boolean forSale) {
+		this.forSale = forSale;
+	}
+
 	public void setFlat(boolean flat) {
 		this.flat = flat;
 	}
@@ -292,6 +301,7 @@ public class PlaceAdForm {
 	public void setVisits(List<String> visits) {
 		this.visits = visits;
 	}
+	
 	
 
 }

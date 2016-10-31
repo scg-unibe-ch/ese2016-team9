@@ -15,6 +15,8 @@ public class SearchForm {
 
 	// flat: true, house: false
 	private boolean flat;
+	// sale: true, rent: false
+	private boolean forSale;
 
 	@NotBlank(message = "Required")
 	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
@@ -27,11 +29,17 @@ public class SearchForm {
 	@NotNull(message = "Requires a number")
 	@Min(value = 0, message = "In your dreams.")
 	private Integer prize;
+	
+	private boolean includeRunningCosts;
 
 	@AssertFalse(message = "Please select either or both types")
 	private boolean noHouseNoFlat;
 
 	private boolean bothHouseAndFlat;
+	private boolean bothSellAndRent;
+	
+	@AssertFalse(message = "please select either or both types")
+	private boolean noSellNoRent;
 
 	public String getCity() {
 		return city;
@@ -56,9 +64,25 @@ public class SearchForm {
 	public void setPrize(Integer prize) {
 		this.prize = prize;
 	}
+	
+	public boolean getIncludeRunningCosts() {
+		return includeRunningCosts;
+	}
+
+	public void setIncludeRunningCosts(boolean includeRunningCosts) {
+		this.includeRunningCosts = includeRunningCosts;
+	}
 
 	public boolean getFlat() {
 		return flat;
+	}
+
+	public boolean getForSale() {
+		return forSale;
+	}
+
+	public void setForSale(boolean forSale) {
+		this.forSale = forSale;
 	}
 
 	public void setFlat(boolean flat) {
@@ -81,6 +105,23 @@ public class SearchForm {
 		this.bothHouseAndFlat = bothHouseAndFlat;
 	}
 
+	
+	public boolean getBothSellAndRent() {
+		return bothSellAndRent;
+	}
+
+	public void setBothSellAndRent(boolean bothSellAndRent) {
+		this.bothSellAndRent = bothSellAndRent;
+	}
+
+	public boolean getNoSellNoRent() {
+		return noSellNoRent;
+	}
+
+	public void setNoSellNoRent(boolean noSellNoRent) {
+		this.noSellNoRent = noSellNoRent;
+	}
+	
 	// //////////////////
 	// Filtered results//
 	// //////////////////
@@ -111,7 +152,6 @@ public class SearchForm {
 	private int floor;
 	private int squareFootage;
 	private int numberOfRooms;
-	private int runningCosts;
 	private String lastRenovation;
 	private int distanceToNearestSuperMarket;
 	private int distanceToNearestPublicTransport;
@@ -121,6 +161,8 @@ public class SearchForm {
 
 	// the ugly stuff
 	private boolean flatHelper;
+	private boolean saleHelper;
+	private boolean rentHelper;
 
 	public boolean getSmokers() {
 		return smokers;
@@ -230,14 +272,6 @@ public class SearchForm {
 		this.numberOfRooms = numberOfRooms;
 	}
 
-	public int getRunningCosts() {
-		return runningCosts;
-	}
-
-	public void setRunningCosts(int runningCosts) {
-		this.runningCosts = runningCosts;
-	}
-
 	public String getLastRenovation() {
 		return lastRenovation;
 	}
@@ -304,5 +338,21 @@ public class SearchForm {
 
 	public void setHouseHelper(boolean helper) {
 		this.houseHelper = helper;
+	}
+	
+	public boolean getSaleHelper() {
+		return saleHelper;
+	}
+
+	public void setSaleHelper(boolean helper) {
+		this.saleHelper = helper;
+	}
+	
+	public boolean getRentHelper() {
+		return rentHelper;
+	}
+
+	public void setRentHelper(boolean helper) {
+		this.rentHelper = helper;
 	}
 }
