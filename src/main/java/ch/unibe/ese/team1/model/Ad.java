@@ -44,7 +44,6 @@ public class Ad {
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 
-	@Column(nullable = false)
 	@Temporal(TemporalType.DATE)
 	private Date moveInDate;
 

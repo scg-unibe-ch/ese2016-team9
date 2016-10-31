@@ -208,7 +208,7 @@ public class AdTestDataSaver {
 		adOlten.setHouseDescription(flatDescription4);
 		adOlten.setPreferences(housePreferences4);
 		adOlten.setUser(ese);
-		adOlten.setTitle(" wanted in Olten City");
+		adOlten.setTitle("House wanted in Olten City");
 		adOlten.setStreet("Zehnderweg 5");
 		adOlten.setCity("Olten");
 		adOlten.setGarden(false);
@@ -280,7 +280,7 @@ public class AdTestDataSaver {
 		adBiel.setHouseDescription(flatDescription6);
 		adBiel.setPreferences(housePreferences6);
 		adBiel.setUser(ese);
-		adBiel.setTitle("Direkt am Quai: hübsches Flat");
+		adBiel.setTitle("Direct by the lake. Nice flat");
 		adBiel.setStreet("Oberer Quai 12");
 		adBiel.setCity("Biel/Bienne");
 		adBiel.setGarden(false);
@@ -366,7 +366,7 @@ public class AdTestDataSaver {
 		adLuzern.setHouseDescription(flatDescription8);
 		adLuzern.setPreferences(housePreferences8);
 		adLuzern.setUser(oprah);
-		adLuzern.setTitle("Elegant Flat in Lucerne");
+		adLuzern.setTitle("Beatiful flat in lucerne");
 		adLuzern.setStreet("Schwanenplatz 61");
 		adLuzern.setCity("Luzern");
 		adLuzern.setGarden(false);
@@ -383,7 +383,7 @@ public class AdTestDataSaver {
 		adLuzern.setPictures(pictures);
 		adDao.save(adLuzern);
 
-		String flatDescription9 = " In the center of Gundeli (5 Min. away from the"
+		String flatDescription9 = "In the center of Gundeli (5 Min. away from the"
 				+ "station, close to Tellplatz) there is a lovely house, covered with"
 				+ "savage wine stocks, without any neighbours but with a garden. The"
 				+ "house has two storey, on the first floor your new house is waiting"
@@ -538,6 +538,57 @@ public class AdTestDataSaver {
 		adLocarno.setPictures(pictures);
 		adDao.save(adLocarno);
 
+		Ad adTestRent = new Ad();
+		adTestRent.setZipcode(6000);
+		adTestRent.setMoveInDate(moveInDate8);
+		adTestRent.setCreationDate(creationDate2);
+		adTestRent.setPrize(700);
+		adTestRent.setSquareFootage(60);
+		adTestRent.setFlat(true);
+		adTestRent.setSmokers(false);
+		adTestRent.setAnimals(false);
+		adTestRent.setHouseDescription(flatDescription8);
+		adTestRent.setPreferences(housePreferences8);
+		adTestRent.setUser(oprah);
+		adTestRent.setTitle("Test Rent");
+		adTestRent.setStreet("Schwanenplace 61");
+		adTestRent.setCity("Luzern");
+		adTestRent.setGarden(false);
+		adTestRent.setBalcony(false);
+		adTestRent.setCellar(false);
+		adTestRent.setFurnished(false);
+		adTestRent.setCable(false);
+		adTestRent.setGarage(false);
+		adTestRent.setInternet(true);
+		adTestRent.setForSale(false);
+		adDao.save(adTestRent);
+		
+	
+		Ad adTestSale = new Ad();
+		adTestSale.setZipcode(6000);
+		adTestSale.setMoveInDate(moveInDate8);
+		adTestSale.setCreationDate(creationDate2);
+		adTestSale.setPrize(700);
+		adTestSale.setSquareFootage(60);
+		adTestSale.setFlat(true);
+		adTestSale.setSmokers(false);
+		adTestSale.setAnimals(false);
+		adTestSale.setHouseDescription(flatDescription8);
+		adTestSale.setPreferences(housePreferences8);
+		adTestSale.setUser(oprah);
+		adTestSale.setTitle("Test Sale");
+		adTestSale.setStreet("Schwanenplace 61");
+		adTestSale.setCity("Luzern");
+		adTestSale.setGarden(false);
+		adTestSale.setBalcony(false);
+		adTestSale.setCellar(false);
+		adTestSale.setFurnished(false);
+		adTestSale.setCable(false);
+		adTestSale.setGarage(false);
+		adTestSale.setInternet(true);
+		adTestSale.setForSale(true);
+		adDao.save(adTestSale);
+		
 	}
 
 	private AdPicture createPicture(Ad ad, String filePath) {
