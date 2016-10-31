@@ -120,7 +120,7 @@ public class AdService {
 		} catch (NumberFormatException e) {
 		}
 
-		ad.setPrizePerMonth(placeAdForm.getPrize());
+		ad.setPrize(placeAdForm.getPrize());
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
 		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		
@@ -268,6 +268,8 @@ public class AdService {
 						searchForm.getFlat(), searchForm.getPrize() + 1);
 			}
 		}
+		
+	
 
 		// filter out zipcode
 		String city = searchForm.getCity().substring(7);
@@ -350,6 +352,16 @@ public class AdService {
 				lastRenovationDate = formatter.parse(searchForm.getLastRenovation());
 			} catch (Exception e) {
 				
+			}
+			
+			// filter out selling or renting
+			if (!searchForm.isBothSellAndRent()) {
+				Iterator<Ad> iterator = locatedResults.iterator();
+				while (iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if (searchForm.isForSale() != ad.isForSale())
+						iterator.remove();
+				}
 			}
 
 			// filtering by dates

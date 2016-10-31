@@ -76,7 +76,7 @@ public class AdTestDataSaver {
 		adBern.setMoveInDate(moveInDate1);
 		adBern.setCreationDate(creationDate1);
 		adBern.setMoveOutDate(moveOutDate1);
-		adBern.setPrizePerMonth(400);
+		adBern.setPrize(400);
 		adBern.setSquareFootage(50);
 		adBern.setFlat(false);
 		adBern.setSmokers(false);
@@ -120,7 +120,7 @@ public class AdTestDataSaver {
 		adBern2.setMoveInDate(moveInDate2);
 		adBern2.setCreationDate(creationDate2);
 		adBern2.setMoveOutDate(moveOutDate4);
-		adBern2.setPrizePerMonth(700);
+		adBern2.setPrize(700);
 		adBern2.setSquareFootage(60);
 		adBern2.setFlat(true);
 		adBern2.setSmokers(false);
@@ -162,7 +162,7 @@ public class AdTestDataSaver {
 		adBasel.setMoveInDate(moveInDate3);
 		adBasel.setMoveOutDate(moveOutDate2);
 		adBasel.setCreationDate(creationDate3);
-		adBasel.setPrizePerMonth(480);
+		adBasel.setPrize(480);
 		adBasel.setSquareFootage(10);
 		adBasel.setFlat(true);
 		adBasel.setSmokers(true);
@@ -200,7 +200,7 @@ public class AdTestDataSaver {
 		adOlten.setZipcode(4600);
 		adOlten.setMoveInDate(moveInDate4);
 		adOlten.setCreationDate(creationDate4);
-		adOlten.setPrizePerMonth(430);
+		adOlten.setPrize(430);
 		adOlten.setSquareFootage(60);
 		adOlten.setFlat(false);
 		adOlten.setSmokers(true);
@@ -237,7 +237,7 @@ public class AdTestDataSaver {
 		adNeuchâtel.setMoveInDate(moveInDate5);
 		adNeuchâtel.setMoveOutDate(moveOutDate3);
 		adNeuchâtel.setCreationDate(creationDate5);
-		adNeuchâtel.setPrizePerMonth(410);
+		adNeuchâtel.setPrize(410);
 		adNeuchâtel.setSquareFootage(40);
 		adNeuchâtel.setFlat(true);
 		adNeuchâtel.setSmokers(true);
@@ -272,7 +272,7 @@ public class AdTestDataSaver {
 		adBiel.setMoveInDate(moveInDate6);
 		adBiel.setMoveOutDate(moveOutDate5);
 		adBiel.setCreationDate(creationDate6);
-		adBiel.setPrizePerMonth(480);
+		adBiel.setPrize(480);
 		adBiel.setSquareFootage(10);
 		adBiel.setFlat(true);
 		adBiel.setSmokers(true);
@@ -314,7 +314,7 @@ public class AdTestDataSaver {
 		adZurich.setMoveInDate(moveInDate7);
 		adZurich.setCreationDate(creationDate7);
 		adZurich.setMoveOutDate(moveOutDate5);
-		adZurich.setPrizePerMonth(480);
+		adZurich.setPrize(480);
 		adZurich.setSquareFootage(32);
 		adZurich.setFlat(false);
 		adZurich.setSmokers(false);
@@ -358,7 +358,7 @@ public class AdTestDataSaver {
 		adLuzern.setZipcode(6000);
 		adLuzern.setMoveInDate(moveInDate8);
 		adLuzern.setCreationDate(creationDate2);
-		adLuzern.setPrizePerMonth(700);
+		adLuzern.setPrize(700);
 		adLuzern.setSquareFootage(60);
 		adLuzern.setFlat(true);
 		adLuzern.setSmokers(false);
@@ -400,7 +400,7 @@ public class AdTestDataSaver {
 		adAarau.setMoveInDate(moveInDate3);
 		adAarau.setMoveOutDate(moveOutDate4);
 		adAarau.setCreationDate(creationDate8);
-		adAarau.setPrizePerMonth(800);
+		adAarau.setPrize(800);
 		adAarau.setSquareFootage(26);
 		adAarau.setFlat(true);
 		adAarau.setSmokers(true);
@@ -441,7 +441,7 @@ public class AdTestDataSaver {
 		adDavos.setZipcode(7260);
 		adDavos.setMoveInDate(moveInDate2);
 		adDavos.setCreationDate(creationDate4);
-		adDavos.setPrizePerMonth(1100);
+		adDavos.setPrize(1100);
 		adDavos.setSquareFootage(74);
 		adDavos.setFlat(false);
 		adDavos.setSmokers(true);
@@ -478,7 +478,7 @@ public class AdTestDataSaver {
 		adLausanne.setMoveInDate(moveInDate5);
 		adLausanne.setMoveOutDate(moveOutDate3);
 		adLausanne.setCreationDate(creationDate5);
-		adLausanne.setPrizePerMonth(360);
+		adLausanne.setPrize(360);
 		adLausanne.setSquareFootage(8);
 		adLausanne.setFlat(false);
 		adLausanne.setSmokers(true);
@@ -513,7 +513,7 @@ public class AdTestDataSaver {
 		adLocarno.setMoveInDate(moveInDate6);
 		adLocarno.setMoveOutDate(moveOutDate5);
 		adLocarno.setCreationDate(creationDate6);
-		adLocarno.setPrizePerMonth(960);
+		adLocarno.setPrize(960);
 		adLocarno.setSquareFootage(42);
 		adLocarno.setFlat(false);
 		adLocarno.setSmokers(true);
