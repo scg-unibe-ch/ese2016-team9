@@ -163,7 +163,7 @@
 			<tr>
 				<td>
 					<form:input id="field-Prize" type="number" path="prize"
-						placeholder="e.g. 500" step="50" value="${ad.prizePerMonth }"/> <form:errors
+						placeholder="e.g. 500" step="50" value="${ad.prize }"/> <form:errors
 						path="prize" cssClass="validationErrorText" />CHF
 				</td>
 				<td>

@@ -15,6 +15,7 @@ public class SearchForm {
 
 	// flat: true, house: false
 	private boolean flat;
+	// sale: true, rent: false
 	private boolean forSale;
 
 	@NotBlank(message = "Required")
@@ -76,7 +77,7 @@ public class SearchForm {
 		return flat;
 	}
 
-	public boolean isForSale() {
+	public boolean getForSale() {
 		return forSale;
 	}
 
@@ -105,7 +106,7 @@ public class SearchForm {
 	}
 
 	
-	public boolean isBothSellAndRent() {
+	public boolean getBothSellAndRent() {
 		return bothSellAndRent;
 	}
 
@@ -113,7 +114,7 @@ public class SearchForm {
 		this.bothSellAndRent = bothSellAndRent;
 	}
 
-	public boolean isNoSellNoRent() {
+	public boolean getNoSellNoRent() {
 		return noSellNoRent;
 	}
 
@@ -160,6 +161,8 @@ public class SearchForm {
 
 	// the ugly stuff
 	private boolean flatHelper;
+	private boolean saleHelper;
+	private boolean rentHelper;
 
 	public boolean getSmokers() {
 		return smokers;
@@ -335,5 +338,21 @@ public class SearchForm {
 
 	public void setHouseHelper(boolean helper) {
 		this.houseHelper = helper;
+	}
+	
+	public boolean getSaleHelper() {
+		return saleHelper;
+	}
+
+	public void setSaleHelper(boolean helper) {
+		this.saleHelper = helper;
+	}
+	
+	public boolean getRentHelper() {
+		return rentHelper;
+	}
+
+	public void setRentHelper(boolean helper) {
+		this.rentHelper = helper;
 	}
 }
