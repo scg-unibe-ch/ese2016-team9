@@ -21,6 +21,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import ch.unibe.ese.team1.controller.pojos.forms.PlaceAdForm;
+import ch.unibe.ese.team1.controller.pojos.forms.SearchForm;
 import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.Gender;
 import ch.unibe.ese.team1.model.User;
@@ -108,6 +109,35 @@ public class AdServiceTest {
 	    Date result =  df.parse("2015-02-27");
 		
 		assertEquals(0, result.compareTo(ad.getMoveInDate()));
+	}
+	
+
+	/**
+	 * Test our newly implemented SearchCriterias
+	 * @throws ParseException 
+	 */
+	@Test
+	public void newSearchCriterias() throws ParseException {
+		//Preparation
+		SearchForm searchForm = new SearchForm();
+		
+		searchForm.setPrize(1000);
+		searchForm.setDistanceToNearestPublicTransport(300);
+		searchForm.setDistanceToNearestSchool(300);
+		searchForm.setDistanceToNearestSuperMarket(300);
+		searchForm.setIncludeRunningCosts(true);
+		searchForm.setForSale(true);
+		searchForm.setNumberOfRooms(3);
+		searchForm.setCity("1111 - Aarau");
+		
+		Iterable<Ad> ads = adService.queryResults(searchForm);
+		
+		int count = 0;
+		while (ads.iterator().hasNext()) {
+			count++;
+			ads.iterator().next();
+		}
+		assertEquals(3, count);
 	}
 	
 	private User createUser(String email, String password, String firstName,

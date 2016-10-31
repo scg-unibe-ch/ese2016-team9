@@ -22,7 +22,6 @@ public class PlaceAdForm {
 	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
 	private String city;
 	
-	@NotBlank(message = "Required")
 	private String moveInDate;
 	
 	private String moveOutDate;

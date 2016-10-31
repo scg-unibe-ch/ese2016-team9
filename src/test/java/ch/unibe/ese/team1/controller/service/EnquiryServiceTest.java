@@ -62,7 +62,7 @@ public class EnquiryServiceTest {
 	@Test
 	public void createVisits() throws Exception {		
 		//create user
-		User thomyF = createUser("thomy@f.ch", "password", "Thomy", "F",
+		User thomyF = createUser("thomy1@f.ch", "password", "Thomy", "F",
 				Gender.MALE);
 		thomyF.setAboutMe("Supreme hustler");
 		userDao.save(thomyF);
@@ -119,7 +119,7 @@ public class EnquiryServiceTest {
 	@Test
 	public void enquireAndAccept() throws Exception {		
 		//create two users
-		User adolfOgi = createUser("adolf@ogi.ch", "password", "Adolf", "Ogi",
+		User adolfOgi = createUser("adolf1@ogi.ch", "password", "Adolf", "Ogi",
 				Gender.MALE);
 		adolfOgi.setAboutMe("Wallis rocks");
 		userDao.save(adolfOgi);

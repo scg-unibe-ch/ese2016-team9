@@ -120,11 +120,11 @@
 					<form:errors path="city" cssClass="validationErrorText" /></td>
 			</tr>
 
-			<tr>
+			<tr style="display:${isRentingAd ? "" : "none"}">
 				<td><label for="moveInDate">Move-in date</label></td>
 				<td><label for="moveOutDate">Move-out date (optional)</label></td>
 			</tr>
-			<tr>
+			<tr style="display:${isRentingAd ? "" : "none"}">
 				<td><form:input type="text" id="field-moveInDate"
 						path="moveInDate" /></td>
 				<td><form:input type="text" id="field-moveOutDate"
@@ -132,7 +132,8 @@
 			</tr>
 
 			<tr>
-				<td><label for="field-Prize">Prize per month</label></td>
+                
+				<td><label for="field-Prize">${isRentingAd ? "Prize per Month" : "Prize"}</label></td>
 				<td><label for="field-RunningCosts">Running Costs per month</label>
 				<td><label for="field-SquareFootage">Square Meters</label></td>
 			</tr>
@@ -194,7 +195,7 @@
 						path="DistanceToNearestSchool" cssClass="validationErrorText" />meters</td>	
 			</tr>
 			
-			<tr>
+			<tr style="display:${isRentingAd ? "" : "none"}">
 				<td><form:checkbox id="field-smoker" path="smokers" value="1" /><label>Animals
 						allowed</label></td>
 				<td><form:checkbox id="field-animals" path="animals" value="1" /><label>Smoking
@@ -218,7 +219,7 @@
 				<td><form:checkbox id="field-garage" path="garage" value="1" /><label>Garage</label>
 				</td>
 			</tr>
-			<tr>
+			<tr style="display:${isRentingAd ? "" : "none"}">
 				<td><form:checkbox id="field-internet" path="internet"
 						value="1" /><label>WiFi available</label></td>
 			</tr>

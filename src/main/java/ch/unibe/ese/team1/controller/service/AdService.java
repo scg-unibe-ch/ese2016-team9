@@ -107,7 +107,7 @@ public class AdService {
 				ad.setMoveOutDate(calendar.getTime());
 			}
 			
-			if (placeAdForm.getLastRenovation().length() >= 1) {
+			if (placeAdForm.getLastRenovation() != null && placeAdForm.getLastRenovation().length() >= 1) {
 				int dayRenovate = Integer.parseInt(placeAdForm.getLastRenovation()
 						.substring(0, 2));
 				int monthRenovate = Integer.parseInt(placeAdForm.getLastRenovation()

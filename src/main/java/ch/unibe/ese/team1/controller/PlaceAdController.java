@@ -86,13 +86,18 @@ public class PlaceAdController {
 
 	/** Shows the place ad form. */
 	@RequestMapping(value = "/profile/placeAd", method = RequestMethod.GET)
-	public ModelAndView placeAd() throws IOException {
+	public ModelAndView placeAd(@RequestParam(value = "rent", required = false, defaultValue="") String rent) throws IOException {
 		ModelAndView model = new ModelAndView("placeAd");
 
+		if (!rent.isEmpty()) {
+			model.addObject("isRentingAd", true);
+		}
+		
 		String realPath = servletContext.getRealPath(IMAGE_DIRECTORY);
 		if (pictureUploader == null) {
 			pictureUploader = new PictureUploader(realPath, IMAGE_DIRECTORY);
 		}
+		
 		return model;
 	}
 
