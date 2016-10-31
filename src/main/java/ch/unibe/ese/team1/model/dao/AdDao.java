@@ -1,5 +1,6 @@
 package ch.unibe.ese.team1.model.dao;
 
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import ch.unibe.ese.team1.model.Ad;
