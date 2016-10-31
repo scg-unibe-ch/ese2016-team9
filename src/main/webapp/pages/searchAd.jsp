@@ -66,7 +66,7 @@ function validateType(form)
 		bothS.checked = true;
 		neitherS.checked = false;
 	}
-	else if(!hsale.checked && !rent.checked) {
+	else if(!sale.checked && !rent.checked) {
 		bothS.checked = false;
 		neitherS.checked = true;
 	}

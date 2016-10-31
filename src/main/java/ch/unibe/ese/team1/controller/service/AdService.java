@@ -248,33 +248,33 @@ public class AdService {
 		if (searchForm.getBothHouseAndFlat()) {
 			results = adDao
 					.findByPrizeLessThan(searchForm.getPrize() + 1);
-			
-			//includes the running costs. 
-			if(searchForm.getIncludeRunningCosts()){
-				Iterator<Ad> iterator = results.iterator();
-				while(iterator.hasNext()) {
-					Ad ad = iterator.next();
-					if(ad.getPrize()+ad.getRunningCosts() > searchForm.getPrize())
-						iterator.remove();
-				}
-			}
 		}
 		// we use this method if we are looking EITHER for houses OR for flats
 		else {
 			results = adDao.findByFlatAndPrizeLessThan(
 					searchForm.getFlat(), searchForm.getPrize() + 1);
 			
-			//includes the running costs. 
-			if(searchForm.getIncludeRunningCosts()){
-				Iterator<Ad> iterator = results.iterator();
-				while(iterator.hasNext()) {
-					Ad ad = iterator.next();
-					if(ad.getPrize()+ad.getRunningCosts() > searchForm.getPrize())
-						iterator.remove();
-				}
+		}
+		
+		//includes the running costs. 
+		if(searchForm.getIncludeRunningCosts()){
+			Iterator<Ad> iterator = results.iterator();
+			while(iterator.hasNext()) {
+				Ad ad = iterator.next();
+				if(ad.getPrize()+ad.getRunningCosts() > searchForm.getPrize())
+					iterator.remove();
 			}
 		}
-	
+		
+		//filters between rent and buy if needed
+		if(!searchForm.getBothSellAndRent()){
+			Iterator<Ad> iterator = results.iterator();
+			while(iterator.hasNext()){
+				Ad ad = iterator.next();
+				if(ad.getForSale() != searchForm.getForSale())
+					iterator.remove();
+			}
+		}
 
 		// filter out zipcode
 		String city = searchForm.getCity().substring(7);
@@ -357,16 +357,6 @@ public class AdService {
 				lastRenovationDate = formatter.parse(searchForm.getLastRenovation());
 			} catch (Exception e) {
 				
-			}
-			
-			// filter out selling or renting
-			if (!searchForm.getBothSellAndRent()) {
-				Iterator<Ad> iterator = locatedResults.iterator();
-				while (iterator.hasNext()) {
-					Ad ad = iterator.next();
-					if (searchForm.getForSale() != ad.getForSale())
-						iterator.remove();
-				}
 			}
 
 			// filtering by dates
@@ -466,12 +456,22 @@ public class AdService {
 				}
 			}
 			
-			// floor
-			if (searchForm.getFloor() >= -1) {
+//			// floor
+//			if (searchForm.getFloor() >= -1) {
+//				Iterator<Ad> iterator = locatedResults.iterator();
+//				while (iterator.hasNext()) {
+//					Ad ad = iterator.next();
+//					if (ad.getFloor() != searchForm.getFloor())
+//						iterator.remove();
+//				}
+//			}
+			
+			//number of rooms
+			if(searchForm.getNumberOfRooms()>0){
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getFloor() != searchForm.getFloor())
+					if(ad.getNumberOfRooms() < searchForm.getNumberOfRooms())
 						iterator.remove();
 				}
 			}
@@ -481,7 +481,7 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDistanceToNearestPublicTransport() > searchForm.getDistanceToNearestPublicTransport())
+					if (ad.getDistanceToNearestPublicTransport()*1000 > searchForm.getDistanceToNearestPublicTransport())
 							iterator.remove();
 				}
 			}
@@ -490,7 +490,7 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDistanceToNearestSchool() > searchForm.getDistanceToNearestSchool())
+					if (ad.getDistanceToNearestSchool()*1000 > searchForm.getDistanceToNearestSchool())
 							iterator.remove();
 				}
 			}
@@ -499,7 +499,7 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDistanceToNearestSuperMarket() > searchForm.getDistanceToNearestSuperMarket())
+					if (ad.getDistanceToNearestSuperMarket()*1000 > searchForm.getDistanceToNearestSuperMarket())
 						iterator.remove();
 				}
 			}
@@ -510,7 +510,7 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getSquareFootage() > searchForm.getSquareFootage())
+					if (ad.getSquareFootage() < searchForm.getSquareFootage())
 						iterator.remove();
 				}
 			}
