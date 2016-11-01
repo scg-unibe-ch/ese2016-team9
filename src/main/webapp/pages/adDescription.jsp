@@ -175,18 +175,24 @@
 			</td>
 		</tr>
 
-		<tr>
-			<td><h2>Available from</h2></td>
-			<td>${formattedMoveInDate}</td>
-		</tr>
+        <c:choose>
+            <c:when test="${shownAd.forSale}">
+            </c:when>
+            <c:otherwise>
+                <tr>
+                    <td><h2>Available from</h2></td>
+                    <td>${formattedMoveInDate}</td>
+                </tr>
+
+                <tr>
+                    <td><h2>Move-out Date</h2></td>
+                    <td>${formattedMoveOutDate}</td>
+                </tr>
+            </c:otherwise>
+        </c:choose>
 
 		<tr>
-			<td><h2>Move-out Date</h2></td>
-			<td>${formattedMoveOutDate}</td>
-		</tr>
-
-		<tr>
-			<td><h2>Monthly Rent</h2></td>
+			<td><h2>${shownAd.forSale ? "Prize" : "Monthly Rent"}</h2></td>
 			<td>${shownAd.prize}&#32;CHF</td>
 		</tr>
 		
@@ -269,25 +275,8 @@
 	</div>
 
 	<table id="checkBoxTable" class="adDescDiv">
-		<tr>
-			<td><h2>Smoking inside allowed</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.smokers}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
 
-		<tr>
-			<td><h2>Animals allowed</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.animals}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
+
 
 		<tr>
 			<td><h2>Furnished House</h2></td>
@@ -298,16 +287,41 @@
 				</c:choose>
 			</td>
 		</tr>
-		
-		<tr>
-			<td><h2>WiFi available</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.internet}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
+		<c:choose>
+            <c:when test="${shownAd.forSale}">
+                     
+            </c:when>
+            <c:otherwise>
+                <tr>
+                         <td><h2>WiFi available</h2></td>
+                         <td>
+                        <c:choose>
+                           <c:when test="${shownAd.internet}"><img src="/img/check-mark.png"></c:when>
+                           <c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+                        </c:choose>
+                         </td>
+                  </tr>
+                		<tr>
+                        <td><h2>Animals allowed</h2></td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${shownAd.animals}"><img src="/img/check-mark.png"></c:when>
+                                <c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td><h2>Smoking inside allowed</h2></td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${shownAd.smokers}"><img src="/img/check-mark.png"></c:when>
+                                <c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
+            </c:otherwise>
+        </c:choose>
 
 		<tr>
 			<td><h2>Cable TV</h2></td>

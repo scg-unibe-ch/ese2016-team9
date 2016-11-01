@@ -185,6 +185,8 @@ public class AdTestDataSaver {
 		pictures.add(createPicture(adBasel, "/img/test/ad3_2.jpg"));
 		pictures.add(createPicture(adBasel, "/img/test/ad3_3.jpg"));
 		adBasel.setPictures(pictures);
+		adBasel.setDistanceToNearestPublicTransport(300);
+		adBasel.setRunningCosts(100);
 		adDao.save(adBasel);
 		
 		String flatDescription4 = "Flatshare of 3 persons. Flat with 5 houses"
@@ -202,13 +204,14 @@ public class AdTestDataSaver {
 		adOlten.setCreationDate(creationDate4);
 		adOlten.setPrize(430);
 		adOlten.setSquareFootage(60);
+		adOlten.setNumberOfRooms(1);
 		adOlten.setFlat(false);
 		adOlten.setSmokers(true);
 		adOlten.setAnimals(false);
 		adOlten.setHouseDescription(flatDescription4);
 		adOlten.setPreferences(housePreferences4);
 		adOlten.setUser(ese);
-		adOlten.setTitle(" wanted in Olten City");
+		adOlten.setTitle("House wanted in Olten City");
 		adOlten.setStreet("Zehnderweg 5");
 		adOlten.setCity("Olten");
 		adOlten.setGarden(false);
@@ -223,6 +226,7 @@ public class AdTestDataSaver {
 		pictures.add(createPicture(adOlten, "/img/test/ad4_2.png"));
 		pictures.add(createPicture(adOlten, "/img/test/ad4_3.png"));
 		adOlten.setPictures(pictures);
+		adOlten.setDistanceToNearestSchool(30);
 		adDao.save(adOlten);
 
 		String flatDescription5 = "Flat meublé au 3ème étage, comprenant"
@@ -280,7 +284,7 @@ public class AdTestDataSaver {
 		adBiel.setHouseDescription(flatDescription6);
 		adBiel.setPreferences(housePreferences6);
 		adBiel.setUser(ese);
-		adBiel.setTitle("Direkt am Quai: hübsches Flat");
+		adBiel.setTitle("Direct by the lake. Nice flat");
 		adBiel.setStreet("Oberer Quai 12");
 		adBiel.setCity("Biel/Bienne");
 		adBiel.setGarden(false);
@@ -366,7 +370,7 @@ public class AdTestDataSaver {
 		adLuzern.setHouseDescription(flatDescription8);
 		adLuzern.setPreferences(housePreferences8);
 		adLuzern.setUser(oprah);
-		adLuzern.setTitle("Elegant Flat in Lucerne");
+		adLuzern.setTitle("Beatiful flat in lucerne");
 		adLuzern.setStreet("Schwanenplatz 61");
 		adLuzern.setCity("Luzern");
 		adLuzern.setGarden(false);
@@ -383,7 +387,7 @@ public class AdTestDataSaver {
 		adLuzern.setPictures(pictures);
 		adDao.save(adLuzern);
 
-		String flatDescription9 = " In the center of Gundeli (5 Min. away from the"
+		String flatDescription9 = "In the center of Gundeli (5 Min. away from the"
 				+ "station, close to Tellplatz) there is a lovely house, covered with"
 				+ "savage wine stocks, without any neighbours but with a garden. The"
 				+ "house has two storey, on the first floor your new house is waiting"
@@ -418,12 +422,15 @@ public class AdTestDataSaver {
 		adAarau.setCable(false);
 		adAarau.setGarage(false);
 		adAarau.setInternet(false);
+		adAarau.setRunningCosts(300);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adAarau, "/img/test/ad3_3.jpg"));
 		pictures.add(createPicture(adAarau, "/img/test/ad3_2.jpg"));
 		pictures.add(createPicture(adAarau, "/img/test/ad3_1.jpg"));
 		pictures.add(createPicture(adAarau, "/img/test/ad2_2.jpg"));
 		pictures.add(createPicture(adAarau, "/img/test/ad2_3.jpg"));
+		adAarau.setDistanceToNearestPublicTransport(4000);
+		adAarau.setDistanceToNearestSchool(20);
 		
 		adAarau.setPictures(pictures);
 		adDao.save(adAarau);
@@ -441,8 +448,9 @@ public class AdTestDataSaver {
 		adDavos.setZipcode(7260);
 		adDavos.setMoveInDate(moveInDate2);
 		adDavos.setCreationDate(creationDate4);
-		adDavos.setPrize(1100);
+		adDavos.setPrize(30000);
 		adDavos.setSquareFootage(74);
+		adDavos.setNumberOfRooms(4);
 		adDavos.setFlat(false);
 		adDavos.setSmokers(true);
 		adDavos.setAnimals(false);
@@ -459,10 +467,14 @@ public class AdTestDataSaver {
 		adDavos.setCable(true);
 		adDavos.setGarage(false);
 		adDavos.setInternet(false);
+		adDavos.setRunningCosts(500);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adDavos, "/img/test/ad4_3.png"));
 		pictures.add(createPicture(adDavos, "/img/test/ad4_2.png"));
 		pictures.add(createPicture(adDavos, "/img/test/ad4_1.png"));
+		adDavos.setDistanceToNearestPublicTransport(100);
+		adDavos.setDistanceToNearestSchool(50);
+		adDavos.setDistanceToNearestSuperMarket(100);
 		adDavos.setPictures(pictures);
 		adDao.save(adDavos);
 
@@ -479,6 +491,7 @@ public class AdTestDataSaver {
 		adLausanne.setMoveOutDate(moveOutDate3);
 		adLausanne.setCreationDate(creationDate5);
 		adLausanne.setPrize(360);
+		adLausanne.setNumberOfRooms(1);
 		adLausanne.setSquareFootage(8);
 		adLausanne.setFlat(false);
 		adLausanne.setSmokers(true);
@@ -496,11 +509,15 @@ public class AdTestDataSaver {
 		adLausanne.setCable(false);
 		adLausanne.setGarage(false);
 		adLausanne.setInternet(false);
+		adLausanne.setRunningCosts(200);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adLausanne, "/img/test/ad5_3.jpg"));
 		pictures.add(createPicture(adLausanne, "/img/test/ad5_2.jpg"));
 		pictures.add(createPicture(adLausanne, "/img/test/ad5_1.jpg"));
 		adLausanne.setPictures(pictures);
+		adLausanne.setDistanceToNearestPublicTransport(2000);
+		adLausanne.setDistanceToNearestSchool(1000);
+		adLausanne.setDistanceToNearestSuperMarket(3000);
 		adDao.save(adLausanne);
 
 		String flatDescription12 = "A place just for yourself in a very nice part of Biel."
@@ -515,6 +532,7 @@ public class AdTestDataSaver {
 		adLocarno.setCreationDate(creationDate6);
 		adLocarno.setPrize(960);
 		adLocarno.setSquareFootage(42);
+		adLocarno.setNumberOfRooms(4);
 		adLocarno.setFlat(false);
 		adLocarno.setSmokers(true);
 		adLocarno.setAnimals(false);
@@ -531,13 +549,79 @@ public class AdTestDataSaver {
 		adLocarno.setCable(false);
 		adLocarno.setGarage(false);
 		adLocarno.setInternet(false);
+		adLausanne.setRunningCosts(300);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adLocarno, "/img/test/ad6_3.png"));
 		pictures.add(createPicture(adLocarno, "/img/test/ad6_2.png"));
 		pictures.add(createPicture(adLocarno, "/img/test/ad6_1.png"));
 		adLocarno.setPictures(pictures);
+		adLocarno.setDistanceToNearestPublicTransport(8000);
+		adLocarno.setDistanceToNearestSchool(9000);
+		adLocarno.setDistanceToNearestSuperMarket(10000);
 		adDao.save(adLocarno);
 
+		Ad adTestRent = new Ad();
+		adTestRent.setZipcode(6000);
+		adTestRent.setMoveInDate(moveInDate8);
+		adTestRent.setCreationDate(creationDate2);
+		adTestRent.setNumberOfRooms(2);
+		adTestRent.setPrize(700);
+		adTestRent.setSquareFootage(60);
+		adTestRent.setFlat(true);
+		adTestRent.setSmokers(false);
+		adTestRent.setAnimals(false);
+		adTestRent.setHouseDescription(flatDescription8);
+		adTestRent.setPreferences(housePreferences8);
+		adTestRent.setUser(oprah);
+		adTestRent.setTitle("Sweet flat for rent");
+		adTestRent.setStreet("Schwanenplace 61A");
+		adTestRent.setCity("St. Gallen");
+		adTestRent.setGarden(false);
+		adTestRent.setBalcony(false);
+		adTestRent.setCellar(false);
+		adTestRent.setFurnished(false);
+		adTestRent.setCable(false);
+		adTestRent.setGarage(false);
+		adTestRent.setInternet(true);
+		adTestRent.setForSale(false);
+		adLausanne.setRunningCosts(100);
+		adTestRent.setDistanceToNearestPublicTransport(500);
+		adTestRent.setDistanceToNearestSchool(400);
+		adTestRent.setDistanceToNearestSuperMarket(500);
+		adDao.save(adTestRent);
+		
+	
+		Ad adTestSale = new Ad();
+		adTestSale.setZipcode(6000);
+		adTestSale.setMoveInDate(moveInDate8);
+		adTestSale.setCreationDate(creationDate2);
+		adTestSale.setPrize(700);
+		adTestSale.setSquareFootage(60);
+		adTestSale.setNumberOfRooms(3);
+		adTestSale.setFlat(true);
+		adTestSale.setSmokers(false);
+		adTestSale.setAnimals(false);
+		adTestSale.setHouseDescription(flatDescription8);
+		adTestSale.setPreferences(housePreferences8);
+		adTestSale.setUser(oprah);
+		adTestSale.setTitle("Sweet Flat for Sale");
+		adTestSale.setStreet("Schwanenplace 61B");
+		adTestSale.setCity("Gümligen");
+		adTestSale.setGarden(false);
+		adTestSale.setBalcony(false);
+		adTestSale.setCellar(false);
+		adTestSale.setFurnished(false);
+		adTestSale.setCable(false);
+		adTestSale.setGarage(false);
+		adTestSale.setInternet(true);
+		adTestSale.setForSale(true);
+		adLausanne.setRunningCosts(400);
+		adTestSale.setDistanceToNearestPublicTransport(1000);
+		adTestSale.setDistanceToNearestSchool(1000);
+		adTestSale.setDistanceToNearestSuperMarket(2000);
+		adDao.save(adTestSale);
+		
+		
 	}
 
 	private AdPicture createPicture(Ad ad, String filePath) {
