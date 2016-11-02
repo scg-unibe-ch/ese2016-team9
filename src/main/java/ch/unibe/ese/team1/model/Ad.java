@@ -50,7 +50,7 @@ public class Ad {
 	@Temporal(TemporalType.DATE)
 	@Column(nullable = true)
 	private Date moveOutDate;
-
+	
 	@Column(nullable = false)
 	private int prize;
 
@@ -89,6 +89,7 @@ public class Ad {
 	@Column(nullable = false)
 	private boolean flat;
 	
+	//true if for sale, false if for rent 
 	@Column(nullable = false)
 	private boolean forSale;
 
