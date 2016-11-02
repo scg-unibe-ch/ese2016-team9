@@ -147,7 +147,6 @@ public class SearchForm {
 	private boolean furnished;
 	private boolean cable;
 	private boolean garage;
-	private boolean internet;
 	
 	private int floor;
 	private int squareFootage;
@@ -226,14 +225,6 @@ public class SearchForm {
 
 	public void setGarage(boolean garage) {
 		this.garage = garage;
-	}
-
-	public boolean getInternet() {
-		return internet;
-	}
-
-	public void setInternet(boolean internet) {
-		this.internet = internet;
 	}
 
 	public String getEarliestMoveInDate() {

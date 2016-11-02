@@ -288,15 +288,6 @@
                      
             </c:when>
             <c:otherwise>
-                <tr>
-                         <td><h2>WiFi available</h2></td>
-                         <td>
-                        <c:choose>
-                           <c:when test="${shownAd.internet}"><img src="/img/check-mark.png"></c:when>
-                           <c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
-                        </c:choose>
-                         </td>
-                  </tr>
                 		<tr>
                         <td><h2>Animals allowed</h2></td>
                         <td>

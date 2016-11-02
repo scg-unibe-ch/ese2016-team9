@@ -329,19 +329,6 @@
 					</c:choose>
 				</td>
 			</tr>
-			<tr>
-				<td>
-					<c:choose>
-						<c:when test="${ad.internet}">
-							<form:checkbox id="field-internet" path="internet"  checked="checked" /><label>WiFi available
-							</label>
-						</c:when>
-						<c:otherwise>
-							<form:checkbox id="field-internet" path="internet" /><label>WiFi available</label>
-						</c:otherwise>
-					</c:choose>
-				</td>
-			</tr>
 
 		</table>
 		<br />

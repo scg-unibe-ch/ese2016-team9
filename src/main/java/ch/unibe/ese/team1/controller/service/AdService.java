@@ -135,7 +135,6 @@ public class AdService {
 		ad.setFurnished(placeAdForm.isFurnished());
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
-		ad.setInternet(placeAdForm.getInternet());
 		
 		// distance values
 		ad.setFloor(placeAdForm.getFloor());
@@ -445,16 +444,6 @@ public class AdService {
 				}
 			}
 
-			// internet
-			if (searchForm.getInternet()) {
-				Iterator<Ad> iterator = locatedResults.iterator();
-				while (iterator.hasNext()) {
-					Ad ad = iterator.next();
-					if (!ad.getInternet())
-						iterator.remove();
-				}
-			}
-			
 //			// floor
 //			if (searchForm.getFloor() >= -1) {
 //				Iterator<Ad> iterator = locatedResults.iterator();

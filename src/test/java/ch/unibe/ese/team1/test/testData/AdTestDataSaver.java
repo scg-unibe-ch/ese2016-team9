@@ -88,7 +88,6 @@ public class AdTestDataSaver {
 		adBern.setFurnished(true);
 		adBern.setCable(true);
 		adBern.setGarage(true);
-		adBern.setInternet(true);
 		List<AdPicture> pictures = new ArrayList<>();
 		pictures.add(createPicture(adBern, "/img/test/ad1_1.jpg"));
 		pictures.add(createPicture(adBern, "/img/test/ad1_2.jpg"));
@@ -128,7 +127,6 @@ public class AdTestDataSaver {
 		adBern2.setFurnished(false);
 		adBern2.setCable(false);
 		adBern2.setGarage(false);
-		adBern2.setInternet(true);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adBern2, "/img/test/ad2_1.jpg"));
 		pictures.add(createPicture(adBern2, "/img/test/ad2_2.jpg"));
@@ -168,7 +166,6 @@ public class AdTestDataSaver {
 		adBasel.setFurnished(false);
 		adBasel.setCable(false);
 		adBasel.setGarage(false);
-		adBasel.setInternet(false);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adBasel, "/img/test/ad3_1.jpg"));
 		pictures.add(createPicture(adBasel, "/img/test/ad3_2.jpg"));
@@ -207,7 +204,6 @@ public class AdTestDataSaver {
 		adOlten.setFurnished(true);
 		adOlten.setCable(true);
 		adOlten.setGarage(false);
-		adOlten.setInternet(false);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adOlten, "/img/test/ad4_1.png"));
 		pictures.add(createPicture(adOlten, "/img/test/ad4_2.png"));
@@ -243,7 +239,6 @@ public class AdTestDataSaver {
 		adNeuchâtel.setFurnished(true);
 		adNeuchâtel.setCable(false);
 		adNeuchâtel.setGarage(false);
-		adNeuchâtel.setInternet(true);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adNeuchâtel, "/img/test/ad5_1.jpg"));
 		pictures.add(createPicture(adNeuchâtel, "/img/test/ad5_2.jpg"));
@@ -276,7 +271,6 @@ public class AdTestDataSaver {
 		adBiel.setFurnished(false);
 		adBiel.setCable(false);
 		adBiel.setGarage(false);
-		adBiel.setInternet(false);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adBiel, "/img/test/ad6_1.png"));
 		pictures.add(createPicture(adBiel, "/img/test/ad6_2.png"));
@@ -313,7 +307,6 @@ public class AdTestDataSaver {
 		adZurich.setFurnished(true);
 		adZurich.setCable(true);
 		adZurich.setGarage(true);
-		adZurich.setInternet(true);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adZurich, "/img/test/ad1_3.jpg"));
 		pictures.add(createPicture(adZurich, "/img/test/ad1_2.jpg"));
@@ -353,7 +346,6 @@ public class AdTestDataSaver {
 		adLuzern.setFurnished(false);
 		adLuzern.setCable(false);
 		adLuzern.setGarage(false);
-		adLuzern.setInternet(true);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adLuzern, "/img/test/ad2_3.jpg"));
 		pictures.add(createPicture(adLuzern, "/img/test/ad2_2.jpg"));
@@ -393,7 +385,6 @@ public class AdTestDataSaver {
 		adAarau.setFurnished(true);
 		adAarau.setCable(false);
 		adAarau.setGarage(false);
-		adAarau.setInternet(false);
 		adAarau.setRunningCosts(300);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adAarau, "/img/test/ad3_3.jpg"));
@@ -436,7 +427,6 @@ public class AdTestDataSaver {
 		adDavos.setFurnished(true);
 		adDavos.setCable(true);
 		adDavos.setGarage(false);
-		adDavos.setInternet(false);
 		adDavos.setRunningCosts(500);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adDavos, "/img/test/ad4_3.png"));
@@ -476,7 +466,6 @@ public class AdTestDataSaver {
 		adLausanne.setFurnished(true);
 		adLausanne.setCable(false);
 		adLausanne.setGarage(false);
-		adLausanne.setInternet(false);
 		adLausanne.setRunningCosts(200);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adLausanne, "/img/test/ad5_3.jpg"));
@@ -514,7 +503,6 @@ public class AdTestDataSaver {
 		adLocarno.setFurnished(false);
 		adLocarno.setCable(false);
 		adLocarno.setGarage(false);
-		adLocarno.setInternet(false);
 		adLausanne.setRunningCosts(300);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adLocarno, "/img/test/ad6_3.png"));
@@ -547,7 +535,6 @@ public class AdTestDataSaver {
 		adTestRent.setFurnished(false);
 		adTestRent.setCable(false);
 		adTestRent.setGarage(false);
-		adTestRent.setInternet(true);
 		adTestRent.setForSale(false);
 		adLausanne.setRunningCosts(100);
 		adTestRent.setDistanceToNearestPublicTransport(500);
@@ -577,7 +564,6 @@ public class AdTestDataSaver {
 		adTestSale.setFurnished(false);
 		adTestSale.setCable(false);
 		adTestSale.setGarage(false);
-		adTestSale.setInternet(true);
 		adTestSale.setForSale(true);
 		adLausanne.setRunningCosts(400);
 		adTestSale.setDistanceToNearestPublicTransport(1000);

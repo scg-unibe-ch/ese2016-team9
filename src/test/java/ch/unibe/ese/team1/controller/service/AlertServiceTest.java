@@ -148,7 +148,6 @@ public class AlertServiceTest {
 		oltenResidence.setFurnished(false);
 		oltenResidence.setCable(false);
 		oltenResidence.setGarage(false);
-		oltenResidence.setInternet(false);
 		adDao.save(oltenResidence);
 		
 		assertFalse(alertService.radiusMismatch(oltenResidence, alertList.get(0)));

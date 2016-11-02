@@ -121,7 +121,6 @@ public class EditAdService {
 		ad.setFurnished(placeAdForm.isFurnished());
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
-		ad.setInternet(placeAdForm.getInternet());
 		
 		ad.setFloor(placeAdForm.getFloor());
 		ad.setNumberOfRooms(placeAdForm.getNumberOfRooms());

@@ -219,10 +219,6 @@
 				<td><form:checkbox id="field-garage" path="garage" value="1" /><label>Garage</label>
 				</td>
 			</tr>
-			<tr style="display:${isRentingAd ? "" : "none"}">
-				<td><form:checkbox id="field-internet" path="internet"
-						value="1" /><label>WiFi available</label></td>
-			</tr>
 
 		</table>
 		<br />

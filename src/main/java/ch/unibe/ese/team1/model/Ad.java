@@ -85,9 +85,6 @@ public class Ad {
 	@Column(nullable = false)
 	private boolean garage;
 
-	@Column(nullable = false)
-	private boolean internet;
-
 	// true if flat, false if house
 	@Column(nullable = false)
 	private boolean flat;
@@ -214,14 +211,6 @@ public class Ad {
 
 	public void setGarage(boolean garage) {
 		this.garage = garage;
-	}
-
-	public boolean getInternet() {
-		return internet;
-	}
-
-	public void setInternet(boolean internet) {
-		this.internet = internet;
 	}
 
 	public long getId() {

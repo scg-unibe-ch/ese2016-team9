@@ -89,7 +89,6 @@ public class EnquiryServiceTest {
 		oltenResidence.setFurnished(false);
 		oltenResidence.setCable(false);
 		oltenResidence.setGarage(false);
-		oltenResidence.setInternet(false);
 		adDao.save(oltenResidence);
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
@@ -149,7 +148,6 @@ public class EnquiryServiceTest {
 		oltenResidence.setFurnished(false);
 		oltenResidence.setCable(false);
 		oltenResidence.setGarage(false);
-		oltenResidence.setInternet(false);
 		adDao.save(oltenResidence);
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy hh:mm");
