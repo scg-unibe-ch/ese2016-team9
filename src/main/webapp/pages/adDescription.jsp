@@ -237,10 +237,6 @@
 		<br />
 
 		
-		<div class="adDescDiv">
-			<h2>Preferences</h2>
-			<p>${shownAd.preferences}</p>
-		</div>
 		<br />
 
 		<div id="visitList" class="adDescDiv">

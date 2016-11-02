@@ -348,16 +348,6 @@
 		<form:textarea path="houseDescription" rows="10" cols="100" value="${ad.houseDescription}" />
 		<form:errors path="houseDescription" cssClass="validationErrorText" />
 	</fieldset>
-
-
-	
-	<br />
-	<fieldset>
-		<legend>Change preferences</legend>
-		<form:textarea path="preferences" rows="5" cols="100"
-			value="${ad.preferences}" ></form:textarea>
-	</fieldset>
-
 	
 	<fieldset>
 		<legend>Add visiting times</legend>

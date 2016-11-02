@@ -55,7 +55,6 @@ public class AdServiceTest {
 		//Preparation
 		PlaceAdForm placeAdForm = new PlaceAdForm();
 		placeAdForm.setCity("3018 - Bern");
-		placeAdForm.setPreferences("Test preferences");
 		placeAdForm.setHouseDescription("Test House description");
 		placeAdForm.setPrize(600);
 		placeAdForm.setSquareFootage(50);
@@ -98,7 +97,6 @@ public class AdServiceTest {
 		assertFalse(ad.getAnimals());
 		assertEquals("Bern", ad.getCity());
 		assertEquals(3018, ad.getZipcode());
-		assertEquals("Test preferences", ad.getPreferences());
 		assertEquals("Test House description", ad.getHouseDescription());
 		assertEquals(600, ad.getPrize());
 		assertEquals(50, ad.getSquareFootage());

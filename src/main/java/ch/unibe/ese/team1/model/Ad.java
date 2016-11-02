@@ -62,10 +62,6 @@ public class Ad {
 	private String houseDescription;
 
 	@Column(nullable = false)
-	@Lob
-	private String preferences;
-
-	@Column(nullable = false)
 	private boolean smokers;
 
 	@Column(nullable = false)
@@ -279,16 +275,6 @@ public class Ad {
 	public void setHouseDescription(String houseDescription) {
 		this.houseDescription = houseDescription;
 	}
-
-	public String getPreferences() {
-		return preferences;
-	}
-
-	public void setPreferences(String preferences) {
-		this.preferences = preferences;
-	}
-
-	
 
 	public List<AdPicture> getPictures() {
 		return pictures;

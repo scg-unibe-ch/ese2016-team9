@@ -35,8 +35,6 @@ public class PlaceAdForm {
 	@NotBlank(message = "Required")
 	private String houseDescription;
 
-	private String preferences;
-
 
 	// optional for input
 	private String houseFriends;
@@ -145,13 +143,6 @@ public class PlaceAdForm {
 		this.houseDescription = houseDescription;
 	}
 
-	public String getPreferences() {
-		return preferences;
-	}
-
-	public void setPreferences(String preferences) {
-		this.preferences = preferences;
-	}
 
 	public int getSquareFootage() {
 		return squareFootage;

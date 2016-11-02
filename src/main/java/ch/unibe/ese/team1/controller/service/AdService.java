@@ -125,7 +125,6 @@ public class AdService {
 		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		
 		ad.setHouseDescription(placeAdForm.getHouseDescription());
-		ad.setPreferences(placeAdForm.getPreferences());
 
 		// ad description values
 		ad.setSmokers(placeAdForm.isSmokers());

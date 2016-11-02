@@ -79,7 +79,6 @@ public class EnquiryServiceTest {
 		oltenResidence.setSmokers(true);
 		oltenResidence.setAnimals(false);
 		oltenResidence.setHouseDescription("blah");
-		oltenResidence.setPreferences("blah");
 		oltenResidence.setUser(thomyF);
 		oltenResidence.setTitle("Olten Residence");
 		oltenResidence.setStreet("Florastr. 100");
@@ -140,7 +139,6 @@ public class EnquiryServiceTest {
 		oltenResidence.setSmokers(true);
 		oltenResidence.setAnimals(false);
 		oltenResidence.setHouseDescription("blah");
-		oltenResidence.setPreferences("blah");
 		oltenResidence.setUser(adolfOgi);
 		oltenResidence.setTitle("Olten Residence");
 		oltenResidence.setStreet("Florastr. 100");
