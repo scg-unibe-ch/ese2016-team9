@@ -23,43 +23,37 @@
 		<h2>No ads placed yet</h2>
 	</c:when>
 	<c:otherwise>
-		<div id="resultsDiv" class="resultsDiv">	
+		<div id="resultsDiv" class="resultsDiv row">	
 			<h2>Our newest ads:</h2>		
 			<c:forEach var="ad" items="${newest}">
-				<div class="resultAd">
+				<div class="resultAd col-md-3">
 					<div class="resultLeft">
                         <div class="resultImage">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
 							src="${ad.pictures[0].filePath}" /></a>
+                        
                         </div>
-                        <div class="resultText">
+					</div>
+					<div class="resultRight">
+						<h2>CHF ${ad.prizePerMonth }</h2>
+						<br /> <br />
+
+						<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
+							type="date" pattern="dd.MM.yyyy" />
+
+						<p>Move-in date: ${formattedMoveInDate }</p>
+					</div>
+					<div class="resultBottom">
 						<h2>
 							<a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a>
 						</h2>
 						<p class="resultAddress">${ad.street}, ${ad.zipcode} ${ad.city}</p>
-						<br />
 						<p>
 							<i><c:choose>
 									<c:when test="${ad.flat}">Flat</c:when>
 									<c:otherwise>House</c:otherwise>
 								</c:choose></i>
 						</p>
-                        </div>
-					</div>
-					<div class="resultRight">
-						<h2>CHF ${ad.prize }</h2>
-						<br /> 
-						<p>
-							<i><c:choose>
-								<c:when test="${ad.forSale}">for Sale</c:when>
-								<c:otherwise>for Rent</c:otherwise>
-							   </c:choose></i>
-						</p>
-
-						<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
-							type="date" pattern="dd.MM.yyyy" />
-
-						<p>Move-in date: ${formattedMoveInDate }</p>
 					</div>
 				</div>
 			</c:forEach>

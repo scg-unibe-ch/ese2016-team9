@@ -53,8 +53,7 @@
 	});
 </script>
 
-<pre>
-	<a href="/">Home</a>   &gt;   Profile</pre>
+<pre><a href="/">Home</a> &gt; Profile</pre>
 
 <div id="userDiv">
 	<c:choose>
@@ -67,21 +66,22 @@
 	</c:choose>
 	<p>
         
-	<h2>IsPremium</h2>${user.premium}
-	<h2>Username</h2>${user.email}<p>
-	<h2>Name</h2>${user.firstName}
-	${user.lastName}
-	<p>
-	<hr class="slim">
-	<h2>About me</h2>${user.aboutMe}
-	<hr class="slim">
+	<h2>${user.email}</h2>
+	<h2>Name</h2>
+    <p>${user.firstName}
+	${user.lastName}</p>
+	
+	<h2>About me</h2>
+    
+    <p>${user.aboutMe}</p>
+	
 	<form>
 		<c:choose>
 			<c:when test="${principalID != null}">
-				<button id="newMsg" type="button">Message</button>
+				<button id="newMsg" class="btn btn-default" type="button">Message</button>
 				<c:choose>
 					<c:when test="${principalID eq user.id}">
-						<a class="button" href="/profile/editProfile">Edit Profile</a>
+						<a class="btn btn-default" href="/profile/editProfile">Edit Profile</a>
 					</c:when>
 					<c:otherwise></c:otherwise>
 				</c:choose>
@@ -101,8 +101,8 @@
 		<br> <br> <label>Message: </label>
 		<textarea id="msgTextarea" placeholder="Message"></textarea>
 		<br />
-		<button type="button" id="messageSend">Send</button>
-		<button type="button" id="messageCancel">Cancel</button>
+		<button type="button" class="btn btn-default" id="messageSend">Send</button>
+		<button type="button" class="btn btn-default" id="messageCancel">Cancel</button>
 	</form>
 </div>
 <c:import url="template/footer.jsp" />

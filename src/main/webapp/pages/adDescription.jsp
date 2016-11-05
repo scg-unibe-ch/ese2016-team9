@@ -158,7 +158,7 @@
 
 	<table id="adDescTable" class="adDescDiv">
 		<tr>
-			<td><h2>Type</h2></td>
+			<td>Type</td>
 			<td>
 				<c:choose>
 					<c:when test="${shownAd.flat}">Flat</c:when>
@@ -168,32 +168,27 @@
 		</tr>
 
 		<tr>
-			<td><h2>Address</h2></td>
+			<td>Address</td>
 			<td>
 				<a class="link" href="http://maps.google.com/?q=${shownAd.street}, ${shownAd.zipcode}, ${shownAd.city}">${shownAd.street},
 						${shownAd.zipcode} ${shownAd.city}</a>
 			</td>
 		</tr>
 
-        <c:choose>
-            <c:when test="${shownAd.forSale}">
-            </c:when>
-            <c:otherwise>
-                <tr>
-                    <td><h2>Available from</h2></td>
-                    <td>${formattedMoveInDate}</td>
-                </tr>
 
-                <tr>
-                    <td><h2>Move-out Date</h2></td>
-                    <td>${formattedMoveOutDate}</td>
-                </tr>
-            </c:otherwise>
-        </c:choose>
 
 		<tr>
 			<td><h2>${shownAd.forSale ? "Prize" : "Monthly Rent"}</h2></td>
 			<td>${shownAd.prize}&#32;CHF</td>
+
+		<tr>
+			<td>Available from</td>
+			<td>${formattedMoveInDate}</td>
+		</tr>
+
+		<tr>
+			<td>Move-out Date</td>
+			<td>${formattedMoveOutDate}</td>
 		</tr>
 		
 		<tr>
@@ -202,11 +197,11 @@
 		</tr>
 
 		<tr>
-			<td><h2>Square Meters</h2></td>
+			<td>Square Meters</td>
 			<td>${shownAd.squareFootage}&#32;m²</td>
 		</tr>
 		<tr>
-			<td><h2>Ad created on</h2></td>
+			<td>Ad created on</td>
 			<td>${formattedCreationDate}</td>
 		</tr>
 	</table>

@@ -6,7 +6,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <c:import url="template/header.jsp" />
-<pre><a href="/">Home</a>   &gt;   Messages</pre>
+<pre><a href="/">Home</a> &gt; Messages</pre>
 
 <!-- format the dates -->
 <fmt:formatDate value="${messages[0].dateSent}" var="formattedDateSent"
@@ -27,7 +27,7 @@
 	<h2 id="sent">Sent</h2>
 </div>
 <div id="messageList">
-	<table class="styledTable">
+	<table class="table">
 		<tr>
 			<th id="subjectColumn">Subject</th>
 			<th>Sender</th>

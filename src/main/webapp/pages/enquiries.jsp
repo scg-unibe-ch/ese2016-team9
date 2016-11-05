@@ -7,7 +7,7 @@
 
 <c:import url="template/header.jsp" />
 <pre>
-<a href="/">Home</a>   &gt;   Enquiries</pre>
+<a href="/">Home</a> &gt; Enquiries</pre>
 
 <!-- format the dates -->
 <fmt:formatDate value="${enquiries[0].dateSent}" var="formattedDateSent"
@@ -84,7 +84,7 @@
 <h1>Enquiries</h1>
 <hr />
 <div id="enquiryList">
-	<table class="styledTable">
+	<table class="table">
 		<tr>
 			<th>Sender</th>
 			<th>Ad</th>
@@ -116,8 +116,8 @@
 							<p>Declined</p>
 						</c:when>
 						<c:otherwise>
-							<button class="acceptButton" data-id="${enquiry.id}">Accept</button>
-							<button class="declineButton" data-id="${enquiry.id}">Decline</button>
+							<button class="acceptButton btn btn-default" data-id="${enquiry.id}">Accept</button>
+							<button class="declineButton btn btn-default" data-id="${enquiry.id}">Decline</button>
 						</c:otherwise>
 					</c:choose></td>
 			</tr>
