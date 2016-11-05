@@ -501,8 +501,6 @@ footer nav ul li {
 }
 
 #checkBoxTable {
-	width: 27%;
-	float: right;
 }
 
 #checkBoxTable h2 {
@@ -548,38 +546,35 @@ footer nav ul li {
 	margin-bottom: 30px;
 }
 
-#images {
-}
 
+.adImage {
+	width: 100%;
+}
+img.visible {
+	display: block !important;
+}
 #images img {
-	
-}
-
-#images img:first-child {
-	margin-top: 0px;
-	display: block;
+	display: none;
+	max-height: 300px;
 }
 
 #left-arrow {
-	height: 100%;
-	width: 40px;
-	margin-right: 10px;
+	display: inline-block;
+	width: 30%;
+	text-align: right;
 }
 
 #right-arrow {
-	height: 100%;
-	width: 40px;
+	display: inline-block;
 	margin-left: 10px;
 }
 
 #left-arrow img {
 	width: 40px;
-	margin-top: 155px;
 }
 
 #right-arrow img {
 	width: 40px;
-	margin-top: 155px;
 }
 
 #left-arrow img:hover {

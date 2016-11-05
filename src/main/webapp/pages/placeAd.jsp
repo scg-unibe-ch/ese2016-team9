@@ -82,7 +82,7 @@
 	});
 </script>
 
-<pre><a href="/">Home</a>   &gt;   Place ad</pre>
+<pre><a href="/">Home</a> &gt; Place ad</pre>
 
 <h1>Place an ad</h1>
 <hr />
@@ -137,12 +137,26 @@
         </div>
         
         <div class="form-group">
-            <label for="field-Prize" class="col-sm-2 control-label">Prize per month</label>
+            <label for="field-Prize" class="col-sm-2 control-label">${isRentingAd ? "Prize per Month" : "Prize"}</label>
             <div class="col-sm-10">
                 <form:input id="field-Prize" type="number" path="prize" placeholder="Prize per month" step="50" class="form-control" />   
                 <form:errors path="prize" cssClass="validationErrorText" /> 
             </div>
         </div>
+        
+        
+        <c:choose>
+            <c:when test="${isRentingAd}"></c:when>
+            <c:otherwise>
+                <div class="form-group">
+                    <label for="field-RunningCosts" class="col-sm-2 control-label">Running costs</label>
+                    <div class="col-sm-10">
+                        <form:input id="field-RunningCosts" type="number" path="runningCosts" placeholder="Running costs" step="50" class="form-control" />   
+                        <form:errors path="runningCosts" cssClass="validationErrorText" /> 
+                    </div>
+                </div>
+            </c:otherwise>
+        </c:choose>
         
         <div class="form-group">
             <label for="field-SquareFootage" class="col-sm-2 control-label">Square Meters</label>
@@ -164,6 +178,23 @@
             </div>
         </div>
     
+        
+        <div class="form-group">
+            <label for="field-Floor" class="col-sm-2 control-label">Floor</label>
+            <div class="col-sm-10">
+                <form:input id="field-Floor" class="form-control" type="number" path="floor" placeholder="e.g. -1" step="1" /> 
+                <form:errors path="floor" cssClass="validationErrorText" />
+            </div>
+        </div>
+    
+        
+        <div class="form-group">
+            <label for="field-NumberOfRooms" class="col-sm-2 control-label">Number of Rooms</label>
+            <div class="col-sm-10">
+                <form:input id="field-NumberOfRooms" class="form-control" type="number" path="numberOfRooms" placeholder="e.g. 2" step="1" /> 
+                <form:errors path="numberOfRooms" cssClass="validationErrorText" />
+            </div>
+        </div>
         
         <div class="form-group">
             <label for="field-DistanceToNearestSuperMarket" class="col-sm-2 control-label">Distance to nearest Super Market</label>
@@ -238,24 +269,11 @@
                 <div class="">
                     <form:checkbox id="field-garage" path="garage" value="1" />Garage
                 </div>
-            </label>	
-            
-            <label class="checkbox-inline col-sm-3">
-                <div class="">
-                    <form:checkbox id="field-internet" path="internet" value="1" />WiFi available
-                </div>
             </label>
         </div>
         <div class="form-group">
             <form:textarea path="houseDescription" rows="10" cols="100" placeholder="House Description" class="form-control" />
             <form:errors path="houseDescription" cssClass="validationErrorText" />
-        </div>
-	</fieldset>
-
-	<fieldset>
-		<legend>Preferences (optional)</legend>
-        <div class="form-group">
-            <form:textarea path="preferences" rows="5" cols="100" placeholder="Preferences" class="form-control" />
         </div>
 	</fieldset>
 

@@ -12,7 +12,7 @@
 
 <c:import url="template/header.jsp" />
 
-<pre><a href="/">Home</a>   &gt;   <a href="/profile/myHouses">My Houses</a>   &gt;   Ad Description</pre>
+<pre><a href="/">Home</a> &gt; <a href="/profile/myHouses">My Houses</a> &gt; Ad Description</pre>
 
 <script src="/js/image_slider.js"></script>
 <script src="/js/adDescription.js"></script>
@@ -148,7 +148,7 @@
 		<c:when test="${loggedIn}">
 			<c:if test="${loggedInUserEmail == shownAd.user.username }">
 				<a href="<c:url value='/profile/editAd?id=${shownAd.id}' />">
-					<button type="button">Edit Ad</button>
+					<button type="button" class="btn btn-default">Edit Ad</button>
 				</a>
 			</c:if>
 		</c:when>
@@ -156,291 +156,320 @@
 	<br>
 	<br>
 
-	<table id="adDescTable" class="adDescDiv">
-		<tr>
-			<td>Type</td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.flat}">Flat</c:when>
-					<c:otherwise>House</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <table class="table">
+                    <tr>
+                        <th>Type</th>
+                        <td>
+                            <c:choose>
+                                <c:when test="${shownAd.flat}">Flat</c:when>
+                                <c:otherwise>House</c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
 
-		<tr>
-			<td>Address</td>
-			<td>
-				<a class="link" href="http://maps.google.com/?q=${shownAd.street}, ${shownAd.zipcode}, ${shownAd.city}">${shownAd.street},
-						${shownAd.zipcode} ${shownAd.city}</a>
-			</td>
-		</tr>
+                    <tr>
+                        <th>Address</th>
+                        <td>
+                            <a class="link" href="http://maps.google.com/?q=${shownAd.street}, ${shownAd.zipcode}, ${shownAd.city}">${shownAd.street},
+                                    ${shownAd.zipcode} ${shownAd.city}</a>
+                        </td>
+                    </tr>
 
+                    <tr>
+                        <th>${shownAd.forSale ? "Prize" : "Monthly Rent"}</th>
+                        <td>${shownAd.prize}&#32;CHF</td>
 
+                    <tr>
+                        <th>Available from</th>
+                        <td>${formattedMoveInDate}</td>
+                    </tr>
 
-		<tr>
-			<td><h2>${shownAd.forSale ? "Prize" : "Monthly Rent"}</h2></td>
-			<td>${shownAd.prize}&#32;CHF</td>
+                    <tr>
+                        <th>Move-out Date</th>
+                        <td>${formattedMoveOutDate}</td>
+                    </tr>
 
-		<tr>
-			<td>Available from</td>
-			<td>${formattedMoveInDate}</td>
-		</tr>
+                    <c:choose>
+                        <c:when test="shownAd.forSale">
+                            <tr>
+                                <th>Running Costs</th>
+                                <td>${shownAd.runningCosts}&#32;CHF</td>
+                            </tr>
+                        </c:when>
+                    </c:choose>
 
-		<tr>
-			<td>Move-out Date</td>
-			<td>${formattedMoveOutDate}</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Running Costs</h2></td>
-			<td>${shownAd.runningCosts}&#32;CHF</td>
-		</tr>
+                    <tr>
+                        <th>Square Meters</th>
+                        <td>${shownAd.squareFootage}&#32;m²</td>
+                    </tr>
+                    <tr>
+                        <th>Ad created on</th>
+                        <td>${formattedCreationDate}</td>
+                    </tr>
+                </table>
+            </div>
+        
+            <div class="col-md-6">
 
-		<tr>
-			<td>Square Meters</td>
-			<td>${shownAd.squareFootage}&#32;m²</td>
-		</tr>
-		<tr>
-			<td>Ad created on</td>
-			<td>${formattedCreationDate}</td>
-		</tr>
-	</table>
+                <div id="image-slider">
+                    <div id="images">
+                        <c:forEach items="${shownAd.pictures}" var="picture" varStatus = "status">
+                            <img class="adImage" src="${picture.filePath}" />
+                        </c:forEach>
+                    </div>
+                    <div class="container">
+                        <div id="left-arrow">
+                            <img src="/img/left-arrow.png" />
+                        </div>
+                        <div id="right-arrow">
+                            <img src="/img/right-arrow.png" />
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    
+    </div>
+    
 </section>
-
-<div id="image-slider">
-	<div id="left-arrow">
-		<img src="/img/left-arrow.png" />
-	</div>
-	<div id="images">
-		<c:forEach items="${shownAd.pictures}" var="picture">
-			<img src="${picture.filePath}" />
-		</c:forEach>
-	</div>
-	<div id="right-arrow">
-		<img src="/img/right-arrow.png" />
-	</div>
-</div>
 
 <hr class="clearBoth" />
 
 <section>
-	<div id="descriptionTexts">
-		<div class="adDescDiv">
-			<h2>House Description</h2>
-			<p>${shownAd.houseDescription}</p>
-		</div>
-		<br />
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="">
+                    <h2>House Description</h2>
+                    <p>${shownAd.houseDescription}</p>
+                </div>
+            </div>
+            
+            <div class="col-md-6">
+            
+                <h2>Advertiser</h2>
+                <table id="advertiserTable" class="table">
+                    <tr>
+                        <td><c:choose>
+                                <c:when test="${shownAd.user.picture.filePath != null}">
+                                    <img src="${shownAd.user.picture.filePath}">
+                                </c:when>
+                                <c:otherwise>
+                                    <img src="/img/avatar.png">
+                                </c:otherwise>
+                            </c:choose></td>
 
-		
-		<br />
+                        <td>${shownAd.user.username}</td>
 
-		<div id="visitList" class="adDescDiv">
-			<h2>Visiting times</h2>
-			<table>
-				<c:forEach items="${visits }" var="visit">
-					<tr>
-						<td>
-							<fmt:formatDate value="${visit.startTimestamp}" pattern="dd-MM-yyyy " />
-							&nbsp; from
-							<fmt:formatDate value="${visit.startTimestamp}" pattern=" HH:mm " />
-							until
-							<fmt:formatDate value="${visit.endTimestamp}" pattern=" HH:mm" />
-						</td>
-						<td><c:choose>
-								<c:when test="${loggedIn}">
-									<c:if test="${loggedInUserEmail != shownAd.user.username}">
-										<button class="thinButton" type="button" data-id="${visit.id}">Send
-											enquiry to advertiser</button>
-									</c:if>
-								</c:when>
-								<c:otherwise>
-									<a href="/login"><button class="thinInactiveButton" type="button"
-										data-id="${visit.id}">Login to send enquiries</button></a>
-								</c:otherwise>
-							</c:choose></td>
-					</tr>
-				</c:forEach>
-			</table>
-		</div>
+                        <td id="advertiserEmail">
+                        <c:choose>
+                            <c:when test="${loggedIn}">
+                                <a href="/user?id=${shownAd.user.id}"><button class="btn btn-default" type="button">Visit profile</button></a>
+                            </c:when>
+                            <c:otherwise>
+                                <a href="/login"><button class="btn btn-default" type="button">Login to visit profile</button></a>
+                            </c:otherwise>
+                        </c:choose>
 
-	</div>
-
-	<table id="checkBoxTable" class="adDescDiv">
-
-
-
-		<tr>
-			<td><h2>Furnished House</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.furnished}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-		<c:choose>
-            <c:when test="${shownAd.forSale}">
-                     
-            </c:when>
-            <c:otherwise>
-                		<tr>
-                        <td><h2>Animals allowed</h2></td>
+                        <td>
+                            <form>
+                                <c:choose>
+                                    <c:when test="${loggedIn}">
+                                        <c:if test="${loggedInUserEmail != shownAd.user.username }">
+                                            <button id="newMsg" class="btn btn-default" type="button">Contact Advertiser</button>
+                                        </c:if>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <a href="/login"><button class="btn btn-default" type="button">Login to contact advertiser</button></a>
+                                    </c:otherwise>
+                                </c:choose>
+                            </form>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+            
+        </div>
+        
+        <div class="row">
+            <div class="col-md-6">
+                <table id="checkBoxTable" class="table">
+                    <tr>
+                        <th>Furnished House</th>
                         <td>
                             <c:choose>
-                                <c:when test="${shownAd.animals}"><img src="/img/check-mark.png"></c:when>
+                                <c:when test="${shownAd.furnished}"><img src="/img/check-mark.png"></c:when>
+                                <c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
+                    <c:choose>
+                        <c:when test="${shownAd.forSale}">
+
+                        </c:when>
+                        <c:otherwise>
+                                    <tr>
+                                    <th>Animals allowed</th>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${shownAd.animals}"><img src="/img/check-mark.png"></c:when>
+                                            <c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <th>Smoking inside allowed</th>
+                                    <td>
+                                        <c:choose>
+                                            <c:when test="${shownAd.smokers}"><img src="/img/check-mark.png"></c:when>
+                                            <c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+                                        </c:choose>
+                                    </td>
+                                </tr>
+                        </c:otherwise>
+                    </c:choose>
+
+                    <tr>
+                        <th>Cable TV</th>
+                        <td>
+                            <c:choose>
+                                <c:when test="${shownAd.cable}"><img src="/img/check-mark.png"></c:when>
                                 <c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
                             </c:choose>
                         </td>
                     </tr>
 
                     <tr>
-                        <td><h2>Smoking inside allowed</h2></td>
+                        <th>Garage</th>
                         <td>
                             <c:choose>
-                                <c:when test="${shownAd.smokers}"><img src="/img/check-mark.png"></c:when>
+                                <c:when test="${shownAd.garage}"><img src="/img/check-mark.png"></c:when>
                                 <c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
                             </c:choose>
                         </td>
                     </tr>
-            </c:otherwise>
-        </c:choose>
 
-		<tr>
-			<td><h2>Cable TV</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.cable}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
+                    <tr>
+                        <th>Cellar</th>
+                        <td>
+                            <c:choose>
+                                <c:when test="${shownAd.cellar}"><img src="/img/check-mark.png"></c:when>
+                                <c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
 
-		<tr>
-			<td><h2>Garage</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.garage}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
+                    <tr>
+                        <th>Balcony</th>
+                        <td>
+                            <c:choose>
+                                <c:when test="${shownAd.balcony}"><img src="/img/check-mark.png"></c:when>
+                                <c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
 
-		<tr>
-			<td><h2>Cellar</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.cellar}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
+                    <tr>
+                        <th>Garden</th>
+                        <td>
+                            <c:choose>
+                                <c:when test="${shownAd.garden}"><img src="/img/check-mark.png"></c:when>
+                                <c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
 
-		<tr>
-			<td><h2>Balcony</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.balcony}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
+                </table>
+            </div>
+            
+            <div class="col-md-6">
+                <table id="" class="table">
+                    <tr>
+                        <th>Floor</th>
+                        <td>${shownAd.floor}</td>
+                    </tr>
 
-		<tr>
-			<td><h2>Garden</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.garden}"><img src="/img/check-mark.png"></c:when>
-					<c:otherwise><img src="/img/check-mark-negative.png"></c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
+                    <tr>
+                        <th>Number of Rooms</th>
+                        <td>${shownAd.numberOfRooms}</td>
+                    </tr>
 
-	</table>
+                    <tr>
+                        <th>Last Renovation</th>
+                        <td>
+                            <c:choose>
+                                <c:when test="${shownAd.lastRenovation!=null}">${shownAd.lastRenovation }</c:when>
+                                <c:otherwise>-</c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Nearest Super Market</th>
+                        <td>${shownAd.distanceToNearestSuperMarket}m</td>
+                    </tr>
+
+                    <tr>
+                        <th>Public Transport</th>
+                        <td>${shownAd.distanceToNearestPublicTransport}m</td>
+                    </tr>
+
+                    <tr>
+                        <th>Nearest School</th>
+                        <td>${shownAd.distanceToNearestSchool}m</td>
+                    </tr>
+                </table>
+            </div>    
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="visitList" class="">
+                    <h2>Visiting times</h2>
+                    <table class="table">
+                        <c:forEach items="${visits }" var="visit">
+                            <tr>
+                                <td>
+                                    <fmt:formatDate value="${visit.startTimestamp}" pattern="dd-MM-yyyy " />
+                                    &nbsp; from
+                                    <fmt:formatDate value="${visit.startTimestamp}" pattern=" HH:mm " />
+                                    until
+                                    <fmt:formatDate value="${visit.endTimestamp}" pattern=" HH:mm" />
+                                </td>
+                                <td><c:choose>
+                                        <c:when test="${loggedIn}">
+                                            <c:if test="${loggedInUserEmail != shownAd.user.username}">
+                                                <button class="thinButton" type="button" data-id="${visit.id}">Send
+                                                    enquiry to advertiser</button>
+                                            </c:if>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="/login"><button class="thinInactiveButton" type="button"
+                                                data-id="${visit.id}">Login to send enquiries</button></a>
+                                        </c:otherwise>
+                                    </c:choose></td>
+                            </tr>
+                        </c:forEach>
+                    </table>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    
+
 	
-	<table id="additionalInformationTable" class="adDescDiv">
-		<tr>
-			<td><h2>Floor</h2></td>
-			<td>${shownAd.floor}</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Number of Rooms</h2></td>
-			<td>${shownAd.numberOfRooms}</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Last Renovation</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.lastRenovation!=null}">${shownAd.lastRenovation }</c:when>
-					<c:otherwise>-</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Nearest Super Market</h2></td>
-			<td>${shownAd.distanceToNearestSuperMarket}m</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Public Transport</h2></td>
-			<td>${shownAd.distanceToNearestPublicTransport}m</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Nearest School</h2></td>
-			<td>${shownAd.distanceToNearestSchool}m</td>
-		</tr>
-	</table>
+	
+	
 </section>
 
 <div class="clearBoth"></div>
 <br>
-
-<table id="advertiserTable" class="adDescDiv">
-	<tr>
-	<td><h2>Advertiser</h2><br /></td>
-	</tr>
-
-	<tr>
-		<td><c:choose>
-				<c:when test="${shownAd.user.picture.filePath != null}">
-					<img src="${shownAd.user.picture.filePath}">
-				</c:when>
-				<c:otherwise>
-					<img src="/img/avatar.png">
-				</c:otherwise>
-			</c:choose></td>
-		
-		<td>${shownAd.user.username}</td>
-		
-		<td id="advertiserEmail">
-		<c:choose>
-			<c:when test="${loggedIn}">
-				<a href="/user?id=${shownAd.user.id}"><button type="button">Visit profile</button></a>
-			</c:when>
-			<c:otherwise>
-				<a href="/login"><button class="thinInactiveButton" type="button">Login to visit profile</button></a>
-			</c:otherwise>
-		</c:choose>
-
-		<td>
-			<form>
-				<c:choose>
-					<c:when test="${loggedIn}">
-						<c:if test="${loggedInUserEmail != shownAd.user.username }">
-							<button id="newMsg" type="button">Contact Advertiser</button>
-						</c:if>
-					</c:when>
-					<c:otherwise>
-						<a href="/login"><button class="thinInactiveButton" type="button">Login to contact advertiser</button></a>
-					</c:otherwise>
-				</c:choose>
-			</form>
-		</td>
-	</tr>
-</table>
 
 <div id="msgDiv">
 <form class="msgForm">
@@ -448,21 +477,21 @@
 	<br>
 	<br>
 	<label>Subject: <span>*</span></label>
-	<input  class="msgInput" type="text" id="msgSubject" placeholder="Subject" />
+	<input  class="msgInput form-control" type="text" id="msgSubject" placeholder="Subject" />
 	<br><br>
 	<label>Message: </label>
-	<textarea id="msgTextarea" placeholder="Message" ></textarea>
+	<textarea id="msgTextarea" class="textarea" placeholder="Message" ></textarea>
 	<br/>
-	<button type="button" id="messageSend">Send</button>
-	<button type="button" id="messageCancel">Cancel</button>
+	<button type="button" class="btn btn-default" id="messageSend">Send</button>
+	<button type="button" class="btn btn-default" id="messageCancel">Cancel</button>
 	</form>
 </div>
 
 <div id="confirmationDialog">
 	<form>
 	<p>Send enquiry to advertiser?</p>
-	<button type="button" id="confirmationDialogSend">Send</button>
-	<button type="button" id="confirmationDialogCancel">Cancel</button>
+	<button type="button" class="btn btn-default" id="confirmationDialogSend">Send</button>
+	<button type="button" class="btn btn-default" id="confirmationDialogCancel">Cancel</button>
 	</form>
 </div>
 

@@ -29,7 +29,7 @@
 		<h1>My Advertisements</h1>
 		<hr />			
 			<c:forEach var="ad" items="${ownAdvertisements}">
-				<div class="resultAd col-md-3" data-price="${ad.prizePerMonth}" 
+				<div class="resultAd col-md-3" data-price="${ad.prize}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
@@ -71,7 +71,7 @@
 		<h1>My Bookmarks</h1>
 		<hr />			
 			<c:forEach var="ad" items="${bookmarkedAdvertisements}">
-				<div class="resultAd col-md-3" data-price="${ad.prizePerMonth}" 
+				<div class="resultAd col-md-3" data-price="${ad.prize}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
