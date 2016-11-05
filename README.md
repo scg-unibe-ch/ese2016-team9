@@ -1,5 +1,8 @@
 ESE Base Project
 ----------------------------------
+
+[![Build Status](http://home.kreemer.ch:9999/job/ese-team9/badge/icon)](http://home.kreemer.ch:9999/job/ese-team9)
+
 To build this project, please follow these steps:
 
 1. You need to have Java JDK8 installed. JDK7 and JRE8 are *not* enough. Also check that the JDK8 is properly added to the workspace by checking that it is added under *Eclipse preferences -> Java -> Installed JREs*. It should be visible and checked as the default there. Use the latest version of Eclipse or STS.
