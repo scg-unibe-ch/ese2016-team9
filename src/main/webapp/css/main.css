@@ -72,10 +72,7 @@ pre a {
 /*Header is fixed to 60px from top, so with padding of 60px,
 we fix the body in the exactly right position*/
 body {
-	color: gray;
-	padding-top: 60px;
-	padding-bottom: 40px;
-	min-width: 1100px;
+	
 }
 
 /* the main content on every page */
@@ -86,27 +83,18 @@ body {
 /* These two guarantee that we can write stuff on the same line,
 but not in one String (i.e. in the header) */
 .left {
-	display: inline-block;
-	float: left;
-	padding-left: 8px;
-	margin-top: 5px;
 }
 
 .right {
-	display: inline-block;
-	float: right;
-	padding-right: 8px;
 }
 
 .styledTable {
-	background-color: #FF9900;
 	border-radius: 5px;
 	margin-top: 20px;
 }
 
 .styledTable th {
-	background-color: #FF9900;
-	color: white;
+
 }
 
 .styledTable td {
@@ -124,49 +112,21 @@ input[type="number"] {
 	width: 70px;
 }
 
-label {
-	margin-right: 10px;
-}
 
 button {
-	background-color: #FF9900;
-	color: white;
-	padding: 5px 10px;
-	border-radius: 5px;
-	border-color: white;
-	border-style: solid;
-	font-size: 1.1em;
+    
 }
 
 .inactiveButton {
-	background-color: #bbbbbb;
-	color: white;
-	border-color: white;
+    
 }
 
 .button {
-	background-color: #FF9900;
-	color: white;
-	padding: 5px 10px;
-	border-radius: 5px;
-	border-color: white;
-	border-style: solid;
-	font-size: 1.1em;
+    
 }
 
 .smallPlusButton {
-	display: inline;
-	font-decoration: none;
-	background-color: #FF9900;
-	color: white;
-	width: 15px;
-	height: 15px;
-	padding: 0px 5px;
-	text-align: center;
-	border-radius: 5px;
-	border-color: white;
-	border-style: solid;
-	font-size: 1.5em;
+    
 }
 
 #bookmarkButton {
@@ -255,7 +215,9 @@ button {
 	width: 20%;
 	margin: auto;
 	padding: 10px 20px;
-	border-color: #FF9900;
+	border-color: #aaa;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
 
 .negative-message {
@@ -279,67 +241,25 @@ button {
 /* -------------------------------------------------------------------- */
 /* Header & Footer */
 header {
-	color: white;
-	background: #FF9900;
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	right: 0px;
-	height: 70px;
-	z-index: 1;
-	min-width: 1100px;
+
 }
 
-header a {
-	text-decoration: none;
-	color: white;
-}
-
-header h1 {
-	margin-top: 10px;
-	margin-left: 10px;
-	font-size: 2.8em;
-}
-
-header h1 a {
-	color: white;
-}
-
-header ul {
-	padding: 0;
-	list-style: none;
-}
-
-header ul li {
-	float: right;
-	width: 120px;
-	text-align: center;
-	line-height: 21px;
-	margin-top: 20px;
-	text-align: center;
-}
 
 #profile_picture {
-	width: 170px;
 	margin-top: 0px;
 }
 
 #profile_picture_editPage {
-	float: left;
-	width: 340px;
 	margin-top: 0px;
 }
 
 #profile_picture_publicProfile {
-	float: left;
-	width: 340px;
 	margin-top: 0px;
 }
 
 #profile_picture img {
 	width: 60px;
 	height: 60px;
-	float: left;
 }
 
 #profile_picture a {
@@ -347,15 +267,12 @@ header ul li {
 }
 
 #profile_picture .text {
-	float: center;
-	height: 100%;
 	margin-top: 10px;
 	margin-right: 10px;
 }
 
 #profile_picture ul li {
 	margin-top: 0px;
-	float: none;
 	width: 100%;
 }
 
@@ -364,44 +281,14 @@ header ul li {
 	text-align: left;
 }
 
-header ul li a {
-	display: block;
-	padding: 5px 10px;
-	color: #fff;
-	background: #FF9900;
-	text-decoration: none;
-}
-
-header ul li a:hover {
-	color: #fff;
-	background: #c04318;
-}
-
-/* it does hide the drop down menu */
-header ul li ul {
-	display: none;
-}
-
-/*only when you hover over the unordered list item -> dropdown visible */
-header ul li:hover ul {
-	display: block;
-}
-
-header nav {
-	display: block;
-	float: right;
-	padding: 0px 15px;
-	font-size: 1.3em;
-}
-
 footer {
 	color: white;
-	background: #FF9900;
+	background: #999   ;
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
 	right: 0px;
-	height: 30px;
+	height: 40px;
 	text-align: center;
 	padding-top: 10px;
 }
@@ -411,7 +298,7 @@ footer nav {
 }
 
 footer .link {
-	color: #D09900;
+	color: #fff;
 }
 
 footer .link:hover {
@@ -437,22 +324,15 @@ footer nav ul li {
 
 /* about.jsp*/
 #about {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin-top: -365px;
-  margin-left: -486px;
 }
 
 /* -------------------------------------------------------------------- */
 /* placeAd.jsp */
 #placeAdForm {
-	width: 900px;
 	margin: auto;
 }
 
 #uploaded-pictures {
-	width: 700px;
 }
 
 #uploaded-pictures td {
@@ -538,12 +418,10 @@ footer nav ul li {
 }
 
 #userPicDiv {
-	float: left;
 	margin-top: 10px;
 }
 
 #userTextDiv {
-	float: left;
 	padding-left: 30px;
 	margin-top: 10px;
 }
@@ -551,7 +429,6 @@ footer nav ul li {
 #filterDiv {
 	width: 35%;
 	margin-top: 30px;
-	float: right;
 	padding: 10px;
 	margin-top: 10px;
 	border-style: solid;
@@ -561,19 +438,18 @@ footer nav ul li {
 }
 
 #resultsDiv {
-	width: 60%;
+	width: 100%;
 	margin-top: 10px;
-	float: left;
 }
 
 #resultsDiv div {
-	height: 100px;
-	padding: 10px;
+	padding-top: 20px;
+	margin-right: 10px;
 	margin-top: 20px;
 	border-style: solid;
-	border-color: #FF9900;
-	border-width: 3px;
-	border-radius: 10px;
+	border-color: #999;
+	border-width: 2px;
+	border-radius: 3px;
 }
 
 #resultsDiv div:first-child {
@@ -582,7 +458,6 @@ footer nav ul li {
 
 #resultsDiv div img {
 	height: 100px;
-	float: left;
 	margin-right: 50px;
 }
 
@@ -593,13 +468,11 @@ footer nav ul li {
 }
 
 #resultsDiv .resultLeft {
-	float: left;
 	width: 75%;
 }
 
 #resultsDiv .resultRight {
-	float: right;
-	width: 20%;
+	width: 40%;
 	text-align: right;
 	padding-right: 5px;
 }
@@ -615,7 +488,8 @@ footer nav ul li {
 
 #additionalInformationTable {
 	margin: 4px;
-	width: 30%; 
+	width: 40%;
+
 }
 
 #adDescTable h2 {
@@ -627,8 +501,6 @@ footer nav ul li {
 }
 
 #checkBoxTable {
-	width: 27%;
-	float: right;
 }
 
 #checkBoxTable h2 {
@@ -640,8 +512,7 @@ footer nav ul li {
 }
 
 #descriptionTexts {
-	width: 40%;
-	float: left
+	width: 55%;
 }
 
 #descriptionTexts div {
@@ -649,7 +520,7 @@ footer nav ul li {
 }
 
 #advertiserTable {
-	width: 55%;;
+	width: 55%;
 }
 
 #advertiserTable img {
@@ -672,57 +543,38 @@ footer nav ul li {
 }
 
 #image-slider {
-	height: 350px;
-	float: right;
-	width: 600px;
 	margin-bottom: 30px;
 }
 
-#images {
-	float: left;
-	width: 500px;
-	height: 350px;
-	position: relative;
-}
 
+.adImage {
+	width: 100%;
+}
+img.visible {
+	display: block !important;
+}
 #images img {
-	height: 350px;
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
 	display: none;
-	max-width: 450px;
-}
-
-#images img:first-child {
-	margin-top: 0px;
-	display: block;
+	max-height: 300px;
 }
 
 #left-arrow {
-	height: 100%;
-	width: 40px;
-	margin-right: 10px;
-	float: left;
+	display: inline-block;
+	width: 30%;
+	text-align: right;
 }
 
 #right-arrow {
-	height: 100%;
-	width: 40px;
+	display: inline-block;
 	margin-left: 10px;
-	float: left;
 }
 
 #left-arrow img {
 	width: 40px;
-	margin-top: 155px;
 }
 
 #right-arrow img {
 	width: 40px;
-	margin-top: 155px;
 }
 
 #left-arrow img:hover {
@@ -768,7 +620,7 @@ footer nav ul li {
 }
 
 .thinInactiveButton:hover {
-	background-color: #white;
+	background-color: white;
 	color: #bbbbbb;
 	border-color: #bbbbbb;
 	cursor: pointer;
@@ -778,7 +630,6 @@ footer nav ul li {
 /* messages.jsp */
 
 #messageList {
-	float: right;
 	width: 70%;
 	margin-right: 40px;
 }
@@ -805,30 +656,24 @@ footer nav ul li {
 }
 
 #folders {
-	float: left;
-	width: 10%;
-	height: 70%;
 	margin-left: 30px;
-	border-color: #FF9900;
-	border-radius: 5px;
-	border-width: 3px;
-	border-style: solid;
 	padding: 15px;
 }
 
 #folders h2 {
 	padding: 5px;
 	color: graytext;
+	width: 20%;
+	display: inline-block;
 }
 
 #folders h2:hover {
-	background-color: #FF9900;
-	color: white;
+	color: black;
 	cursor: pointer;
 }
 
 #messageDetail {
-	border-color: #FF9900;
+	border-color: #aaa;
 	border-radius: 5px;
 	border-width: 3px;
 	border-style: solid;
@@ -867,7 +712,6 @@ footer nav ul li {
 
 .msgInput {
 	width: 100%;
-	height: 35px;
 	margin-top: 5px;
 	border: 1px solid #999;
 	border-radius: 3px;
@@ -876,7 +720,6 @@ footer nav ul li {
 
 #msgTextarea {
 	width: 100%;
-	height: 80px;
 	margin-top: 5px;
 	border-radius: 3px;
 	border: 1px solid #999;
@@ -922,7 +765,6 @@ footer nav ul li {
 }
 
 .img {
-	float: right;
 	margin-top: -35px;
 	margin-right: -37px;
 }
@@ -1008,12 +850,10 @@ footer nav ul li {
 /* editAd.jsp */
 
 .pictureThumbnail{
-	width: 200px;
 	border-style: dashed;
 	border-color: #FF9900;
 	border-width: 2px;
 	text-align:center;
-	float: left;
 	margin-right: 10px;
 }
 
@@ -1022,10 +862,48 @@ footer nav ul li {
 }
 
 .pictureThumbnail img{
-	height: 130px;
 	margin-top: 10px;
 }
 
 .pictureThumbnail button{
 	margin: 10px 0;
+}
+
+#bs-example-navbar-collapse-1 {
+    /*width: 30%;
+    padding-left: 50px;*/
+}
+
+div.resultText {
+    width: 55%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.resultImage {
+    width: 60%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.resultRight {
+    width: 40%;
+    text-align: right;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#resultsDiv .resultLeft {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+}
+
+div.resultAd {
+	height: 280px;
+	overflow: hidden;
+}
+
+div.resultAd h2 {
+	font-size: 1.5em;
 }

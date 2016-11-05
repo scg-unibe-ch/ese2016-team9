@@ -11,8 +11,7 @@
 
 <c:import url="template/header.jsp" />
 
-<pre>
-	<a href="/">Home</a>   &gt;   Login</pre>
+<pre><a href="/">Home</a> &gt; Login</pre>
 
 <h1>Login</h1>
 
@@ -22,15 +21,15 @@
 	</c:when>
 	<c:otherwise>
 		<c:if test="${!empty param.error}">
-			<p>Incorrect email or password. Please retry using correct email
-				and password.</p>
+			<p>Incorrect email or password. Please retry using correct email and password.</p>
 			<br />
 		</c:if>
-		<form id="login-form" method="post" action="/j_spring_security_check">
-			<label for="field-email">Email:</label> <input name="j_username"
-				id="field-email" /> <label for="field-password">Password:</label> <input
-				name="j_password" id="field-password" type="password" />
-			<button type="submit">Login</button>
+		<form id="login-form" method="post" action="/j_spring_security_check" class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="field-email">Email:</label> <input name="j_username" id="field-email" placeholder="Email" class="form-control" /> 
+                <label class="sr-only" for="field-password">Password:</label> <input name="j_password" id="field-password" type="password" placeholder="Password" class="form-control" />
+                <button type="submit" class="btn btn-default">Login</button>
+            </div>
 		</form>
 		<br />
 		<h2>Test users</h2>
