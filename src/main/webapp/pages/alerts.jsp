@@ -66,11 +66,17 @@ function typeOfAlert(alert) {
 		
 		var price = document.getElementById('priceInput');
 		var radius = document.getElementById('radiusInput');
+		//var numberOfRooms = document.getElementById('numberOfRoomsInput');
+		//var squareFootage = document.getElementById('squareFootageInput');
 		
 		if(price.value == null || price.value == "" || price.value == "0")
 			price.value = "500";
 		if(radius.value == null || radius.value == "" || radius.value == "0")
 			radius.value = "5";
+		//if(numberOfRooms.value == null || numberOfRooms.value == "")
+		//	numberOfRooms.value = "3";
+		//if(squareFootage.value == null || squareFootage.value == "")
+		//	squareFootage.value = "50";
 	});
 </script>
 
@@ -99,10 +105,21 @@ function typeOfAlert(alert) {
 			placeholder="e.g. 5" step="5" />
 		km
 		<form:errors path="radius" cssClass="validationErrorText" />
+		
 		<br /> <label for="price">Price (max.):</label>
 		<form:input id="priceInput" type="number" path="price"
-			placeholder="e.g. 5" step="50" />
-		CHF
+			placeholder="e.g. 5" step="50" />CHF
+		<form:errors path="price" cssClass="validationErrorText" />
+		
+		<br /> <label for="numberOfRooms">Number of Rooms (min.):</label>
+		<form:input id="numberOfRoomsInput" type="number" path="numberOfRooms"
+			placeholder="e.g. 3" step="1" />
+		<form:errors path="numberOfRooms" cssClass="validationErrorText" />
+		
+		<br /> <label for="squareFootage">Square Meters (min.):</label>
+		<form:input id="squareFootageInput" type="number" path="squareFootage"
+			placeholder="e.g. 50" step="10" />
+		m²
 		<form:errors path="price" cssClass="validationErrorText" />
 		<br />
 
@@ -147,6 +164,8 @@ function typeOfAlert(alert) {
 				<td>${alert.city}</td>
 				<td>${alert.radius} km</td>
 				<td>${alert.price} Chf</td>
+				<td>${alert.numberOfRooms}</td>
+				<td>${alert.squareFootage} m²</td>
 				<td><button class="deleteButton" data-id="${alert.id}" onClick="deleteAlert(this)">Delete</button></td>
 			</tr>
 		</c:forEach>
