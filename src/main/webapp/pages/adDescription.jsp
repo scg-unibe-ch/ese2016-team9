@@ -178,11 +178,6 @@
                         <td>${formattedMoveInDate}</td>
                     </tr>
 
-                    <tr>
-                        <th>Move-out Date</th>
-                        <td>${formattedMoveOutDate}</td>
-                    </tr>
-
                     <c:choose>
                         <c:when test="shownAd.forSale">
                             <tr>

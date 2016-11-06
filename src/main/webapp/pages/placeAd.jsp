@@ -126,7 +126,7 @@
         </div>
 				
         <div class="form-group">
-            <label for="moveInDate" class="col-sm-2 control-label">Move-in date</label>
+            <label for="moveInDate" class="col-sm-2 control-label">Available from</label>
             <div class="col-sm-10">
                 <form:input type="text" id="field-moveInDate" path="moveInDate" class="form-control" />
             </div>
@@ -192,27 +192,32 @@
             </div>
         </div>
         
-        <div class="form-group">
+        <div class="form-group slider">
             <label for="field-DistanceToNearestSuperMarket" class="col-sm-2 control-label">Distance to nearest Super Market</label>
             <div class="col-sm-10">
+                <form:input id="field-DistanceToNearestSuperMarket" type="range" path="distanceToNearestSuperMarket" class="form-control distance-slider"
+                min="100" max="5100" step="100" value="500" />
+						<span class="range">500m</span>
             </div>
         </div>
         
         
-        <div class="form-group">
+        <div class="form-group slider">
             <label for="field-DistanceToNearestPublicTransport" class="col-sm-2 control-label">Distance to nearest Public Transport</label>
             <div class="col-sm-10">
-                <form:input id="field-DistanceToNearestPublicTransport" type="number" path="distanceToNearestPublicTransport" step="1" class="form-control"  /> 
-                <form:errors path="distanceToNearestPublicTransport" cssClass="validationErrorText" />
+                <form:input id="field-DistanceToNearestPublicTransport" type="range" path="distanceToNearestPublicTransport" class="form-control distance-slider"
+                min="100" max="5100" step="100" value="500" />
+						<span class="range">500m</span> 
             </div>
         </div>
         
         
-        <div class="form-group">
+        <div class="form-group slider">
             <label for="field-DistanceToNearestSchool" class="col-sm-2 control-label">Distance to nearest School</label>
             <div class="col-sm-10">
-                <form:input id="field-DistanceToNearestSchool" type="number" path="DistanceToNearestSchool" step="1" class="form-control"  /> 
-                <form:errors path="DistanceToNearestSchool" cssClass="validationErrorText" />
+                <form:input id="field-DistanceToNearestSchool" type="range" path="DistanceToNearestSchool" class="form-control distance-slider"
+                min="100" max="5100" step="100" value="500" />
+						<span class="range">500m</span> 
             </div>
         </div>
     
