@@ -18,6 +18,15 @@
 
 <script>
 	$(document).ready(function() {		
+		
+		$(".slider").mousemove(function(){
+			var newValue = $(this).find(".distance-slider").val();
+			if(newValue == "5100")
+				$(this).find(".range").html(">5km");
+			else
+				$(this).find(".range").html(newValue + "m");
+		});
+		
 		$("#field-city").autocomplete({
 			minLength : 2
 		});
@@ -204,15 +213,15 @@
 				<td><label for="field-DistanceToNearestSchool">Distance to nearest School</label>
 			</tr>
 			<tr>
-				<td><form:input id="field-DistanceToNearestSuperMarket" type="number" path="distanceToNearestSuperMarket"
-						placeholder="e.g. 0.5" step="1" value="${ad.distanceToNearestSuperMarket }" /> <form:errors
-						path="DistanceToNearestSuperMarket" cssClass="validationErrorText" />meters</td>		
-				<td><form:input id="field-DistanceToNearestPublicTransport" type="number" path="distanceToNearestPublicTransport"
-						placeholder="e.g. 0.5" step="1" value="${ad.distanceToNearestPublicTransport }" /> <form:errors
-						path="DistanceToNearestPublicTransport" cssClass="validationErrorText" />meters</td>	
-				<td><form:input id="field-DistanceToNearestSchool" type="number" path="distanceToNearestSchool"
-						placeholder="e.g. 0.5" step="1" value="${ad.distanceToNearestSchool }"/> <form:errors
-						path="DistanceToNearestSchool" cssClass="validationErrorText" />meters</td>	
+				<td class="slider"><form:input id="field-DistanceToNearestSuperMarket" class="distance-slider" type="range" path="distanceToNearestSuperMarket"
+						min="100" max="5100" step="100" value="${ad.distanceToNearestSuperMarket}" />
+						<span class="range">${ad.distanceToNearestSuperMarket}m</span></td>		
+				<td class="slider"><form:input id="field-DistanceToNearestPublicTransport" class="distance-slider" type="range" path="distanceToNearestPublicTransport"
+						min="100" max="5100" step="100" value="${ad.distanceToNearestPublicTransport}" />
+						<span class="range">${ad.distanceToNearestPublicTransport}m</span></td>	
+				<td class="slider"><form:input id="field-DistanceToNearestSchool" class="distance-slider" type="range" path="distanceToNearestSchool"
+						min="100" max="5100" step="100" value="${ad.distanceToNearestSchool}"/>
+						<span class="range">${ad.distanceToNearestSchool}m</span></td>	
 			</tr>
 			
 			<tr>

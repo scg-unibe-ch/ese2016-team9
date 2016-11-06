@@ -10,6 +10,15 @@
 <pre><a href="/">Home</a>   &gt;   <a href="/searchAd/">Search</a>   &gt;   Results</pre>
 
 <script>
+$(document).ready(function(){
+	$(".slider").mousemove(function(){
+		var newValue = $(this).find(".distance-slider").val();
+		if(newValue == "5100")
+			$(this).find(".range").html(">5km");
+		else
+			$(this).find(".range").html(newValue + "m");
+	});
+});
 function validateType(form)
 {
 	var house = document.getElementById('house');
@@ -243,20 +252,20 @@ function sort_div_attribute() {
 			</tr>
 			<tr>
 				<td><label for="distanceToNearestPublicTransport">Distance to nearest public transport (max.):</label></td>
-				<td><form:input id="distanceToNearestPublicTransportInput" type="number" path="distanceToNearestPublicTransport"
-					placeholder="e.g. 2" step="1" />meters
+				<td class="slider"><form:input id="distanceToNearestPublicTransportInput" class ="distance-slider" type="range" path="distanceToNearestPublicTransport"
+					min="100" max="5100" value="500" step="100" /><span class="range">500m</span>
 				</td>
 			</tr>
 			<tr>
 				<td><label for="distanceToNearestSuperMarket">Distance to nearest super market (max.):</label></td>
-				<td><form:input id="distanceToNearestSuperMarketInput" type="number" path="distanceToNearestSuperMarket"
-					placeholder="e.g. 2" step="1" />meters
+				<td class="slider"><form:input id="distanceToNearestSuperMarketInput" class ="distance-slider" type="range" path="distanceToNearestSuperMarket"
+					min="100" max="5100" value="500" step="100" /><span class="range">500m</span>
 				</td>
 			</tr>
 			<tr>
 				<td><label for="distanceToNearestSchool">Distance to nearest school (max.):</label></td>
-				<td><form:input id="distanceToNearestSchoolInput" type="number" path="distanceToNearestSchool"
-					placeholder="e.g. 2" step="1" />meters
+				<td class="slider"><form:input id="distanceToNearestSchoolInput" class ="distance-slider" type="range" path="distanceToNearestSchool"
+					min="100" max="5100" value="500" step="100" /><span class="range">500m</span>
 				</td>
 			</tr>
 			<tr>

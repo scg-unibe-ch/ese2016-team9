@@ -21,6 +21,14 @@
 		// iterate through it
 		// if there is id == x then make "Bookmark Me" to "bookmarked"
 		
+		$(".slider").mousemove(function(){
+			var newValue = $(this).find(".distance-slider").val();
+			if(newValue == "5100")
+				$(this).find(".range").html(">5km");
+			else
+				$(this).find(".range").html(newValue + "m");
+		});
+		
 		$("#field-city").autocomplete({
 			minLength : 2
 		});
@@ -42,8 +50,6 @@
 		$("#field-lastRenovationDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
-		
-
 		
 		$("#addVisitButton").click(function() {
 			var date = $("#field-visitDay").val();
@@ -178,15 +184,12 @@
 				<td><label for="field-DistanceToNearestSchool">Distance to nearest School</label>
 			</tr>
 			<tr>
-				<td><form:input id="field-DistanceToNearestSuperMarket" type="number" path="distanceToNearestSuperMarket"
-						placeholder="e.g. 0.5" step="1" /> <form:errors
-						path="DistanceToNearestSuperMarket" cssClass="validationErrorText" />meters</td>		
-				<td><form:input id="field-DistanceToNearestPublicTransport" type="number" path="distanceToNearestPublicTransport"
-						placeholder="e.g. 0.5" step="1" /> <form:errors
-						path="DistanceToNearestPublicTransport" cssClass="validationErrorText" />meters</td>	
-				<td><form:input id="field-DistanceToNearestSchool" type="number" path="distanceToNearestSchool"
-						placeholder="e.g. 0.5" step="1" /> <form:errors
-						path="DistanceToNearestSchool" cssClass="validationErrorText" />meters</td>	
+				<td class="slider"><form:input id="field-DistanceToNearestSuperMarket" class="distance-slider" type="range" path="distanceToNearestSuperMarket"
+						min="100" max="5100" value="500" step="100" /><span class="range">500m</span></td>		
+				<td class="slider"><form:input id="field-DistanceToNearestPublicTransport" class="distance-slider" type="range" path="distanceToNearestPublicTransport"
+						min="100" max="5100" value="500" step="100" /><span class="range">500m</span></td>	
+				<td class="slider"><form:input id="field-DistanceToNearestSchool" class="distance-slider" type="range" path="distanceToNearestSchool"
+						min="100" max="5100" value="500" step="100" /><span class="range">500m</span></td>	
 			</tr>
 			
 			<tr style="display:${isRentingAd ? "" : "none"}">

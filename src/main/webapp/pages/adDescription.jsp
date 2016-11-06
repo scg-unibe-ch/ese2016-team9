@@ -384,17 +384,32 @@
 		
 		<tr>
 			<td><h2>Nearest Super Market</h2></td>
-			<td>${shownAd.distanceToNearestSuperMarket}m</td>
+			<td>
+				<c:choose>
+					<c:when test="${shownAd.distanceToNearestSuperMarket<5100}">${shownAd.distanceToNearestSuperMarket}m</c:when>
+					<c:otherwise>> 5km</c:otherwise>
+				</c:choose>
+			</td>
 		</tr>
 		
 		<tr>
 			<td><h2>Public Transport</h2></td>
-			<td>${shownAd.distanceToNearestPublicTransport}m</td>
+			<td>
+				<c:choose>
+					<c:when test="${shownAd.distanceToNearestPublicTransport<5100}">${shownAd.distanceToNearestPublicTransport}m</c:when>
+					<c:otherwise>> 5km</c:otherwise>
+				</c:choose>
+			</td>
 		</tr>
 		
 		<tr>
 			<td><h2>Nearest School</h2></td>
-			<td>${shownAd.distanceToNearestSchool}m</td>
+			<td>
+				<c:choose>
+					<c:when test="${shownAd.distanceToNearestSchool<5100}">${shownAd.distanceToNearestSchool}m</c:when>
+					<c:otherwise>> 5km</c:otherwise>
+				</c:choose>
+			</td>
 		</tr>
 	</table>
 </section>
