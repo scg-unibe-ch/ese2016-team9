@@ -456,15 +456,15 @@ public class AdService {
 				}
 			}
 			
-//			// floor
-//			if (searchForm.getFloor() >= -1) {
-//				Iterator<Ad> iterator = locatedResults.iterator();
-//				while (iterator.hasNext()) {
-//					Ad ad = iterator.next();
-//					if (ad.getFloor() != searchForm.getFloor())
-//						iterator.remove();
-//				}
-//			}
+			// groundFloor
+			if (searchForm.getGroundFloor()) {
+				Iterator<Ad> iterator = locatedResults.iterator();
+				while (iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if (ad.getFloor() >= 1)
+						iterator.remove();
+				}
+			}
 			
 			//number of rooms
 			if(searchForm.getNumberOfRooms()>0){

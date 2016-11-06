@@ -148,8 +148,8 @@ public class SearchForm {
 	private boolean cable;
 	private boolean garage;
 	private boolean internet;
+	private boolean groundFloor;
 	
-	private int floor;
 	private int squareFootage;
 	private int numberOfRooms;
 	private String lastRenovation;
@@ -248,12 +248,12 @@ public class SearchForm {
 		return latestMoveInDate;
 	}
 
-	public int getFloor() {
-		return floor;
+	public boolean getGroundFloor() {
+		return groundFloor;
 	}
 
-	public void setFloor(int floor) {
-		this.floor = floor;
+	public void setGroundFloor(boolean groundFloor) {
+		this.groundFloor = groundFloor;
 	}
 
 	public int getSquareFootage() {

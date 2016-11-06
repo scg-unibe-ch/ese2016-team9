@@ -311,6 +311,7 @@ function sort_div_attribute() {
 			</tr>
 			<tr>
 				<td><form:checkbox id="field-internet" path="internet" value="1" /><label>WiFi</label></td>
+				<td><form:checkbox id="field-groundFloor" path="groundFloor" value="1" /><label>Ground Floor</label></td>
 			</tr>
 		</table>
 			
