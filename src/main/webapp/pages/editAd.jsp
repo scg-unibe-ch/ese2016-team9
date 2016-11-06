@@ -114,9 +114,9 @@
 				<td>
 					<c:choose>
 						<c:when test="${ad.flat == 'true'}">
-							<form:radiobutton id="type-house" path="flat" value="1"
-								checked="checked" />House <form:radiobutton id="type-flat"
-								path="flat" value="0" />Flat
+							<form:radiobutton id="type-house" path="flat" value="0"
+								/>House <form:radiobutton id="type-flat"
+								path="flat" value="1" checked="checked"/>Flat
 						</c:when>
 						<c:otherwise>
 							<form:radiobutton id="type-house" path="flat" value="0"
