@@ -62,7 +62,6 @@ public class AdServiceTest {
 		placeAdForm.setStreet("Hauptstrasse 13");
 		placeAdForm.setFlat(true);
 		placeAdForm.setMoveInDate("27-02-2015");
-		placeAdForm.setMoveOutDate("27-04-2015");
 		
 		placeAdForm.setSmokers(true);
 		placeAdForm.setAnimals(false);

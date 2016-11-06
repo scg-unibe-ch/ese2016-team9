@@ -21,6 +21,14 @@
 		// iterate through it
 		// if there is id == x then make "Bookmark Me" to "bookmarked"
 		
+		$(".slider").mousemove(function(){
+			var newValue = $(this).find(".distance-slider").val();
+			if(newValue == "5100")
+				$(this).find(".range").html(">5km");
+			else
+				$(this).find(".range").html(newValue + "m");
+		});
+		
 		$("#field-city").autocomplete({
 			minLength : 2
 		});
@@ -34,9 +42,6 @@
 		$("#field-moveInDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
-		$("#field-moveOutDate").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
 		
 		$("#field-visitDay").datepicker({
 			dateFormat : 'dd-mm-yy'
@@ -45,8 +50,6 @@
 		$("#field-lastRenovationDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
-		
-
 		
 		$("#addVisitButton").click(function() {
 			var date = $("#field-visitDay").val();
@@ -123,16 +126,9 @@
         </div>
 				
         <div class="form-group">
-            <label for="moveInDate" class="col-sm-2 control-label">Move-in date</label>
+            <label for="moveInDate" class="col-sm-2 control-label">Available from</label>
             <div class="col-sm-10">
                 <form:input type="text" id="field-moveInDate" path="moveInDate" class="form-control" />
-            </div>
-        </div>
-        
-        <div class="form-group" style="display:${isRentingAd ? "" : "none"}">
-            <label for="moveOutDate" class="col-sm-2 control-label">Move-out date (optional)</label>
-            <div class="col-sm-10">
-                <form:input type="text" id="field-moveOutDate" path="moveOutDate" class="form-control" />
             </div>
         </div>
         
@@ -196,29 +192,32 @@
             </div>
         </div>
         
-        <div class="form-group">
+        <div class="form-group slider">
             <label for="field-DistanceToNearestSuperMarket" class="col-sm-2 control-label">Distance to nearest Super Market</label>
             <div class="col-sm-10">
-                <form:input id="field-DistanceToNearestSuperMarket" type="number" path="distanceToNearestSuperMarket" step="1" class="form-control"  /> 
-                <form:errors path="distanceToNearestSuperMarket" cssClass="validationErrorText" />
+                <form:input id="field-DistanceToNearestSuperMarket" type="range" path="distanceToNearestSuperMarket" class="form-control distance-slider"
+                min="100" max="5100" step="100" value="500" />
+						<span class="range">500m</span>
             </div>
         </div>
         
         
-        <div class="form-group">
+        <div class="form-group slider">
             <label for="field-DistanceToNearestPublicTransport" class="col-sm-2 control-label">Distance to nearest Public Transport</label>
             <div class="col-sm-10">
-                <form:input id="field-DistanceToNearestPublicTransport" type="number" path="distanceToNearestPublicTransport" step="1" class="form-control"  /> 
-                <form:errors path="distanceToNearestPublicTransport" cssClass="validationErrorText" />
+                <form:input id="field-DistanceToNearestPublicTransport" type="range" path="distanceToNearestPublicTransport" class="form-control distance-slider"
+                min="100" max="5100" step="100" value="500" />
+						<span class="range">500m</span> 
             </div>
         </div>
         
         
-        <div class="form-group">
+        <div class="form-group slider">
             <label for="field-DistanceToNearestSchool" class="col-sm-2 control-label">Distance to nearest School</label>
             <div class="col-sm-10">
-                <form:input id="field-DistanceToNearestSchool" type="number" path="DistanceToNearestSchool" step="1" class="form-control"  /> 
-                <form:errors path="DistanceToNearestSchool" cssClass="validationErrorText" />
+                <form:input id="field-DistanceToNearestSchool" type="range" path="DistanceToNearestSchool" class="form-control distance-slider"
+                min="100" max="5100" step="100" value="500" />
+						<span class="range">500m</span> 
             </div>
         </div>
     
@@ -275,6 +274,8 @@
             <form:textarea path="houseDescription" rows="10" cols="100" placeholder="House Description" class="form-control" />
             <form:errors path="houseDescription" cssClass="validationErrorText" />
         </div>
+                <form:errors path="distanceToNearestSuperMarket" cssClass="validationErrorText" />
+                <form:input id="field-DistanceToNearestSuperMarket" type="number" path="distanceToNearestSuperMarket" step="1" class="form-control"  /> 
 	</fieldset>
 
 	<fieldset>

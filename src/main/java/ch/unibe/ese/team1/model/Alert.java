@@ -32,6 +32,12 @@ public class Alert {
 
 	@Column(nullable = false)
 	private int radius;
+	
+	@Column(nullable = false)
+	private int numberOfRooms;
+	
+	@Column(nullable = false)
+	private int squareFootage;
 
 	@Column
 	private boolean flat;
@@ -112,5 +118,21 @@ public class Alert {
 
 	public void setBothHouseAndFlat(boolean bothHouseAndFlat) {
 		this.bothHouseAndFlat = bothHouseAndFlat;
+	}
+	
+	public int getNumberOfRooms(){
+		return numberOfRooms;
+	}
+	
+	public void setNumberOfRooms(int numberOfRooms){
+		this.numberOfRooms = numberOfRooms;
+	}
+	
+	public int getSquareFootage(){
+		return squareFootage;
+	}
+	
+	public void setSquareFootage(int squareFootage){
+		this.squareFootage = squareFootage;
 	}
 }

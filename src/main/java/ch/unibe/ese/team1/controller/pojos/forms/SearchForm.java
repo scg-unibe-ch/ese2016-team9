@@ -136,8 +136,6 @@ public class SearchForm {
 
 	private String earliestMoveInDate;
 	private String latestMoveInDate;
-	private String earliestMoveOutDate;
-	private String latestMoveOutDate;
 
 	private boolean smokers;
 	private boolean animals;
@@ -147,8 +145,8 @@ public class SearchForm {
 	private boolean furnished;
 	private boolean cable;
 	private boolean garage;
+	private boolean groundFloor;
 	
-	private int floor;
 	private int squareFootage;
 	private int numberOfRooms;
 	private String lastRenovation;
@@ -239,12 +237,12 @@ public class SearchForm {
 		return latestMoveInDate;
 	}
 
-	public int getFloor() {
-		return floor;
+	public boolean getGroundFloor() {
+		return groundFloor;
 	}
 
-	public void setFloor(int floor) {
-		this.floor = floor;
+	public void setGroundFloor(boolean groundFloor) {
+		this.groundFloor = groundFloor;
 	}
 
 	public int getSquareFootage() {
@@ -297,22 +295,6 @@ public class SearchForm {
 
 	public void setLatestMoveInDate(String latestMoveInDate) {
 		this.latestMoveInDate = latestMoveInDate;
-	}
-
-	public String getEarliestMoveOutDate() {
-		return earliestMoveOutDate;
-	}
-
-	public void setEarliestMoveOutDate(String earliestMoveOutDate) {
-		this.earliestMoveOutDate = earliestMoveOutDate;
-	}
-
-	public String getLatestMoveOutDate() {
-		return latestMoveOutDate;
-	}
-
-	public void setLatestMoveOutDate(String latestMoveOutDate) {
-		this.latestMoveOutDate = latestMoveOutDate;
 	}
 
 	public boolean getFlatHelper() {

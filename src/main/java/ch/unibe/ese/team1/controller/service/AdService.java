@@ -96,17 +96,6 @@ public class AdService {
 				ad.setMoveInDate(calendar.getTime());
 			}
 
-			if (placeAdForm.getMoveOutDate() != null && placeAdForm.getMoveOutDate().length() >= 1) {
-				int dayMoveOut = Integer.parseInt(placeAdForm.getMoveOutDate()
-						.substring(0, 2));
-				int monthMoveOut = Integer.parseInt(placeAdForm
-						.getMoveOutDate().substring(3, 5));
-				int yearMoveOut = Integer.parseInt(placeAdForm.getMoveOutDate()
-						.substring(6, 10));
-				calendar.set(yearMoveOut, monthMoveOut - 1, dayMoveOut);
-				ad.setMoveOutDate(calendar.getTime());
-			}
-			
 			if (placeAdForm.getLastRenovation() != null && placeAdForm.getLastRenovation().length() >= 1) {
 				int dayRenovate = Integer.parseInt(placeAdForm.getLastRenovation()
 						.substring(0, 2));
@@ -342,26 +331,14 @@ public class AdService {
 			} catch (Exception e) {
 			}
 			try {
-				earliestOutDate = formatter.parse(searchForm
-						.getEarliestMoveOutDate());
-			} catch (Exception e) {
-			}
-			try {
-				latestOutDate = formatter.parse(searchForm
-						.getLatestMoveOutDate());
-			} catch (Exception e) {
-			}
-			try {
 				lastRenovationDate = formatter.parse(searchForm.getLastRenovation());
 			} catch (Exception e) {
 				
 			}
 
 			// filtering by dates
-			locatedResults = validateDate(locatedResults, true, earliestInDate,
+			locatedResults = validateDate(locatedResults, earliestInDate,
 					latestInDate, lastRenovationDate);
-			locatedResults = validateDate(locatedResults, false,
-					earliestOutDate, latestOutDate, lastRenovationDate);
 
 			// filtering for the rest
 			// smokers
@@ -444,15 +421,15 @@ public class AdService {
 				}
 			}
 
-//			// floor
-//			if (searchForm.getFloor() >= -1) {
-//				Iterator<Ad> iterator = locatedResults.iterator();
-//				while (iterator.hasNext()) {
-//					Ad ad = iterator.next();
-//					if (ad.getFloor() != searchForm.getFloor())
-//						iterator.remove();
-//				}
-//			}
+			// groundFloor
+			if (searchForm.getGroundFloor()) {
+				Iterator<Ad> iterator = locatedResults.iterator();
+				while (iterator.hasNext()) {
+					Ad ad = iterator.next();
+					if (ad.getFloor() >= 1)
+						iterator.remove();
+				}
+			}
 			
 			//number of rooms
 			if(searchForm.getNumberOfRooms()>0){
@@ -469,7 +446,7 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDistanceToNearestPublicTransport()*1000 > searchForm.getDistanceToNearestPublicTransport())
+					if (ad.getDistanceToNearestPublicTransport() > searchForm.getDistanceToNearestPublicTransport())
 							iterator.remove();
 				}
 			}
@@ -478,7 +455,7 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDistanceToNearestSchool()*1000 > searchForm.getDistanceToNearestSchool())
+					if (ad.getDistanceToNearestSchool() > searchForm.getDistanceToNearestSchool())
 							iterator.remove();
 				}
 			}
@@ -487,7 +464,7 @@ public class AdService {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDistanceToNearestSuperMarket()*1000 > searchForm.getDistanceToNearestSuperMarket())
+					if (ad.getDistanceToNearestSuperMarket() > searchForm.getDistanceToNearestSuperMarket())
 						iterator.remove();
 				}
 			}
@@ -507,8 +484,7 @@ public class AdService {
 		return locatedResults;
 	}
 
-	private List<Ad> validateDate(List<Ad> ads, boolean inOrOut,
-			Date earliestDate, Date latestDate, Date latestRenovation) {
+	private List<Ad> validateDate(List<Ad> ads, Date earliestDate, Date latestDate, Date latestRenovation) {
 		if (ads.size() > 0) {
 			// Move-in dates
 			// Both an earliest AND a latest date to compare to
@@ -517,8 +493,8 @@ public class AdService {
 					Iterator<Ad> iterator = ads.iterator();
 					while (iterator.hasNext()) {
 						Ad ad = iterator.next();
-						if (ad.getDate(inOrOut).compareTo(earliestDate) < 0
-								|| ad.getDate(inOrOut).compareTo(latestDate) > 0) {
+						if (ad.getMoveInDate().compareTo(earliestDate) < 0
+								|| ad.getMoveInDate().compareTo(latestDate) > 0) {
 							iterator.remove();
 						}
 					}
@@ -528,7 +504,7 @@ public class AdService {
 					Iterator<Ad> iterator = ads.iterator();
 					while (iterator.hasNext()) {
 						Ad ad = iterator.next();
-						if (ad.getDate(inOrOut).compareTo(earliestDate) < 0)
+						if (ad.getMoveInDate().compareTo(earliestDate) < 0)
 							iterator.remove();
 					}
 				}
@@ -538,7 +514,7 @@ public class AdService {
 				Iterator<Ad> iterator = ads.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
-					if (ad.getDate(inOrOut).compareTo(latestDate) > 0)
+					if (ad.getMoveInDate().compareTo(latestDate) > 0)
 						iterator.remove();
 				}
 			} 

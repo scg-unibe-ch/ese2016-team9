@@ -58,6 +58,8 @@ public class AlertService {
 
 		alert.setPrice(alertForm.getPrice());
 		alert.setRadius(alertForm.getRadius());
+		alert.setNumberOfRooms(alertForm.getNumberOfRooms());
+		alert.setSquareFootage(alertForm.getSquareFootage());
 		alert.setHouse(alertForm.getHouse());
 		alert.setFlat(alertForm.getFlat());
 		alert.setBothHouseAndFlat(alertForm.getBothHouseAndFlat());
@@ -93,7 +95,8 @@ public class AlertService {
 		Iterator<Alert> alertIterator = alerts.iterator();
 		while (alertIterator.hasNext()) {
 			Alert alert = alertIterator.next();
-			if (typeMismatchWith(ad, alert) || radiusMismatchWith(ad, alert)
+			if (numberOfRoomsMismatchWith(ad, alert) || squareFootageMismatchWith(ad, alert) 
+					|| typeMismatchWith(ad, alert) || radiusMismatchWith(ad, alert)
 					|| ad.getUser().equals(alert.getUser()))
 				alertIterator.remove();
 		}
@@ -120,6 +123,20 @@ public class AlertService {
 			message.setDateSent(now);
 			messageDao.save(message);
 		}
+	}
+
+	private boolean numberOfRoomsMismatchWith(Ad ad, Alert alert) {
+		boolean mismatch = false;
+		if (alert.getNumberOfRooms() > ad.getNumberOfRooms())
+			mismatch = true;
+		return mismatch;
+	}
+
+	private boolean squareFootageMismatchWith(Ad ad, Alert alert) {
+		boolean mismatch = false;
+		if (alert.getSquareFootage() > ad.getSquareFootage())
+			mismatch = true;
+		return mismatch;
 	}
 
 	/**

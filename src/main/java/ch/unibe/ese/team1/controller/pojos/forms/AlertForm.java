@@ -29,6 +29,12 @@ public class AlertForm {
 	@Min(value = 0, message = "In your dreams.")
 	private Integer price;
 	
+	@NotNull(message = "Requires a number")
+	private Integer numberOfRooms;
+	
+	@NotNull(message = "Requires a number")
+	private Integer squareFootage;
+	
 	private int zipCode;
 
 	@AssertFalse(message = "Please select either or both types")
@@ -105,5 +111,21 @@ public class AlertForm {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public Integer getNumberOfRooms(){
+		return numberOfRooms;
+	}
+	
+	public void setNumberOfRooms(Integer numberOfRooms){
+		this.numberOfRooms = numberOfRooms;
+	}
+	
+	public Integer getSquareFootage(){
+		return squareFootage;
+	}
+	
+	public void setSquareFootage(Integer squareFootage){
+		this.squareFootage = squareFootage;
 	}
 }

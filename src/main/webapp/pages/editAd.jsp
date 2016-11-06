@@ -18,6 +18,15 @@
 
 <script>
 	$(document).ready(function() {		
+		
+		$(".slider").mousemove(function(){
+			var newValue = $(this).find(".distance-slider").val();
+			if(newValue == "5100")
+				$(this).find(".range").html(">5km");
+			else
+				$(this).find(".range").html(newValue + "m");
+		});
+		
 		$("#field-city").autocomplete({
 			minLength : 2
 		});
@@ -29,9 +38,6 @@
 			autoFocus : true
 		});
 		$("#field-moveInDate").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
-		$("#field-moveOutDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
 		
@@ -84,8 +90,6 @@
 <!-- format the dates -->
 <fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
 	type="date" pattern="dd-MM-yyyy" />
-<fmt:formatDate value="${ad.moveOutDate}" var="formattedMoveOutDate"
-	type="date" pattern="dd-MM-yyyy" />
 <fmt:formatDate value="${ad.lastRenovation}" var="formattedRenovationDate"
 	type="date" pattern="dd-MM-yyyy" />
 	
@@ -114,9 +118,9 @@
 				<td>
 					<c:choose>
 						<c:when test="${ad.flat == 'true'}">
-							<form:radiobutton id="type-house" path="flat" value="1"
-								checked="checked" />House <form:radiobutton id="type-flat"
-								path="flat" value="0" />Flat
+							<form:radiobutton id="type-house" path="flat" value="0"
+								/>House <form:radiobutton id="type-flat"
+								path="flat" value="1" checked="checked"/>Flat
 						</c:when>
 						<c:otherwise>
 							<form:radiobutton id="type-house" path="flat" value="0"
@@ -141,17 +145,12 @@
 			</tr>
 
 			<tr>
-				<td><label for="moveInDate">Move-in date</label></td>
-				<td><label for="moveOutDate">Move-out date (optional)</label></td>
+				<td><label for="moveInDate">Available From</label></td>
 			</tr>
 			<tr>
 				<td>
 					<form:input type="text" id="field-moveInDate"
 						path="moveInDate" value="${formattedMoveInDate }"/>
-				</td>
-				<td>
-					<form:input type="text" id="field-moveOutDate"
-						path="moveOutDate" value="${formattedMoveOutDate }"/>
 				</td>
 			</tr>
 
@@ -214,15 +213,15 @@
 				<td><label for="field-DistanceToNearestSchool">Distance to nearest School</label>
 			</tr>
 			<tr>
-				<td><form:input id="field-DistanceToNearestSuperMarket" type="number" path="distanceToNearestSuperMarket"
-						placeholder="e.g. 0.5" step="1" value="${ad.distanceToNearestSuperMarket }" /> <form:errors
-						path="DistanceToNearestSuperMarket" cssClass="validationErrorText" />meters</td>		
-				<td><form:input id="field-DistanceToNearestPublicTransport" type="number" path="distanceToNearestPublicTransport"
-						placeholder="e.g. 0.5" step="1" value="${ad.distanceToNearestPublicTransport }" /> <form:errors
-						path="DistanceToNearestPublicTransport" cssClass="validationErrorText" />meters</td>	
-				<td><form:input id="field-DistanceToNearestSchool" type="number" path="distanceToNearestSchool"
-						placeholder="e.g. 0.5" step="1" value="${ad.distanceToNearestSchool }"/> <form:errors
-						path="DistanceToNearestSchool" cssClass="validationErrorText" />meters</td>	
+				<td class="slider"><form:input id="field-DistanceToNearestSuperMarket" class="distance-slider" type="range" path="distanceToNearestSuperMarket"
+						min="100" max="5100" step="100" value="${ad.distanceToNearestSuperMarket}" />
+						<span class="range">${ad.distanceToNearestSuperMarket}m</span></td>		
+				<td class="slider"><form:input id="field-DistanceToNearestPublicTransport" class="distance-slider" type="range" path="distanceToNearestPublicTransport"
+						min="100" max="5100" step="100" value="${ad.distanceToNearestPublicTransport}" />
+						<span class="range">${ad.distanceToNearestPublicTransport}m</span></td>	
+				<td class="slider"><form:input id="field-DistanceToNearestSchool" class="distance-slider" type="range" path="distanceToNearestSchool"
+						min="100" max="5100" step="100" value="${ad.distanceToNearestSchool}"/>
+						<span class="range">${ad.distanceToNearestSchool}m</span></td>	
 			</tr>
 			
 			<tr>

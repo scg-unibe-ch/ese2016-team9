@@ -112,6 +112,10 @@ input[type="number"] {
 	width: 70px;
 }
 
+input[type="range"] {
+	width: 150px !important;
+}
+
 
 button {
     

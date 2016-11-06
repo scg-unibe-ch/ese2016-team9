@@ -121,15 +121,6 @@
 	type="date" pattern="dd.MM.yyyy" />
 <fmt:formatDate value="${shownAd.creationDate}" var="formattedCreationDate"
 	type="date" pattern="dd.MM.yyyy" />
-<c:choose>
-	<c:when test="${empty shownAd.moveOutDate }">
-		<c:set var="formattedMoveOutDate" value="unlimited" />
-	</c:when>
-	<c:otherwise>
-		<fmt:formatDate value="${shownAd.moveOutDate}"
-			var="formattedMoveOutDate" type="date" pattern="dd.MM.yyyy" />
-	</c:otherwise>
-</c:choose>
 
 
 <h1 id="shownAdTitle">${shownAd.title}
@@ -185,11 +176,6 @@
                     <tr>
                         <th>Available from</th>
                         <td>${formattedMoveInDate}</td>
-                    </tr>
-
-                    <tr>
-                        <th>Move-out Date</th>
-                        <td>${formattedMoveOutDate}</td>
                     </tr>
 
                     <c:choose>
@@ -464,8 +450,57 @@
     
 
 	
-	
-	
+	<table id="additionalInformationTable" class="adDescDiv">
+		<tr>
+			<td><h2>Floor</h2></td>
+			<td>${shownAd.floor}</td>
+		</tr>
+		
+		<tr>
+			<td><h2>Number of Rooms</h2></td>
+			<td>${shownAd.numberOfRooms}</td>
+		</tr>
+		
+		<tr>
+			<td><h2>Last Renovation</h2></td>
+			<td>
+				<c:choose>
+					<c:when test="${shownAd.lastRenovation!=null}">${shownAd.lastRenovation }</c:when>
+					<c:otherwise>-</c:otherwise>
+				</c:choose>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><h2>Nearest Super Market</h2></td>
+			<td>
+				<c:choose>
+					<c:when test="${shownAd.distanceToNearestSuperMarket<5100}">${shownAd.distanceToNearestSuperMarket}m</c:when>
+					<c:otherwise>> 5km</c:otherwise>
+				</c:choose>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><h2>Public Transport</h2></td>
+			<td>
+				<c:choose>
+					<c:when test="${shownAd.distanceToNearestPublicTransport<5100}">${shownAd.distanceToNearestPublicTransport}m</c:when>
+					<c:otherwise>> 5km</c:otherwise>
+				</c:choose>
+			</td>
+		</tr>
+		
+		<tr>
+			<td><h2>Nearest School</h2></td>
+			<td>
+				<c:choose>
+					<c:when test="${shownAd.distanceToNearestSchool<5100}">${shownAd.distanceToNearestSchool}m</c:when>
+					<c:otherwise>> 5km</c:otherwise>
+				</c:choose>
+			</td>
+		</tr>
+	</table>
 </section>
 
 <div class="clearBoth"></div>
