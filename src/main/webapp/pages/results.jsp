@@ -182,7 +182,14 @@ function sort_div_attribute() {
 					</div>
 					<div class="resultRight">
 						<h2>CHF ${ad.prize }</h2>
-						<br /> <br />
+						<br /> 
+						<p>
+							<i><c:choose>
+								<c:when test="${ad.forSale}">for Sale</c:when>
+								<c:otherwise>for Rent</c:otherwise>
+							   </c:choose></i>
+						</p>
+						
 
 						<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
 							type="date" pattern="dd.MM.yyyy" />
@@ -301,10 +308,6 @@ function sort_div_attribute() {
 						TV</label></td>
 				<td><form:checkbox id="field-garage" path="garage" value="1" /><label>Garage</label>
 				</td>
-			</tr>
-			<tr>
-				<td><form:checkbox id="field-internet" path="internet" value="1" /><label>WiFi</label></td>
-				<td><form:checkbox id="field-groundFloor" path="groundFloor" value="1" /><label>Ground Floor</label></td>
 			</tr>
 		</table>
 			

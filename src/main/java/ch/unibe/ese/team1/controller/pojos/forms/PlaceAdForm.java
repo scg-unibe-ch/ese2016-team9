@@ -33,8 +33,6 @@ public class PlaceAdForm {
 	@NotBlank(message = "Required")
 	private String houseDescription;
 
-	private String preferences;
-
 
 	// optional for input
 	private String houseFriends;
@@ -51,7 +49,6 @@ public class PlaceAdForm {
 	private boolean furnished;
 	private boolean cable;
 	private boolean garage;
-	private boolean internet;
 	
 	private int floor;
 	private int numberOfRooms;
@@ -143,13 +140,6 @@ public class PlaceAdForm {
 		this.houseDescription = houseDescription;
 	}
 
-	public String getPreferences() {
-		return preferences;
-	}
-
-	public void setPreferences(String preferences) {
-		this.preferences = preferences;
-	}
 
 	public int getSquareFootage() {
 		return squareFootage;
@@ -223,14 +213,6 @@ public class PlaceAdForm {
 
 	public void setGarage(boolean garage) {
 		this.garage = garage;
-	}
-
-	public boolean getInternet() {
-		return internet;
-	}
-
-	public void setInternet(boolean internet) {
-		this.internet = internet;
 	}
 
 	public String getMoveInDate() {

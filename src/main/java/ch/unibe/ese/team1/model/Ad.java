@@ -58,10 +58,6 @@ public class Ad {
 	private String houseDescription;
 
 	@Column(nullable = false)
-	@Lob
-	private String preferences;
-
-	@Column(nullable = false)
 	private boolean smokers;
 
 	@Column(nullable = false)
@@ -85,13 +81,11 @@ public class Ad {
 	@Column(nullable = false)
 	private boolean garage;
 
-	@Column(nullable = false)
-	private boolean internet;
-
 	// true if flat, false if house
 	@Column(nullable = false)
 	private boolean flat;
 	
+	//true if for sale, false if for rent 
 	@Column(nullable = false)
 	private boolean forSale;
 
@@ -216,14 +210,6 @@ public class Ad {
 		this.garage = garage;
 	}
 
-	public boolean getInternet() {
-		return internet;
-	}
-
-	public void setInternet(boolean internet) {
-		this.internet = internet;
-	}
-
 	public long getId() {
 		return id;
 	}
@@ -271,16 +257,6 @@ public class Ad {
 	public void setHouseDescription(String houseDescription) {
 		this.houseDescription = houseDescription;
 	}
-
-	public String getPreferences() {
-		return preferences;
-	}
-
-	public void setPreferences(String preferences) {
-		this.preferences = preferences;
-	}
-
-	
 
 	public List<AdPicture> getPictures() {
 		return pictures;

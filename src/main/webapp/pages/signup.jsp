@@ -21,52 +21,57 @@
 	});
 </script>
 
-<pre>
-	<a href="/">Home</a>   &gt;   Sign up</pre>
+<pre><a href="/">Home</a> &gt; Sign up</pre>
 
 <h1>Sign up</h1>
-<form:form id="signupForm" method="post" modelAttribute="signupForm"
-	action="signup">
+<form:form id="signupForm" method="post" modelAttribute="signupForm" action="signup" class="form-horizontal">
 	<fieldset>
 		<legend>Enter Your Information</legend>
 
-		<table>
-
-			<tr>
-				<td class="signupDescription"><label for="field-firstName">First Name:</label></td>
-				<td><form:input path="firstName" id="field-firstName" /> <form:errors
-						path="firstName" cssClass="validationErrorText" /></td>
-			</tr>
-
-			<tr>
-				<td class="signupDescription"><label for="field-lastName">Last Name:</label></td>
-				<td><form:input path="lastName" id="field-lastName" /> <form:errors
-						path="lastName" cssClass="validationErrorText" /></td>
-			</tr>
-
-			<tr>
-				<td class="signupDescription"><label for="field-password">Password:</label></td>
-				<td><form:input path="password" id="field-password"
-						type="password" /> <form:errors path="password"
-						cssClass="validationErrorText" /></td>
-			</tr>
-
-			<tr>
-				<td class="signupDescription"><label for="field-email">Email:</label></td>
-				<td><form:input path="email" id="field-email" /> <form:errors
-						path="email" cssClass="validationErrorText" /></td>
-			</tr>
-
-			<tr>
-				<td class="signupDescription"><label for="field-gender">Gender:</label></td>
-				<td><form:select path="gender">
-						<form:option value="FEMALE" label="Female" />
-						<form:option value="MALE" label="Male" />
-					</form:select></td>
-			</tr>
-		</table>
-		<br />
-		<button type="submit">Sign up</button>
+        
+        <div class="form-group">
+            <label for="field-firstName" class="col-sm-2 control-label">First Name</label>
+            <div class="col-sm-10">
+                <form:input path="firstName" id="field-firstName" class="form-control"/>
+                <form:errors path="firstName" cssClass="validationErrorText" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="field-lastName" class="col-sm-2 control-label">Last Name</label>
+            <div class="col-sm-10">
+                <form:input path="lastName" id="field-lastName" class="form-control"/>
+                <form:errors path="lastName" cssClass="validationErrorText" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="field-password" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <form:input path="password" id="field-password" class="form-control"/>
+                <form:errors path="password" cssClass="validationErrorText" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="field-email" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <form:input path="email" id="field-email" class="form-control"/>
+                <form:errors path="email" cssClass="validationErrorText" />
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="field-gender" class="col-sm-2 control-label">Gender</label>
+            <div class="col-sm-10">
+                <form:select path="gender" class="form-control">
+                    <form:option value="FEMALE" label="Female" />
+                    <form:option value="MALE" label="Male" />
+                </form:select>
+            </div>
+        </div>
+        
+		<button type="submit" class="btn btn-default">Sign up</button>
 	</fieldset>
 </form:form>
 

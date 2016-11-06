@@ -25,11 +25,11 @@
 	</c:when>
 	<c:otherwise>
 	
-		<div id="resultsDiv" class="resultsDiv">
+		<div id="resultsDiv" class="resultsDiv row">
 		<h1>My Advertisements</h1>
 		<hr />			
 			<c:forEach var="ad" items="${ownAdvertisements}">
-				<div class="resultAd" data-price="${ad.prize}" 
+				<div class="resultAd col-md-3" data-price="${ad.prize}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
@@ -67,11 +67,11 @@
 	</c:when>
 	<c:otherwise>
 		
-		<div id="resultsDiv" class="resultsDiv">
+		<div id="resultsDiv" class="resultsDiv row">
 		<h1>My Bookmarks</h1>
 		<hr />			
 			<c:forEach var="ad" items="${bookmarkedAdvertisements}">
-				<div class="resultAd" data-price="${ad.prize}" 
+				<div class="resultAd col-md-3" data-price="${ad.prize}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img

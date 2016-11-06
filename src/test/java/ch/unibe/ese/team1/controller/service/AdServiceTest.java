@@ -55,7 +55,6 @@ public class AdServiceTest {
 		//Preparation
 		PlaceAdForm placeAdForm = new PlaceAdForm();
 		placeAdForm.setCity("3018 - Bern");
-		placeAdForm.setPreferences("Test preferences");
 		placeAdForm.setHouseDescription("Test House description");
 		placeAdForm.setPrize(600);
 		placeAdForm.setSquareFootage(50);
@@ -72,7 +71,6 @@ public class AdServiceTest {
 		placeAdForm.setFurnished(false);
 		placeAdForm.setCable(false);
 		placeAdForm.setGarage(true);
-		placeAdForm.setInternet(false);
 		
 		ArrayList<String> filePaths = new ArrayList<>();
 		filePaths.add("/img/test/ad1_1.jpg");
@@ -97,7 +95,6 @@ public class AdServiceTest {
 		assertFalse(ad.getAnimals());
 		assertEquals("Bern", ad.getCity());
 		assertEquals(3018, ad.getZipcode());
-		assertEquals("Test preferences", ad.getPreferences());
 		assertEquals("Test House description", ad.getHouseDescription());
 		assertEquals(600, ad.getPrize());
 		assertEquals(50, ad.getSquareFootage());
@@ -109,7 +106,6 @@ public class AdServiceTest {
 		
 		assertEquals(0, result.compareTo(ad.getMoveInDate()));
 	}
-	
 
 	/**
 	 * Test our newly implemented SearchCriterias
@@ -137,6 +133,79 @@ public class AdServiceTest {
 			ads.iterator().next();
 		}
 		assertEquals(3, count);
+	}
+		
+	@Test
+	public void saveFromWithoutRestorationDatesWillNotEndInException() throws ParseException {
+		//Preparation
+		PlaceAdForm placeAdForm = new PlaceAdForm();
+		placeAdForm.setCity("3018 - Bern");
+		placeAdForm.setHouseDescription("Test House description");
+		placeAdForm.setPrize(600);
+		placeAdForm.setSquareFootage(50);
+		placeAdForm.setTitle("title");
+		placeAdForm.setStreet("Hauptstrasse 13");
+		placeAdForm.setFlat(true);
+
+		placeAdForm.setMoveInDate("27-02-2015");
+		placeAdForm.setMoveOutDate("27-04-2015");
+		
+		ArrayList<String> filePaths = new ArrayList<>();
+		User hans = createUser("hans1@kanns.ch", "password", "Hans", "Kanns",
+				Gender.MALE);
+		hans.setAboutMe("Hansi Hinterseer");
+		userDao.save(hans);
+		
+		adService.saveFrom(placeAdForm, filePaths, hans);
+	}
+	
+	@Test
+	public void saveFromWithoutMoveInDatesWillNotEndInException() throws ParseException {
+		//Preparation
+		PlaceAdForm placeAdForm = new PlaceAdForm();
+		placeAdForm.setCity("3018 - Bern");
+		placeAdForm.setHouseDescription("Test House description");
+		placeAdForm.setPrize(600);
+		placeAdForm.setSquareFootage(50);
+		placeAdForm.setTitle("title");
+		placeAdForm.setStreet("Hauptstrasse 13");
+		placeAdForm.setFlat(true);
+
+		placeAdForm.setLastRenovation("27-02-2015");
+		placeAdForm.setMoveOutDate("27-04-2015");
+		
+		ArrayList<String> filePaths = new ArrayList<>();
+		User hans = createUser("hans2@kanns.ch", "password", "Hans", "Kanns",
+				Gender.MALE);
+		hans.setAboutMe("Hansi Hinterseer");
+		userDao.save(hans);
+		
+		adService.saveFrom(placeAdForm, filePaths, hans);
+	}
+	
+	@Test
+	public void saveFromWithoutMoveOutDatesWillNotEndInException() throws ParseException {
+		//Preparation
+		PlaceAdForm placeAdForm = new PlaceAdForm();
+		placeAdForm.setCity("3018 - Bern");
+		placeAdForm.setHouseDescription("Test House description");
+		placeAdForm.setPrize(600);
+		placeAdForm.setSquareFootage(50);
+		placeAdForm.setTitle("title");
+		placeAdForm.setStreet("Hauptstrasse 13");
+		placeAdForm.setFlat(true);
+
+		placeAdForm.setLastRenovation("27-02-2015");
+		placeAdForm.setMoveInDate("27-04-2015");
+		
+		ArrayList<String> filePaths = new ArrayList<>();
+		User hans = createUser("hans3@kanns.ch", "password", "Hans", "Kanns",
+				Gender.MALE);
+		hans.setAboutMe("Hansi Hinterseer");
+		userDao.save(hans);
+		
+		adService.saveFrom(placeAdForm, filePaths, hans);
+
 	}
 	
 	private User createUser(String email, String password, String firstName,

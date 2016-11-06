@@ -6,7 +6,7 @@
 
 <c:import url="template/header.jsp" />
 
-<pre><a href="/">Home</a>   &gt;   Alerts</pre>
+<pre><a href="/">Home</a> &gt; Alerts</pre>
 
 <script>
 function deleteAlert(button) {
@@ -85,7 +85,7 @@ function typeOfAlert(alert) {
 
 <h2>Create new alert</h2><br />
 <form:form method="post" modelAttribute="alertForm" action="/profile/alerts"
-	id="alertForm" autocomplete="off">
+	id="alertForm" autocomplete="off" class="form">
 
 	<fieldset>
 		<form:checkbox name="house" id="house" path="house" /><label>House</label>
@@ -97,18 +97,19 @@ function typeOfAlert(alert) {
 		
 		<label for="city">City / zip code:</label>
 		<form:input type="text" name="city" id="city" path="city"
-			placeholder="e.g. Bern" tabindex="3" />
+			placeholder="e.g. Bern" tabindex="3" class="form-control" />
 		<form:errors path="city" cssClass="validationErrorText" />
 		
 		<label for="radius">Within radius of (max.):</label>
 		<form:input id="radiusInput" type="number" path="radius"
-			placeholder="e.g. 5" step="5" />
+			placeholder="e.g. 5" step="5" class="form-control" />
 		km
 		<form:errors path="radius" cssClass="validationErrorText" />
 		
 		<br /> <label for="price">Price (max.):</label>
 		<form:input id="priceInput" type="number" path="price"
-			placeholder="e.g. 5" step="50" />CHF
+			placeholder="e.g. 5" step="50" class="form-control" />
+		CHF
 		<form:errors path="price" cssClass="validationErrorText" />
 		
 		<br /> <label for="numberOfRooms">Number of Rooms (min.):</label>
@@ -123,8 +124,8 @@ function typeOfAlert(alert) {
 		<form:errors path="price" cssClass="validationErrorText" />
 		<br />
 
-		<button type="submit" tabindex="7" onClick="validateType(this.form)">Subscribe</button>
-		<button type="reset" tabindex="8">Cancel</button>
+		<button type="submit" class="btn btn-default" tabindex="7" onClick="validateType(this.form)">Subscribe</button>
+		<button type="reset" class="btn btn-default" tabindex="8">Cancel</button>
 	</fieldset>
 
 </form:form> <br />
@@ -136,7 +137,7 @@ function typeOfAlert(alert) {
 		<p>You currently aren't subscribed to any alerts.
 	</c:when>
 	<c:otherwise>
-		<table class="styledTable" id="alerts">
+		<table class="styledTable table" id="alerts">
 			<thead>
 			<tr>
 				<th>Type</th>
@@ -164,9 +165,7 @@ function typeOfAlert(alert) {
 				<td>${alert.city}</td>
 				<td>${alert.radius} km</td>
 				<td>${alert.price} Chf</td>
-				<td>${alert.numberOfRooms}</td>
-				<td>${alert.squareFootage} m²</td>
-				<td><button class="deleteButton" data-id="${alert.id}" onClick="deleteAlert(this)">Delete</button></td>
+				<td><button class="deleteButton btn btn-default" data-id="${alert.id}" onClick="deleteAlert(this)">Delete</button></td>
 			</tr>
 		</c:forEach>
 		</table>

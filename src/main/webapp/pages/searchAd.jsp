@@ -6,7 +6,7 @@
 
 <c:import url="template/header.jsp" />
 
-<pre><a href="/">Home</a>   &gt;   Search</pre>
+<pre><a href="/">Home</a> &gt; Search</pre>
 
 <script>
 	$(document).ready(function() {
@@ -109,18 +109,18 @@ function validateType(form)
 		
 		<label for="city">City / zip code:</label>
 		<form:input type="text" name="city" id="city" path="city"
-			placeholder="e.g. Bern" tabindex="3" />
+			placeholder="e.g. Bern" tabindex="3"  class="form-control" />
 		<form:errors path="city" cssClass="validationErrorText" />
 		
 
 		<label for="radius">Within radius of (max.):</label>
 		<form:input id="radiusInput" type="number" path="radius"
-			placeholder="e.g. 5" step="5" />
+			placeholder="e.g. 5" step="5"  class="form-control" />
 		km
 		<form:errors path="radius" cssClass="validationErrorText" />
 		<br /> <label for="prize">Price (max.):</label>
 		<form:input id="prizeInput" type="number" path="prize"
-			placeholder="e.g. 5" step="50" />
+			placeholder="e.g. 5" step="50" class="form-control" />
 		CHF
 		<form:errors path="prize" cssClass="validationErrorText" />
 		
@@ -128,8 +128,8 @@ function validateType(form)
 		<form:checkbox id="field-includeRunningCosts" path="includeRunningCosts" value="1" /><label>Running Costs included?</label>
 		<br />
 
-		<button type="submit" tabindex="7" onClick="validateType(this.form)">Search</button>
-		<button type="reset" tabindex="8">Cancel</button>
+		<button type="submit" class="btn btn-default" tabindex="7" onClick="validateType(this.form)">Search</button>
+		<button type="reset" class="btn btn-default" tabindex="8">Cancel</button>
 	</fieldset>
 
 </form:form>

@@ -100,7 +100,6 @@ public class EditAdService {
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
 
 		ad.setHouseDescription(placeAdForm.getHouseDescription());
-		ad.setPreferences(placeAdForm.getPreferences());
 
 		// ad description values
 		ad.setSmokers(placeAdForm.isSmokers());
@@ -111,7 +110,6 @@ public class EditAdService {
 		ad.setFurnished(placeAdForm.isFurnished());
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
-		ad.setInternet(placeAdForm.getInternet());
 		
 		ad.setFloor(placeAdForm.getFloor());
 		ad.setNumberOfRooms(placeAdForm.getNumberOfRooms());
@@ -198,7 +196,6 @@ public class EditAdService {
 		PlaceAdForm adForm = new PlaceAdForm();
 
 		adForm.setHouseDescription(ad.getHouseDescription());
-		adForm.setPreferences(ad.getPreferences());
 		
 
 		return adForm;

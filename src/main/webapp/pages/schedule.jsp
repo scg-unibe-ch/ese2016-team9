@@ -7,7 +7,7 @@
 
 <c:import url="template/header.jsp" />
 <pre>
-<a href="/">Home</a>   &gt;   Schedule</pre>
+<a href="/">Home</a> &gt; Schedule</pre>
 
 <h2>Your presentations</h2>
 
@@ -17,7 +17,7 @@
 		<p>You currently haven't scheduled any presentations.
 	</c:when>
 	<c:otherwise>
-		<table class="styledTable" id="visits">
+		<table class="table" id="visits">
 			<thead>
 			<tr>
 				<th>Address</th>
@@ -42,8 +42,8 @@
 						type="date" pattern="hh.mm" />
 					${formattedStartTime} - ${formattedEndTime}
 				</td>
-				<td><a href="/ad?id=${presentation.ad.id}"><button>Visit</button></a></td>
-				<td><a href="/profile/visitors?visit=${presentation.id}"><button>See List</button></a></td>
+				<td><a href="/ad?id=${presentation.ad.id}"><button class="btn btn-default">Visit</button></a></td>
+				<td><a href="/profile/visitors?visit=${presentation.id}"><button class="btn btn-default">See List</button></a></td>
 			</tr>
 		</c:forEach>
 		</table>
@@ -59,7 +59,7 @@
 		<p>You currently haven't scheduled any visits.
 	</c:when>
 	<c:otherwise>
-		<table class="styledTable" id="visits">
+		<table class="table" id="visits">
 			<thead>
 			<tr>
 				<th>Address</th>
@@ -83,7 +83,7 @@
 						type="date" pattern="hh.mm" />
 					${formattedStartTime} - ${formattedEndTime}
 				</td>
-				<td><a href="/ad?id=${visit.ad.id}"><button>Visit</button></a></td>
+				<td><a href="/ad?id=${visit.ad.id}"><button class="btn btn-default">Visit</button></a></td>
 			</tr>
 		</c:forEach>
 		</table>

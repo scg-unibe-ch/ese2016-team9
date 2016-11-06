@@ -85,7 +85,7 @@ public class AdService {
 		// java.util.Calendar uses a month range of 0-11 instead of the
 		// XMLGregorianCalendar which uses 1-12
 		try {
-			if (placeAdForm.getMoveInDate().length() >= 1) {
+			if (placeAdForm.getMoveInDate() != null && placeAdForm.getMoveInDate().length() >= 1) {
 				int dayMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
 						.substring(0, 2));
 				int monthMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
@@ -114,7 +114,6 @@ public class AdService {
 		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		
 		ad.setHouseDescription(placeAdForm.getHouseDescription());
-		ad.setPreferences(placeAdForm.getPreferences());
 
 		// ad description values
 		ad.setSmokers(placeAdForm.isSmokers());
@@ -125,7 +124,6 @@ public class AdService {
 		ad.setFurnished(placeAdForm.isFurnished());
 		ad.setCable(placeAdForm.getCable());
 		ad.setGarage(placeAdForm.getGarage());
-		ad.setInternet(placeAdForm.getInternet());
 		
 		// distance values
 		ad.setFloor(placeAdForm.getFloor());
@@ -423,16 +421,6 @@ public class AdService {
 				}
 			}
 
-			// internet
-			if (searchForm.getInternet()) {
-				Iterator<Ad> iterator = locatedResults.iterator();
-				while (iterator.hasNext()) {
-					Ad ad = iterator.next();
-					if (!ad.getInternet())
-						iterator.remove();
-				}
-			}
-			
 			// groundFloor
 			if (searchForm.getGroundFloor()) {
 				Iterator<Ad> iterator = locatedResults.iterator();

@@ -60,10 +60,6 @@ public class AdTestDataSaver {
 				+ "transportation. Monthly rent is 500 CHF including charges. Internet + TV + landline"
 				+ "charges are separate. If you are interested, feel free to drop me a message"
 				+ "to have an appointment for a visit or can write me for any further information";
-		String preferences1 = "Uncomplicated, open minded and easy going person (m / w),"
-				+ "non-smoker, can speak English, which of course fits in the WG, and who likes dogs."
-				+ "Cleanliness is must. Apart from personal life, sometimes glass of wine,"
-				+ "eat and cook together and go out in the evenings.";
 
 		Ad adBern = new Ad();
 		adBern.setZipcode(3011);
@@ -75,7 +71,6 @@ public class AdTestDataSaver {
 		adBern.setSmokers(false);
 		adBern.setAnimals(true);
 		adBern.setHouseDescription(houseDescription1);
-		adBern.setPreferences(preferences1);
 		adBern.setUser(bernerBaer);
 		adBern.setTitle("Dude wanted in Bern");
 		adBern.setStreet("Kramgasse 22");
@@ -86,7 +81,6 @@ public class AdTestDataSaver {
 		adBern.setFurnished(true);
 		adBern.setCable(true);
 		adBern.setGarage(true);
-		adBern.setInternet(true);
 		List<AdPicture> pictures = new ArrayList<>();
 		pictures.add(createPicture(adBern, "/img/test/ad1_1.jpg"));
 		pictures.add(createPicture(adBern, "/img/test/ad1_2.jpg"));
@@ -104,9 +98,6 @@ public class AdTestDataSaver {
 				+ "have a privat space this could totally be good place for you."
 				+ "Be aware it is only till the end of March. The price is from"
 				+ "550- 700 CHF, But there is always house to talk about it.";
-		String housePreferences2 = "I would like to have an easy going person who"
-				+ "is trustworthy and can take care of the flat. No animals please."
-				+ "Non smoker preferred.";
 		
 		Ad adBern2 = new Ad();
 		adBern2.setZipcode(3012);
@@ -118,7 +109,6 @@ public class AdTestDataSaver {
 		adBern2.setSmokers(false);
 		adBern2.setAnimals(true);
 		adBern2.setHouseDescription(flatDescription2);
-		adBern2.setPreferences(housePreferences2);
 		adBern2.setUser(ese);
 		adBern2.setTitle("Cheap flat in Bern!");
 		adBern2.setStreet("Längassstr. 40");
@@ -129,7 +119,6 @@ public class AdTestDataSaver {
 		adBern2.setFurnished(false);
 		adBern2.setCable(false);
 		adBern2.setGarage(false);
-		adBern2.setInternet(true);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adBern2, "/img/test/ad2_1.jpg"));
 		pictures.add(createPicture(adBern2, "/img/test/ad2_2.jpg"));
@@ -147,7 +136,6 @@ public class AdTestDataSaver {
 				+ "the house. The price for the house and all included is 480 CHF /month. "
 				+ " (29, Graphic designer) and Linda (31, curator) are looking for a"
 				+ "new female flatmate from December on.";
-		String housePreferences3 = "smoking female flatmate";
 		
 		Ad adBasel = new Ad();
 		adBasel.setZipcode(4051);
@@ -159,7 +147,6 @@ public class AdTestDataSaver {
 		adBasel.setSmokers(true);
 		adBasel.setAnimals(false);
 		adBasel.setHouseDescription(flatDescription3);
-		adBasel.setPreferences(housePreferences3);
 		adBasel.setUser(bernerBaer);
 		adBasel.setTitle("Nice, bright flat in the center of Basel");
 		adBasel.setStreet("Bruderholzstrasse 32");
@@ -170,7 +157,6 @@ public class AdTestDataSaver {
 		adBasel.setFurnished(false);
 		adBasel.setCable(false);
 		adBasel.setGarage(false);
-		adBasel.setInternet(false);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adBasel, "/img/test/ad3_1.jpg"));
 		pictures.add(createPicture(adBasel, "/img/test/ad3_2.jpg"));
@@ -187,7 +173,6 @@ public class AdTestDataSaver {
 				+ "a storage in the basement, a balcony, a laundry house in the basement."
 				+ "The bedhouse is big and bright and has a nice parquet floor."
 				+ "Possibility to keep some furnitures like the bed.";
-		String housePreferences4 = "an easy going flatmate man or woman between 20 and 30";
 		
 		Ad adOlten = new Ad();
 		adOlten.setZipcode(4600);
@@ -200,7 +185,6 @@ public class AdTestDataSaver {
 		adOlten.setSmokers(true);
 		adOlten.setAnimals(false);
 		adOlten.setHouseDescription(flatDescription4);
-		adOlten.setPreferences(housePreferences4);
 		adOlten.setUser(ese);
 		adOlten.setTitle("House wanted in Olten City");
 		adOlten.setStreet("Zehnderweg 5");
@@ -211,7 +195,6 @@ public class AdTestDataSaver {
 		adOlten.setFurnished(true);
 		adOlten.setCable(true);
 		adOlten.setGarage(false);
-		adOlten.setInternet(false);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adOlten, "/img/test/ad4_1.png"));
 		pictures.add(createPicture(adOlten, "/img/test/ad4_2.png"));
@@ -225,7 +208,6 @@ public class AdTestDataSaver {
 				+ "four et hotte), une pièce à vivre donnant sur un balcon,"
 				+ "une salle de bains avec wc. Cave, buanderie et site satellite"
 				+ "à disposition.";
-		String housePreferences5 = "tout le monde est bienvenu";
 		
 		Ad adNeuchâtel = new Ad();
 		adNeuchâtel.setZipcode(2000);
@@ -237,7 +219,6 @@ public class AdTestDataSaver {
 		adNeuchâtel.setSmokers(true);
 		adNeuchâtel.setAnimals(false);
 		adNeuchâtel.setHouseDescription(flatDescription5);
-		adNeuchâtel.setPreferences(housePreferences5);
 		adNeuchâtel.setUser(bernerBaer);
 		adNeuchâtel.setTitle("Flat extrèmement bon marché à Neuchâtel");
 		adNeuchâtel.setStreet("Rue de l'Hôpital 11");
@@ -248,7 +229,6 @@ public class AdTestDataSaver {
 		adNeuchâtel.setFurnished(true);
 		adNeuchâtel.setCable(false);
 		adNeuchâtel.setGarage(false);
-		adNeuchâtel.setInternet(true);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adNeuchâtel, "/img/test/ad5_1.jpg"));
 		pictures.add(createPicture(adNeuchâtel, "/img/test/ad5_2.jpg"));
@@ -259,7 +239,6 @@ public class AdTestDataSaver {
 		String flatDescription6 = "A place just for yourself in a very nice part of Biel."
 				+ "A flat for 1-2 persons with a big balcony, bathhouse, kitchen and furniture already there."
 				+ "It's quiet and nice, very close to the old city of Biel.";
-		String housePreferences6 = "A nice and easy going person. Minimum rent is two months";
 		
 		Ad adBiel = new Ad();
 		adBiel.setZipcode(2503);
@@ -271,7 +250,6 @@ public class AdTestDataSaver {
 		adBiel.setSmokers(true);
 		adBiel.setAnimals(false);
 		adBiel.setHouseDescription(flatDescription6);
-		adBiel.setPreferences(housePreferences6);
 		adBiel.setUser(ese);
 		adBiel.setTitle("Direct by the lake. Nice flat");
 		adBiel.setStreet("Oberer Quai 12");
@@ -282,7 +260,6 @@ public class AdTestDataSaver {
 		adBiel.setFurnished(false);
 		adBiel.setCable(false);
 		adBiel.setGarage(false);
-		adBiel.setInternet(false);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adBiel, "/img/test/ad6_1.png"));
 		pictures.add(createPicture(adBiel, "/img/test/ad6_2.png"));
@@ -297,10 +274,6 @@ public class AdTestDataSaver {
 				+ "transportation. Monthly rent is 500 CHF including charges. Internet + TV + landline"
 				+ "charges are separate. If you are interested, feel free to drop me a message"
 				+ "to have an appointment for a visit or can write me for any further information";
-		String preferences7 = "Uncomplicated, open minded and easy going person (m / w),"
-				+ "non-smoker, can speak English, which of course fits in the WG, and who likes dogs."
-				+ "Cleanliness is must. Apart from personal life, sometimes glass of wine,"
-				+ "eat and cook together and go out in the evenings.";
 
 		Ad adZurich = new Ad();
 		adZurich.setZipcode(8000);
@@ -312,7 +285,6 @@ public class AdTestDataSaver {
 		adZurich.setSmokers(false);
 		adZurich.setAnimals(false);
 		adZurich.setHouseDescription(houseDescription7);
-		adZurich.setPreferences(preferences7);
 		adZurich.setUser(oprah);
 		adZurich.setTitle("Dude wanted in Zürich");
 		adZurich.setStreet("Hauptstrasse 61");
@@ -323,7 +295,6 @@ public class AdTestDataSaver {
 		adZurich.setFurnished(true);
 		adZurich.setCable(true);
 		adZurich.setGarage(true);
-		adZurich.setInternet(true);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adZurich, "/img/test/ad1_3.jpg"));
 		pictures.add(createPicture(adZurich, "/img/test/ad1_2.jpg"));
@@ -342,9 +313,6 @@ public class AdTestDataSaver {
 				+ "have a privat space this could totally be good place for you."
 				+ "Be aware it is only till the end of March. The price is from"
 				+ "550- 700 CHF, But there is always house to talk about it.";
-		String housePreferences8 = "I would like to have an easy going person who"
-				+ "is trustworthy and can take care of the flat. No animals please."
-				+ "Non smoker preferred.";
 		
 		Ad adLuzern = new Ad();
 		adLuzern.setZipcode(6000);
@@ -356,7 +324,6 @@ public class AdTestDataSaver {
 		adLuzern.setSmokers(false);
 		adLuzern.setAnimals(false);
 		adLuzern.setHouseDescription(flatDescription8);
-		adLuzern.setPreferences(housePreferences8);
 		adLuzern.setUser(oprah);
 		adLuzern.setTitle("Beatiful flat in lucerne");
 		adLuzern.setStreet("Schwanenplatz 61");
@@ -367,7 +334,6 @@ public class AdTestDataSaver {
 		adLuzern.setFurnished(false);
 		adLuzern.setCable(false);
 		adLuzern.setGarage(false);
-		adLuzern.setInternet(true);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adLuzern, "/img/test/ad2_3.jpg"));
 		pictures.add(createPicture(adLuzern, "/img/test/ad2_2.jpg"));
@@ -385,7 +351,6 @@ public class AdTestDataSaver {
 				+ "the house. The price for the house and all included is 480 CHF /month. "
 				+ " (29, Graphic designer) and Linda (31, curator) are looking for a"
 				+ "new female flatmate from December on.";
-		String housePreferences9 = "smoking female flatmate";
 		
 		Ad adAarau = new Ad();
 		adAarau.setZipcode(5000);
@@ -397,7 +362,6 @@ public class AdTestDataSaver {
 		adAarau.setSmokers(true);
 		adAarau.setAnimals(false);
 		adAarau.setHouseDescription(flatDescription9);
-		adAarau.setPreferences(housePreferences9);
 		adAarau.setUser(oprah);
 		adAarau.setTitle("Beautiful flat in Aarau");
 		adAarau.setStreet("Bruderholzstrasse 32");
@@ -408,7 +372,6 @@ public class AdTestDataSaver {
 		adAarau.setFurnished(true);
 		adAarau.setCable(false);
 		adAarau.setGarage(false);
-		adAarau.setInternet(false);
 		adAarau.setRunningCosts(300);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adAarau, "/img/test/ad3_3.jpg"));
@@ -429,7 +392,6 @@ public class AdTestDataSaver {
 				+ "a storage in the basement, a balcony, a laundry house in the basement."
 				+ "The bedhouse is big and bright and has a nice parquet floor."
 				+ "Possibility to keep some furnitures like the bed.";
-		String housePreferences10 = "an easy going flatmate man or woman between 20 and 30";
 		
 		Ad adDavos = new Ad();
 		adDavos.setZipcode(7260);
@@ -442,7 +404,6 @@ public class AdTestDataSaver {
 		adDavos.setSmokers(true);
 		adDavos.setAnimals(false);
 		adDavos.setHouseDescription(flatDescription10);
-		adDavos.setPreferences(housePreferences10);
 		adDavos.setUser(oprah);
 		adDavos.setTitle("Free house in Davos City");
 		adDavos.setStreet("Kathrinerweg 5");
@@ -453,7 +414,6 @@ public class AdTestDataSaver {
 		adDavos.setFurnished(true);
 		adDavos.setCable(true);
 		adDavos.setGarage(false);
-		adDavos.setInternet(false);
 		adDavos.setRunningCosts(500);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adDavos, "/img/test/ad4_3.png"));
@@ -470,7 +430,6 @@ public class AdTestDataSaver {
 				+ "four et hotte), une pièce à vivre donnant sur un balcon,"
 				+ "une salle de bains avec wc. Cave, buanderie et site satellite"
 				+ "à disposition.";
-		String housePreferences11 = "tout le monde est bienvenu";
 		
 		Ad adLausanne = new Ad();
 		adLausanne.setZipcode(1000);
@@ -483,7 +442,6 @@ public class AdTestDataSaver {
 		adLausanne.setSmokers(true);
 		adLausanne.setAnimals(false);
 		adLausanne.setHouseDescription(flatDescription11);
-		adLausanne.setPreferences(housePreferences11);
 		adLausanne.setUser(oprah);
 		adLausanne.setTitle("Flat extrèmement bon marché à Lausanne");
 		adLausanne.setStreet("Rue de l'Eglise 26");
@@ -494,7 +452,6 @@ public class AdTestDataSaver {
 		adLausanne.setFurnished(true);
 		adLausanne.setCable(false);
 		adLausanne.setGarage(false);
-		adLausanne.setInternet(false);
 		adLausanne.setRunningCosts(200);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adLausanne, "/img/test/ad5_3.jpg"));
@@ -509,7 +466,6 @@ public class AdTestDataSaver {
 		String flatDescription12 = "A place just for yourself in a very nice part of Biel."
 				+ "A flat for 1-2 persons with a big balcony, bathhouse, kitchen and furniture already there."
 				+ "It's quiet and nice, very close to the old city of Biel.";
-		String housePreferences12 = "A nice and easy going person. Minimum rent is two months";
 		
 		Ad adLocarno = new Ad();
 		adLocarno.setZipcode(6600);
@@ -522,7 +478,6 @@ public class AdTestDataSaver {
 		adLocarno.setSmokers(true);
 		adLocarno.setAnimals(false);
 		adLocarno.setHouseDescription(flatDescription12);
-		adLocarno.setPreferences(housePreferences12);
 		adLocarno.setUser(jane);
 		adLocarno.setTitle("Malibu-style Beachhouse");
 		adLocarno.setStreet("Kirchweg 12");
@@ -533,7 +488,6 @@ public class AdTestDataSaver {
 		adLocarno.setFurnished(false);
 		adLocarno.setCable(false);
 		adLocarno.setGarage(false);
-		adLocarno.setInternet(false);
 		adLausanne.setRunningCosts(300);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adLocarno, "/img/test/ad6_3.png"));
@@ -556,7 +510,6 @@ public class AdTestDataSaver {
 		adTestRent.setSmokers(false);
 		adTestRent.setAnimals(false);
 		adTestRent.setHouseDescription(flatDescription8);
-		adTestRent.setPreferences(housePreferences8);
 		adTestRent.setUser(oprah);
 		adTestRent.setTitle("Sweet flat for rent");
 		adTestRent.setStreet("Schwanenplace 61A");
@@ -567,7 +520,6 @@ public class AdTestDataSaver {
 		adTestRent.setFurnished(false);
 		adTestRent.setCable(false);
 		adTestRent.setGarage(false);
-		adTestRent.setInternet(true);
 		adTestRent.setForSale(false);
 		adLausanne.setRunningCosts(100);
 		adTestRent.setDistanceToNearestPublicTransport(500);
@@ -587,7 +539,6 @@ public class AdTestDataSaver {
 		adTestSale.setSmokers(false);
 		adTestSale.setAnimals(false);
 		adTestSale.setHouseDescription(flatDescription8);
-		adTestSale.setPreferences(housePreferences8);
 		adTestSale.setUser(oprah);
 		adTestSale.setTitle("Sweet Flat for Sale");
 		adTestSale.setStreet("Schwanenplace 61B");
@@ -598,7 +549,6 @@ public class AdTestDataSaver {
 		adTestSale.setFurnished(false);
 		adTestSale.setCable(false);
 		adTestSale.setGarage(false);
-		adTestSale.setInternet(true);
 		adTestSale.setForSale(true);
 		adLausanne.setRunningCosts(400);
 		adTestSale.setDistanceToNearestPublicTransport(1000);
