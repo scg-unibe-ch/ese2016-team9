@@ -34,9 +34,6 @@
 		$("#field-moveInDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
-		$("#field-moveOutDate").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
 		
 		$("#field-visitDay").datepicker({
 			dateFormat : 'dd-mm-yy'
@@ -121,14 +118,11 @@
 			</tr>
 
 			<tr style="display:${isRentingAd ? "" : "none"}">
-				<td><label for="moveInDate">Move-in date</label></td>
-				<td><label for="moveOutDate">Move-out date (optional)</label></td>
+				<td><label for="moveInDate">Available From</label></td>
 			</tr>
 			<tr style="display:${isRentingAd ? "" : "none"}">
 				<td><form:input type="text" id="field-moveInDate"
 						path="moveInDate" /></td>
-				<td><form:input type="text" id="field-moveOutDate"
-						path="moveOutDate" /></td>
 			</tr>
 
 			<tr>

@@ -48,7 +48,7 @@
 						<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
 							type="date" pattern="dd.MM.yyyy" />
 
-						<p>Move-in date: ${formattedMoveInDate }</p>
+						<p>Available From: ${formattedMoveInDate }</p>
 					</div>
 				</div>
 			</c:forEach>

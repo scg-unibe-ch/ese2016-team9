@@ -24,8 +24,6 @@ public class PlaceAdForm {
 	
 	private String moveInDate;
 	
-	private String moveOutDate;
-
 	@Min(value = 1, message = "Has to be equal to 1 or more")
 	private int prize;
 
@@ -241,14 +239,6 @@ public class PlaceAdForm {
 
 	public void setMoveInDate(String moveInDate) {
 		this.moveInDate = moveInDate;
-	}
-
-	public String getMoveOutDate() {
-		return moveOutDate;
-	}
-
-	public void setMoveOutDate(String moveOutDate) {
-		this.moveOutDate = moveOutDate;
 	}
 
 	public String getTitle() {

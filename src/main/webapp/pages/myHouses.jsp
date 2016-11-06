@@ -49,7 +49,7 @@
 					<div class="resultRight">
 						<h2>CHF ${ad.prize }</h2>
 						<br /> <br />
-						<p>Move-in date: ${ad.moveInDate }</p>
+						<p>Available From: ${ad.moveInDate }</p>
 					</div>
 				</div>
 			</c:forEach>
@@ -91,7 +91,7 @@
 					<div class="resultRight">
 						<h2>CHF ${ad.prize }</h2>
 						<br /> <br />
-						<p>Move-in date: ${ad.moveInDate }</p>
+						<p>Available From: ${ad.moveInDate }</p>
 					</div>
 				</div>
 			</c:forEach>

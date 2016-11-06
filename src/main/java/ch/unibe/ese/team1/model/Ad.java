@@ -47,10 +47,6 @@ public class Ad {
 	@Temporal(TemporalType.DATE)
 	private Date moveInDate;
 
-	@Temporal(TemporalType.DATE)
-	@Column(nullable = true)
-	private Date moveOutDate;
-
 	@Column(nullable = false)
 	private int prize;
 
@@ -252,10 +248,6 @@ public class Ad {
 		this.moveInDate = moveInDate;
 	}
 
-	public void setMoveOutDate(Date moveOutDate) {
-		this.moveOutDate = moveOutDate;
-	}
-
 	public int getPrize() {
 		return prize;
 	}
@@ -298,10 +290,6 @@ public class Ad {
 		this.pictures = pictures;
 	}
 
-	public Date getMoveOutDate() {
-		return moveOutDate;
-	}
-
 	public User getUser() {
 		return user;
 	}
@@ -332,13 +320,6 @@ public class Ad {
 
 	public void setCity(String city) {
 		this.city = city;
-	}
-
-	public Date getDate(boolean date) {
-		if (date)
-			return moveInDate;
-		else
-			return moveOutDate;
 	}
 
 	public List<Visit> getVisits() {

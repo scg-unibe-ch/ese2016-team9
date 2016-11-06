@@ -31,9 +31,6 @@
 		$("#field-moveInDate").datepicker({
 			dateFormat : 'dd-mm-yy'
 		});
-		$("#field-moveOutDate").datepicker({
-			dateFormat : 'dd-mm-yy'
-		});
 		
 		$("#field-visitDay").datepicker({
 			dateFormat : 'dd-mm-yy'
@@ -83,8 +80,6 @@
 
 <!-- format the dates -->
 <fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
-	type="date" pattern="dd-MM-yyyy" />
-<fmt:formatDate value="${ad.moveOutDate}" var="formattedMoveOutDate"
 	type="date" pattern="dd-MM-yyyy" />
 <fmt:formatDate value="${ad.lastRenovation}" var="formattedRenovationDate"
 	type="date" pattern="dd-MM-yyyy" />
@@ -141,17 +136,12 @@
 			</tr>
 
 			<tr>
-				<td><label for="moveInDate">Move-in date</label></td>
-				<td><label for="moveOutDate">Move-out date (optional)</label></td>
+				<td><label for="moveInDate">Available From</label></td>
 			</tr>
 			<tr>
 				<td>
 					<form:input type="text" id="field-moveInDate"
 						path="moveInDate" value="${formattedMoveInDate }"/>
-				</td>
-				<td>
-					<form:input type="text" id="field-moveOutDate"
-						path="moveOutDate" value="${formattedMoveOutDate }"/>
 				</td>
 			</tr>
 
