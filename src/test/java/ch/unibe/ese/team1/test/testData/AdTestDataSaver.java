@@ -500,10 +500,10 @@ public class AdTestDataSaver {
 		adDao.save(adLocarno);
 
 		Ad adTestRent = new Ad();
-		adTestRent.setZipcode(6000);
+		adTestRent.setZipcode(5000);
 		adTestRent.setMoveInDate(moveInDate8);
 		adTestRent.setCreationDate(creationDate2);
-		adTestRent.setNumberOfRooms(2);
+		adTestRent.setNumberOfRooms(4);
 		adTestRent.setPrize(700);
 		adTestRent.setSquareFootage(60);
 		adTestRent.setFlat(true);
@@ -513,7 +513,7 @@ public class AdTestDataSaver {
 		adTestRent.setUser(oprah);
 		adTestRent.setTitle("Sweet flat for rent");
 		adTestRent.setStreet("Schwanenplace 61A");
-		adTestRent.setCity("St. Gallen");
+		adTestRent.setCity("Aarau");
 		adTestRent.setGarden(false);
 		adTestRent.setBalcony(false);
 		adTestRent.setCellar(false);
@@ -529,10 +529,10 @@ public class AdTestDataSaver {
 		
 	
 		Ad adTestSale = new Ad();
-		adTestSale.setZipcode(6000);
+		adTestSale.setZipcode(5000);
 		adTestSale.setMoveInDate(moveInDate8);
 		adTestSale.setCreationDate(creationDate2);
-		adTestSale.setPrize(700);
+		adTestSale.setPrize(1000);
 		adTestSale.setSquareFootage(60);
 		adTestSale.setNumberOfRooms(3);
 		adTestSale.setFlat(true);
@@ -542,7 +542,7 @@ public class AdTestDataSaver {
 		adTestSale.setUser(oprah);
 		adTestSale.setTitle("Sweet Flat for Sale");
 		adTestSale.setStreet("Schwanenplace 61B");
-		adTestSale.setCity("Gümligen");
+		adTestSale.setCity("Aarau");
 		adTestSale.setGarden(false);
 		adTestSale.setBalcony(false);
 		adTestSale.setCellar(false);
@@ -550,10 +550,10 @@ public class AdTestDataSaver {
 		adTestSale.setCable(false);
 		adTestSale.setGarage(false);
 		adTestSale.setForSale(true);
-		adLausanne.setRunningCosts(400);
-		adTestSale.setDistanceToNearestPublicTransport(1000);
-		adTestSale.setDistanceToNearestSchool(1000);
-		adTestSale.setDistanceToNearestSuperMarket(2000);
+		adLausanne.setRunningCosts(300);
+		adTestSale.setDistanceToNearestPublicTransport(1);
+		adTestSale.setDistanceToNearestSchool(1);
+		adTestSale.setDistanceToNearestSuperMarket(2);
 		adDao.save(adTestSale);
 		
 		

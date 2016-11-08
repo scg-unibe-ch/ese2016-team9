@@ -116,23 +116,24 @@ public class AdServiceTest {
 		//Preparation
 		SearchForm searchForm = new SearchForm();
 		
-		searchForm.setPrize(1000);
-		searchForm.setDistanceToNearestPublicTransport(300);
-		searchForm.setDistanceToNearestSchool(300);
-		searchForm.setDistanceToNearestSuperMarket(300);
-		searchForm.setIncludeRunningCosts(true);
+		searchForm.setRadius(1000);
+		searchForm.setPrize(1500);
+		searchForm.setFlat(true);
+		searchForm.setDistanceToNearestPublicTransport(5000);
+		searchForm.setDistanceToNearestSchool(5000);
+		searchForm.setDistanceToNearestSuperMarket(5000);
+		searchForm.setIncludeRunningCosts(false);
 		searchForm.setForSale(true);
-		searchForm.setNumberOfRooms(3);
-		searchForm.setCity("1111 - Aarau");
+		searchForm.setNumberOfRooms(1);
+		searchForm.setCity("5000 - Aarau");
 		
 		Iterable<Ad> ads = adService.queryResults(searchForm);
 		
 		int count = 0;
-		while (ads.iterator().hasNext()) {
+		for (Ad ad : ads) {
 			count++;
-			ads.iterator().next();
 		}
-		assertEquals(3, count);
+		assertEquals(1, count);
 	}
 		
 	@Test
@@ -148,34 +149,9 @@ public class AdServiceTest {
 		placeAdForm.setFlat(true);
 
 		placeAdForm.setMoveInDate("27-02-2015");
-		placeAdForm.setMoveOutDate("27-04-2015");
 		
 		ArrayList<String> filePaths = new ArrayList<>();
 		User hans = createUser("hans1@kanns.ch", "password", "Hans", "Kanns",
-				Gender.MALE);
-		hans.setAboutMe("Hansi Hinterseer");
-		userDao.save(hans);
-		
-		adService.saveFrom(placeAdForm, filePaths, hans);
-	}
-	
-	@Test
-	public void saveFromWithoutMoveInDatesWillNotEndInException() throws ParseException {
-		//Preparation
-		PlaceAdForm placeAdForm = new PlaceAdForm();
-		placeAdForm.setCity("3018 - Bern");
-		placeAdForm.setHouseDescription("Test House description");
-		placeAdForm.setPrize(600);
-		placeAdForm.setSquareFootage(50);
-		placeAdForm.setTitle("title");
-		placeAdForm.setStreet("Hauptstrasse 13");
-		placeAdForm.setFlat(true);
-
-		placeAdForm.setLastRenovation("27-02-2015");
-		placeAdForm.setMoveOutDate("27-04-2015");
-		
-		ArrayList<String> filePaths = new ArrayList<>();
-		User hans = createUser("hans2@kanns.ch", "password", "Hans", "Kanns",
 				Gender.MALE);
 		hans.setAboutMe("Hansi Hinterseer");
 		userDao.save(hans);
