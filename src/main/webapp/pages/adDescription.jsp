@@ -199,21 +199,32 @@
             </div>
         
             <div class="col-md-6">
-
-                <div id="image-slider">
-                    <div id="images">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
                         <c:forEach items="${shownAd.pictures}" var="picture" varStatus = "status">
-                            <img class="adImage" src="${picture.filePath}" />
+                            <li data-target="#carousel-example-generic" data-slide-to="${status.index}"${status.first ? ' class="active"' : ''}></li>
+                        </c:forEach>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <c:forEach items="${shownAd.pictures}" var="picture" varStatus = "status">
+                            <div class="item${status.first ? ' active' : ''}">
+                                <img src="${picture.filePath}" style="margin: auto;" />
+                            </div>
                         </c:forEach>
                     </div>
-                    <div class="container">
-                        <div id="left-arrow">
-                            <img src="/img/left-arrow.png" />
-                        </div>
-                        <div id="right-arrow">
-                            <img src="/img/right-arrow.png" />
-                        </div>
-                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             
             </div>
