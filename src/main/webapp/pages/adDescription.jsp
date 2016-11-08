@@ -450,7 +450,7 @@
     
 
 	
-	<table id="additionalInformationTable" class="adDescDiv">
+	<!-- <table id="additionalInformationTable" class="adDescDiv">
 		<tr>
 			<td><h2>Floor</h2></td>
 			<td>${shownAd.floor}</td>
@@ -500,7 +500,7 @@
 				</c:choose>
 			</td>
 		</tr>
-	</table>
+	</table> -->
 </section>
 
 <div class="clearBoth"></div>

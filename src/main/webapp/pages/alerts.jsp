@@ -144,6 +144,8 @@ function typeOfAlert(alert) {
 				<th>City</th>
 				<th>Radius</th>
 				<th>max. Price</th>
+				<th>min. Number of Rooms</th>
+				<th>min. Square Meters</th>
 				<th>Action</th>
 			</tr>
 			</thead>
@@ -164,7 +166,9 @@ function typeOfAlert(alert) {
 				</td>
 				<td>${alert.city}</td>
 				<td>${alert.radius} km</td>
-				<td>${alert.price} Chf</td>
+				<td>${alert.price} CHF</td>
+				<td>${alert.numberOfRooms}</td>
+				<td>${alert.squareFootage}m²</td>
 				<td><button class="deleteButton btn btn-default" data-id="${alert.id}" onClick="deleteAlert(this)">Delete</button></td>
 			</tr>
 		</c:forEach>

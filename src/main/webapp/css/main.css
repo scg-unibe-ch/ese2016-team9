@@ -25,8 +25,8 @@ h2 {
 }
 
 hr {
-	color: #FF9900;
-	background-color: #FF9900;
+	color: #999;
+	background-color: #999;
 	height: 4px;
 	margin-bottom: 40px;
 }
@@ -138,7 +138,7 @@ button {
 	padding: 0px 5px 0px 5px;
 	border-width: 2px;
 	border-radius: 10px;
-	border-color: #FF9900;
+	border-color: #999;
 	border-style: solid; 
 	color: grey;
 	font-size: 0.9em;
@@ -156,22 +156,22 @@ button {
 }
 
 button:hover {
-	color: #FF9900;
+	color: #999;
 	background-color: white;
-	border-color: #FF9900;
+	border-color: #999;
 	cursor: pointer;
 }
 
 .button:hover {
-	color: #FF9900;
+	color: #999;
 	background-color: white;
-	border-color: #FF9900;
+	border-color: #999;
 }
 
 .smallPlusButton:hover {
-	color: #FF9900;
+	color: #999;
 	background-color: white;
-	border-color: #FF9900;
+	border-color: #999;
 	cursor: pointer;
 }
 
@@ -229,7 +229,7 @@ button {
 	width: 20%;
 	margin: auto;
 	padding: 10px 20px;
-	border-color: #FF9900;
+	border-color: #999;
 }
 
 .confirmation-message img {
@@ -408,7 +408,7 @@ footer nav ul li {
 }
 
 #resultTable th {
-	background-color: #FF9900;
+	background-color: #999;
 	color: white;
 	padding: 5px;
 }
@@ -431,12 +431,13 @@ footer nav ul li {
 }
 
 #filterDiv {
-	width: 35%;
+	float: right;
+	width: 30%;
 	margin-top: 30px;
 	padding: 10px;
 	margin-top: 10px;
 	border-style: solid;
-	border-color: #FF9900;
+	border-color: #999;
 	border-width: 3px;
 	border-radius: 10px;
 }
@@ -444,6 +445,10 @@ footer nav ul li {
 #resultsDiv {
 	width: 100%;
 	margin-top: 10px;
+}
+
+.searchResultsDiv #resultsDiv{
+	width: 69%;
 }
 
 #resultsDiv div {
@@ -594,7 +599,7 @@ img.visible {
 }
 
 .adDescDiv {
-	border-color: #FF9900;
+	border-color: #999;
 	border-radius: 5px;
 	border-width: 3px;
 	border-style: solid;
@@ -602,7 +607,7 @@ img.visible {
 }
 
 .thinButton {
-	background-color: #FF9900;
+	background-color: #999;
 	color: white;
 	padding: 2px 10px;
 	border-radius: 5px;
@@ -691,7 +696,7 @@ img.visible {
 }
 
 #folders a:hover {
-	background-color: #FF9900;
+	background-color: #999;
 	color: white;
 	cursor: pointer;
 }
@@ -842,7 +847,7 @@ img.visible {
 	content: "\2605";
 	position: absolute;
 	left: 0; 
-	color: #FF9900;
+	color: #999;
 	width: 1.1em;
 }
 
@@ -855,7 +860,7 @@ img.visible {
 
 .pictureThumbnail{
 	border-style: dashed;
-	border-color: #FF9900;
+	border-color: #999;
 	border-width: 2px;
 	text-align:center;
 	margin-right: 10px;
@@ -904,6 +909,7 @@ div.resultRight {
 }
 
 div.resultAd {
+	padding-left: 15px;
 	height: 280px;
 	overflow: hidden;
 }
