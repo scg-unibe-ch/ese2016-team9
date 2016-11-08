@@ -375,6 +375,10 @@ footer nav ul li {
 	width: 900px;
 }
 
+#prizeInput{
+	width: 120px;
+}
+
 /* -------------------------------------------------------------------- */
 /* editProfile.jsp */
 .editProfileTable input {
