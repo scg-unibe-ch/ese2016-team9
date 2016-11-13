@@ -1,5 +1,6 @@
 package ch.unibe.ese.team1.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -121,7 +122,21 @@ public class Ad {
 	
 	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Visit> visits;
+	
+	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Bet> bets;
 
+	@Column
+	@Temporal(TemporalType.DATE)
+	private Date auctionEndingDate;
+	
+	@Column
+	private double auctionStartingPrize;
+	
+	public Ad() {
+		this.bets = new ArrayList<Bet>();
+	}
+	
 	public Date getCreationDate() {
 		return creationDate;
 	}
@@ -361,6 +376,34 @@ public class Ad {
 
 	public void setDistanceToNearestSchool(int distanceToNearestSchool) {
 		this.distanceToNearestSchool = distanceToNearestSchool;
+	}
+
+	public List<Bet> getBets() {
+		return bets;
+	}
+
+	public void addBet(Bet bet) {
+		this.bets.add(bet);
+	}
+
+	public Date getAuctionEndingDate() {
+		return auctionEndingDate;
+	}
+
+	public void setAuctionEndingDate(Date auctionEndingDate) {
+		this.auctionEndingDate = auctionEndingDate;
+	}
+
+	public double getAuctionStartingPrize() {
+		return auctionStartingPrize;
+	}
+
+	public void setAuctionStartingPrize(double auctionStartingPrize) {
+		this.auctionStartingPrize = auctionStartingPrize;
+	}
+	
+	public boolean isAuction() {
+		return this.auctionStartingPrize != 0 && this.auctionEndingDate != null; 
 	}
 
 	@Override
