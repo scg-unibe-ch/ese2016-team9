@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -32,15 +33,16 @@ public class Bet {
 	@Temporal(TemporalType.DATE)
 	private Date creationDate;
 
-	@Fetch(FetchMode.SELECT)
-	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<AdPicture> pictures;
-
 	@ManyToOne(optional = false)
 	private User user;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(nullable = false)
 	private Ad ad;
+	
+	public Ad getAd() {
+		return this.ad;
+	}
 
 	public Date getCreationDate() {
 		return creationDate;
@@ -62,24 +64,12 @@ public class Bet {
 		this.price = price;
 	}
 
-	public List<AdPicture> getPictures() {
-		return pictures;
-	}
-
-	public void setPictures(List<AdPicture> pictures) {
-		this.pictures = pictures;
-	}
-
 	public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public Ad getAd() {
-		return ad;
 	}
 
 	public void setAd(Ad ad) {

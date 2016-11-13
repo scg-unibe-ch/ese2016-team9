@@ -3,6 +3,7 @@ package ch.unibe.ese.team1.model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -124,7 +125,7 @@ public class Ad {
 	private List<Visit> visits;
 	
 	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Bet> bets;
+	private Set<Bet> bets;
 
 	@Column
 	@Temporal(TemporalType.DATE)
@@ -132,10 +133,6 @@ public class Ad {
 	
 	@Column
 	private double auctionStartingPrize;
-	
-	public Ad() {
-		this.bets = new ArrayList<Bet>();
-	}
 	
 	public Date getCreationDate() {
 		return creationDate;
@@ -378,12 +375,8 @@ public class Ad {
 		this.distanceToNearestSchool = distanceToNearestSchool;
 	}
 
-	public List<Bet> getBets() {
-		return bets;
-	}
-
-	public void addBet(Bet bet) {
-		this.bets.add(bet);
+	public Set<Bet> getBets() {
+		return this.bets;
 	}
 
 	public Date getAuctionEndingDate() {

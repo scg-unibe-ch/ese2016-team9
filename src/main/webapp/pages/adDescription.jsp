@@ -122,7 +122,6 @@
 <fmt:formatDate value="${shownAd.creationDate}" var="formattedCreationDate"
 	type="date" pattern="dd.MM.yyyy" />
 
-
 <h1 id="shownAdTitle">${shownAd.title}
 	<c:choose>
 		<c:when test="${loggedIn}">
@@ -247,6 +246,46 @@
             </div>
             
             <div class="col-md-6">
+                <c:choose>
+                    <c:when test="${shownAd.isAuction()}">
+                        <h2>Auction</h2>
+                        <table class="table">
+                            <tr>
+                                <th>User</th>
+                                <th>Bidden price</th>
+                                <th>Date</th>
+                            </tr>
+                            <c:choose>
+                                <c:when test="${loggedIn}">
+                                    <form method="post" id="BetForm" autocomplete="off" enctype="multipart/form-data">
+                                    <tr>
+                                        <td></td>
+                                        <td>
+                                            <input id="field-Price" type="number" path="price" placeholder="Bidding value" step="50" class="form-control" />   
+                                            <!-- <form:errors path="price" cssClass="validationErrorText" /> -->
+                                        </td>
+                                        <td>
+                                            <button type="Submit" class="btn btn-default">Submit</button>
+                                        </td>
+                                    </tr>
+                                    </form>
+                                </c:when>
+                            </c:choose>
+                            <c:forEach items="${bets}" var="bet" varStatus="status">
+
+                                <fmt:formatNumber value="${bet.price}" type="currency" currencySymbol="" var="formattedPrice"/>
+                                <fmt:formatDate value="${bet.creationDate}" var="formattedBetDate" type="date" pattern="dd.MM.yyyy" />
+                                <tr>
+                                    <td>${bet.user.username}</td>
+                                    <td>${formattedPrice}&#32;CHF</td>
+                                    <td>${formattedBetDate}</td>
+                                </tr>
+                            </c:forEach>
+                            
+                                
+                        </table>
+                    </c:when>
+                </c:choose>
             
                 <h2>Advertiser</h2>
                 <table id="advertiserTable" class="table">

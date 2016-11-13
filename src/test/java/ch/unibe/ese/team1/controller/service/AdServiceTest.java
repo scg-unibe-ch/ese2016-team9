@@ -184,6 +184,20 @@ public class AdServiceTest {
 
 	}
 	
+	@Test
+	public void getAllBetsBySpecificAd() {
+		Iterable<Ad> ads = adService.getAllAds();
+		
+		Ad currentAd = null;
+		for (Ad ad : ads) {
+			if (currentAd == null && ad.isAuction()) {
+				currentAd = ad;
+			}
+		}
+		
+		assertEquals(3, currentAd.getBets().size());
+	}
+	
 	private User createUser(String email, String password, String firstName,
 			String lastName, Gender gender) {
 		User user = new User();

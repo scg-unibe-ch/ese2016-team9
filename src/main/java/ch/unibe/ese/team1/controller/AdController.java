@@ -60,6 +60,8 @@ public class AdController {
 
 		model.addObject("visits", visitService.getVisitsByAd(ad));
 
+		model.addObject("bets", ad.getBets());
+		
 		return model;
 	}
 

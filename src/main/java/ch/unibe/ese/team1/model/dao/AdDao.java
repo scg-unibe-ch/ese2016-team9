@@ -12,8 +12,7 @@ public interface AdDao extends CrudRepository<Ad, Long> {
 	public Iterable<Ad> findByPrizeLessThan (int prize);
 
 	/** this will be used if only houses or flats are searched */
-	public Iterable<Ad> findByFlatAndPrizeLessThan(boolean flat,
-			int i);
+	public Iterable<Ad> findByFlatAndPrizeLessThan(boolean flat, int i);
 
 	public Iterable<Ad> findByUser(User user);
 	
@@ -21,6 +20,8 @@ public interface AdDao extends CrudRepository<Ad, Long> {
 	public Iterable<Ad> findByPrizeIncludingRunningCostsLessThan (int prize);
 	
 	@Query("select ad from Ad ad where ad.flat=?1 and ad.prize + ad.runningCosts < ?2")
-	public Iterable<Ad> findByFlatAndPrizeIncludingRunningCostsLessThan(boolean flat,
-			int i);
+	public Iterable<Ad> findByFlatAndPrizeIncludingRunningCostsLessThan(boolean flat, int i);
+	
+	public Iterable<Ad> findByAuctionStartingPrizeNotNull();
+	
 }
