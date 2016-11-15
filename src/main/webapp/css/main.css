@@ -72,7 +72,7 @@ pre a {
 /*Header is fixed to 60px from top, so with padding of 60px,
 we fix the body in the exactly right position*/
 body {
-	
+	margin-bottom: 40px !important;
 }
 
 /* the main content on every page */
