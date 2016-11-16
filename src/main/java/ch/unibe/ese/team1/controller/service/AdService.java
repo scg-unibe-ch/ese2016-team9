@@ -175,6 +175,29 @@ public class AdService {
 			ad.setVisits(visits);
 		}
 
+		// Save auction information
+		if (placeAdForm.getAuctionEndingDate() != null && 
+				placeAdForm.getAuctionEndingDate().length() >= 1) {
+			int dayEndAuction = Integer.parseInt(placeAdForm.getAuctionEndingDate()
+					.substring(0, 2));
+			int monthEndAuction = Integer.parseInt(placeAdForm.getAuctionEndingDate()
+					.substring(3, 5));
+			int yearEndAuction = Integer.parseInt(placeAdForm.getAuctionEndingDate()
+					.substring(6, 10));
+			
+			
+			calendar.set(
+					yearEndAuction, 
+					monthEndAuction - 1, 
+					dayEndAuction, 
+					placeAdForm.getAuctionEndingHour(), 
+					placeAdForm.getAuctionEndingMinute()
+			);
+			ad.setAuctionEndingDate(calendar.getTime());
+			ad.setAuctionStartingPrize(placeAdForm.getAuctionStartingPrice());
+		}
+		
+		
 		ad.setUser(user);
 		
 		adDao.save(ad);

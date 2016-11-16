@@ -8,8 +8,8 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <!-- check if user is logged in -->
-<sec:authorize var="loggedIn" url="/profile" />
-
+<c:set var="loggedIn" value="${pageContext.request.userPrincipal.authenticated}" />
+    
 <c:import url="template/header.jsp" />
 
 <pre><a href="/">Home</a> &gt; <a href="/profile/myHouses">My Houses</a> &gt; Ad Description</pre>

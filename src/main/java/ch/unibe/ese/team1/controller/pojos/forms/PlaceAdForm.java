@@ -58,6 +58,12 @@ public class PlaceAdForm {
 	private int distanceToNearestPublicTransport;
 	private int distanceToNearestSchool;
 	
+	private String auctionEndingDate;
+	private int auctionEndingHour;
+	private int auctionEndingMinute;
+	private double auctionStartingPrice;
+	
+
 	private List<String> visits;
 
 	public int getFloor() {
@@ -271,6 +277,38 @@ public class PlaceAdForm {
 
 	public void setVisits(List<String> visits) {
 		this.visits = visits;
+	}
+
+	public String getAuctionEndingDate() {
+		return auctionEndingDate;
+	}
+
+	public void setAuctionEndingDate(String auctionEndingDate) {
+		this.auctionEndingDate = auctionEndingDate;
+	}
+
+	public double getAuctionStartingPrice() {
+		return auctionStartingPrice;
+	}
+
+	public void setAuctionStartingPrice(double auctionStartingPrice) {
+		this.auctionStartingPrice = auctionStartingPrice;
+	}
+
+	public int getAuctionEndingHour() {
+		return auctionEndingHour;
+	}
+
+	public void setAuctionEndingHour(int auctionEndingHour) {
+		this.auctionEndingHour = auctionEndingHour;
+	}
+
+	public int getAuctionEndingMinute() {
+		return auctionEndingMinute;
+	}
+
+	public void setAuctionEndingMinute(int auctionEndingMinute) {
+		this.auctionEndingMinute = auctionEndingMinute;
 	}
 	
 	

@@ -109,7 +109,7 @@ input, select, textarea {
 }
 
 input[type="number"] {
-	width: 70px;
+	/*width: 70px;*/
 }
 
 input[type="range"] {

@@ -128,7 +128,7 @@ public class Ad {
 	private Set<Bet> bets;
 
 	@Column
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date auctionEndingDate;
 	
 	@Column
