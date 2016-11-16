@@ -2,6 +2,7 @@ package ch.unibe.ese.team1.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -110,7 +111,7 @@ public class AdController {
 			// that should not happen...
 			return 1;
 		}
-		List<Ad> bookmarkedAdsIterable = user.getBookmarkedAds();
+		Set<Ad> bookmarkedAdsIterable = user.getBookmarkedAds();
 		if (screening) {
 			for (Ad ownAdIterable : adService.getAdsByUser(user)) {
 				if (ownAdIterable.getId() == id) {

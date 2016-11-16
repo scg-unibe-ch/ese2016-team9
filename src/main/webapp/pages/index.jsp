@@ -16,7 +16,6 @@
 <pre>Home</pre>
 
 <h1>Welcome to a-Bec!</h1>
-
     <div class="container-fluid">
 <c:choose>
 	<c:when test="${empty newest}">

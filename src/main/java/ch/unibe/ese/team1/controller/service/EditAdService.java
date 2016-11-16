@@ -6,8 +6,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -136,7 +138,7 @@ public class EditAdService {
 
 
 		// visits
-		List<Visit> visits = new LinkedList<>();
+		Set<Visit> visits = new HashSet<>();
 		List<String> visitStrings = placeAdForm.getVisits();
 		if (visitStrings != null) {
 			for (String visitString : visitStrings) {
@@ -165,6 +167,7 @@ public class EditAdService {
 			for (Visit visit : ad.getVisits()) {
 				visits.add(visit);
 			}
+			
 			ad.setVisits(visits);
 		}
 

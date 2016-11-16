@@ -1,6 +1,8 @@
 package ch.unibe.ese.team1.test.testData;
 
+import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +32,7 @@ public class BookmarkTestDataSaver{
 		User oprah = userDao.findByUsername("oprah@winfrey.com");
 
 		// 5 bookmarks for Ese test-user
-		LinkedList<Ad> bookmarkedAds = new LinkedList<>();
+		Set<Ad> bookmarkedAds = new HashSet<>();
 		bookmarkedAds.add(adService.getAdById(1));
 		bookmarkedAds.add(adService.getAdById(3));
 		bookmarkedAds.add(adService.getAdById(5));
@@ -41,7 +43,7 @@ public class BookmarkTestDataSaver{
 		userDao.save(ese);
 
 		// 4 bookmarks for Jane Doe
-		bookmarkedAds = new LinkedList<>();
+		bookmarkedAds = new HashSet<>();
 		bookmarkedAds.add(adService.getAdById(6));
 		bookmarkedAds.add(adService.getAdById(9));
 		bookmarkedAds.add(adService.getAdById(10));
@@ -50,7 +52,7 @@ public class BookmarkTestDataSaver{
 		userDao.save(jane);
 
 		// 5 bookmarks for user berner bear
-		bookmarkedAds = new LinkedList<>();
+		bookmarkedAds = new HashSet<>();
 		bookmarkedAds.add(adService.getAdById(2));
 		bookmarkedAds.add(adService.getAdById(4));
 		bookmarkedAds.add(adService.getAdById(6));
@@ -60,7 +62,7 @@ public class BookmarkTestDataSaver{
 		userDao.save(bernerBaer);
 
 		// 4 bookmarks for Oprah
-		bookmarkedAds = new LinkedList<>();
+		bookmarkedAds = new HashSet<>();
 		bookmarkedAds.add(adService.getAdById(2));
 		bookmarkedAds.add(adService.getAdById(3));
 		bookmarkedAds.add(adService.getAdById(6));

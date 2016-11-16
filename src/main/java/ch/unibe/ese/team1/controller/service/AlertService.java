@@ -176,7 +176,11 @@ public class AlertService {
 	 *         away), false otherwise
 	 */
 	private boolean radiusMismatchWith(Ad ad, Alert alert) {
+		if (geoDataService.getLocationsByCity(ad.getCity()).size() == 0) {
+			return true;
+		}
 		final int earthRadiusKm = 6380;
+		
 		Location adLocation = geoDataService.getLocationsByCity(ad.getCity())
 				.get(0);
 		Location alertLocation = geoDataService.getLocationsByCity(

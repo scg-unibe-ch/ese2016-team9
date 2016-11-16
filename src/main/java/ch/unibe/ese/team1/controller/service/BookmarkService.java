@@ -1,6 +1,7 @@
 package ch.unibe.ese.team1.controller.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class BookmarkService {
 	 * 
 	 */
 	public int getBookmarkStatus(Ad ad, boolean bookmarked, User user) {
-		List<Ad> tempAdList = user.getBookmarkedAds();
+		Set<Ad> tempAdList = user.getBookmarkedAds();
 		if(bookmarked) {
 			tempAdList.remove(ad);
 			updateUser(tempAdList, user);
@@ -50,7 +51,7 @@ public class BookmarkService {
 	}
 	
 	// updates effectively the new List into DB
-	private void updateUser(List<Ad> bookmarkedAds, User user) {
+	private void updateUser(Set<Ad> bookmarkedAds, User user) {
 		user.setBookmarkedAds(bookmarkedAds);
 		userDao.save(user);
 	

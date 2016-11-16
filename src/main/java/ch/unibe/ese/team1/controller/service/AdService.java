@@ -8,9 +8,11 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,7 +148,7 @@ public class AdService {
 
 
 		// visits
-		List<Visit> visits = new LinkedList<>();
+		Set<Visit> visits = new HashSet<>();
 		List<String> visitStrings = placeAdForm.getVisits();
 		if (visitStrings != null) {
 			for (String visitString : visitStrings) {

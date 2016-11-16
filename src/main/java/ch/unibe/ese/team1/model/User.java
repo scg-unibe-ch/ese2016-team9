@@ -61,10 +61,10 @@ public class User {
 	@Column(nullable = true)
 	@Lob
 	private String aboutMe;
-	
+
 	@JsonIgnore
 	@ManyToMany(fetch = FetchType.EAGER)
-	private List<Ad> bookmarkedAds;
+	private Set<Ad> bookmarkedAds;
 
 	public long getId() {
 		return id;
@@ -162,11 +162,11 @@ public class User {
 		this.aboutMe = aboutMe;
 	}
 	
-	public List<Ad> getBookmarkedAds() {
+	public Set<Ad> getBookmarkedAds() {
 		return bookmarkedAds;
 	}
 	
-	public void setBookmarkedAds(List<Ad> bookmarkedAds) {
+	public void setBookmarkedAds(Set<Ad> bookmarkedAds) {
 		this.bookmarkedAds = bookmarkedAds;
 	}
 

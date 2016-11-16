@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <head>
@@ -45,7 +44,6 @@
 </head>
 
 <!-- check if user is logged in -->
-<security:authorize var="loggedIn" url="/profile" />
 
 <!-- check if user has a profile picture -->
 
@@ -64,23 +62,23 @@
 
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        
+
+                <!-- include user details -->
+                <%@include file='/pages/getUserPicture.jsp' %>        
                 <ul class="nav nav-pills">
-                    <c:choose>
-                        <c:when test="${loggedIn}">
+                    <sec:authorize access="isAuthenticated()"> 
                         <script>
                             $(document).ready(unreadMessages("header"));
                         </script>
 
-                        <!-- include user details -->
-                        <%@include file='/pages/getUserPicture.jsp' %>
-                            <li role="presentation" class="dropdown" id="profile_picture"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <% 
-                                
-                                out.print("" + realUser.getFirstName() + " "
-                                    + realUser.getLastName() + ""); 
-                            %><span class="caret"></span>
-                            </a>
+                            <li role="presentation" class="dropdown" id="profile_picture">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <% 
+                                        out.print("" + realUser.getFirstName() + " " + realUser.getLastName() + ""); 
+                                    %>
+                                    <span class="caret"></span>
+                                </a>
+
                                 <ul class="dropdown-menu">
                                     <li><a href="/profile/placeAd">Place an ad</a></li>
 									<li><a href="/profile/placeAd?rent=1">Place a renting ad</a></li>
@@ -89,18 +87,20 @@
                                     <li><a href="/profile/enquiries">Enquiries</a></li>
                                     <li><a href="/profile/schedule">Schedule</a></li>
                                     <li><a href="/profile/alerts">Alerts</a></li>
-                                    <li>
-                                    <% out.print("<a href=\"/user?id=" + realUser.getId() + "\">Public Profile</a>"); %>
-                                    </li>
-                                    <li role="presentation"><a href="/logout">Logout</a></li>
-                                </ul></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li role="presentation"><a href="/login">Login</a></li>
-                        </c:otherwise>
-                    </c:choose>
+                                    <li><a href="/user">Public Profile</a></li>
+                                    <form:form action="${pageContext.request.contextPath}/logout" method="POST">
+                                    <li role="presentation"><button type="submit">Logout</button></li>
+                                    </form:form>
+                                </ul>
+                            </li>
+                    </sec:authorize>
+                    <sec:authorize access="isAnonymous()"> 
+                        <li role="presentation"><a href="/login">Login</a></li>
+                    </sec:authorize>
 				    <li><a href="<c:url value='/searchAd' />">Search</a></li>
                 </ul>
+                
+                
             </div>
 		
 	   </div>

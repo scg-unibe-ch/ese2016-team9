@@ -122,7 +122,7 @@ public class Ad {
 	private User user;
 	
 	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Visit> visits;
+	private Set<Visit> visits;
 	
 	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<Bet> bets;
@@ -310,11 +310,11 @@ public class Ad {
 		this.city = city;
 	}
 
-	public List<Visit> getVisits() {
+	public Set<Visit> getVisits() {
 		return visits;
 	}
 
-	public void setVisits(List<Visit> visits) {
+	public void setVisits(Set<Visit> visits) {
 		this.visits = visits;
 	}
 

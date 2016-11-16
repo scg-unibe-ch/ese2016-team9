@@ -13,13 +13,13 @@
 		});		
 </script>
 
-<pre><a href="/">Home</a>   &gt;   <a href="/user?id=${currentUser.id}">Public Profile</a>   &gt;   Edit profile</pre>
+<pre><a href="/">Home</a> &gt; <a href="/user?id=${currentUser.id}">Public Profile</a>   &gt;   Edit profile</pre>
 
 <h1>Edit your Profile</h1>
 <hr />
 
 <!-- check if user is logged in -->
-<security:authorize var="loggedIn" url="/profile" />
+<sec:authorize var="loggedIn" url="/profile" />
 
 
 <c:choose>
@@ -33,14 +33,13 @@
 	</c:otherwise>
 </c:choose>
 
-<form:form method="post" modelAttribute="editProfileForm"
-	action="/profile/editProfile" id="editProfileForm" autocomplete="off"
-	enctype="multipart/form-data">
+<form:form method="post" modelAttribute="editProfileForm" action="/profile/editProfile" id="editProfileForm" autocomplete="off" enctype="multipart/form-data" class="form">
 
+    <form:input type="hidden" path="id" value="${currentUser.id}" />
 <table class="editProfileTable">
 	<tr>
 		<td class="spacingTable"><label for="user-name">Username:</label><a>&emsp;</a>
-		<form:input id="user-name" path="username" value="${currentUser.username}" /></td>
+		<form:input class="form-control" id="user-name" path="username" value="${currentUser.username}" /></td>
 		
 	</tr>
 	<tr>
