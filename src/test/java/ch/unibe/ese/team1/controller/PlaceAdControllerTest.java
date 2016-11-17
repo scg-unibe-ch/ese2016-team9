@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -37,7 +38,9 @@ import org.springframework.web.context.WebApplicationContext;
 
 import ch.unibe.ese.team1.controller.service.AdService;
 import ch.unibe.ese.team1.model.Ad;
+import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.dao.AdDao;
+import ch.unibe.ese.team1.model.dao.UserDao;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 		"file:src/main/webapp/WEB-INF/config/springMVC.xml",
@@ -171,6 +174,7 @@ public class PlaceAdControllerTest {
 		
 		return this.adService.getAdById(id);
 	}
+	
 }
 
 

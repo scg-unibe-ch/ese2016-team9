@@ -15,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ch.unibe.ese.team1.controller.pojos.forms.BetForm;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
 import ch.unibe.ese.team1.controller.service.AdService;
+import ch.unibe.ese.team1.controller.service.BetService;
 import ch.unibe.ese.team1.controller.service.BookmarkService;
 import ch.unibe.ese.team1.controller.service.MessageService;
 import ch.unibe.ese.team1.controller.service.UserService;
@@ -43,6 +46,9 @@ public class AdController {
 
 	@Autowired
 	private MessageService messageService;
+
+	@Autowired
+	private BetService betService;
 
 	@Autowired
 	private VisitService visitService;
@@ -156,4 +162,50 @@ public class AdController {
 		return model;
 	}
 
+	/**
+	 * make bet for an ad
+	 * 
+	 * @param messageForm
+	 * @param bindingResult
+	 * @return
+	 */
+	@RequestMapping(value = "/makeBet", method = RequestMethod.POST)
+	public ModelAndView makeBet(
+			@RequestParam("id") long id,
+			@Valid BetForm betForm, 
+			BindingResult bindingResult, 
+			RedirectAttributes redirectAttributes,
+			Principal principal) {
+
+		
+		String username = principal.getName();
+		User user = userService.findUserByUsername(username);
+		
+		Ad ad = adService.getAdById(id);
+		
+		ModelAndView model = new ModelAndView("adDescription");
+		
+		model.addObject("shownAd", ad);
+		model.addObject("messageForm", new MessageForm());
+
+		
+		switch (betService.validateBet(betForm, ad, user)) {
+			case BetService.VALIDATE_PRICE_TO_LOW:
+				bindingResult.rejectValue("price", "Price is too low");
+			break;
+		}
+		
+		if (!bindingResult.hasErrors()) {
+			this.betService.saveFrom(betForm, ad, user);
+
+			model = new ModelAndView("redirect:/ad?id=" + ad);
+			redirectAttributes.addFlashAttribute(
+					"confirmationMessage",
+					"Your bet has been placed!"
+			);
+		}
+		
+		return model;
+	}
+	
 }
