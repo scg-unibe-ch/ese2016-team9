@@ -33,40 +33,40 @@ public class BookmarkTestDataSaver{
 
 		// 5 bookmarks for Ese test-user
 		Set<Ad> bookmarkedAds = new HashSet<>();
-		bookmarkedAds.add(adService.getAdById(1));
-		bookmarkedAds.add(adService.getAdById(3));
-		bookmarkedAds.add(adService.getAdById(5));
-		bookmarkedAds.add(adService.getAdById(7));
-		bookmarkedAds.add(adService.getAdById(8));
+		bookmarkedAds.add(adService.getAdById(23));
+		bookmarkedAds.add(adService.getAdById(31));
+		bookmarkedAds.add(adService.getAdById(39));
+		bookmarkedAds.add(adService.getAdById(65));
+		bookmarkedAds.add(adService.getAdById(19));
 		ese.setBookmarkedAds(bookmarkedAds);
 		
 		userDao.save(ese);
 
 		// 4 bookmarks for Jane Doe
 		bookmarkedAds = new HashSet<>();
-		bookmarkedAds.add(adService.getAdById(6));
-		bookmarkedAds.add(adService.getAdById(9));
-		bookmarkedAds.add(adService.getAdById(10));
-		bookmarkedAds.add(adService.getAdById(11));
+		bookmarkedAds.add(adService.getAdById(39));
+		bookmarkedAds.add(adService.getAdById(43));
+		bookmarkedAds.add(adService.getAdById(47));
+		bookmarkedAds.add(adService.getAdById(39));
 		jane.setBookmarkedAds(bookmarkedAds);
 		userDao.save(jane);
 
 		// 5 bookmarks for user berner bear
 		bookmarkedAds = new HashSet<>();
-		bookmarkedAds.add(adService.getAdById(2));
-		bookmarkedAds.add(adService.getAdById(4));
-		bookmarkedAds.add(adService.getAdById(6));
-		bookmarkedAds.add(adService.getAdById(8));
-		bookmarkedAds.add(adService.getAdById(12));
+		bookmarkedAds.add(adService.getAdById(61));
+		bookmarkedAds.add(adService.getAdById(57));
+		bookmarkedAds.add(adService.getAdById(51));
+		bookmarkedAds.add(adService.getAdById(31));
+		bookmarkedAds.add(adService.getAdById(23));
 		bernerBaer.setBookmarkedAds(bookmarkedAds);
 		userDao.save(bernerBaer);
 
 		// 4 bookmarks for Oprah
 		bookmarkedAds = new HashSet<>();
-		bookmarkedAds.add(adService.getAdById(2));
-		bookmarkedAds.add(adService.getAdById(3));
-		bookmarkedAds.add(adService.getAdById(6));
-		bookmarkedAds.add(adService.getAdById(12));
+		bookmarkedAds.add(adService.getAdById(19));
+		bookmarkedAds.add(adService.getAdById(31));
+		bookmarkedAds.add(adService.getAdById(61));
+		bookmarkedAds.add(adService.getAdById(43));
 		oprah.setBookmarkedAds(bookmarkedAds);
 		userDao.save(oprah);
 	}

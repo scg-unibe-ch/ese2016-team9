@@ -241,6 +241,7 @@
 						</configuration>
 
 						<executions>
+						
 							<execution>
 								<id>drop-team1-database</id>
 								<phase>process-test-resources</phase>

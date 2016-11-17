@@ -122,6 +122,7 @@ public class ProfileController {
 	public ModelAndView user(@RequestParam("id") long id, Principal principal) {
 		ModelAndView model = new ModelAndView("user");
 		User user = userService.findUserById(id);
+			
 		if (principal != null) {
 			String username = principal.getName();
 			User user2 = userService.findUserByUsername(username);

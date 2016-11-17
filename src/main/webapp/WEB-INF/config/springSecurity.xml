@@ -12,6 +12,7 @@
 		<security:form-login login-page="/login" authentication-failure-url="/login?error=true" 
 			default-target-url="/" />
 		 <security:logout invalidate-session="true" logout-success-url="/" logout-url="/logout" />
+		 <security:csrf disabled="true"/>
 	</security:http>
 
 	<security:authentication-manager>

@@ -11,6 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
@@ -25,7 +26,7 @@ public class Visit {
 	@GeneratedValue
 	private long id;
 	
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Ad ad;
 
 	@Fetch(FetchMode.SELECT)

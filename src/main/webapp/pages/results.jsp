@@ -157,8 +157,7 @@ function sort_div_attribute() {
 <button onClick="sort_div_attribute()">Sort</button>	
 </div>
 
-<form:form method="post" modelAttribute="searchForm" action="/results"
-	id="filterForm" autocomplete="off">
+<form:form method="post" modelAttribute="searchForm" action="/results" id="filterForm" autocomplete="off" class="form-horizontal">
 
 	<div id="filterDiv">
 		<h2>Filter results:</h2>
@@ -267,8 +266,8 @@ function sort_div_attribute() {
 		</table>
 			
 		
-		<button type="submit" onClick="validateType(this.form)">Filter</button>	
-		<button type="reset">Cancel</button>
+		<button type="submit" class="btn btn-default" onClick="validateType(this.form)">Filter</button>	
+		<button type="reset" class="btn btn-default">Cancel</button>
 	</div>
 </form:form>
 <div class="searchResultsDiv">

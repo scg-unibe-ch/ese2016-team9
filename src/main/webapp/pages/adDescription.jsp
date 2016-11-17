@@ -6,12 +6,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
-
+	
+    
 <!-- check if user is logged in -->
 <c:set var="loggedIn" value="${pageContext.request.userPrincipal.authenticated}" />
     
 <c:import url="template/header.jsp" />
-
+    
 <pre><a href="/">Home</a> &gt; <a href="/profile/myHouses">My Houses</a> &gt; Ad Description</pre>
 
 <script src="/js/image_slider.js"></script>
@@ -480,12 +481,12 @@
                                 <td><c:choose>
                                         <c:when test="${loggedIn}">
                                             <c:if test="${loggedInUserEmail != shownAd.user.username}">
-                                                <button class="thinButton" type="button" data-id="${visit.id}">Send
+                                                <button class="btn btn-default thinButton" type="button" data-id="${visit.id}">Send
                                                     enquiry to advertiser</button>
                                             </c:if>
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="/login"><button class="thinInactiveButton" type="button"
+                                            <a href="/login"><button class="btn btn-default thinInactiveButton" disabled="disabled" type="button"
                                                 data-id="${visit.id}">Login to send enquiries</button></a>
                                         </c:otherwise>
                                     </c:choose></td>

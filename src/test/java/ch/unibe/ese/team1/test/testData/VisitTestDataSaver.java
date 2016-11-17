@@ -58,18 +58,18 @@ public class VisitTestDataSaver{
 		oprah = userDao.findByUsername("oprah@winfrey.com");
 
 		// load ads
-		ad1 = adDao.findOne(1L);
-		ad2 = adDao.findOne(2L);
-		ad3 = adDao.findOne(3L);
-		ad4 = adDao.findOne(4L);
-		ad5 = adDao.findOne(5L);
-		ad6 = adDao.findOne(6L);
-		ad7 = adDao.findOne(7L);
-		ad8 = adDao.findOne(8L);
-		ad9 = adDao.findOne(9L);
-		ad10 = adDao.findOne(10L);
-		ad11 = adDao.findOne(11L);
-		ad12 = adDao.findOne(12L);
+		ad1 = adDao.findOne(23L);
+		ad2 = adDao.findOne(31L);
+		ad3 = adDao.findOne(39L);
+		ad4 = adDao.findOne(65L);
+		ad5 = adDao.findOne(19L);
+		ad6 = adDao.findOne(27L);
+		ad7 = adDao.findOne(35L);
+		ad8 = adDao.findOne(43L);
+		ad9 = adDao.findOne(47L);
+		ad10 = adDao.findOne(51L);
+		ad11 = adDao.findOne(57L);
+		ad12 = adDao.findOne(61L);
 
 		Visit visit;
 		List<User> searchers;

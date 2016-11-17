@@ -32,6 +32,8 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
 <style>
 /* ensure that autocomplete lists are not too long and have a scrollbar */
 .ui-autocomplete {
@@ -87,10 +89,9 @@
                                     <li><a href="/profile/enquiries">Enquiries</a></li>
                                     <li><a href="/profile/schedule">Schedule</a></li>
                                     <li><a href="/profile/alerts">Alerts</a></li>
-                                    <li><a href="/user">Public Profile</a></li>
-                                    <form:form action="${pageContext.request.contextPath}/logout" method="POST">
-                                    <li role="presentation"><button type="submit">Logout</button></li>
-                                    </form:form>
+                                    <li><a href="/user?id=<% out.print(realUser.getId()); %>">Public Profile</a></li>
+                                    <li role="presentation"><a href="/logout">Logout</a></li>
+                                    
                                 </ul>
                             </li>
                     </sec:authorize>

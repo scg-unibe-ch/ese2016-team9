@@ -66,6 +66,14 @@ public class PlaceAdControllerTest {
 		
 	}
 	
+	private void login() {
+		mockMvc = MockMvcBuilders
+                .webAppContextSetup(context)
+                .defaultRequest(get("/").with(user("ese@unibe.ch").roles("USER")))
+                .addFilters(springSecurityFilterChain)
+                .build();
+	}
+	
 	@Test
 	public void placeAdFormIsNotValidWhenNotLoggedIn() throws Exception {
 		ResultActions resultActions = this.mockMvc.perform(
@@ -150,14 +158,6 @@ public class PlaceAdControllerTest {
 		assertEquals(150000.0, ad.getAuctionStartingPrize(),1);
 		assertTrue(ad.isAuction());
 		
-	}
-	
-	private void login() {
-		mockMvc = MockMvcBuilders
-                .webAppContextSetup(context)
-                .defaultRequest(get("/").with(user("ese@unibe.ch").roles("USER")))
-                .addFilters(springSecurityFilterChain)
-                .build();
 	}
 	
 	private Ad getAdFromUrl(String url) {
