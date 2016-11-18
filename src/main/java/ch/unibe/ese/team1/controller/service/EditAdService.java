@@ -73,7 +73,7 @@ public class EditAdService {
 		// java.util.Calendar uses a month range of 0-11 instead of the
 		// XMLGregorianCalendar which uses 1-12
 		try {
-			if (placeAdForm.getMoveInDate().length() >= 1) {
+			if (placeAdForm.getMoveInDate() != null && placeAdForm.getMoveInDate().length() >= 1) {
 				int dayMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
 						.substring(0, 2));
 				int monthMoveIn = Integer.parseInt(placeAdForm.getMoveInDate()
@@ -84,7 +84,7 @@ public class EditAdService {
 				ad.setMoveInDate(calendar.getTime());
 			}
 
-			if (placeAdForm.getLastRenovation().length() >= 1) {
+			if (placeAdForm.getLastRenovation() != null && placeAdForm.getLastRenovation().length() >= 1) {
 				int dayRenovation = Integer.parseInt(placeAdForm.getLastRenovation()
 						.substring(0, 2));
 				int monthRenovation = Integer.parseInt(placeAdForm
