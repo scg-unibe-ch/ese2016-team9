@@ -258,21 +258,21 @@
                             </tr>
                             <c:choose>
                                 <c:when test="${loggedIn}">
-                                    <form method="post" id="BetForm" autocomplete="off" enctype="multipart/form-data">
+                                    <form:form method="post" modelAttribute="BetForm" action="/makeBet?id=${shownAd.id}" id="betForm" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
                                     <tr>
                                         <td></td>
                                         <td>
                                             <input id="field-Price" type="number" path="price" placeholder="Bidding value" step="50" class="form-control" />   
-                                            <!-- <form:errors path="price" cssClass="validationErrorText" /> -->
+                                            <form:errors path="price" cssClass="validationErrorText" />
                                         </td>
                                         <td>
                                             <button type="Submit" class="btn btn-default">Submit</button>
                                         </td>
                                     </tr>
-                                    </form>
+                                    </form:form>
                                 </c:when>
                             </c:choose>
-                            <c:forEach items="${bets}" var="bet" varStatus="status">
+                            <c:forEach items="${shownAd.bets}" var="bet" varStatus="status">
 
                                 <fmt:formatNumber value="${bet.price}" type="currency" currencySymbol="" var="formattedPrice"/>
                                 <fmt:formatDate value="${bet.creationDate}" var="formattedBetDate" type="date" pattern="dd.MM.yyyy" />
@@ -498,60 +498,6 @@
             </div>
         </div>
     </div>
-    
-
-	
-	<!-- <table id="additionalInformationTable" class="adDescDiv">
-		<tr>
-			<td><h2>Floor</h2></td>
-			<td>${shownAd.floor}</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Number of Rooms</h2></td>
-			<td>${shownAd.numberOfRooms}</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Last Renovation</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.lastRenovation!=null}">${shownAd.lastRenovation }</c:when>
-					<c:otherwise>-</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Nearest Super Market</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.distanceToNearestSuperMarket<5100}">${shownAd.distanceToNearestSuperMarket}m</c:when>
-					<c:otherwise>> 5km</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Public Transport</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.distanceToNearestPublicTransport<5100}">${shownAd.distanceToNearestPublicTransport}m</c:when>
-					<c:otherwise>> 5km</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Nearest School</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.distanceToNearestSchool<5100}">${shownAd.distanceToNearestSchool}m</c:when>
-					<c:otherwise>> 5km</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-	</table> -->
 </section>
 
 <div class="clearBoth"></div>

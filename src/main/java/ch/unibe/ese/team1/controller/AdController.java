@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -172,7 +173,7 @@ public class AdController {
 	@RequestMapping(value = "/makeBet", method = RequestMethod.POST)
 	public ModelAndView makeBet(
 			@RequestParam("id") long id,
-			@Valid BetForm betForm, 
+			@ModelAttribute("betForm") @Valid BetForm betForm, 
 			BindingResult bindingResult, 
 			RedirectAttributes redirectAttributes,
 			Principal principal) {
@@ -185,8 +186,6 @@ public class AdController {
 		
 		ModelAndView model = new ModelAndView("adDescription");
 		
-		model.addObject("shownAd", ad);
-		model.addObject("messageForm", new MessageForm());
 
 		
 		switch (betService.validateBet(betForm, ad, user)) {
@@ -203,6 +202,11 @@ public class AdController {
 					"confirmationMessage",
 					"Your bet has been placed!"
 			);
+		} else {
+			model = new ModelAndView("adDescription");
+			model.addObject("shownAd", ad);
+			model.addObject("messageForm", new MessageForm());
+			
 		}
 		
 		return model;
