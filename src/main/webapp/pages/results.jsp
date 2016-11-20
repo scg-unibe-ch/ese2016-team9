@@ -18,8 +18,6 @@ $( function() {
 </script>
   
 <pre><a href="/">Home</a>   &gt;   <a href="/searchAd/">Search</a>   &gt;   Results</pre>
-<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5Hs4TYmXUiMKPetPokSZrUSMnev58Fm8&callback=initMap"
-  type="text/javascript"></script> -->
 
 <script>
 $(document).ready(function(){
@@ -30,6 +28,7 @@ $(document).ready(function(){
 		else
 			$(this).find(".range").html(newValue + "m");
 	});
+	
 });
 function validateType(form)
 {
@@ -151,6 +150,20 @@ function sort_div_attribute() {
 	});
 </script>
 
+<!--  This script is for the map -->
+<script>
+var map;
+function initMap() {
+  var longitude = parseFloat(document.getElementById("longitude").value);
+  var latitude = parseFloat(document.getElementById("latitude").value);
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: latitude, lng: longitude},
+    zoom: 13,
+    //mapTypeId: google.maps.MapTypeId.SATELLITE,
+  });
+}
+</script>
+
 <h1>Search results:</h1>
 
 <hr />
@@ -195,6 +208,9 @@ function sort_div_attribute() {
 		<form:input type="text" name="city" id="city" path="city"
 			placeholder="e.g. Bern" tabindex="3" />
 		<form:errors path="city" cssClass="validationErrorText" /><br />
+		
+		<form:input style="display:none" type="number" id="latitude" path="latitude" step="any"/>
+		<form:input style="display:none" type="number" id="longitude" path="longitude" step="any"/>
 			
 		<label for="radius">Within radius of (max.):</label>
 		<form:input id="radiusInput" type="number" path="radius"
@@ -338,8 +354,10 @@ function sort_div_attribute() {
 </div>
 
 <div id="resutl-map">
-<p>comming soon</p>
+<div id="map"></div>
 </div>
 </div>
 
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5Hs4TYmXUiMKPetPokSZrUSMnev58Fm8&callback=initMap"
+  type="text/javascript"></script>
 <c:import url="template/footer.jsp" />

@@ -494,6 +494,15 @@ footer nav ul li {
 	padding-right: 5px;
 }
 
+#map  {
+	height: 500px;
+	width: 100%;
+}
+
+.hidden {
+	display: none;
+}
+
 /* -------------------------------------------------------------------- */
 /* adDescription.jsp */
 
