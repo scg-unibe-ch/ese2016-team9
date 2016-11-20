@@ -578,12 +578,12 @@ public class AdTestDataSaver {
 		adWithAuction.setTitle("Sweet House for Sale");
 		adWithAuction.setStreet("Schwanenplace 61B");
 		adWithAuction.setCity("Aarau");
-		adWithAuction.setGarden(false);
-		adWithAuction.setBalcony(false);
-		adWithAuction.setCellar(false);
+		adWithAuction.setGarden(true);
+		adWithAuction.setBalcony(true);
+		adWithAuction.setCellar(true);
 		adWithAuction.setFurnished(false);
 		adWithAuction.setCable(false);
-		adWithAuction.setGarage(false);
+		adWithAuction.setGarage(true);
 		adWithAuction.setForSale(true);
 		adWithAuction.setRunningCosts(300);
 		adWithAuction.setDistanceToNearestPublicTransport(1);
