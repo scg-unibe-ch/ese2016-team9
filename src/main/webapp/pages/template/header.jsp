@@ -90,6 +90,9 @@
                                     <li><a href="/profile/schedule">Schedule</a></li>
                                     <li><a href="/profile/alerts">Alerts</a></li>
                                     <li><a href="/user?id=<% out.print(realUser.getId()); %>">Public Profile</a></li>
+                                    <% if(!realUser.isPremium()) { %>
+                                        <li><a href="/profile/getPremium">Get Premium</a></li>
+                                    <% } %>
                                     <li role="presentation"><a href="/logout">Logout</a></li>
                                     
                                 </ul>

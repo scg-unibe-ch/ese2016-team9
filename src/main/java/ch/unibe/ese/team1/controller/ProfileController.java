@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.unibe.ese.team1.controller.pojos.forms.EditProfileForm;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
@@ -171,6 +172,32 @@ public class ProfileController {
 
 		Ad ad = visit.getAd();
 		model.addObject("ad", ad);
+		return model;
+	}
+
+	/** Get Premium Form */
+	@RequestMapping(value = "/profile/getPremium", method = RequestMethod.GET)
+	public ModelAndView getPremiumForm() {
+		ModelAndView model = new ModelAndView("getPremium");
+		
+		return model;
+	}
+
+	/** save Premium Form */
+	@RequestMapping(value = "/profile/getPremium", method = RequestMethod.POST)
+	public ModelAndView processPremium(
+			Principal principal,
+			RedirectAttributes redirectAttributes) {
+		ModelAndView model = new ModelAndView("getPremium");
+		
+		User user = userService.findUserByUsername(principal.getName());
+		userService.setUserToPremium(user, true);
+		model = new ModelAndView("redirect:/user?id=" + user.getId());
+		redirectAttributes.addFlashAttribute(
+			"confirmationMessage",
+			"You are now a premium user!"
+		);
+		
 		return model;
 	}
 }
