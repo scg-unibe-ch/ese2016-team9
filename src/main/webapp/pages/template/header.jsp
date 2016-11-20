@@ -67,7 +67,7 @@
         
                 <ul class="nav nav-pills">
                     <c:choose>
-                        <c:when test="${loggedIn}">
+                        <c:when test="${loggedIn || googleUser != null}">
                         <script>
                             $(document).ready(unreadMessages("header"));
                         </script>
