@@ -133,7 +133,7 @@ public class AdServiceTest {
 		for (Ad ad : ads) {
 			count++;
 		}
-		assertEquals(1, count);
+		assertEquals(3, count);
 	}
 		
 	@Test
