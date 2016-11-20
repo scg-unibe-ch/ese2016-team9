@@ -70,6 +70,14 @@ public class EditAdController {
 	public ModelAndView editAdPage(@RequestParam long id, Principal principal) {
 		ModelAndView model = new ModelAndView("editAd");
 		Ad ad = adService.getAdById(id);
+
+		String username = principal.getName();
+		User user = userService.findUserByUsername(username);
+
+		if (!user.equals(ad.getUser())) {
+			throw new ForbiddenException();
+		}
+		
 		model.addObject("ad", ad);
 
 		PlaceAdForm form = editAdService.fillForm(ad);
