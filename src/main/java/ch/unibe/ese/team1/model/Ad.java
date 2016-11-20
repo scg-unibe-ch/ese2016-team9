@@ -15,6 +15,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -125,6 +126,7 @@ public class Ad {
 	private Set<Visit> visits;
 	
 	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OrderBy("creationDate DESC")
 	private Set<Bet> bets;
 
 	@Column
@@ -378,6 +380,10 @@ public class Ad {
 	public Set<Bet> getBets() {
 		return this.bets;
 	}
+	
+	public void setBets(Set<Bet> bets) {
+		this.bets = bets;
+	}
 
 	public Date getAuctionEndingDate() {
 		return auctionEndingDate;
@@ -420,5 +426,45 @@ public class Ad {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public double getHighestBet() {
+		if (this.getLastBet() == null) {
+			if (this.isAuction()) {
+				return this.getAuctionStartingPrize();
+			} else {
+				return 0;
+			}
+		}
+		return this.getLastBet().getPrice();
+	}
+
+	public User getLastBiddingUser() {
+		if (this.getLastBet() == null) {
+			return null;
+		}
+		return this.getLastBet().getUser();
+	}
+	
+	private Bet getLastBet() {
+		Date lastDate = new Date();
+		lastDate.setTime(0);
+		Bet lastBet = null;
+		if (this.isAuction()) {
+			if (this.bets != null) {
+				for (Bet bet : this.bets) {
+					if (lastDate.before(bet.getCreationDate())) {
+						lastBet = bet;
+						lastDate = lastBet.getCreationDate();
+					}
+				}
+			}
+		}
+		return lastBet;
+	}
+
+	public boolean isAuctionEnded() {
+		Date date = new Date();
+		return date.after(this.auctionEndingDate);
 	}
 }

@@ -258,11 +258,15 @@
                             </tr>
                             <c:choose>
                                 <c:when test="${loggedIn}">
-                                    <form:form method="post" modelAttribute="BetForm" action="/makeBet?id=${shownAd.id}" id="betForm" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
+                                    <form:form method="post" modelAttribute="betForm" action="/makeBet?id=${shownAd.id}" id="betForm" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
                                     <tr>
-                                        <td></td>
                                         <td>
-                                            <input id="field-Price" type="number" path="price" placeholder="Bidding value" step="50" class="form-control" />   
+                                            <span class="auctionUsername">
+                                                ${loggedInUserEmail}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <form:input id="field-Price" type="number" path="price" placeholder="Bid" step="50" class="form-control" value="${shownAd.getHighestBet()}" min="${shownAd.getHighestBet()}" />   
                                             <form:errors path="price" cssClass="validationErrorText" />
                                         </td>
                                         <td>

@@ -85,6 +85,14 @@
 			
 			$("#addedVisits").append(label + input);
 		});
+        
+        $("#field-Auction").click(function() {
+            if ($("#fieldset-auction").prop ("disabled")) {
+                $("#fieldset-auction").prop( "disabled", false );
+            } else {
+                $("#fieldset-auction").prop( "disabled", true );
+            }
+        });
 	});
 </script>
 
@@ -177,14 +185,16 @@
             <div class="form-group">
                 <label for="field-Auction" class="col-sm-2 control-label">Start an auction</label>
                 <div class="col-sm-10">
-                    <input id="field-Auction" type="checkbox" class="form-control"  /> 
+                    <input id="field-Auction" type="checkbox" class="form-control" /> 
                 </div>
             </div>
+        </fieldset>
+        <fieldset disabled id="fieldset-auction">
             
             <div class="form-group">
                 <label for="field-AuctionStartingPrice" class="col-sm-2 control-label">Starting Price</label>
                 <div class="col-sm-10">
-                    <form:input id="field-AuctionStartingPrice" type="number" path="auctionStartingPrice" placeholder="Starting price for auction" step="10000.00" value="10000.00" min="0.00" class="form-control"  /> 
+                    <form:input id="field-AuctionStartingPrice" type="number" path="auctionStartingPrice" placeholder="Starting price for auction" step="10000.00" value="10000.00" min="0.00" class="form-control" /> 
                     <form:errors path="auctionStartingPrice" cssClass="validationErrorText" />
                 </div>
             </div>
@@ -192,7 +202,7 @@
             <div class="form-group">
                 <label for="field-AuctionEndingDate" class="col-sm-2 control-label">Ending Date</label>
                 <div class="col-sm-10">
-                    <form:input id="field-AuctionEndingDate" type="text" path="auctionEndingDate" class="form-control"  /> 
+                    <form:input id="field-AuctionEndingDate" type="text" path="auctionEndingDate" class="form-control" /> 
                     <form:errors path="auctionEndingDate" cssClass="validationErrorText" />
                 </div>
             </div>

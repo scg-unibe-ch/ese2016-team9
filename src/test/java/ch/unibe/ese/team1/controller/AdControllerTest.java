@@ -20,6 +20,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -106,11 +108,12 @@ public class AdControllerTest {
 		
 		betDao.save(bet);
 		
-		this.mockMvc.perform(
+		ResultActions resultAction = this.mockMvc.perform(
 				post("/makeBet?id="+ad.getId()).with(csrf())
 				.param("price", "500000")
-				).andExpect(status().is2xxSuccessful());
-
+				);
+		
+		resultAction.andExpect(status().is2xxSuccessful());
 		// retrieve ad from db
 		Ad OtherAd = adService.getAdById(ad.getId());
 		assertEquals(1, OtherAd.getBets().size());

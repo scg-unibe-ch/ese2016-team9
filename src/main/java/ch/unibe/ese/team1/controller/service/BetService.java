@@ -23,6 +23,7 @@ public class BetService {
 	public static final int VALIDATE_OK = 0;
 	public static final int VALIDATE_PRICE_TO_LOW = 1;
 	public static final int VALIDATE_SAME_USER = 2;
+	public static final int VALIDATE_AUCTION_ENDED = 3;
 	
 	
 	/**
@@ -50,15 +51,17 @@ public class BetService {
 	}
 
 	public int validateBet(BetForm betForm, Ad ad, User user) {
-		Set<Bet> bets = ad.getBets();
-		double maxBet = 0;
-		for (Bet bet : bets) {
-			if (maxBet < bet.getPrice()) {
-				maxBet = bet.getPrice();
-			}
+		double maxBet = ad.getHighestBet();
+		if (ad.isAuctionEnded()) {
+			return BetService.VALIDATE_AUCTION_ENDED;
 		}
-		if (betForm.getPrice() <= maxBet) {
+		
+		if (betForm.getPrice() <= maxBet || betForm.getPrice() < ad.getAuctionStartingPrize()) {
 			return BetService.VALIDATE_PRICE_TO_LOW;
+		}
+		
+		if (ad.getUser().equals(user) || (ad.getLastBiddingUser() != null && ad.getLastBiddingUser().equals(user))) {
+			return BetService.VALIDATE_SAME_USER;
 		}
 		
 		return BetService.VALIDATE_OK;

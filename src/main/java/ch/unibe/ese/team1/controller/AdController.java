@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ch.unibe.ese.team1.controller.pojos.forms.BetForm;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
+import ch.unibe.ese.team1.controller.pojos.forms.PlaceAdForm;
 import ch.unibe.ese.team1.controller.service.AdService;
 import ch.unibe.ese.team1.controller.service.BetService;
 import ch.unibe.ese.team1.controller.service.BookmarkService;
@@ -62,13 +63,10 @@ public class AdController {
 		model.addObject("shownAd", ad);
 		model.addObject("messageForm", new MessageForm());
 
-		String loggedInUserEmail = (principal == null) ? "" : principal
-				.getName();
+		String loggedInUserEmail = (principal == null) ? "" : principal.getName();
 		model.addObject("loggedInUserEmail", loggedInUserEmail);
 
 		model.addObject("visits", visitService.getVisitsByAd(ad));
-
-		model.addObject("bets", ad.getBets());
 		
 		return model;
 	}
@@ -173,7 +171,7 @@ public class AdController {
 	@RequestMapping(value = "/makeBet", method = RequestMethod.POST)
 	public ModelAndView makeBet(
 			@RequestParam("id") long id,
-			@ModelAttribute("betForm") @Valid BetForm betForm, 
+			@Valid @ModelAttribute("betForm") BetForm betForm, 
 			BindingResult bindingResult, 
 			RedirectAttributes redirectAttributes,
 			Principal principal) {
@@ -184,32 +182,46 @@ public class AdController {
 		
 		Ad ad = adService.getAdById(id);
 		
-		ModelAndView model = new ModelAndView("adDescription");
-		
 
 		
 		switch (betService.validateBet(betForm, ad, user)) {
 			case BetService.VALIDATE_PRICE_TO_LOW:
-				bindingResult.rejectValue("price", "Price is too low");
+				bindingResult.rejectValue("price", "Price is too low", "Price is too low");
 			break;
+			case BetService.VALIDATE_SAME_USER:
+				bindingResult.rejectValue("price", "You can't bet twice", "You can't bet twice");
+			break;
+			case BetService.VALIDATE_AUCTION_ENDED:
+				bindingResult.rejectValue("price", "Auction has ended", "Auction has ended");
+			break;
+				
 		}
+		
+		ModelAndView model = new ModelAndView("adDescription");
+		model.addObject("shownAd", ad);
+		model.addObject("messageForm", new MessageForm());
 		
 		if (!bindingResult.hasErrors()) {
 			this.betService.saveFrom(betForm, ad, user);
 
-			model = new ModelAndView("redirect:/ad?id=" + ad);
+			model = new ModelAndView("redirect:/ad?id=" + ad.getId());
 			redirectAttributes.addFlashAttribute(
 					"confirmationMessage",
 					"Your bet has been placed!"
 			);
-		} else {
-			model = new ModelAndView("adDescription");
-			model.addObject("shownAd", ad);
-			model.addObject("messageForm", new MessageForm());
-			
 		}
 		
 		return model;
+	}
+	
+	private BetForm betForm;
+	
+	@ModelAttribute("betForm")
+	public BetForm betForm() {
+		if (betForm == null) {
+			betForm = new BetForm();
+		}
+		return betForm;
 	}
 	
 }

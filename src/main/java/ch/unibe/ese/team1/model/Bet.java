@@ -30,7 +30,7 @@ public class Bet {
 	private double price;
 
 	@Column(nullable = false)
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 
 	@ManyToOne(optional = false)
@@ -39,6 +39,10 @@ public class Bet {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(nullable = false)
 	private Ad ad;
+	
+	public Bet() {
+		this.creationDate = new Date();
+	}
 	
 	public Ad getAd() {
 		return this.ad;

@@ -605,7 +605,7 @@ public class AdTestDataSaver {
 		calBets.add(Calendar.HOUR, 2);
 		Bet bet2 = new Bet();
 		bet2.setAd(adWithAuction);
-		bet2.setPrice(300000);
+		bet2.setPrice(350000);
 		bet2.setUser(jane);
 		bet2.setCreationDate(calBets.getTime());
 		
