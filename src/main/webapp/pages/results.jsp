@@ -7,7 +7,19 @@
 
 
 <c:import url="template/header.jsp" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$( function() {
+  $( "#tabs" ).tabs();
+} );
+</script>
+  
 <pre><a href="/">Home</a>   &gt;   <a href="/searchAd/">Search</a>   &gt;   Results</pre>
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5Hs4TYmXUiMKPetPokSZrUSMnev58Fm8&callback=initMap"
+  type="text/javascript"></script> -->
 
 <script>
 $(document).ready(function(){
@@ -271,7 +283,13 @@ function sort_div_attribute() {
 		<button type="reset">Cancel</button>
 	</div>
 </form:form>
-<div class="searchResultsDiv">
+
+<div class="searchResultsDiv" id="tabs">
+<ul>
+  <li><a href="#result-list">List</a></li>
+  <li><a href="#result-map">Map</a></li>
+</ul>
+<div id="result-list">
 <c:choose>
 	<c:when test="${empty results}">
 		<p>No results found!
@@ -317,6 +335,11 @@ function sort_div_attribute() {
 		</div>
 	</c:otherwise>
 </c:choose>
+</div>
+
+<div id="resutl-map">
+<p>comming soon</p>
+</div>
 </div>
 
 <c:import url="template/footer.jsp" />

@@ -451,8 +451,12 @@ footer nav ul li {
 	margin-top: 10px;
 }
 
-.searchResultsDiv #resultsDiv{
+.searchResultsDiv{
 	width: 69%;
+}
+
+.searchResultsDiv ul{
+	height: 35px;
 }
 
 #resultsDiv div {
