@@ -451,8 +451,12 @@ footer nav ul li {
 	margin-top: 10px;
 }
 
-.searchResultsDiv #resultsDiv{
+.searchResultsDiv{
 	width: 69%;
+}
+
+.searchResultsDiv ul{
+	height: 35px;
 }
 
 #resultsDiv div {
@@ -488,6 +492,15 @@ footer nav ul li {
 	width: 40%;
 	text-align: right;
 	padding-right: 5px;
+}
+
+#map  {
+	height: 500px;
+	width: 100%;
+}
+
+.hidden {
+	display: none;
 }
 
 /* -------------------------------------------------------------------- */

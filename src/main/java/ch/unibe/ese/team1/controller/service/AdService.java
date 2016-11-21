@@ -295,6 +295,10 @@ public class AdService {
 		// lowest zip code
 		Location searchedLocation = geoDataService.getLocationsByCity(city)
 				.get(0);
+		
+		//set latitude and longitude for map
+		searchForm.setLongitude(searchedLocation.getLongitude());
+		searchForm.setLatitude(searchedLocation.getLatitude());
 
 		// create a list of the results and of their locations
 		List<Ad> locatedResults = new ArrayList<>();
