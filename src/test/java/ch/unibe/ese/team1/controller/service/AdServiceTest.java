@@ -133,7 +133,7 @@ public class AdServiceTest {
 		for (Ad ad : ads) {
 			count++;
 		}
-		assertEquals(1, count);
+		assertEquals(2, count);
 	}
 		
 	@Test
@@ -182,6 +182,20 @@ public class AdServiceTest {
 		
 		adService.saveFrom(placeAdForm, filePaths, hans);
 
+	}
+	
+	@Test
+	public void getAllBetsBySpecificAd() {
+		Iterable<Ad> ads = adService.getAllAds();
+		
+		Ad currentAd = null;
+		for (Ad ad : ads) {
+			if (currentAd == null && ad.isAuction()) {
+				currentAd = ad;
+			}
+		}
+		
+		assertEquals(3, currentAd.getBets().size());
 	}
 	
 	private User createUser(String email, String password, String firstName,

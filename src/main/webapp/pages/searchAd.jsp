@@ -28,6 +28,12 @@
 			price.value = "500";
 		if(radius.value == null || radius.value == "" || radius.value == "0")
 			radius.value = "5";
+        
+        
+        $(".slider").mousemove(function(){
+			var newValue = $(this).find(".price-slider").val();
+			$(this).find(".range").html(newValue + " CHF");
+		});
 	});
 </script>
 
@@ -82,54 +88,98 @@ function validateType(form)
 <h1>Search for an ad</h1>
 <hr />
 
-<form:form method="post" modelAttribute="searchForm" action="/results"
-	id="searchForm" autocomplete="off">
+<form:form method="post" modelAttribute="searchForm" action="/results" id="searchForm" autocomplete="off" class="form-horizontal">
 
 	<fieldset>
-		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
-		<form:checkbox name="flat" id="flat" path="flatHelper" /><label>Flat</label>
+        
+        
+        <div class="form-group">
+            <div class="col-sm-1"></div>
+            <label class="checkbox col-sm-2">
+                <div class="">
+                    <form:checkbox name="house" id="house" path="houseHelper" />House
+                </div>
+            </label>
+            
+            <label class="checkbox col-sm-2">
+                <div class="">
+                    <form:checkbox name="flat" id="flat" path="flatHelper" />Flat
+                </div>
+            </label>
+            
+            <form:errors path="noHouseNoFlat" cssClass="validationErrorText" />
+        </div>
 		
 		<form:checkbox style="display:none" name="neither" id="neither" path="noHouseNoFlat" />
 		<form:checkbox style="display:none" name="both" id="both" path="bothHouseAndFlat" />
 		<form:checkbox style="display:none" name="type" id="type" path="flat" />
 		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
-		<form:errors path="noHouseNoFlat" cssClass="validationErrorText" />
 		
-		<br />
 		
-		<form:checkbox name="sale" id="sale" path="saleHelper" /><label>Buy</label>
-		<form:checkbox name="rent" id="rent" path="rentHelper" /><label>Rent</label>
+        <div class="form-group">
+            <div class="col-sm-1"></div>
+            <label class="checkbox col-sm-2">
+                <div class="">
+                    <form:checkbox name="sale" id="sale" path="saleHelper" />Buy
+                </div>
+            </label>
+            
+            <label class="checkbox col-sm-2">
+                <div class="">
+                    <form:checkbox name="rent" id="rent" path="rentHelper" />Rent
+                </div>
+            </label>
+            
+            <form:errors path="noSellNoRent" cssClass="validationErrorText" />
+        </div>
 		
 		<form:checkbox style="display:none" name="neitherS" id="neitherS" path="noSellNoRent" />
 		<form:checkbox style="display:none" name="bothS" id="bothS" path="bothSellAndRent" />
 		<form:checkbox style="display:none" name="typeS" id="typeS" path="forSale" />
-		<form:errors path="noSellNoRent" cssClass="validationErrorText" />
-		
-		<br />
-		
-		<label for="city">City / zip code:</label>
-		<form:input type="text" name="city" id="city" path="city"
-			placeholder="e.g. Bern" tabindex="3"  class="form-control" />
-		<form:errors path="city" cssClass="validationErrorText" />
 		
 
-		<label for="radius">Within radius of (max.):</label>
-		<form:input id="radiusInput" type="number" path="radius"
-			placeholder="e.g. 5" step="5"  class="form-control" />
-		km
-		<form:errors path="radius" cssClass="validationErrorText" />
-		<br /> <label for="prize">Price (max.):</label>
-		<form:input id="prizeInput" type="number" path="prize"
-			placeholder="e.g. 5" step="50" class="form-control" />
-		CHF
-		<form:errors path="prize" cssClass="validationErrorText" />
+            
+        <div class="form-group">
+            <label for="city" class="col-sm-2 control-label">City / zip code:</label>
+            <div class="col-sm-10">
+                <form:input type="text" name="city" id="city" path="city" placeholder="e.g. Bern" tabindex="3"  class="form-control" />
+                <form:errors path="city" cssClass="validationErrorText" />
+            </div>
+        </div>
 		
-		<br />
-		<form:checkbox id="field-includeRunningCosts" path="includeRunningCosts" value="1" /><label>Running Costs included?</label>
-		<br />
+		    
+        <div class="form-group">
+            <label for="radius" class="col-sm-2 control-label">Within radius of (max. in km):</label>
+            <div class="col-sm-10">
+                <form:input id="radiusInput" type="number" path="radius" placeholder="e.g. 5" step="5"  class="form-control" />
+                <form:errors path="radius" cssClass="validationErrorText" />
+            </div>
+        </div>
+		
+        <div class="form-group">
+            <label for="prize" class="col-sm-2 control-label">Price (max.):</label>
+            <div class="col-sm-10">
+                <form:input id="prizeInput" type="number" path="prize" min="100" step="10" max="1000000" class="form-control" value="100" />
+                <form:errors path="prize" cssClass="validationErrorText" />
+            </div>
+        </div>
+		
+        
+        <div class="form-group">
+            <div class="col-sm-1"></div>
+            <label class="checkbox-inline col-sm-2">
+                <div class="">
+                    <form:checkbox id="field-includeRunningCosts" path="includeRunningCosts" value="1" /><label>Running Costs included?</label>
+                </div>
+            </label>
+        </div>
+        
+        <div class="form-group">
+            <button type="submit" class="btn btn-default" tabindex="7" onClick="validateType(this.form)">Search</button>
+            <button type="reset" class="btn btn-default" tabindex="8">Cancel</button>
+        </div>
 
-		<button type="submit" class="btn btn-default" tabindex="7" onClick="validateType(this.form)">Search</button>
-		<button type="reset" class="btn btn-default" tabindex="8">Cancel</button>
+		
 	</fieldset>
 
 </form:form>

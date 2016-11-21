@@ -12,7 +12,6 @@
 
 <script src="/js/pictureUpload.js"></script>
 
-
 <script>
 	$(document).ready(function() {
 		
@@ -51,6 +50,10 @@
 			dateFormat : 'dd-mm-yy'
 		});
 		
+        $("#field-AuctionEndingDate").datepicker({
+			dateFormat : 'dd-mm-yy'
+		});
+		
 		$("#addVisitButton").click(function() {
 			var date = $("#field-visitDay").val();
 			if(date == ""){
@@ -82,6 +85,14 @@
 			
 			$("#addedVisits").append(label + input);
 		});
+        
+        $("#field-Auction").click(function() {
+            if ($("#fieldset-auction").prop ("disabled")) {
+                $("#fieldset-auction").prop( "disabled", false );
+            } else {
+                $("#fieldset-auction").prop( "disabled", true );
+            }
+        });
 	});
 </script>
 
@@ -163,6 +174,70 @@
         </div>
 	</fieldset>
 
+    
+    <c:choose>
+        <c:when test="${isRentingAd}"></c:when>
+        <c:otherwise>
+        <fieldset>
+            <legend>Auction</legend>
+
+            
+            <div class="form-group">
+                <label for="field-Auction" class="col-sm-2 control-label">Start an auction</label>
+                <div class="col-sm-10">
+                    <input id="field-Auction" type="checkbox" class="form-control" /> 
+                </div>
+            </div>
+        </fieldset>
+        <fieldset disabled id="fieldset-auction">
+            
+            <div class="form-group">
+                <label for="field-AuctionStartingPrice" class="col-sm-2 control-label">Starting Price</label>
+                <div class="col-sm-10">
+                    <form:input id="field-AuctionStartingPrice" type="number" path="auctionStartingPrice" placeholder="Starting price for auction" step="10000.00" value="10000.00" min="0.00" class="form-control" /> 
+                    <form:errors path="auctionStartingPrice" cssClass="validationErrorText" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="field-AuctionEndingDate" class="col-sm-2 control-label">Ending Date</label>
+                <div class="col-sm-10">
+                    <form:input id="field-AuctionEndingDate" type="text" path="auctionEndingDate" class="form-control" /> 
+                    <form:errors path="auctionEndingDate" cssClass="validationErrorText" />
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="endAuctionHour" class="col-sm-2 control-label">To</label>
+                <div class="col-sm-10">
+                    <select id="endAuctionHour" path="auctionEndingHour">
+                        <%
+                            for (int i = 0; i < 24; i++) {
+                                    String hour = String.format("%02d", i);
+                                    out.print("<option value=\"" + hour + "\">" + hour
+                                            + "</option>");
+                                }
+                        %>
+                    </select>
+                    <select id="endAuctionMinute" path="auctionEndingMinute">
+                            <%
+                                for (int i = 0; i < 60; i++) {
+                                        String minute = String.format("%02d", i);
+                                        out.print("<option value=\"" + minute + "\">" + minute
+                                                + "</option>");
+                                    }
+                            %>
+                    </select>
+                </div>
+
+
+            </div>
+            
+        </fieldset>
+        </c:otherwise>
+    </c:choose>
+    
+    
 	<fieldset>
 		<legend>House Description</legend>
 
@@ -273,9 +348,7 @@
         <div class="form-group">
             <form:textarea path="houseDescription" rows="10" cols="100" placeholder="House Description" class="form-control" />
             <form:errors path="houseDescription" cssClass="validationErrorText" />
-        </div>
-                <form:errors path="distanceToNearestSuperMarket" cssClass="validationErrorText" />
-                <form:input id="field-DistanceToNearestSuperMarket" type="number" path="distanceToNearestSuperMarket" step="1" class="form-control"  /> 
+        </div> 
 	</fieldset>
 
 	<fieldset>

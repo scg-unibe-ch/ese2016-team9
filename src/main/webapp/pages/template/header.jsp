@@ -3,8 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@ taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <!DOCTYPE html>
 <head>
@@ -33,6 +32,8 @@
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
 <style>
 /* ensure that autocomplete lists are not too long and have a scrollbar */
 .ui-autocomplete {
@@ -54,7 +55,6 @@ function signOut() {
 </head>
 
 <!-- check if user is logged in -->
-<security:authorize var="loggedIn" url="/profile" />
 
 <!-- check if user has a profile picture -->
 
@@ -73,23 +73,23 @@ function signOut() {
 
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        
+
+                <!-- include user details -->
+                <%@include file='/pages/getUserPicture.jsp' %>        
                 <ul class="nav nav-pills">
-                    <c:choose>
-                        <c:when test="${loggedIn || googleUser != null}">
+                    <sec:authorize access="isAuthenticated()"> 
                         <script>
                             $(document).ready(unreadMessages("header"));
                         </script>
 
-                        <!-- include user details -->
-                        <%@include file='/pages/getUserPicture.jsp' %>
-                            <li role="presentation" class="dropdown" id="profile_picture"><a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                            <% 
-                                
-                                out.print("" + realUser.getFirstName() + " "
-                                    + realUser.getLastName() + ""); 
-                            %><span class="caret"></span>
-                            </a>
+                            <li role="presentation" class="dropdown" id="profile_picture">
+                                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                                    <% 
+                                        out.print("" + realUser.getFirstName() + " " + realUser.getLastName() + ""); 
+                                    %>
+                                    <span class="caret"></span>
+                                </a>
+
                                 <ul class="dropdown-menu">
                                     <li><a href="/profile/placeAd">Place an ad</a></li>
 									<li><a href="/profile/placeAd?rent=1">Place a renting ad</a></li>
@@ -98,18 +98,22 @@ function signOut() {
                                     <li><a href="/profile/enquiries">Enquiries</a></li>
                                     <li><a href="/profile/schedule">Schedule</a></li>
                                     <li><a href="/profile/alerts">Alerts</a></li>
-                                    <li>
-                                    <% out.print("<a href=\"/user?id=" + realUser.getId() + "\">Public Profile</a>"); %>
-                                    </li>
+                                    <li><a href="/user?id=<% out.print(realUser.getId()); %>">Public Profile</a></li>
+                                    <% if(!realUser.isPremium()) { %>
+                                        <li><a href="/profile/getPremium">Get Premium</a></li>
+                                    <% } %>
                                     <li role="presentation"><a href="/logout" onclick="signOut();">Logout</a></li>
-                                </ul></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li role="presentation"><a href="/login">Login</a></li>
-                        </c:otherwise>
-                    </c:choose>
+                                    
+                                </ul>
+                            </li>
+                    </sec:authorize>
+                    <sec:authorize access="isAnonymous()"> 
+                        <li role="presentation"><a href="/login">Login</a></li>
+                    </sec:authorize>
 				    <li><a href="<c:url value='/searchAd' />">Search</a></li>
                 </ul>
+                
+                
             </div>
 		
 	   </div>

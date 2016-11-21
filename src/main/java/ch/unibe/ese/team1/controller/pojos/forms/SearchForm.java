@@ -7,10 +7,14 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import ch.unibe.ese.team1.controller.service.GeoDataService;
+import ch.unibe.ese.team1.model.Location;
 
 /** This form is used for searching for an ad. */
 public class SearchForm {
-
+	
 	private boolean filtered;
 
 	// flat: true, house: false
@@ -19,7 +23,7 @@ public class SearchForm {
 	private boolean forSale;
 
 	@NotBlank(message = "Required")
-	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
+	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s,;\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
 	private String city;
 	
 	@NotNull(message = "Requires a number")
@@ -40,7 +44,7 @@ public class SearchForm {
 	
 	@AssertFalse(message = "please select either or both types")
 	private boolean noSellNoRent;
-
+	
 	public String getCity() {
 		return city;
 	}
@@ -160,6 +164,9 @@ public class SearchForm {
 	private boolean flatHelper;
 	private boolean saleHelper;
 	private boolean rentHelper;
+	
+	private double latitude;
+	private double longitude;
 
 	public boolean getSmokers() {
 		return smokers;
@@ -327,5 +334,21 @@ public class SearchForm {
 
 	public void setRentHelper(boolean helper) {
 		this.rentHelper = helper;
+	}
+	
+	public void setLatitude(double latitude){
+		this.latitude = latitude;
+	}
+	
+	public double getLatitude() {
+		return latitude;
+	}
+	
+	public void setLongitude(double longitude){
+		this.longitude = longitude;
+	}
+	
+	public double getLongitude() {
+		return longitude;
 	}
 }

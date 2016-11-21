@@ -60,7 +60,7 @@ public class VisitEnquiryTestDataSaver {
 		// Enquiries for advertiser user@bern.com (Berner Bär)
 		// Add 2 Enquiries to Visit 1
 		enquiry = new VisitEnquiry();
-		visit = visitDao.findOne(1L);
+		visit = visitDao.findOne(91L);
 		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
 		enquiry.setSender(jane);
 		enquiry.setState(VisitEnquiryState.OPEN);
@@ -76,7 +76,7 @@ public class VisitEnquiryTestDataSaver {
 
 		// Add 1 Enquiry to Visit 6
 		enquiry = new VisitEnquiry();
-		visit = visitDao.findOne(6L);
+		visit = visitDao.findOne(92L);
 		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
 		enquiry.setSender(jane);
 		enquiry.setState(VisitEnquiryState.OPEN);
@@ -86,7 +86,7 @@ public class VisitEnquiryTestDataSaver {
 		// Enquiries for advertiser ese (ese@unibe.ch)
 		// Add 2 Enquiries to Visit 5
 		enquiry = new VisitEnquiry();
-		visit = visitDao.findOne(5L);
+		visit = visitDao.findOne(93L);
 		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
 		enquiry.setSender(jane);
 		enquiry.setState(VisitEnquiryState.OPEN);
@@ -102,7 +102,7 @@ public class VisitEnquiryTestDataSaver {
 
 		// Add 1 Enquiriy to Visit 9
 		enquiry = new VisitEnquiry();
-		visit = visitDao.findOne(9L);
+		visit = visitDao.findOne(94L);
 		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
 		enquiry.setSender(jane);
 		enquiry.setState(VisitEnquiryState.OPEN);
@@ -111,7 +111,7 @@ public class VisitEnquiryTestDataSaver {
 
 		// Add 1 Enquiriy to Visit 10
 		enquiry = new VisitEnquiry();
-		visit = visitDao.findOne(10L);
+		visit = visitDao.findOne(110L);
 		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
 		enquiry.setSender(oprah);
 		enquiry.setState(VisitEnquiryState.OPEN);
@@ -121,7 +121,7 @@ public class VisitEnquiryTestDataSaver {
 		// Enquiries for advertiser oprah
 		// Add 2 Enquiries to Visit 22
 		enquiry = new VisitEnquiry();
-		visit = visitDao.findOne(22L);
+		visit = visitDao.findOne(95L);
 		enquiry.setDateSent(dateFormat.parse(getRandomDummyTime()));
 		enquiry.setSender(bernerBaer);
 		enquiry.setState(VisitEnquiryState.OPEN);

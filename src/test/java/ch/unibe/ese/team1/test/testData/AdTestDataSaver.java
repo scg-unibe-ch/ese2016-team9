@@ -2,6 +2,7 @@ package ch.unibe.ese.team1.test.testData;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,8 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.AdPicture;
+import ch.unibe.ese.team1.model.Bet;
 import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.dao.AdDao;
+import ch.unibe.ese.team1.model.dao.BetDao;
 import ch.unibe.ese.team1.model.dao.UserDao;
 
 /** This inserts several ad elements into the database. */
@@ -24,7 +27,9 @@ public class AdTestDataSaver {
 	private AdDao adDao;
 	@Autowired
 	private UserDao userDao;
-
+	@Autowired
+	private BetDao betDao;
+	
 	@Transactional
 	public void saveTestData() throws Exception {
 		User bernerBaer = userDao.findByUsername("user@bern.com");
@@ -550,11 +555,70 @@ public class AdTestDataSaver {
 		adTestSale.setCable(false);
 		adTestSale.setGarage(false);
 		adTestSale.setForSale(true);
-		adLausanne.setRunningCosts(300);
+		adTestSale.setRunningCosts(300);
 		adTestSale.setDistanceToNearestPublicTransport(1);
 		adTestSale.setDistanceToNearestSchool(1);
 		adTestSale.setDistanceToNearestSuperMarket(2);
 		adDao.save(adTestSale);
+
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, 7);
+		Ad adWithAuction = new Ad();
+		adWithAuction.setZipcode(5000);
+		adWithAuction.setMoveInDate(moveInDate8);
+		adWithAuction.setCreationDate(creationDate2);
+		adWithAuction.setPrize(1000000);
+		adWithAuction.setSquareFootage(60);
+		adWithAuction.setNumberOfRooms(3);
+		adWithAuction.setFlat(false);
+		adWithAuction.setSmokers(false);
+		adWithAuction.setAnimals(false);
+		adWithAuction.setHouseDescription(flatDescription8);
+		adWithAuction.setUser(oprah);
+		adWithAuction.setTitle("Sweet House for Sale");
+		adWithAuction.setStreet("Schwanenplace 61B");
+		adWithAuction.setCity("Aarau");
+		adWithAuction.setGarden(true);
+		adWithAuction.setBalcony(true);
+		adWithAuction.setCellar(true);
+		adWithAuction.setFurnished(false);
+		adWithAuction.setCable(false);
+		adWithAuction.setGarage(true);
+		adWithAuction.setForSale(true);
+		adWithAuction.setRunningCosts(300);
+		adWithAuction.setDistanceToNearestPublicTransport(1);
+		adWithAuction.setDistanceToNearestSchool(1);
+		adWithAuction.setDistanceToNearestSuperMarket(2);
+		adWithAuction.setAuctionEndingDate(cal.getTime());
+		adWithAuction.setAuctionStartingPrize(250000);
+		adDao.save(adWithAuction);
+
+		/** place some bets **/
+		Calendar calBets = Calendar.getInstance();
+		calBets.add(Calendar.DATE, -7);
+		Bet bet1 = new Bet();
+		bet1.setAd(adWithAuction);
+		bet1.setPrice(300000);
+		bet1.setUser(ese);
+		bet1.setCreationDate(calBets.getTime());
+		
+		calBets.add(Calendar.HOUR, 2);
+		Bet bet2 = new Bet();
+		bet2.setAd(adWithAuction);
+		bet2.setPrice(350000);
+		bet2.setUser(jane);
+		bet2.setCreationDate(calBets.getTime());
+		
+		calBets.add(Calendar.HOUR, 2);
+		Bet bet3 = new Bet();
+		bet3.setAd(adWithAuction);
+		bet3.setPrice(400000);
+		bet3.setUser(ese);
+		bet3.setCreationDate(calBets.getTime());
+		
+		betDao.save(bet1);
+		betDao.save(bet2);
+		betDao.save(bet3);
 		
 		
 	}

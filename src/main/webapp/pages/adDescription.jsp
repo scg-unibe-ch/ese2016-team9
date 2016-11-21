@@ -6,12 +6,13 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
-
+	
+    
 <!-- check if user is logged in -->
-<security:authorize var="loggedIn" url="/profile" />
-
+<c:set var="loggedIn" value="${pageContext.request.userPrincipal.authenticated}" />
+    
 <c:import url="template/header.jsp" />
-
+    
 <pre><a href="/">Home</a> &gt; <a href="/profile/myHouses">My Houses</a> &gt; Ad Description</pre>
 
 <script src="/js/image_slider.js"></script>
@@ -121,7 +122,6 @@
 	type="date" pattern="dd.MM.yyyy" />
 <fmt:formatDate value="${shownAd.creationDate}" var="formattedCreationDate"
 	type="date" pattern="dd.MM.yyyy" />
-
 
 <h1 id="shownAdTitle">${shownAd.title}
 	<c:choose>
@@ -247,6 +247,50 @@
             </div>
             
             <div class="col-md-6">
+                <c:choose>
+                    <c:when test="${shownAd.isAuction()}">
+                        <h2>Auction</h2>
+                        <table class="table">
+                            <tr>
+                                <th>User</th>
+                                <th>Bidden price</th>
+                                <th>Date</th>
+                            </tr>
+                            <c:choose>
+                                <c:when test="${loggedIn}">
+                                    <form:form method="post" modelAttribute="betForm" action="/makeBet?id=${shownAd.id}" id="betForm" autocomplete="off" class="form-horizontal" enctype="multipart/form-data">
+                                    <tr>
+                                        <td>
+                                            <span class="auctionUsername">
+                                                ${loggedInUserEmail}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <form:input id="field-Price" type="number" path="price" placeholder="Bid" step="50" class="form-control" value="${shownAd.getHighestBet()}" min="${shownAd.getHighestBet()}" />   
+                                            <form:errors path="price" cssClass="validationErrorText" />
+                                        </td>
+                                        <td>
+                                            <button type="Submit" class="btn btn-default">Submit</button>
+                                        </td>
+                                    </tr>
+                                    </form:form>
+                                </c:when>
+                            </c:choose>
+                            <c:forEach items="${shownAd.bets}" var="bet" varStatus="status">
+
+                                <fmt:formatNumber value="${bet.price}" type="currency" currencySymbol="" var="formattedPrice"/>
+                                <fmt:formatDate value="${bet.creationDate}" var="formattedBetDate" type="date" pattern="dd.MM.yyyy" />
+                                <tr>
+                                    <td>${bet.user.username}</td>
+                                    <td>${formattedPrice}&#32;CHF</td>
+                                    <td>${formattedBetDate}</td>
+                                </tr>
+                            </c:forEach>
+                            
+                                
+                        </table>
+                    </c:when>
+                </c:choose>
             
                 <h2>Advertiser</h2>
                 <table id="advertiserTable" class="table">
@@ -441,12 +485,12 @@
                                 <td><c:choose>
                                         <c:when test="${loggedIn}">
                                             <c:if test="${loggedInUserEmail != shownAd.user.username}">
-                                                <button class="thinButton" type="button" data-id="${visit.id}">Send
+                                                <button class="btn btn-default thinButton" type="button" data-id="${visit.id}">Send
                                                     enquiry to advertiser</button>
                                             </c:if>
                                         </c:when>
                                         <c:otherwise>
-                                            <a href="/login"><button class="thinInactiveButton" type="button"
+                                            <a href="/login"><button class="btn btn-default thinInactiveButton" disabled="disabled" type="button"
                                                 data-id="${visit.id}">Login to send enquiries</button></a>
                                         </c:otherwise>
                                     </c:choose></td>
@@ -458,60 +502,6 @@
             </div>
         </div>
     </div>
-    
-
-	
-	<!-- <table id="additionalInformationTable" class="adDescDiv">
-		<tr>
-			<td><h2>Floor</h2></td>
-			<td>${shownAd.floor}</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Number of Rooms</h2></td>
-			<td>${shownAd.numberOfRooms}</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Last Renovation</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.lastRenovation!=null}">${shownAd.lastRenovation }</c:when>
-					<c:otherwise>-</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Nearest Super Market</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.distanceToNearestSuperMarket<5100}">${shownAd.distanceToNearestSuperMarket}m</c:when>
-					<c:otherwise>> 5km</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Public Transport</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.distanceToNearestPublicTransport<5100}">${shownAd.distanceToNearestPublicTransport}m</c:when>
-					<c:otherwise>> 5km</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-		
-		<tr>
-			<td><h2>Nearest School</h2></td>
-			<td>
-				<c:choose>
-					<c:when test="${shownAd.distanceToNearestSchool<5100}">${shownAd.distanceToNearestSchool}m</c:when>
-					<c:otherwise>> 5km</c:otherwise>
-				</c:choose>
-			</td>
-		</tr>
-	</table> -->
 </section>
 
 <div class="clearBoth"></div>

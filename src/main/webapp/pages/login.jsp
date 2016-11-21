@@ -7,7 +7,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 
 <!-- check if user is logged in -->
-<security:authorize var="loggedIn" url="/profile" />
+<sec:authorize var="loggedIn" url="/profile" />
 
 <c:import url="template/header.jsp" />
 <meta name="google-signin-client_id" content="601046239237-r1etvc978bl3evkdlp9k4blmtpp210i0.apps.googleusercontent.com">
@@ -52,11 +52,13 @@ function onSignIn(googleUser) {
 			<p>Incorrect email or password. Please retry using correct email and password.</p>
 			<br />
 		</c:if>
-		<form id="login-form" method="post" action="/j_spring_security_check" class="form-inline">
+		
+		<form id="login-form" name="f" method="post" action="/login" class="form-inline">
             <div class="form-group">
-                <label class="sr-only" for="field-email">Email:</label> <input name="j_username" id="field-email" placeholder="Email" class="form-control" /> 
-                <label class="sr-only" for="field-password">Password:</label> <input name="j_password" id="field-password" type="password" placeholder="Password" class="form-control" />
+                <label class="sr-only" for="field-email">Email:</label> <input name="username" id="field-email" placeholder="Email" class="form-control" /> 
+                <label class="sr-only" for="field-password">Password:</label> <input name="password" id="field-password" type="password" placeholder="Password" class="form-control" />
                 <button type="submit" class="btn btn-default">Login</button>
+                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
             </div>
 		</form>
 		<br />

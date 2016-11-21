@@ -7,6 +7,16 @@
 
 
 <c:import url="template/header.jsp" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+$( function() {
+  $( "#tabs" ).tabs();
+} );
+</script>
+  
 <pre><a href="/">Home</a>   &gt;   <a href="/searchAd/">Search</a>   &gt;   Results</pre>
 
 <script>
@@ -18,6 +28,7 @@ $(document).ready(function(){
 		else
 			$(this).find(".range").html(newValue + "m");
 	});
+	
 });
 function validateType(form)
 {
@@ -139,6 +150,71 @@ function sort_div_attribute() {
 	});
 </script>
 
+<!--  This script is for the map -->
+<script>
+var map;
+
+function initMap() {
+  var longitude = parseFloat(document.getElementById("longitude").value);
+  var latitude = parseFloat(document.getElementById("latitude").value);
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: latitude, lng: longitude},
+    zoom: 13,
+  });
+  
+  function makeInfoWindowEvent(infowindow, marker){
+	  marker.addListener('click', function() {
+  	    infowindow.open(map, marker);
+  	  });
+  }
+  
+  function makeMarkersAndInfoWindows(object){
+	  var title = object.querySelector("#adTitle").innerHTML;
+	  var link = object.querySelector("#adTitle").href;
+	  var address = object.querySelector(".adAddress").innerHTML;
+	  var prize = object.querySelector(".adPrize").innerHTML;
+	  var moveInDate = object.querySelector(".adMoveInDate").innerHTML;
+	  var source = object.querySelector(".adImage").src;
+	  
+	  var content = "<style> img{ width: 200px; height: auto;} .prize{ font-size: 20px;}</style>"+
+	  		"<img src='" + source +"'></img>"+
+		  	"<a href='"+link+"'><h2>"+title+"</h2></a>"+
+		  	"<p>"+address+"</p>"+
+		  	"<p class='prize'><b>"+ prize +"</b></p>"+
+		  	"<span>"+moveInDate+"</span>"
+	  				
+	  
+  
+	  var geocoder = new google.maps.Geocoder();
+	
+	  geocoder.geocode( { 'address' : address }, function( results, status ) {
+	  	if( status == google.maps.GeocoderStatus.OK ) {
+	  		
+	  	  var infowindow = new google.maps.InfoWindow({
+	  	    content: content
+	  	  });
+	
+	      marker = new google.maps.Marker( {
+	    	title: title,
+	        map     : map,
+	        position: results[0].geometry.location,
+	      } );
+	      
+	      makeInfoWindowEvent(infowindow, marker);
+	      
+	    }
+	  } );	  
+  }
+
+  var objects = document.getElementsByClassName("resultAd");
+  
+  for(var i = 0; i < objects.length; i++) {
+	  var object = objects.item(i);
+	  makeMarkersAndInfoWindows(object);
+  }
+}
+</script>
+
 <h1>Search results:</h1>
 
 <hr />
@@ -157,8 +233,7 @@ function sort_div_attribute() {
 <button onClick="sort_div_attribute()">Sort</button>	
 </div>
 
-<form:form method="post" modelAttribute="searchForm" action="/results"
-	id="filterForm" autocomplete="off">
+<form:form method="post" modelAttribute="searchForm" action="/results" id="filterForm" autocomplete="off" class="form-horizontal">
 
 	<div id="filterDiv">
 		<h2>Filter results:</h2>
@@ -183,6 +258,9 @@ function sort_div_attribute() {
 		<form:input type="text" name="city" id="city" path="city"
 			placeholder="e.g. Bern" tabindex="3" />
 		<form:errors path="city" cssClass="validationErrorText" /><br />
+		
+		<form:input style="display:none" type="number" id="latitude" path="latitude" step="any"/>
+		<form:input style="display:none" type="number" id="longitude" path="longitude" step="any"/>
 			
 		<label for="radius">Within radius of (max.):</label>
 		<form:input id="radiusInput" type="number" path="radius"
@@ -215,19 +293,19 @@ function sort_div_attribute() {
 			<tr>
 				<td><label for="distanceToNearestPublicTransport">Distance to nearest public transport (max.):</label></td>
 				<td class="slider"><form:input id="distanceToNearestPublicTransportInput" class ="distance-slider" type="range" path="distanceToNearestPublicTransport"
-					min="100" max="5100" value="500" step="100" /><span class="range">500m</span>
+					min="100" max="5100" value="5100" step="100" /><span class="range">>5km</span>
 				</td>
 			</tr>
 			<tr>
 				<td><label for="distanceToNearestSuperMarket">Distance to nearest super market (max.):</label></td>
 				<td class="slider"><form:input id="distanceToNearestSuperMarketInput" class ="distance-slider" type="range" path="distanceToNearestSuperMarket"
-					min="100" max="5100" value="500" step="100" /><span class="range">500m</span>
+					min="100" max="5100" value="5100" step="100" /><span class="range">>5km</span>
 				</td>
 			</tr>
 			<tr>
 				<td><label for="distanceToNearestSchool">Distance to nearest school (max.):</label></td>
 				<td class="slider"><form:input id="distanceToNearestSchoolInput" class ="distance-slider" type="range" path="distanceToNearestSchool"
-					min="100" max="5100" value="500" step="100" /><span class="range">500m</span>
+					min="100" max="5100" value="5100" step="100" /><span class="range">>5km</span>
 				</td>
 			</tr>
 			<tr>
@@ -267,11 +345,17 @@ function sort_div_attribute() {
 		</table>
 			
 		
-		<button type="submit" onClick="validateType(this.form)">Filter</button>	
-		<button type="reset">Cancel</button>
+		<button type="submit" class="btn btn-default" onClick="validateType(this.form)">Filter</button>	
+		<button type="reset" class="btn btn-default">Cancel</button>
 	</div>
 </form:form>
-<div class="searchResultsDiv">
+
+<div class="searchResultsDiv" id="tabs">
+<ul>
+  <li><a href="#result-list">List</a></li>
+  <li><a href="#result-map">Map</a></li>
+</ul>
+<div id="result-list">
 <c:choose>
 	<c:when test="${empty results}">
 		<p>No results found!
@@ -283,11 +367,11 @@ function sort_div_attribute() {
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
-							src="${ad.pictures[0].filePath}" /></a>
+							src="${ad.pictures[0].filePath}" class="adImage"/></a>
 						<h2>
-							<a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
+							<a class="link adTitle" id="adTitle" href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
 						</h2>
-						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
+						<p class="adAddress">${ad.street}, ${ad.zipcode} ${ad.city}</p>
 						<br />
 						<p>
 							<i><c:choose>
@@ -297,7 +381,7 @@ function sort_div_attribute() {
 						</p>
 					</div>
 					<div class="resultRight">
-						<h2>CHF ${ad.prize }</h2>
+						<h2 class="adPrize">CHF ${ad.prize }</h2>
 						<br /> 
 						<p>
 							<i><c:choose>
@@ -310,7 +394,7 @@ function sort_div_attribute() {
 						<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
 							type="date" pattern="dd.MM.yyyy" />
 
-						<p>Move-in date: ${formattedMoveInDate }</p>
+						<p class="adMoveInDate">Move-in date: ${formattedMoveInDate }</p>
 					</div>
 				</div>
 			</c:forEach>
@@ -319,4 +403,11 @@ function sort_div_attribute() {
 </c:choose>
 </div>
 
+<div id="resutl-map">
+<div id="map"></div>
+</div>
+</div>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5Hs4TYmXUiMKPetPokSZrUSMnev58Fm8&callback=initMap"
+  type="text/javascript"></script>
 <c:import url="template/footer.jsp" />

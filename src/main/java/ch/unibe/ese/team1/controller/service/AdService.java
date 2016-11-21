@@ -8,9 +8,11 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -146,7 +148,7 @@ public class AdService {
 
 
 		// visits
-		List<Visit> visits = new LinkedList<>();
+		Set<Visit> visits = new HashSet<>();
 		List<String> visitStrings = placeAdForm.getVisits();
 		if (visitStrings != null) {
 			for (String visitString : visitStrings) {
@@ -173,6 +175,29 @@ public class AdService {
 			ad.setVisits(visits);
 		}
 
+		// Save auction information
+		if (placeAdForm.getAuctionEndingDate() != null && 
+				placeAdForm.getAuctionEndingDate().length() >= 1) {
+			int dayEndAuction = Integer.parseInt(placeAdForm.getAuctionEndingDate()
+					.substring(0, 2));
+			int monthEndAuction = Integer.parseInt(placeAdForm.getAuctionEndingDate()
+					.substring(3, 5));
+			int yearEndAuction = Integer.parseInt(placeAdForm.getAuctionEndingDate()
+					.substring(6, 10));
+			
+			
+			calendar.set(
+					yearEndAuction, 
+					monthEndAuction - 1, 
+					dayEndAuction, 
+					placeAdForm.getAuctionEndingHour(), 
+					placeAdForm.getAuctionEndingMinute()
+			);
+			ad.setAuctionEndingDate(calendar.getTime());
+			ad.setAuctionStartingPrize(placeAdForm.getAuctionStartingPrice());
+		}
+		
+		
 		ad.setUser(user);
 		
 		adDao.save(ad);
@@ -270,6 +295,10 @@ public class AdService {
 		// lowest zip code
 		Location searchedLocation = geoDataService.getLocationsByCity(city)
 				.get(0);
+		
+		//set latitude and longitude for map
+		searchForm.setLongitude(searchedLocation.getLongitude());
+		searchForm.setLatitude(searchedLocation.getLatitude());
 
 		// create a list of the results and of their locations
 		List<Ad> locatedResults = new ArrayList<>();

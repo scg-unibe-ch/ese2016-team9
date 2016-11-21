@@ -1,9 +1,14 @@
 package ch.unibe.ese.team1.controller.pojos.forms;
 
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.validator.constraints.NotBlank;
 
 /** This form is used when a user wants to edit their profile. */
 public class EditProfileForm {
+
+	@NotNull
+	private long id;
 
 	@NotBlank(message = "Required")
 	private String username;
@@ -18,7 +23,15 @@ public class EditProfileForm {
 	private String lastName;
 	
 	private String aboutMe;
+	
+	public long getId() {
+		return id;
+	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
+	
 	public String getPassword() {
 		return password;
 	}

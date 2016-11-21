@@ -1,7 +1,9 @@
 package ch.unibe.ese.team1.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +15,7 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -120,8 +123,19 @@ public class Ad {
 	private User user;
 	
 	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<Visit> visits;
+	private Set<Visit> visits;
+	
+	@OneToMany(mappedBy = "ad", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@OrderBy("creationDate DESC")
+	private Set<Bet> bets;
 
+	@Column
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date auctionEndingDate;
+	
+	@Column
+	private double auctionStartingPrize;
+	
 	public Date getCreationDate() {
 		return creationDate;
 	}
@@ -298,11 +312,11 @@ public class Ad {
 		this.city = city;
 	}
 
-	public List<Visit> getVisits() {
+	public Set<Visit> getVisits() {
 		return visits;
 	}
 
-	public void setVisits(List<Visit> visits) {
+	public void setVisits(Set<Visit> visits) {
 		this.visits = visits;
 	}
 
@@ -363,6 +377,34 @@ public class Ad {
 		this.distanceToNearestSchool = distanceToNearestSchool;
 	}
 
+	public Set<Bet> getBets() {
+		return this.bets;
+	}
+	
+	public void setBets(Set<Bet> bets) {
+		this.bets = bets;
+	}
+
+	public Date getAuctionEndingDate() {
+		return auctionEndingDate;
+	}
+
+	public void setAuctionEndingDate(Date auctionEndingDate) {
+		this.auctionEndingDate = auctionEndingDate;
+	}
+
+	public double getAuctionStartingPrize() {
+		return auctionStartingPrize;
+	}
+
+	public void setAuctionStartingPrize(double auctionStartingPrize) {
+		this.auctionStartingPrize = auctionStartingPrize;
+	}
+	
+	public boolean isAuction() {
+		return this.auctionStartingPrize != 0 && this.auctionEndingDate != null; 
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -384,5 +426,45 @@ public class Ad {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public double getHighestBet() {
+		if (this.getLastBet() == null) {
+			if (this.isAuction()) {
+				return this.getAuctionStartingPrize();
+			} else {
+				return 0;
+			}
+		}
+		return this.getLastBet().getPrice();
+	}
+
+	public User getLastBiddingUser() {
+		if (this.getLastBet() == null) {
+			return null;
+		}
+		return this.getLastBet().getUser();
+	}
+	
+	private Bet getLastBet() {
+		Date lastDate = new Date();
+		lastDate.setTime(0);
+		Bet lastBet = null;
+		if (this.isAuction()) {
+			if (this.bets != null) {
+				for (Bet bet : this.bets) {
+					if (lastDate.before(bet.getCreationDate())) {
+						lastBet = bet;
+						lastDate = lastBet.getCreationDate();
+					}
+				}
+			}
+		}
+		return lastBet;
+	}
+
+	public boolean isAuctionEnded() {
+		Date date = new Date();
+		return date.after(this.auctionEndingDate);
 	}
 }

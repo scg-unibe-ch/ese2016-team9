@@ -28,8 +28,9 @@ public class UserUpdateService {
 	@Transactional
 	public void updateFrom(EditProfileForm editProfileForm) {
 		
-		User currentUser = userService.findUserByUsername(editProfileForm.getUsername());
+		User currentUser = userService.findUserById(editProfileForm.getId());
 		
+		currentUser.setUsername(editProfileForm.getUsername());
 		currentUser.setFirstName(editProfileForm.getFirstName());
 		currentUser.setLastName(editProfileForm.getLastName());
 		currentUser.setPassword(editProfileForm.getPassword());

@@ -2,6 +2,7 @@ package ch.unibe.ese.team1.controller;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -9,14 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ch.unibe.ese.team1.controller.pojos.forms.BetForm;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
+import ch.unibe.ese.team1.controller.pojos.forms.PlaceAdForm;
 import ch.unibe.ese.team1.controller.service.AdService;
+import ch.unibe.ese.team1.controller.service.BetService;
 import ch.unibe.ese.team1.controller.service.BookmarkService;
 import ch.unibe.ese.team1.controller.service.MessageService;
 import ch.unibe.ese.team1.controller.service.UserService;
@@ -44,6 +50,9 @@ public class AdController {
 	private MessageService messageService;
 
 	@Autowired
+	private BetService betService;
+
+	@Autowired
 	private VisitService visitService;
 
 	/** Gets the ad description page for the ad with the given id. */
@@ -54,12 +63,11 @@ public class AdController {
 		model.addObject("shownAd", ad);
 		model.addObject("messageForm", new MessageForm());
 
-		String loggedInUserEmail = (principal == null) ? "" : principal
-				.getName();
+		String loggedInUserEmail = (principal == null) ? "" : principal.getName();
 		model.addObject("loggedInUserEmail", loggedInUserEmail);
 
 		model.addObject("visits", visitService.getVisitsByAd(ad));
-
+		
 		return model;
 	}
 
@@ -108,7 +116,7 @@ public class AdController {
 			// that should not happen...
 			return 1;
 		}
-		List<Ad> bookmarkedAdsIterable = user.getBookmarkedAds();
+		Set<Ad> bookmarkedAdsIterable = user.getBookmarkedAds();
 		if (screening) {
 			for (Ad ownAdIterable : adService.getAdsByUser(user)) {
 				if (ownAdIterable.getId() == id) {
@@ -153,4 +161,67 @@ public class AdController {
 		return model;
 	}
 
+	/**
+	 * make bet for an ad
+	 * 
+	 * @param messageForm
+	 * @param bindingResult
+	 * @return
+	 */
+	@RequestMapping(value = "/makeBet", method = RequestMethod.POST)
+	public ModelAndView makeBet(
+			@RequestParam("id") long id,
+			@Valid @ModelAttribute("betForm") BetForm betForm, 
+			BindingResult bindingResult, 
+			RedirectAttributes redirectAttributes,
+			Principal principal) {
+
+		
+		String username = principal.getName();
+		User user = userService.findUserByUsername(username);
+		
+		Ad ad = adService.getAdById(id);
+		
+
+		
+		switch (betService.validateBet(betForm, ad, user)) {
+			case BetService.VALIDATE_PRICE_TO_LOW:
+				bindingResult.rejectValue("price", "Price is too low", "Price is too low");
+			break;
+			case BetService.VALIDATE_SAME_USER:
+				bindingResult.rejectValue("price", "You can't bet twice", "You can't bet twice");
+			break;
+			case BetService.VALIDATE_AUCTION_ENDED:
+				bindingResult.rejectValue("price", "Auction has ended", "Auction has ended");
+			break;
+				
+		}
+		
+		ModelAndView model = new ModelAndView("adDescription");
+		model.addObject("shownAd", ad);
+		model.addObject("messageForm", new MessageForm());
+		
+		if (!bindingResult.hasErrors()) {
+			this.betService.saveFrom(betForm, ad, user);
+
+			model = new ModelAndView("redirect:/ad?id=" + ad.getId());
+			redirectAttributes.addFlashAttribute(
+					"confirmationMessage",
+					"Your bet has been placed!"
+			);
+		}
+		
+		return model;
+	}
+	
+	private BetForm betForm;
+	
+	@ModelAttribute("betForm")
+	public BetForm betForm() {
+		if (betForm == null) {
+			betForm = new BetForm();
+		}
+		return betForm;
+	}
+	
 }

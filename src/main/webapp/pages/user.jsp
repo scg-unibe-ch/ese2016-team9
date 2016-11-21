@@ -68,8 +68,7 @@
         
 	<h2>${user.email}</h2>
 	<h2>Name</h2>
-    <p>${user.firstName}
-	${user.lastName}</p>
+    <p>${user.firstName} ${user.lastName}</p>
 	
 	<h2>About me</h2>
     

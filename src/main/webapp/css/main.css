@@ -72,7 +72,7 @@ pre a {
 /*Header is fixed to 60px from top, so with padding of 60px,
 we fix the body in the exactly right position*/
 body {
-	
+	margin-bottom: 40px !important;
 }
 
 /* the main content on every page */
@@ -109,7 +109,7 @@ input, select, textarea {
 }
 
 input[type="number"] {
-	width: 70px;
+	/*width: 70px;*/
 }
 
 input[type="range"] {
@@ -451,8 +451,12 @@ footer nav ul li {
 	margin-top: 10px;
 }
 
-.searchResultsDiv #resultsDiv{
+.searchResultsDiv{
 	width: 69%;
+}
+
+.searchResultsDiv ul{
+	height: 35px;
 }
 
 #resultsDiv div {
@@ -488,6 +492,15 @@ footer nav ul li {
 	width: 40%;
 	text-align: right;
 	padding-right: 5px;
+}
+
+#map  {
+	height: 500px;
+	width: 100%;
+}
+
+.hidden {
+	display: none;
 }
 
 /* -------------------------------------------------------------------- */

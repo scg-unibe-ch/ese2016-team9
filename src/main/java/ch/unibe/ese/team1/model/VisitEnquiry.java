@@ -20,7 +20,7 @@ public class VisitEnquiry {
 	@GeneratedValue
 	private long id;
 
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private User sender;
 
 	@JsonFormat(pattern = "HH:mm, dd.MM.yyyy")
@@ -31,7 +31,7 @@ public class VisitEnquiry {
 	private VisitEnquiryState state;
 
 	/** Which visit does the enquiry belong to? */
-	@ManyToOne
+	@ManyToOne(optional = false)
 	private Visit visit;
 
 	public long getId() {

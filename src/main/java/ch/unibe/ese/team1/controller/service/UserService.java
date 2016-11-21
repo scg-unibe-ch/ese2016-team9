@@ -28,4 +28,11 @@ public class UserService {
 		return userDao.findUserById(id);
 	}
 
+	/** Set the user premium. */
+	@Transactional
+	public void setUserToPremium(User user, boolean toPremium) {
+		user.setPremium(toPremium);
+		userDao.save(user);
+	}
+
 }

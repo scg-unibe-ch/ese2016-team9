@@ -48,7 +48,7 @@ import ch.unibe.ese.team1.model.dao.UserDao;
 		"file:src/main/webapp/WEB-INF/config/springSecurity.xml"})
 
 @WebAppConfiguration
-public class PlaceAdControllerTest {
+public class EditAdControllerTest {
 	private MockMvc mockMvc;
 
 	@Autowired
@@ -59,6 +59,12 @@ public class PlaceAdControllerTest {
 
     @Autowired
     private Filter springSecurityFilterChain;
+    
+    @Autowired
+    private AdDao adDao;
+    
+    @Autowired
+    private UserDao userDao;
     
 	@Before
 	public void setup() throws Exception {
@@ -78,10 +84,13 @@ public class PlaceAdControllerTest {
 	}
 	
 	@Test
-	public void placeAdFormIsNotValidWhenNotLoggedIn() throws Exception {
+	public void editAdFormWillWorkEvenWithBiel() throws Exception {
+		this.login();
+		User ese = userDao.findByUsername("ese@unibe.ch");
+		Ad ad = this.generateAuctionAd(ese);
 		ResultActions resultActions = this.mockMvc.perform(
-				post("/profile/placeAd").with(csrf())
-				.param("title", "testAd - placeAdFormIsNotValidWhenNotLoggedIn")
+				post("/profile/editAd?adId=" + ad.getId()).with(csrf())
+				.param("title", "Beautiful Flat in biel")
 				.param("flat", "1")
 				.param("street", "teststreet")
 				.param("prize", "500")
@@ -91,21 +100,22 @@ public class PlaceAdControllerTest {
 				.param("houseDescription", "beatuiful")
 				.param("city", "3000 - Biel;Bienne")				
 				).andExpect(status().is3xxRedirection());
-
-		resultActions.andExpect(redirectedUrl("http://localhost/login"));
+		resultActions.andExpect(redirectedUrl("/ad?id=" + ad.getId()));
 		
-		Iterable<Ad> ads = this.adService.getNewestAds(1);
-		for (Ad ad : ads) {
-			assertNotEquals("testAd - placeAdFormIsNotValidWhenNotLoggedIn", ad.getTitle());
-		}
+		Ad otherAd = adDao.findOne(ad.getId());
+		assertEquals("Biel;Bienne", otherAd.getCity());
+		assertEquals(3000, otherAd.getZipcode());
 	}
 	
+
 	@Test
-	public void placeAdFormWillSaveAdEvenInBiel() throws Exception {
+	public void youShouldNotBeAllowedToEditSomeonesOtherAd() throws Exception {
 		this.login();
-		ResultActions resultActions = this.mockMvc.perform(
-				post("/profile/placeAd").with(csrf())
-				.param("title", "testAd - placeAdFormWillSaveAdEvenInBiel")
+		User jane = userDao.findByUsername("jane@doe.com");
+		Ad ad = this.generateAuctionAd(jane);
+		this.mockMvc.perform(
+				post("/profile/editAd?adId=" + ad.getId()).with(csrf())
+				.param("title", "Beautiful Flat in biel")
 				.param("flat", "1")
 				.param("street", "teststreet")
 				.param("prize", "500")
@@ -113,66 +123,47 @@ public class PlaceAdControllerTest {
 				.param("floor", "2")
 				.param("room", "2")
 				.param("houseDescription", "beatuiful")
-				.param("city", "3000 - Biel;Bienne")				
-				).andExpect(status().is3xxRedirection());
+				.param("city", "3012 - Bern")				
+				).andExpect(status().is4xxClientError());
 		
-		Ad ad = this.getAdFromUrl(resultActions.andReturn().getResponse().getRedirectedUrl());
-		
-		assertEquals("testAd - placeAdFormWillSaveAdEvenInBiel", ad.getTitle());	
+		Ad otherAd = adDao.findOne(ad.getId());
+		assertEquals("Zürich", otherAd.getCity());
+		assertEquals(5000, otherAd.getZipcode());
 	}
-
-	@Test
-	public void placeAdFormWillSaveAuctionData() throws Exception {
-		this.login();
+	
+	private Ad generateAuctionAd(User user) {
 		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, +7);
-		DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-		cal.set(Calendar.HOUR, 12);
-		cal.set(Calendar.MINUTE, 30);
-		ResultActions resultActions = this.mockMvc.perform(
-				post("/profile/placeAd").with(csrf())
-				.param("title", "testAd - placeAdFormWillSaveAuctionData")
-				.param("flat", "1")
-				.param("street", "teststreet")
-				.param("prize", "500000")
-				.param("squareFootage", "50")
-				.param("floor", "2")
-				.param("room", "2")
-				.param("houseDescription", "beatuiful")
-				.param("city", "3012 - Biel;Bienne")	
-				.param("auctionEndingDate", dateFormat.format(cal.getTime()))
-				.param("auctionEndingHour", "12")
-				.param("auctionEndingMinute", "30")
-				.param("auctionStartingPrice", "150000.00")
-				).andExpect(status().is3xxRedirection());
+		cal.add(Calendar.DATE, 7);
+		Ad adWithAuction = new Ad();
+		adWithAuction.setZipcode(5000);
+		adWithAuction.setCreationDate(new Date());
+		adWithAuction.setPrize(1000000);
+		adWithAuction.setSquareFootage(60);
+		adWithAuction.setNumberOfRooms(3);
+		adWithAuction.setFlat(false);
+		adWithAuction.setSmokers(false);
+		adWithAuction.setAnimals(false);
+		adWithAuction.setHouseDescription("testdescription");
+		adWithAuction.setUser(user);
+		adWithAuction.setTitle("Sweet House for Sale");
+		adWithAuction.setStreet("Schwanenplace 61B");
+		adWithAuction.setCity("Zürich");
+		adWithAuction.setGarden(false);
+		adWithAuction.setBalcony(false);
+		adWithAuction.setCellar(false);
+		adWithAuction.setFurnished(false);
+		adWithAuction.setCable(false);
+		adWithAuction.setGarage(false);
+		adWithAuction.setForSale(true);
+		adWithAuction.setRunningCosts(300);
+		adWithAuction.setDistanceToNearestPublicTransport(1);
+		adWithAuction.setDistanceToNearestSchool(1);
+		adWithAuction.setDistanceToNearestSuperMarket(2);
+		adWithAuction.setAuctionEndingDate(cal.getTime());
+		adWithAuction.setAuctionStartingPrize(250000);
+		adDao.save(adWithAuction);
 
-		Ad ad = this.getAdFromUrl(resultActions.andReturn().getResponse().getRedirectedUrl());
-		
-		assertEquals("testAd - placeAdFormWillSaveAuctionData", ad.getTitle());
-		Calendar adCal = Calendar.getInstance();
-		adCal.setTime(ad.getAuctionEndingDate());
-
-		assertEquals(cal.get(Calendar.YEAR), adCal.get(Calendar.YEAR));
-		assertEquals(cal.get(Calendar.MONTH), adCal.get(Calendar.MONTH));
-		assertEquals(cal.get(Calendar.DATE), adCal.get(Calendar.DATE));
-		assertEquals(cal.get(Calendar.HOUR), adCal.get(Calendar.HOUR));
-		assertEquals(cal.get(Calendar.MINUTE), adCal.get(Calendar.MINUTE));
-		
-		assertEquals(150000.0, ad.getAuctionStartingPrize(),1);
-		assertTrue(ad.isAuction());
-		
-	}
-	
-	private Ad getAdFromUrl(String url) {
-		Pattern p = Pattern.compile("\\/ad\\?id=(\\d+)");
-
-		Matcher m = p.matcher(url);
-		boolean b = m.matches();
-		assertTrue(b);
-		
-		long id = Long.parseLong(m.group(1));
-		
-		return this.adService.getAdById(id);
+		return adWithAuction;
 	}
 	
 }

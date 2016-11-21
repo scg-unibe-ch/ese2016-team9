@@ -37,6 +37,7 @@ $(document).ready(function() {
 		var enquiryButton = $("#visitList table tr button[data-id='" + id + "']");
 		$(enquiryButton).addClass('thinInactiveButton').removeClass('thinButton');
 		$(enquiryButton).html('Enquiry sent');
+        $(enquiryButton).attr("disabled", "disabled");
 		
 		reset();
 	});
