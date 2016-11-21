@@ -153,14 +153,65 @@ function sort_div_attribute() {
 <!--  This script is for the map -->
 <script>
 var map;
+
 function initMap() {
   var longitude = parseFloat(document.getElementById("longitude").value);
   var latitude = parseFloat(document.getElementById("latitude").value);
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: latitude, lng: longitude},
     zoom: 13,
-    //mapTypeId: google.maps.MapTypeId.SATELLITE,
   });
+  
+  function makeInfoWindowEvent(infowindow, marker){
+	  marker.addListener('click', function() {
+  	    infowindow.open(map, marker);
+  	  });
+  }
+  
+  function makeMarkersAndInfoWindows(object){
+	  var title = object.querySelector("#adTitle").innerHTML;
+	  var link = object.querySelector("#adTitle").href;
+	  var address = object.querySelector(".adAddress").innerHTML;
+	  var prize = object.querySelector(".adPrize").innerHTML;
+	  var moveInDate = object.querySelector(".adMoveInDate").innerHTML;
+	  var source = object.querySelector(".adImage").src;
+	  
+	  var content = "<style> img{ width: 200px; height: auto;} .prize{ font-size: 20px;}</style>"+
+	  		"<img src='" + source +"'></img>"+
+		  	"<a href='"+link+"'><h2>"+title+"</h2></a>"+
+		  	"<p>"+address+"</p>"+
+		  	"<p class='prize'><b>"+ prize +"</b></p>"+
+		  	"<span>"+moveInDate+"</span>"
+	  				
+	  
+  
+	  var geocoder = new google.maps.Geocoder();
+	
+	  geocoder.geocode( { 'address' : address }, function( results, status ) {
+	  	if( status == google.maps.GeocoderStatus.OK ) {
+	  		
+	  	  var infowindow = new google.maps.InfoWindow({
+	  	    content: content
+	  	  });
+	
+	      marker = new google.maps.Marker( {
+	    	title: title,
+	        map     : map,
+	        position: results[0].geometry.location,
+	      } );
+	      
+	      makeInfoWindowEvent(infowindow, marker);
+	      
+	    }
+	  } );	  
+  }
+
+  var objects = document.getElementsByClassName("resultAd");
+  
+  for(var i = 0; i < objects.length; i++) {
+	  var object = objects.item(i);
+	  makeMarkersAndInfoWindows(object);
+  }
 }
 </script>
 
@@ -243,19 +294,19 @@ function initMap() {
 			<tr>
 				<td><label for="distanceToNearestPublicTransport">Distance to nearest public transport (max.):</label></td>
 				<td class="slider"><form:input id="distanceToNearestPublicTransportInput" class ="distance-slider" type="range" path="distanceToNearestPublicTransport"
-					min="100" max="5100" value="500" step="100" /><span class="range">500m</span>
+					min="100" max="5100" value="5100" step="100" /><span class="range">>5km</span>
 				</td>
 			</tr>
 			<tr>
 				<td><label for="distanceToNearestSuperMarket">Distance to nearest super market (max.):</label></td>
 				<td class="slider"><form:input id="distanceToNearestSuperMarketInput" class ="distance-slider" type="range" path="distanceToNearestSuperMarket"
-					min="100" max="5100" value="500" step="100" /><span class="range">500m</span>
+					min="100" max="5100" value="5100" step="100" /><span class="range">>5km</span>
 				</td>
 			</tr>
 			<tr>
 				<td><label for="distanceToNearestSchool">Distance to nearest school (max.):</label></td>
 				<td class="slider"><form:input id="distanceToNearestSchoolInput" class ="distance-slider" type="range" path="distanceToNearestSchool"
-					min="100" max="5100" value="500" step="100" /><span class="range">500m</span>
+					min="100" max="5100" value="5100" step="100" /><span class="range">>5km</span>
 				</td>
 			</tr>
 			<tr>
@@ -317,11 +368,11 @@ function initMap() {
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
-							src="${ad.pictures[0].filePath}" /></a>
+							src="${ad.pictures[0].filePath}" class="adImage"/></a>
 						<h2>
-							<a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
+							<a class="link adTitle" id="adTitle" href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
 						</h2>
-						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
+						<p class="adAddress">${ad.street}, ${ad.zipcode} ${ad.city}</p>
 						<br />
 						<p>
 							<i><c:choose>
@@ -331,7 +382,7 @@ function initMap() {
 						</p>
 					</div>
 					<div class="resultRight">
-						<h2>CHF ${ad.prize }</h2>
+						<h2 class="adPrize">CHF ${ad.prize }</h2>
 						<br /> 
 						<p>
 							<i><c:choose>
@@ -344,7 +395,7 @@ function initMap() {
 						<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
 							type="date" pattern="dd.MM.yyyy" />
 
-						<p>Move-in date: ${formattedMoveInDate }</p>
+						<p class="adMoveInDate">Move-in date: ${formattedMoveInDate }</p>
 					</div>
 				</div>
 			</c:forEach>
