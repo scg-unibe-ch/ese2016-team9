@@ -27,6 +27,8 @@ public class SignupForm {
 	
 	@NotNull
 	private Gender gender;
+	
+	private boolean googleFlag;
 
 	public String getEmail() {
 		return email;
@@ -66,6 +68,14 @@ public class SignupForm {
 
 	public void setGender(Gender gender) {
 		this.gender = gender;
+	}
+	
+	public boolean getGoogleFlag(){
+		return this.googleFlag;
+	}
+	
+	public void setGoogleFlag(boolean flag){
+		this.googleFlag = flag;
 	}
 	
 }

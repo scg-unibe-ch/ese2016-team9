@@ -42,6 +42,15 @@
 }
 </style>
 
+<script>
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+
 </head>
 
 <!-- check if user is logged in -->
@@ -92,7 +101,7 @@
                                     <li>
                                     <% out.print("<a href=\"/user?id=" + realUser.getId() + "\">Public Profile</a>"); %>
                                     </li>
-                                    <li role="presentation"><a href="/logout">Logout</a></li>
+                                    <li role="presentation"><a href="/logout" onclick="signOut();">Logout</a></li>
                                 </ul></li>
                         </c:when>
                         <c:otherwise>

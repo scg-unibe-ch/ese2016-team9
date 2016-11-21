@@ -12,6 +12,8 @@
 <c:import url="template/header.jsp" />
 <meta name="google-signin-client_id" content="601046239237-r1etvc978bl3evkdlp9k4blmtpp210i0.apps.googleusercontent.com">
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+
+
 <script>
 function onSignIn(googleUser) {
 	  var profile = googleUser.getBasicProfile();
@@ -19,6 +21,21 @@ function onSignIn(googleUser) {
 	  console.log('Name: ' + profile.getName());
 	  console.log('Image URL: ' + profile.getImageUrl());
 	  console.log('Email: ' + profile.getEmail());
+	  console.log("Id-Token: " + googleUser.getAuthResponse().id_token);
+	  
+	  if(document.getElementById("googleFlag").checked){
+		  document.getElementById("field-password").value = profile.getId();
+		  document.getElementById("field-email").value = profile.getEmail();
+		  document.getElementById("login-form").submit();
+	  } else {
+		  document.getElementById("form-firstName").value = profile.getName().split(" ")[0];
+		  document.getElementById("form-lastName").value = profile.getName().split(" ")[1];
+		  document.getElementById("form-password").value = profile.getId();
+		  document.getElementById("form-email").value = profile.getEmail();
+		  document.getElementById("gender").selectedIndex = "0"; 
+		  
+		  document.getElementById("signupForm").submit();
+	  }
 	}
 </script>
 
@@ -66,5 +83,17 @@ function onSignIn(googleUser) {
 		
 	</c:otherwise>
 </c:choose>
+
+<form:form id="signupForm" method="post" modelAttribute="signupForm" action="google-signup" class="form-horizontal" style="display: none">
+				<form:checkbox path="googleFlag" id="googleFlag" />
+                <form:input path="firstName" id="form-firstName" class="form-control"/>
+                <form:input path="lastName" id="form-lastName" class="form-control"/>
+                <form:input path="password" id="form-password" class="form-control"/>
+                <form:input path="email" id="form-email" class="form-control"/>
+                <form:select path="gender" class="form-control">
+                    <form:option value="FEMALE" label="Female" />
+                    <form:option value="MALE" label="Male" />
+                </form:select>
+</form:form>
 
 <c:import url="template/footer.jsp" />

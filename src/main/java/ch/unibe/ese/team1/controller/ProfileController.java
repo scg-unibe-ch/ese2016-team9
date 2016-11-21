@@ -51,6 +51,19 @@ public class ProfileController {
 	@RequestMapping(value = "/login")
 	public ModelAndView loginPage() {
 		ModelAndView model = new ModelAndView("login");
+		model.addObject("signupForm", new SignupForm());
+		return model;
+	}
+	
+	@RequestMapping(value = "/google-signup", method = RequestMethod.POST)
+	public ModelAndView googleSignupPage(SignupForm signupForm){
+		try{
+			signupService.saveFrom(signupForm);
+		}
+		catch (Exception e){}
+		ModelAndView model = new ModelAndView("login");
+		signupForm.setGoogleFlag(true);
+		model.addObject("signupForm", signupForm);
 		return model;
 	}
 
