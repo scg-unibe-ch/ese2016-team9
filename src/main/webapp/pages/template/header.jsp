@@ -43,6 +43,15 @@
 }
 </style>
 
+<script>
+function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+  }
+</script>
+
 </head>
 
 <!-- check if user is logged in -->
@@ -93,7 +102,7 @@
                                     <% if(!realUser.isPremium()) { %>
                                         <li><a href="/profile/getPremium">Get Premium</a></li>
                                     <% } %>
-                                    <li role="presentation"><a href="/logout">Logout</a></li>
+                                    <li role="presentation"><a href="/logout" onclick="signOut();">Logout</a></li>
                                     
                                 </ul>
                             </li>
