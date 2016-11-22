@@ -101,7 +101,7 @@ public class EditAdController {
 			Principal principal,
 			RedirectAttributes redirectAttributes, 
 			@RequestParam long adId) {
-		ModelAndView model = new ModelAndView("placeAd");
+		ModelAndView model = new ModelAndView("editAd");
 		if (!result.hasErrors()) {
 			String username = principal.getName();
 			User user = userService.findUserByUsername(username);
