@@ -86,6 +86,9 @@ function signOut() {
                                 <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                                     <% 
                                         out.print("" + realUser.getFirstName() + " " + realUser.getLastName() + ""); 
+                                       if (realUser.isPremium()) {
+                                            out.print("<img src=\"/img/premium.png\" height=\"4px\" />");  
+                                       }
                                     %>
                                     <span class="caret"></span>
                                 </a>

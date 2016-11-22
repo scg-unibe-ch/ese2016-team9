@@ -1,6 +1,6 @@
 package ch.unibe.ese.team1.controller;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -21,7 +21,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -119,6 +118,41 @@ public class AdControllerTest {
 		assertEquals(1, OtherAd.getBets().size());
 	}
 	
+	@Test
+	public void getPlaceOnHomepageFormIfYouAreTheAuthor() throws Exception {
+		this.login();
+		User ese = userDao.findByUsername("ese@unibe.ch");
+		Ad ad = this.generateAuctionAd(ese);
+		this.mockMvc.perform(
+				get("/ad/placeOnHomepage?id="+ad.getId())
+				).andExpect(status().is2xxSuccessful());
+	}
+	
+	@Test
+	public void get403PlaceOnHomepageFormIfYouAreNotTheAuthor() throws Exception {
+		this.login();
+		User jane = userDao.findByUsername("jane@doe.com");
+		Ad ad = this.generateAuctionAd(jane);
+		this.mockMvc.perform(
+				get("/ad/placeOnHomepage?id="+ad.getId())
+				).andExpect(status().is4xxClientError());
+		
+	}
+	
+	@Test
+	public void setAnAdToTheHomepage() throws Exception {
+		this.login();
+		User ese = userDao.findByUsername("ese@unibe.ch");
+		Ad ad = this.generateAuctionAd(ese);
+		this.mockMvc.perform(
+				post("/ad/placeOnHomepage?id="+ad.getId())
+				).andExpect(status().is3xxRedirection());
+		// retrieve ad from db
+		Ad OtherAd = adService.getAdById(ad.getId());
+		assertTrue(OtherAd.isOnHomepage());
+		
+	}
+	
 	private Ad generateAuctionAd(User user) {
 		Calendar cal = Calendar.getInstance();
 		cal.add(Calendar.DATE, 7);
@@ -152,8 +186,5 @@ public class AdControllerTest {
 		adDao.save(adWithAuction);
 
 		return adWithAuction;
-	}
-	
+	}	
 }
-
-

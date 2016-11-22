@@ -86,6 +86,7 @@ public class AdTestDataSaver {
 		adBern.setFurnished(true);
 		adBern.setCable(true);
 		adBern.setGarage(true);
+		adBern.setOnHomepage(true);
 		List<AdPicture> pictures = new ArrayList<>();
 		pictures.add(createPicture(adBern, "/img/test/ad1_1.jpg"));
 		pictures.add(createPicture(adBern, "/img/test/ad1_2.jpg"));
@@ -124,6 +125,7 @@ public class AdTestDataSaver {
 		adBern2.setFurnished(false);
 		adBern2.setCable(false);
 		adBern2.setGarage(false);
+		adBern2.setOnHomepage(true);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adBern2, "/img/test/ad2_1.jpg"));
 		pictures.add(createPicture(adBern2, "/img/test/ad2_2.jpg"));
@@ -162,6 +164,7 @@ public class AdTestDataSaver {
 		adBasel.setFurnished(false);
 		adBasel.setCable(false);
 		adBasel.setGarage(false);
+		adBasel.setOnHomepage(true);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adBasel, "/img/test/ad3_1.jpg"));
 		pictures.add(createPicture(adBasel, "/img/test/ad3_2.jpg"));
@@ -200,6 +203,7 @@ public class AdTestDataSaver {
 		adOlten.setFurnished(true);
 		adOlten.setCable(true);
 		adOlten.setGarage(false);
+		adOlten.setOnHomepage(true);
 		pictures = new ArrayList<>();
 		pictures.add(createPicture(adOlten, "/img/test/ad4_1.png"));
 		pictures.add(createPicture(adOlten, "/img/test/ad4_2.png"));
@@ -591,6 +595,7 @@ public class AdTestDataSaver {
 		adWithAuction.setDistanceToNearestSuperMarket(2);
 		adWithAuction.setAuctionEndingDate(cal.getTime());
 		adWithAuction.setAuctionStartingPrize(250000);
+		adWithAuction.setOnHomepage(true);
 		adDao.save(adWithAuction);
 
 		/** place some bets **/

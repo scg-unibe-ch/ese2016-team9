@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ch.unibe.ese.team1.controller.pojos.ForbiddenException;
 import ch.unibe.ese.team1.controller.pojos.forms.BetForm;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
 import ch.unibe.ese.team1.controller.pojos.forms.PlaceAdForm;
@@ -181,9 +182,7 @@ public class AdController {
 		User user = userService.findUserByUsername(username);
 		
 		Ad ad = adService.getAdById(id);
-		
-
-		
+			
 		switch (betService.validateBet(betForm, ad, user)) {
 			case BetService.VALIDATE_PRICE_TO_LOW:
 				bindingResult.rejectValue("price", "Price is too low", "Price is too low");
@@ -211,6 +210,57 @@ public class AdController {
 			);
 		}
 		
+		return model;
+	}
+	
+	/**
+	 * place an ad to the homepage 
+	 * 
+	 * @param id
+	 * @param principal
+	 * @return
+	 */
+	@RequestMapping(value = "/ad/placeOnHomepage", method = RequestMethod.GET)
+	public ModelAndView placeOnHomepageForm(
+			@RequestParam("id") long id,
+			Principal principal) {
+
+		Ad ad = adService.getAdById(id);
+
+		String username = principal.getName();
+		User user = userService.findUserByUsername(username);
+
+		if (!user.equals(ad.getUser())) {
+			throw new ForbiddenException();
+		}
+		ModelAndView model = new ModelAndView("placeOnHomepage");
+		return model;
+	}
+	
+
+	@RequestMapping(value = "/ad/placeOnHomepage", method = RequestMethod.POST)
+	public ModelAndView placeOnHomepageFormPost(
+			@RequestParam("id") long id,
+			RedirectAttributes redirectAttributes,
+			Principal principal) {
+
+		Ad ad = adService.getAdById(id);
+
+		String username = principal.getName();
+		User user = userService.findUserByUsername(username);
+
+		if (!user.equals(ad.getUser())) {
+			throw new ForbiddenException();
+		}
+		
+		ModelAndView model = new ModelAndView("placeOnHomepage");
+
+		adService.placeOnHomepage(ad, true);
+		model = new ModelAndView("redirect:/ad?id=" + ad.getId());
+		redirectAttributes.addFlashAttribute(
+				"confirmationMessage",
+				"Your ad has been placed to the homepage!"
+		);
 		return model;
 	}
 	

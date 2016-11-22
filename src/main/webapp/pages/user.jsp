@@ -68,12 +68,25 @@
         
 	<h2>${user.email}</h2>
 	<h2>Name</h2>
-    <p>${user.firstName} ${user.lastName}</p>
-	
+    <p>
+        ${user.firstName} ${user.lastName}
+	</p>
+    
+    
+    
+    
 	<h2>About me</h2>
     
     <p>${user.aboutMe}</p>
 	
+    <c:choose>
+        <c:when test="${principalID eq user.id && user.isPremium()}">
+            <img src="/img/premium.png" />
+            <p>You are marvelous and have bought a premium account!</p>
+        </c:when>
+        <c:otherwise></c:otherwise>
+    </c:choose>
+    
 	<form>
 		<c:choose>
 			<c:when test="${principalID != null}">

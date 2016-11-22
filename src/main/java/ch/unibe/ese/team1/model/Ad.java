@@ -114,6 +114,9 @@ public class Ad {
 	
 	@Column(nullable = false)
 	private int distanceToNearestSchool;
+	
+	@Column(nullable = false)
+	private boolean isOnHomepage;
 
 	@Fetch(FetchMode.SELECT)
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -133,8 +136,15 @@ public class Ad {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date auctionEndingDate;
 	
+	@Column(nullable = false)
+	private int wasOnHomepage = 0;
+	
 	@Column
 	private double auctionStartingPrize;
+	
+	public Ad () {
+		this.isOnHomepage = false;
+	}
 	
 	public Date getCreationDate() {
 		return creationDate;
@@ -466,5 +476,17 @@ public class Ad {
 	public boolean isAuctionEnded() {
 		Date date = new Date();
 		return date.after(this.auctionEndingDate);
+	}
+	
+	public boolean isOnHomepage() {
+		return this.isOnHomepage;
+	}
+	
+	public void setOnHomepage(boolean value) {
+		this.isOnHomepage = value;
+	}
+	
+	public void wasOnHomepage() {
+		this.wasOnHomepage++;
 	}
 }

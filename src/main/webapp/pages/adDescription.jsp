@@ -141,6 +141,13 @@
 				<a href="<c:url value='/profile/editAd?id=${shownAd.id}' />">
 					<button type="button" class="btn btn-default">Edit Ad</button>
 				</a>
+                <c:choose>
+                    <c:when test="${shownAd.user.isPremium()}">
+                        <a href="/ad/placeOnHomepage?id=${shownAd.id}">
+                            <button type="button" class="btn btn-default">Place on homepage</button>
+                        </a>
+                    </c:when>
+                </c:choose>
 			</c:if>
 		</c:when>
 	</c:choose>
@@ -194,6 +201,15 @@
                     <tr>
                         <th>Ad created on</th>
                         <td>${formattedCreationDate}</td>
+                    </tr>
+                    <tr>
+                        <th>Ad is on homepage (Premium)</th>
+                        <td>
+                            <c:choose>
+                                <c:when test="${shownAd.isOnHomepage()}"><img src="/img/check-mark.png" width="26px"></c:when>
+                                <c:otherwise><img src="/img/check-mark-negative.png" width="26px"></c:otherwise>
+                            </c:choose>
+                        </td>
                     </tr>
                 </table>
             </div>

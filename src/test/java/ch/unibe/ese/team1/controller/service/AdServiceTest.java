@@ -26,6 +26,7 @@ import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.Gender;
 import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.UserRole;
+import ch.unibe.ese.team1.model.dao.AdDao;
 import ch.unibe.ese.team1.model.dao.UserDao;
 
 
@@ -116,7 +117,7 @@ public class AdServiceTest {
 		//Preparation
 		SearchForm searchForm = new SearchForm();
 		
-		searchForm.setRadius(1000);
+		searchForm.setRadius(10);
 		searchForm.setPrize(1500);
 		searchForm.setFlat(true);
 		searchForm.setDistanceToNearestPublicTransport(5000);
@@ -133,7 +134,7 @@ public class AdServiceTest {
 		for (Ad ad : ads) {
 			count++;
 		}
-		assertEquals(2, count);
+		assertEquals(1, count);
 	}
 		
 	@Test
@@ -181,11 +182,55 @@ public class AdServiceTest {
 		userDao.save(hans);
 		
 		adService.saveFrom(placeAdForm, filePaths, hans);
-
 	}
 	
 	@Test
 	public void getAllBetsBySpecificAd() {
+		Iterable<Ad> ads = adService.getAllAds();
+		
+		Ad currentAd = null;
+		for (Ad ad : ads) {
+			if (currentAd == null && ad.isAuction()) {
+				currentAd = ad;
+			}
+		}
+		
+		assertEquals(3, currentAd.getBets().size());
+	}
+	
+	@Test
+	public void getAllAdsOnHomepageGetsCorrectNumber() {
+		Iterable<Ad> ads = adService.getHomepageAds(12);
+		
+		int count = 0;
+		for (Ad ad : ads) {
+			count++;
+		}
+		
+		assertEquals(12, count);
+	}
+	
+	@Test
+	public void getAllAdsOnHomepageGetsBoth() {
+		Iterable<Ad> ads = adService.getHomepageAds(12);
+		
+		boolean chkIs = false;
+		boolean chkIsNot = false;
+		
+		for (Ad ad : ads) {
+			if (ad.isOnHomepage()) {
+				chkIs = true;
+			} else {
+				chkIsNot = true;
+			}
+		}
+		
+		assertTrue(chkIs);
+		assertTrue(chkIsNot);
+	}
+	
+	@Test
+	public void getHomepageAds() {
 		Iterable<Ad> ads = adService.getAllAds();
 		
 		Ad currentAd = null;

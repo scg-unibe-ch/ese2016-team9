@@ -590,4 +590,53 @@ public class AdService {
 		}
 		return false;
 	}
+	
+	/**
+	 * set an ad to the homepage
+	 * @param ad
+	 * @param value
+	 */
+	public void placeOnHomepage(Ad ad, boolean value) {
+		ad.setOnHomepage(value);
+		this.adDao.save(ad);
+	}
+	
+
+	/**
+	 * Returns ads which are bought to the homepage
+	 * If it has more than the parameter, it will return randomly other ads
+	 * 
+	 * @param count
+	 */
+	@Transactional
+	public Iterable<Ad> getHomepageAds(int count) {
+		Iterable<Ad> homepageAds = adDao.findByIsOnHomepageTrueOrderByWasOnHomepage();
+		ArrayList<Ad> ads = new ArrayList<Ad>();
+		
+		for (Ad homepageAd : homepageAds) {
+			homepageAd.wasOnHomepage();
+			this.adDao.save(homepageAd);
+			ads.add(homepageAd);
+		}
+		
+		if (ads.size() < count) {
+			Iterable<Ad> lowAds = adDao.findAll();
+			ArrayList<Ad> listLowAds = new ArrayList<Ad>();
+			for (Ad lowAd : lowAds) {
+				if (lowAd.isOnHomepage()) {
+					continue;
+				}
+				listLowAds.add(lowAd);
+			}
+			Collections.shuffle(listLowAds);
+			
+			for(Ad lowAdShuffled : listLowAds) {
+				if (ads.size() < count) {
+					ads.add(lowAdShuffled);
+				}
+			}
+		}
+		
+		return ads;
+	}
 }

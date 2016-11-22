@@ -24,4 +24,7 @@ public interface AdDao extends CrudRepository<Ad, Long> {
 	
 	public Iterable<Ad> findByAuctionStartingPrizeNotNull();
 	
+	@Query("select ad from Ad ad where ad.isOnHomepage=true order by ad.wasOnHomepage")
+	public Iterable<Ad> findByIsOnHomepageTrueOrderByWasOnHomepage();
+	
 }
