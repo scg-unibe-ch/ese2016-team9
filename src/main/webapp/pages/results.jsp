@@ -28,7 +28,6 @@ $(document).ready(function(){
 		else
 			$(this).find(".range").html(newValue + "m");
 	});
-	
 });
 function validateType(form)
 {
@@ -213,6 +212,16 @@ function initMap() {
 	  makeMarkersAndInfoWindows(object);
   }
 }
+
+$(document).ready(function(){
+	$('a[href="#result-map"]').on('click', function() {
+	    setTimeout(function(){
+	    	var currCenter = map.getCenter();
+	        google.maps.event.trigger(map, 'resize');
+	        map.setCenter(currCenter);
+	    }, 50);
+	});
+});
 </script>
 
 <h1>Search results:</h1>
@@ -403,7 +412,7 @@ function initMap() {
 </c:choose>
 </div>
 
-<div id="resutl-map">
+<div id="result-map">
 <div id="map"></div>
 </div>
 </div>
