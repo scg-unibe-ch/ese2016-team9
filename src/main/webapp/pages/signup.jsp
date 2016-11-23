@@ -48,7 +48,7 @@
         <div class="form-group">
             <label for="field-password" class="col-sm-2 control-label">Password</label>
             <div class="col-sm-10">
-                <form:input path="password" id="field-password" class="form-control"/>
+                <form:input path="password" id="field-password" type="password" class="form-control"/>
                 <form:errors path="password" cssClass="validationErrorText" />
             </div>
         </div>
