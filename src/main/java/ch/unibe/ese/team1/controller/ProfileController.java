@@ -117,16 +117,20 @@ public class ProfileController {
 			@Valid EditProfileForm editProfileForm,
 			BindingResult bindingResult, 
 			HttpServletRequest request,
+			RedirectAttributes redirectAttributes,
 			Principal principal) {
 		ModelAndView model;
 		String username = principal.getName();
 		User user = userService.findUserByUsername(username);
 		if (!bindingResult.hasErrors()) {
 			userUpdateService.updateFrom(editProfileForm);
-			model = new ModelAndView("updatedProfile");
-			model.addObject("message", "Your Profile has been updated!");
-			model.addObject("currentUser", user);
+			model = new ModelAndView("redirect:/user?id=" + user.getId());
+			redirectAttributes.addFlashAttribute(
+				"confirmationMessage",
+				"You have been logged out because you changed your profile, please login again!"
+			);
 			new SecurityContextLogoutHandler().logout(request, null, null);
+			
 			return model;
 		} else {
 			model = new ModelAndView("updatedProfile");
