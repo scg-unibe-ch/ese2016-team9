@@ -3,9 +3,11 @@ package ch.unibe.ese.team1.controller;
 import java.security.Principal;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -113,7 +115,9 @@ public class ProfileController {
 	@RequestMapping(value = "/profile/editProfile", method = RequestMethod.POST)
 	public ModelAndView editProfileResultPage(
 			@Valid EditProfileForm editProfileForm,
-			BindingResult bindingResult, Principal principal) {
+			BindingResult bindingResult, 
+			HttpServletRequest request,
+			Principal principal) {
 		ModelAndView model;
 		String username = principal.getName();
 		User user = userService.findUserByUsername(username);
@@ -122,6 +126,7 @@ public class ProfileController {
 			model = new ModelAndView("updatedProfile");
 			model.addObject("message", "Your Profile has been updated!");
 			model.addObject("currentUser", user);
+			new SecurityContextLogoutHandler().logout(request, null, null);
 			return model;
 		} else {
 			model = new ModelAndView("updatedProfile");
