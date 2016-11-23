@@ -106,7 +106,7 @@ public class AlertService {
 		if (notifiedUser != null && notifiedBet != null) {
 			Date now = new Date();
 			Message message = new Message();
-			message.setSubject("It's a match!");
+			message.setSubject(":O");
 			message.setText(getAlertText(notifiedBet));
 			message.setSender(userDao.findByUsername("System"));
 			message.setRecipient(notifiedUser);
@@ -196,7 +196,7 @@ public class AlertService {
 	 * bet.
 	 */
 	private String getAlertText(Bet bet) {
-		return "Dear user,<br>You have been overbidden by " + bet.getUser() + "<br>" 
+		return "Dear user,<br>You have been overbidden by " + bet.getUser().getUsername() + "<br>" 
 				+ "<a class=\"link\" href=/ad?id="
 				+ bet.getAd().getId()
 				+ ">"
