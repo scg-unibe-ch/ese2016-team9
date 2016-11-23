@@ -65,13 +65,32 @@
 | Failure  | User can't find link for a new flat or could not add ad |
 | Bonus    | n/a |
 
-## Task 6
+## Task 7
 
-| Scenario | Add an ad for a flat to rent |
+| Scenario | Add an alert for flats and houses around bern with price of maximal 10000 |
 |----------|-----------------------------------------------|
-| Success  | User add's his own ad |
-| Failure  | User can't find link for a new flat or could not add ad |
-| Bonus    | n/a |
+| Success  | User add's his own alert |
+| Failure  | User can't add an alert |
+| Bonus    | User will modify alert for optional criterias |
+
+## Task 8
+
+| Scenario | Find a flat in Basel and contact the advertiser |
+|----------|-----------------------------------------------|
+| Success  | User finds the flat located in Basel and contacts the advertiser |
+| Failure  | User can't find a way to message the user |
+| Bonus    | User uses search form |
+
+## Task 9
+
+| Scenario | User wants to participate in an auction and bids 5'000'000.- to the property |
+|----------|-----------------------------------------------|
+| Success  | User finds the current auction in the homepage and bids |
+| Failure  | User can't find the auction or can't bid |
+| Bonus    | User uses search form |
+
+
+
 
 
 
