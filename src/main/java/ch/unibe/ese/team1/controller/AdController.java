@@ -23,12 +23,14 @@ import ch.unibe.ese.team1.controller.pojos.forms.BetForm;
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
 import ch.unibe.ese.team1.controller.pojos.forms.PlaceAdForm;
 import ch.unibe.ese.team1.controller.service.AdService;
+import ch.unibe.ese.team1.controller.service.AlertService;
 import ch.unibe.ese.team1.controller.service.BetService;
 import ch.unibe.ese.team1.controller.service.BookmarkService;
 import ch.unibe.ese.team1.controller.service.MessageService;
 import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.controller.service.VisitService;
 import ch.unibe.ese.team1.model.Ad;
+import ch.unibe.ese.team1.model.Bet;
 import ch.unibe.ese.team1.model.User;
 
 /**
@@ -38,6 +40,9 @@ import ch.unibe.ese.team1.model.User;
 @Controller
 public class AdController {
 
+	@Autowired
+	private AlertService alertService;
+	
 	@Autowired
 	private AdService adService;
 	
@@ -201,8 +206,9 @@ public class AdController {
 		model.addObject("messageForm", new MessageForm());
 		
 		if (!bindingResult.hasErrors()) {
-			this.betService.saveFrom(betForm, ad, user);
+			Bet bet = this.betService.saveFrom(betForm, ad, user);
 
+			alertService.triggerAlerts(bet);
 			model = new ModelAndView("redirect:/ad?id=" + ad.getId());
 			redirectAttributes.addFlashAttribute(
 					"confirmationMessage",

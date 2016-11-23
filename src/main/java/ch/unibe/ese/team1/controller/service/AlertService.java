@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.lang.Math;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ch.unibe.ese.team1.controller.pojos.forms.AlertForm;
 import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.Alert;
+import ch.unibe.ese.team1.model.Bet;
 import ch.unibe.ese.team1.model.Location;
 import ch.unibe.ese.team1.model.Message;
 import ch.unibe.ese.team1.model.MessageState;
@@ -81,6 +83,40 @@ public class AlertService {
 		alertDao.delete(id);
 	}
 
+	/** Triggers all alerts when someone bets to an ad */
+	@Transactional
+	public void triggerAlerts(Bet bet) {
+		assert (bet.getAd() != null);
+		
+		Set<Bet> bets = bet.getAd().getBets();
+		boolean chk = false;
+		User notifiedUser = null;
+		Bet notifiedBet = null;
+		for (Bet localBet : bets) {
+			if (chk) {
+				continue;
+			}
+			if (!localBet.equals(bet)) {
+				chk = true;
+				notifiedUser = localBet.getUser();
+				notifiedBet = localBet;
+			}
+		}
+
+		if (notifiedUser != null && notifiedBet != null) {
+			Date now = new Date();
+			Message message = new Message();
+			message.setSubject("It's a match!");
+			message.setText(getAlertText(notifiedBet));
+			message.setSender(userDao.findByUsername("System"));
+			message.setRecipient(notifiedUser);
+			message.setState(MessageState.UNREAD);
+			message.setDateSent(now);
+			messageDao.save(message);
+		}
+		
+	}
+	
 	/**
 	 * Triggers all alerts that match the given ad. For every user, only one
 	 * message is sent.
@@ -152,9 +188,23 @@ public class AlertService {
 				+ ad.getTitle()
 				+ "</a><br><br>"
 				+ "Good luck and enjoy,<br>"
-				+ "Your FlatFindr crew";
+				+ "Your a-Bec crew";
 	}
 
+	/**
+	 * Returns the text for an alert message with the properties of the given
+	 * bet.
+	 */
+	private String getAlertText(Bet bet) {
+		return "Dear user,<br>You have been overbidden by " + bet.getUser() + "<br>" 
+				+ "<a class=\"link\" href=/ad?id="
+				+ bet.getAd().getId()
+				+ ">"
+				+ bet.getAd().getTitle()
+				+ "</a><br><br>"
+				+ "Your a-Bec crew";
+	}
+	
 	/** Checks if an ad is conforming to the criteria in an alert. */
 	private boolean typeMismatchWith(Ad ad, Alert alert) {
 		boolean mismatch = false;
