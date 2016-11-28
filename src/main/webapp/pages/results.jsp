@@ -228,14 +228,6 @@ $(document).ready(function(){
 
 	<div id="filterDiv">
 		<h2>Filter results:</h2>
-		<form:checkbox name="house" id="house" path="houseHelper" /><label>House</label>
-		<form:checkbox name="flat" id="flat" path="flatHelper" /><label>Flat</label>
-	
-		<form:checkbox style="display:none" name="neither" id="neither" path="noHouseNoFlat" />
-		<form:checkbox style="display:none" name="both" id="both" path="bothHouseAndFlat" />
-		<form:checkbox style="display:none" name="type" id="type" path="flat" />
-		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
-		<form:errors path="noHouseNoFlat" cssClass="validationErrorText" /> <br />
 		
 		<form:radiobutton name="sale" path="forSale" value="false" checked="checked" /><label>Rent</label>
 		<form:radiobutton name="sale" path="forSale" value="true" /><label>Buy</label> <br/>
@@ -264,6 +256,16 @@ $(document).ready(function(){
 		<hr class="slim">		
 		
 		<table style="width: 80%">
+			<tr>
+				<td><form:checkbox name="house" id="house" path="houseHelper" checked="checked"/><label>House</label></td>
+				<td><form:checkbox name="flat" id="flat" path="flatHelper" checked="checked"/><label>Flat</label></td>
+	
+				<form:checkbox style="display:none" name="neither" id="neither" path="noHouseNoFlat" />
+				<form:checkbox style="display:none" name="both" id="both" path="bothHouseAndFlat" />
+				<form:checkbox style="display:none" name="type" id="type" path="flat" />
+				<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
+				<form:errors path="noHouseNoFlat" cssClass="validationErrorText" /> <br />
+			</tr>
 			<tr>
 				<td><label for="numberOfRooms">Number Of Rooms (min.):</label></td>
 				<td><form:input id="numberOfRoomsInput" type="number" path="numberOfRooms"

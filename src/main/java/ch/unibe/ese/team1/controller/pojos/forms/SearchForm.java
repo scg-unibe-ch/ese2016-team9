@@ -39,7 +39,7 @@ public class SearchForm {
 	@AssertFalse(message = "Please select either or both types")
 	private boolean noHouseNoFlat;
 
-	private boolean bothHouseAndFlat;
+	private boolean bothHouseAndFlat = true;
 	
 	public String getCity() {
 		return city;

@@ -41,26 +41,7 @@
 <script>
 function validateType(form)
 {
-	var house = document.getElementById('house');
-	var flat = document.getElementById('flat');
-	var neither = document.getElementById('neither');
-	var both = document.getElementById('both');
-	var type = document.getElementById('type');
 	var filtered = document.getElementById('filtered');
-	
-	if(house.checked && flat.checked) {
-		both.checked = true;
-		neither.checked = false;
-	}
-	else if(!house.checked && !flat.checked) {
-		both.checked = false;
-		neither.checked = true;
-	}
-	else {
-		both.checked = false;
-		neither.checked = false;
-		type.checked = flat.checked;
-	}
 
 	filtered.checked = false;
 }
@@ -73,30 +54,6 @@ function validateType(form)
 
 	<fieldset>
         
-        
-        <div class="form-group">
-            <div class="col-sm-1"></div>
-            <label class="checkbox col-sm-2">
-                <div class="">
-                    <form:checkbox name="house" id="house" path="houseHelper" />House
-                </div>
-            </label>
-            
-            <label class="checkbox col-sm-2">
-                <div class="">
-                    <form:checkbox name="flat" id="flat" path="flatHelper" />Flat
-                </div>
-            </label>
-            
-            <form:errors path="noHouseNoFlat" cssClass="validationErrorText" />
-        </div>
-		
-		<form:checkbox style="display:none" name="neither" id="neither" path="noHouseNoFlat" />
-		<form:checkbox style="display:none" name="both" id="both" path="bothHouseAndFlat" />
-		<form:checkbox style="display:none" name="type" id="type" path="flat" />
-		<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
-		
-		
         <div class="form-group">
             <div class="col-sm-1"></div>
             <label class="checkbox col-sm-2">
