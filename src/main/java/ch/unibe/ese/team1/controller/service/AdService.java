@@ -279,13 +279,11 @@ public class AdService {
 		}
 		
 		//filters between rent and buy if needed
-		if(!searchForm.getBothSellAndRent()){
-			Iterator<Ad> iterator = results.iterator();
-			while(iterator.hasNext()){
-				Ad ad = iterator.next();
-				if(ad.getForSale() != searchForm.getForSale())
-					iterator.remove();
-			}
+		Iterator<Ad> iteratorRent = results.iterator();
+		while(iteratorRent.hasNext()){
+			Ad ad = iteratorRent.next();
+			if(ad.getForSale() != searchForm.getForSale())
+				iteratorRent.remove();
 		}
 
 		// filter out zipcode

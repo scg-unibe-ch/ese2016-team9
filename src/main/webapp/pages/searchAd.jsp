@@ -61,26 +61,7 @@ function validateType(form)
 		neither.checked = false;
 		type.checked = flat.checked;
 	}
-	
-	var sale = document.getElementById('sale');
-	var rent = document.getElementById('rent');
-	var neitherS = document.getElementById('neitherS');
-	var bothS = document.getElementById('bothS');
-	var typeS = document.getElementById('typeS');
-	
-	if(sale.checked && rent.checked) {
-		bothS.checked = true;
-		neitherS.checked = false;
-	}
-	else if(!sale.checked && !rent.checked) {
-		bothS.checked = false;
-		neitherS.checked = true;
-	}
-	else {
-		bothS.checked = false;
-		neitherS.checked = false;
-		typeS.checked = sale.checked;
-	}
+
 	filtered.checked = false;
 }
 </script>
@@ -119,26 +100,18 @@ function validateType(form)
         <div class="form-group">
             <div class="col-sm-1"></div>
             <label class="checkbox col-sm-2">
-                <div class="">
-                    <form:checkbox name="sale" id="sale" path="saleHelper" />Buy
+           		 <div class="">
+                    <form:radiobutton  path="forSale" value="false" checked="checked"/>Rent
                 </div>
             </label>
             
             <label class="checkbox col-sm-2">
                 <div class="">
-                    <form:checkbox name="rent" id="rent" path="rentHelper" />Rent
+                    <form:radiobutton path="forSale" value="true"/>Buy
                 </div>
             </label>
-            
-            <form:errors path="noSellNoRent" cssClass="validationErrorText" />
         </div>
 		
-		<form:checkbox style="display:none" name="neitherS" id="neitherS" path="noSellNoRent" />
-		<form:checkbox style="display:none" name="bothS" id="bothS" path="bothSellAndRent" />
-		<form:checkbox style="display:none" name="typeS" id="typeS" path="forSale" />
-		
-
-            
         <div class="form-group">
             <label for="city" class="col-sm-2 control-label">City / zip code:</label>
             <div class="col-sm-10">

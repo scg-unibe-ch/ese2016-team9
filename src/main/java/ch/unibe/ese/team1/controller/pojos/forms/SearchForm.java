@@ -20,7 +20,7 @@ public class SearchForm {
 	// flat: true, house: false
 	private boolean flat;
 	// sale: true, rent: false
-	private boolean forSale;
+	private boolean forSale = false;
 
 	@NotBlank(message = "Required")
 	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s,;\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
@@ -40,10 +40,6 @@ public class SearchForm {
 	private boolean noHouseNoFlat;
 
 	private boolean bothHouseAndFlat;
-	private boolean bothSellAndRent;
-	
-	@AssertFalse(message = "please select either or both types")
-	private boolean noSellNoRent;
 	
 	public String getCity() {
 		return city;
@@ -110,22 +106,6 @@ public class SearchForm {
 	}
 
 	
-	public boolean getBothSellAndRent() {
-		return bothSellAndRent;
-	}
-
-	public void setBothSellAndRent(boolean bothSellAndRent) {
-		this.bothSellAndRent = bothSellAndRent;
-	}
-
-	public boolean getNoSellNoRent() {
-		return noSellNoRent;
-	}
-
-	public void setNoSellNoRent(boolean noSellNoRent) {
-		this.noSellNoRent = noSellNoRent;
-	}
-	
 	// //////////////////
 	// Filtered results//
 	// //////////////////
@@ -162,8 +142,6 @@ public class SearchForm {
 
 	// the ugly stuff
 	private boolean flatHelper;
-	private boolean saleHelper;
-	private boolean rentHelper;
 	
 	private double latitude;
 	private double longitude;
@@ -318,22 +296,6 @@ public class SearchForm {
 
 	public void setHouseHelper(boolean helper) {
 		this.houseHelper = helper;
-	}
-	
-	public boolean getSaleHelper() {
-		return saleHelper;
-	}
-
-	public void setSaleHelper(boolean helper) {
-		this.saleHelper = helper;
-	}
-	
-	public boolean getRentHelper() {
-		return rentHelper;
-	}
-
-	public void setRentHelper(boolean helper) {
-		this.rentHelper = helper;
 	}
 	
 	public void setLatitude(double latitude){
