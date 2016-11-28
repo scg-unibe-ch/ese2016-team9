@@ -36,9 +36,6 @@ public class SearchForm {
 	
 	private boolean includeRunningCosts;
 
-	@AssertFalse(message = "Please select either or both types")
-	private boolean noHouseNoFlat;
-
 	private boolean bothHouseAndFlat = true;
 	
 	public String getCity() {
@@ -87,14 +84,6 @@ public class SearchForm {
 
 	public void setFlat(boolean flat) {
 		this.flat = flat;
-	}
-
-	public boolean getNoHouseNoFlat() {
-		return noHouseNoFlat;
-	}
-
-	public void setNoHouseNoFlat(boolean noHouseNoFlat) {
-		this.noHouseNoFlat = noHouseNoFlat;
 	}
 
 	public boolean getBothHouseAndFlat() {

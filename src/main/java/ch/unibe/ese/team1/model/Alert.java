@@ -44,6 +44,9 @@ public class Alert {
 
 	@Column
 	private boolean house;
+	
+	@Column
+	private boolean forSale;
 
 	@Column
 	private boolean bothHouseAndFlat;
@@ -134,5 +137,13 @@ public class Alert {
 	
 	public void setSquareFootage(int squareFootage){
 		this.squareFootage = squareFootage;
+	}
+	
+	public boolean getForSale() {
+		return forSale;
+	}
+
+	public void setForSale(boolean forSale) {
+		this.forSale = forSale;
 	}
 }

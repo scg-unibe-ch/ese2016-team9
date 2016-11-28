@@ -33,18 +33,15 @@ function validateType(form)
 {
 	var house = document.getElementById('house');
 	var flat = document.getElementById('flat');
-	var neither = document.getElementById('neither');
 	var both = document.getElementById('both');
 	var type = document.getElementById('type');
 	var filtered = document.getElementById('filtered');
 	
 	if(house.checked && flat.checked) {
 		both.checked = true;
-		neither.checked = false;
 	}
 	else if(!house.checked && !flat.checked) {
-		both.checked = false;
-		neither.checked = true;
+		both.checked = true;
 	}
 	else {
 		both.checked = false;
@@ -260,7 +257,6 @@ $(document).ready(function(){
 				<td><form:checkbox name="house" id="house" path="houseHelper" checked="checked"/><label>House</label></td>
 				<td><form:checkbox name="flat" id="flat" path="flatHelper" checked="checked"/><label>Flat</label></td>
 	
-				<form:checkbox style="display:none" name="neither" id="neither" path="noHouseNoFlat" />
 				<form:checkbox style="display:none" name="both" id="both" path="bothHouseAndFlat" />
 				<form:checkbox style="display:none" name="type" id="type" path="flat" />
 				<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />

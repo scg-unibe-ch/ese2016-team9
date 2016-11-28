@@ -65,6 +65,7 @@ public class AlertService {
 		alert.setHouse(alertForm.getHouse());
 		alert.setFlat(alertForm.getFlat());
 		alert.setBothHouseAndFlat(alertForm.getBothHouseAndFlat());
+		alert.setForSale(alertForm.getForSale());
 		alert.setUser(user);
 		alertDao.save(alert);
 	}
@@ -133,6 +134,7 @@ public class AlertService {
 			Alert alert = alertIterator.next();
 			if (numberOfRoomsMismatchWith(ad, alert) || squareFootageMismatchWith(ad, alert) 
 					|| typeMismatchWith(ad, alert) || radiusMismatchWith(ad, alert)
+					|| forSaleMismatchWith(ad,alert)
 					|| ad.getUser().equals(alert.getUser()))
 				alertIterator.remove();
 		}
@@ -159,6 +161,13 @@ public class AlertService {
 			message.setDateSent(now);
 			messageDao.save(message);
 		}
+	}
+
+	private boolean forSaleMismatchWith(Ad ad, Alert alert) {
+		boolean mismatch =false;
+		if(alert.getForSale() == ad.getForSale())
+			mismatch = true;
+		return mismatch;
 	}
 
 	private boolean numberOfRoomsMismatchWith(Ad ad, Alert alert) {

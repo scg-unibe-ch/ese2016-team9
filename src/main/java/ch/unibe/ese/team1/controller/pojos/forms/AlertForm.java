@@ -16,6 +16,8 @@ public class AlertForm {
 
 	private boolean flat;
 	private boolean house;
+	
+	private boolean forSale;
 
 	@NotBlank(message = "Required")
 	@Pattern(regexp = "^[0-9]{4} - [-\\w\\s,;\\u00C0-\\u00FF]*", message = "Please pick a city from the list")
@@ -127,5 +129,13 @@ public class AlertForm {
 	
 	public void setSquareFootage(Integer squareFootage){
 		this.squareFootage = squareFootage;
+	}
+	
+	public boolean getForSale() {
+		return forSale;
+	}
+
+	public void setForSale(boolean forSale) {
+		this.forSale = forSale;
 	}
 }

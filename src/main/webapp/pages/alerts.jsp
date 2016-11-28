@@ -89,7 +89,10 @@ function typeOfAlert(alert) {
 
 	<fieldset>
 		<form:checkbox name="house" id="house" path="house" /><label>House</label>
-		<form:checkbox name="flat" id="flat" path="flat" /><label>Flat</label>
+		<form:checkbox name="flat" id="flat" path="flat" /><label>Flat</label><br />
+		
+		<form:radiobutton  path="forSale" value="false" checked="checked"/><label>Rent</label>
+		<form:radiobutton path="forSale" value="true"/><label>Buy</label>
 		
 		<form:checkbox style="display:none" name="neither" id="neither" path="noHouseNoFlat" />
 		<form:checkbox style="display:none" name="both" id="both" path="bothHouseAndFlat" />
@@ -141,6 +144,7 @@ function typeOfAlert(alert) {
 			<thead>
 			<tr>
 				<th>Type</th>
+				<th>Rent/Sale</th>
 				<th>City</th>
 				<th>Radius</th>
 				<th>max. Price</th>
@@ -154,13 +158,23 @@ function typeOfAlert(alert) {
 				<td>
 				<c:choose>
 					<c:when test="${alert.bothHouseAndFlat}">
-						Both
+						Flat or House
 					</c:when>
 					<c:when test="${alert.flat}">
 						Flat
 					</c:when>
 					<c:otherwise>
 						House
+					</c:otherwise>
+				</c:choose>
+				</td>
+				<td>
+				<c:choose>
+					<c:when test="${alert.forSale}">
+						Buy
+					</c:when>
+					<c:otherwise>
+						Rent
 					</c:otherwise>
 				</c:choose>
 				</td>
