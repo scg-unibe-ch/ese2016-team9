@@ -244,7 +244,7 @@ $(document).ready(function(){
 		<form:errors path="radius" cssClass="validationErrorText" />
 		<br /> <label for="prize">Price (max.):</label>
 		<form:input id="prizeInput" type="number" path="prize"
-			placeholder="e.g. 5" step="50" />
+			placeholder="e.g. 5" step="0.05" />
 		CHF
 		<form:errors path="prize" cssClass="validationErrorText" /><br />
 		
@@ -271,7 +271,7 @@ $(document).ready(function(){
 			<tr>
 				<td><label for="squareFootage">Square Meters (min.):</label></td>
 				<td><form:input id="squareFootageInput" type="number" path="squareFootage"
-					placeholder="e.g. 5" step="5" />m²
+					placeholder="e.g. 5" step="0.5" />m²
 				</td>
 			</tr>
 			<tr>

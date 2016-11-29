@@ -282,7 +282,7 @@
                                             </span>
                                         </td>
                                         <td>
-                                            <form:input id="field-Price" type="number" path="price" placeholder="Bid" step="50" class="form-control" value="${shownAd.getHighestBet()}" min="${shownAd.getHighestBet()}" />   
+                                            <form:input id="field-Price" type="number" path="price" placeholder="Bid" step="${shownAd.getAuctionStepPrice()}" class="form-control" value="${shownAd.getHighestBet()+shownAd.getAuctionStepPrice()}" min="${shownAd.getHighestBet()+shownAd.getAuctionStepPrice()}" />   
                                             <form:errors path="price" cssClass="validationErrorText" />
                                         </td>
                                         <td>

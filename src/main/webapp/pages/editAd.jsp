@@ -162,17 +162,17 @@
 			<tr>
 				<td>
 					<form:input id="field-Prize" type="number" path="prize"
-						placeholder="e.g. 500" step="50" value="${ad.prize }"/> <form:errors
+						placeholder="e.g. 500" step="0.05" value="${ad.prize }"/> <form:errors
 						path="prize" cssClass="validationErrorText" />CHF
 				</td>
 				<td>
 					<form:input id="field-RunningCosts" type="number" path="runningCosts"
-						placeholder="e.g. 140" step="10" value="${ad.runningCosts }"/> <form:errors
+						placeholder="e.g. 140" step="0.05" value="${ad.runningCosts }"/> <form:errors
 						path="runningCosts" cssClass="validationErrorText" />CHF
 				</td>
 				<td>
 					<form:input id="field-SquareFootage" type="number"
-						path="squareFootage" placeholder="e.g. 50" step="5" 
+						path="squareFootage" placeholder="e.g. 50" step="0.5" 
 						value="${ad.squareFootage }"/> <form:errors
 						path="squareFootage" cssClass="validationErrorText" />m²
 				</td>
@@ -203,7 +203,7 @@
 						placeholder="e.g. -1" step="1" value="${ad.floor }"/> <form:errors
 						path="floor" cssClass="validationErrorText" /></td>		
 				<td><form:input id="field-NumberOfRooms" type="number"
-						path="numberOfRooms" placeholder="e.g. 2" step="1" value="${ad.numberOfRooms }" /> <form:errors
+						path="numberOfRooms" placeholder="e.g. 2" step="0.5" value="${ad.numberOfRooms }" /> <form:errors
 						path="numberOfRooms" cssClass="validationErrorText" /></td>
 			</tr>
 			

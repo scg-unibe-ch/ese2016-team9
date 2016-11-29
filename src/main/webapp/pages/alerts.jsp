@@ -111,18 +111,18 @@ function typeOfAlert(alert) {
 		
 		<br /> <label for="price">Price (max.):</label>
 		<form:input id="priceInput" type="number" path="price"
-			placeholder="e.g. 5" step="50" class="form-control" />
+			placeholder="e.g. 5" step="0.05" class="form-control" />
 		CHF
 		<form:errors path="price" cssClass="validationErrorText" />
 		
 		<br /> <label for="numberOfRooms">Number of Rooms (min.):</label>
 		<form:input id="numberOfRoomsInput" type="number" path="numberOfRooms"
-			placeholder="e.g. 3" step="1" />
+			placeholder="e.g. 3" step="0.5" />
 		<form:errors path="numberOfRooms" cssClass="validationErrorText" />
 		
 		<br /> <label for="squareFootage">Square Meters (min.):</label>
 		<form:input id="squareFootageInput" type="number" path="squareFootage"
-			placeholder="e.g. 50" step="10" />
+			placeholder="e.g. 50" step="0.5" />
 		m²
 		<form:errors path="price" cssClass="validationErrorText" />
 		<br />

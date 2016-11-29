@@ -89,7 +89,7 @@ function validateType(form)
         <div class="form-group">
             <label for="prize" class="col-sm-2 control-label">Price (max.):</label>
             <div class="col-sm-10">
-                <form:input id="prizeInput" type="number" path="prize" min="100" step="10" max="1000000" class="form-control" value="100" />
+                <form:input id="prizeInput" type="number" path="prize" min="100" step="0.05" class="form-control" value="100" />
                 <form:errors path="prize" cssClass="validationErrorText" />
             </div>
         </div>

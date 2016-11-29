@@ -202,6 +202,9 @@ public class AdService {
 			);
 			ad.setAuctionEndingDate(calendar.getTime());
 			ad.setAuctionStartingPrize(placeAdForm.getAuctionStartingPrice());
+			if (placeAdForm.getAuctionStepPrice() != 0.0) {
+				ad.setAuctionStepPrice(placeAdForm.getAuctionStepPrice());
+			}		
 		}
 		
 		

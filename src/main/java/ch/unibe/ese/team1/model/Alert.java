@@ -28,7 +28,7 @@ public class Alert {
 	private String city;
 
 	@Column(nullable = false)
-	private int price;
+	private double price;
 
 	@Column(nullable = false)
 	private int radius;
@@ -91,11 +91,11 @@ public class Alert {
 		this.radius = radius;
 	}
 
-	public int getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

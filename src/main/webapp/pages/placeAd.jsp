@@ -101,7 +101,7 @@
 <h1>Place an ad</h1>
 <hr />
 
-<form:form class="form-horizontal" method="post" modelAttribute="placeAdForm" action="/profile/placeAd" id="placeAdForm" autocomplete="off" enctype="multipart/form-data">
+<form:form class="form-horizontal" method="post" modelAttribute="placeAdForm" id="placeAdForm" autocomplete="off" enctype="multipart/form-data">
 
 	<fieldset>
 		<legend>General info</legend>
@@ -146,7 +146,7 @@
         <div class="form-group">
             <label for="field-Prize" class="col-sm-2 control-label">${isRentingAd ? "Prize per Month" : "Prize"}</label>
             <div class="col-sm-10">
-                <form:input id="field-Prize" type="number" path="prize" placeholder="Prize per month" step="50" class="form-control" />   
+                <form:input id="field-Prize" type="number" path="prize" placeholder="Prize per month" step="0.05" class="form-control" />   
                 <form:errors path="prize" cssClass="validationErrorText" /> 
             </div>
         </div>
@@ -158,7 +158,7 @@
                 <div class="form-group">
                     <label for="field-RunningCosts" class="col-sm-2 control-label">Running costs</label>
                     <div class="col-sm-10">
-                        <form:input id="field-RunningCosts" type="number" path="runningCosts" placeholder="Running costs" step="50" class="form-control" />   
+                        <form:input id="field-RunningCosts" type="number" path="runningCosts" placeholder="Running costs" step="0.05" class="form-control" />   
                         <form:errors path="runningCosts" cssClass="validationErrorText" /> 
                     </div>
                 </div>
@@ -168,7 +168,7 @@
         <div class="form-group">
             <label for="field-SquareFootage" class="col-sm-2 control-label">Square Meters</label>
             <div class="col-sm-10">
-                <form:input id="field-SquareFootage" type="number" path="squareFootage" placeholder="Prize per month" step="5" class="form-control"  /> 
+                <form:input id="field-SquareFootage" type="number" path="squareFootage" placeholder="Prize per month" step="0.5" class="form-control"  /> 
                 <form:errors path="squareFootage" cssClass="validationErrorText" />
             </div>
         </div>
@@ -194,7 +194,7 @@
             <div class="form-group">
                 <label for="field-AuctionStartingPrice" class="col-sm-2 control-label">Starting Price</label>
                 <div class="col-sm-10">
-                    <form:input id="field-AuctionStartingPrice" type="number" path="auctionStartingPrice" placeholder="Starting price for auction" step="10000.00" value="10000.00" min="0.00" class="form-control" /> 
+                    <form:input id="field-AuctionStartingPrice" type="number" path="auctionStartingPrice" placeholder="Starting price for auction" step="0.05" min="10.00" class="form-control" /> 
                     <form:errors path="auctionStartingPrice" cssClass="validationErrorText" />
                 </div>
             </div>
@@ -229,9 +229,21 @@
                             %>
                     </select>
                 </div>
-
-
             </div>
+            
+            <c:choose>
+                <c:when test="${user.isPremium()}">
+                    <div class="form-group">
+                        <label for="field-AuctionStepPrice" class="col-sm-2 control-label">Step price</label>
+                        <div class="col-sm-10">
+                            <form:input id="field-AuctionStepPrice" type="number" value="50.00" min="0.05" step="0.05" path="auctionStepPrice" class="form-control" /> 
+                            <form:errors path="auctionStepPrice" cssClass="validationErrorText" />
+                        </div>
+                    </div>    
+                </c:when>
+            </c:choose>
+
+            
             
         </fieldset>
         </c:otherwise>
@@ -262,7 +274,7 @@
         <div class="form-group">
             <label for="field-NumberOfRooms" class="col-sm-2 control-label">Number of Rooms</label>
             <div class="col-sm-10">
-                <form:input id="field-NumberOfRooms" class="form-control" type="number" path="numberOfRooms" placeholder="e.g. 2" step="1" /> 
+                <form:input id="field-NumberOfRooms" class="form-control" type="number" path="numberOfRooms" placeholder="e.g. 2" step="0.5" /> 
                 <form:errors path="numberOfRooms" cssClass="validationErrorText" />
             </div>
         </div>

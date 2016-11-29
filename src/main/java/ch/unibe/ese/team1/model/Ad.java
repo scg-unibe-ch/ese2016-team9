@@ -51,10 +51,10 @@ public class Ad {
 	private Date moveInDate;
 
 	@Column(nullable = false)
-	private int prize;
+	private double prize;
 
 	@Column(nullable = false)
-	private int squareFootage;
+	private double squareFootage;
 
 	@Column(nullable = false)
 	@Lob
@@ -93,10 +93,10 @@ public class Ad {
 	private boolean forSale;
 
 	@Column(nullable = false)
-	private int numberOfRooms;
+	private double numberOfRooms;
 	
 	@Column(nullable = false)
-	private int runningCosts;
+	private double runningCosts;
 	
 	@Column(nullable = false)
 	@Range(min=-1, max=100)
@@ -141,6 +141,11 @@ public class Ad {
 	
 	@Column
 	private double auctionStartingPrize;
+	
+	@Column
+	private double auctionStepPrice;
+	
+	public static final double DEFAULT_AUCTION_STEP_PRICE = 10;
 	
 	public Ad () {
 		this.isOnHomepage = false;
@@ -258,19 +263,19 @@ public class Ad {
 		this.moveInDate = moveInDate;
 	}
 
-	public int getPrize() {
+	public double getPrize() {
 		return prize;
 	}
 
-	public void setPrize(int prizePerMonth) {
+	public void setPrize(double prizePerMonth) {
 		this.prize = prizePerMonth;
 	}
 
-	public int getSquareFootage() {
+	public double getSquareFootage() {
 		return squareFootage;
 	}
 
-	public void setSquareFootage(int squareFootage) {
+	public void setSquareFootage(double squareFootage) {
 		this.squareFootage = squareFootage;
 	}
 
@@ -331,19 +336,19 @@ public class Ad {
 	}
 
 	
-	public int getRunningCosts() {
+	public double getRunningCosts() {
 		return runningCosts;
 	}
 
-	public void setRunningCosts(int runningCosts) {
+	public void setRunningCosts(double runningCosts) {
 		this.runningCosts = runningCosts;
 	}
 
-	public int getNumberOfRooms() {
+	public double getNumberOfRooms() {
 		return numberOfRooms;
 	}
 
-	public void setNumberOfRooms(int numberOfRooms) {
+	public void setNumberOfRooms(double numberOfRooms) {
 		this.numberOfRooms = numberOfRooms;
 	}
 
@@ -456,6 +461,23 @@ public class Ad {
 		return this.getLastBet().getUser();
 	}
 	
+	/**
+	 * @return the auctionStepPrice
+	 */
+	public double getAuctionStepPrice() {
+		if (this.auctionStepPrice == 0.0) {
+			return DEFAULT_AUCTION_STEP_PRICE;
+		}
+		return auctionStepPrice;
+	}
+
+	/**
+	 * @param auctionStepPrice the auctionStepPrice to set
+	 */
+	public void setAuctionStepPrice(double auctionStepPrice) {
+		this.auctionStepPrice = auctionStepPrice;
+	}
+
 	private Bet getLastBet() {
 		Date lastDate = new Date();
 		lastDate.setTime(0);

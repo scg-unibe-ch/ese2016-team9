@@ -25,10 +25,10 @@ public class PlaceAdForm {
 	private String moveInDate;
 	
 	@Min(value = 1, message = "Has to be equal to 1 or more")
-	private int prize;
+	private double prize;
 
 	@Min(value = 1, message = "Has to be equal to 1 or more")
-	private int squareFootage;
+	private double squareFootage;
 
 	@NotBlank(message = "Required")
 	private String houseDescription;
@@ -51,8 +51,8 @@ public class PlaceAdForm {
 	private boolean garage;
 	
 	private int floor;
-	private int numberOfRooms;
-	private int runningCosts;
+	private double numberOfRooms;
+	private double runningCosts;
 	private String lastRenovation;
 	private int distanceToNearestSuperMarket;
 	private int distanceToNearestPublicTransport;
@@ -62,6 +62,7 @@ public class PlaceAdForm {
 	private int auctionEndingHour;
 	private int auctionEndingMinute;
 	private double auctionStartingPrice;
+	private double auctionStepPrice;
 	
 
 	private List<String> visits;
@@ -74,19 +75,19 @@ public class PlaceAdForm {
 		this.floor = floor;
 	}
 
-	public int getNumberOfRooms() {
+	public double getNumberOfRooms() {
 		return numberOfRooms;
 	}
 
-	public void setNumberOfRooms(int numberOfRooms) {
+	public void setNumberOfRooms(double numberOfRooms) {
 		this.numberOfRooms = numberOfRooms;
 	}
 
-	public int getRunningCosts() {
+	public double getRunningCosts() {
 		return runningCosts;
 	}
 
-	public void setRunningCosts(int runningCosts) {
+	public void setRunningCosts(double runningCosts) {
 		this.runningCosts = runningCosts;
 	}
 
@@ -130,11 +131,11 @@ public class PlaceAdForm {
 		this.city = city;
 	}
 
-	public int getPrize() {
+	public double getPrize() {
 		return prize;
 	}
 
-	public void setPrize(int prize) {
+	public void setPrize(double prize) {
 		this.prize = prize;
 	}
 
@@ -147,11 +148,11 @@ public class PlaceAdForm {
 	}
 
 
-	public int getSquareFootage() {
+	public double getSquareFootage() {
 		return squareFootage;
 	}
 
-	public void setSquareFootage(int squareFootage) {
+	public void setSquareFootage(double squareFootage) {
 		this.squareFootage = squareFootage;
 	}
 
@@ -310,7 +311,13 @@ public class PlaceAdForm {
 	public void setAuctionEndingMinute(int auctionEndingMinute) {
 		this.auctionEndingMinute = auctionEndingMinute;
 	}
-	
-	
+
+	public double getAuctionStepPrice() {
+		return auctionStepPrice;
+	}
+
+	public void setAuctionStepPrice(double auctionStepPrice) {
+		this.auctionStepPrice = auctionStepPrice;
+	}
 
 }

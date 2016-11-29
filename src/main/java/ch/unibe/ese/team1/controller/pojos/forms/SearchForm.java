@@ -32,7 +32,7 @@ public class SearchForm {
 	
 	@NotNull(message = "Requires a number")
 	@Min(value = 0, message = "In your dreams.")
-	private Integer prize;
+	private double prize;
 	
 	private boolean includeRunningCosts;
 
@@ -54,11 +54,11 @@ public class SearchForm {
 		this.radius = radius;
 	}
 
-	public Integer getPrize() {
+	public double getPrize() {
 		return prize;
 	}
 
-	public void setPrize(Integer prize) {
+	public void setPrize(double prize) {
 		this.prize = prize;
 	}
 	

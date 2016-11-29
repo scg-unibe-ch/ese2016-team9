@@ -9,5 +9,5 @@ public interface AlertDao extends CrudRepository<Alert, Long>{
 
 	public Iterable<Alert> findByUser(User user);
 	
-	public Iterable<Alert> findByPriceGreaterThan(int price);
+	public Iterable<Alert> findByPriceGreaterThan(double price);
 }
