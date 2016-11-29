@@ -50,7 +50,7 @@ function signOut() {
       console.log('User signed out.');
     });
   }
-    $.document().ready({
+    $(document).ready(function() {
         $(".confirmation-message").on("click", function() { $(".confirmation-message").hide() });
         $(".negative-message").on("click", function() { $(".negative-message").hide() });
     });
