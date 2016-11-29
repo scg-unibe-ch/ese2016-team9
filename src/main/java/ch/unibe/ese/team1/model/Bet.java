@@ -36,7 +36,7 @@ public class Bet {
 	@ManyToOne(optional = false)
 	private User user;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(nullable = false)
 	private Ad ad;
 	

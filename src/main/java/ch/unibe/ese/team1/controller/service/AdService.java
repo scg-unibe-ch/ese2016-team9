@@ -8,11 +8,13 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +25,13 @@ import ch.unibe.ese.team1.controller.pojos.forms.PlaceAdForm;
 import ch.unibe.ese.team1.controller.pojos.forms.SearchForm;
 import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.AdPicture;
+import ch.unibe.ese.team1.model.Bet;
 import ch.unibe.ese.team1.model.Location;
 import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.Visit;
 import ch.unibe.ese.team1.model.dao.AdDao;
 import ch.unibe.ese.team1.model.dao.AlertDao;
+import ch.unibe.ese.team1.model.dao.BetDao;
 import ch.unibe.ese.team1.model.dao.MessageDao;
 import ch.unibe.ese.team1.model.dao.UserDao;
 
@@ -40,6 +44,9 @@ public class AdService {
 
 	@Autowired
 	private UserDao userDao;
+
+	@Autowired
+	private BetDao betDao;
 
 	@Autowired
 	private AlertDao alertDao;
@@ -636,5 +643,21 @@ public class AdService {
 		}
 		
 		return ads;
+	}
+	
+	/**
+	 * Returns ads which a user has bets on
+	 * 
+	 * @param User user
+	 */
+	@Transactional
+	public Iterable<Ad> getAdsByBetsForUser(User user) {
+		Iterable<Bet> bets = this.betDao.findByUser(user);
+		HashMap<Ad, Integer> ads = new HashMap<Ad, Integer>();
+		for(Bet bet : bets) {
+			ads.put(bet.getAd(), (int) bet.getAd().getId());
+		}
+		
+		return ads.keySet();
 	}
 }

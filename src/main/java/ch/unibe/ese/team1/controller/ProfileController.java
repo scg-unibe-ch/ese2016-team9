@@ -222,4 +222,21 @@ public class ProfileController {
 		
 		return model;
 	}
+	
+
+	/** save Premium Form */
+	@RequestMapping(value = "/profile/listBets", method = RequestMethod.GET)
+	public ModelAndView listBets(
+			Principal principal,
+			RedirectAttributes redirectAttributes) {
+		ModelAndView model = new ModelAndView("listBets");
+		
+		User user = userService.findUserByUsername(principal.getName());
+		Iterable<Ad> ads = this.adService.getAdsByBetsForUser(user);
+		
+		model.addObject("ads", ads);
+		return model;
+	}
+	
+	
 }
