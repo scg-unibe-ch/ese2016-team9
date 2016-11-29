@@ -15,15 +15,22 @@
 
 <pre>Home</pre>
 
-<h1>Welcome to a-Bec!</h1>
-    <div class="container-fluid">
+
+    
 <c:choose>
 	<c:when test="${empty newest}">
-		<h2>No ads placed yet</h2>
+        <div class="container-fluid">
+            <h1>Welcome to a-Bec!<small>No ads placed yet</small></h1>
+		</div>
+        
 	</c:when>
 	<c:otherwise>
-		<div id="resultsDiv" class="resultsDiv row">	
-			<h2>Our newest ads:</h2>		
+        <div class="container-fluid">
+            <h1>Welcome to a-Bec! <small>See our featured ads below</small></h1>
+        </div>
+        
+        <div class="container-fluid">   
+		<div id="resultsDiv" class="resultsDiv row">		
 			<c:forEach var="ad" items="${newest}">
 				<div class="resultAd col-md-3">
 					<div class="resultLeft">

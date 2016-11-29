@@ -77,7 +77,17 @@ body {
 
 /* the main content on every page */
 #content {
-	padding: 30px;
+	padding-left: 2em;
+	padding-right: 1em;
+	margin-top: -1em;
+}
+
+#content > pre {
+	margin: 0;
+	padding-right: 2em;
+	padding-left: 0.2em;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
 }
 
 /* These two guarantee that we can write stuff on the same line,
@@ -467,10 +477,6 @@ footer nav ul li {
 	border-color: #999;
 	border-width: 2px;
 	border-radius: 3px;
-}
-
-#resultsDiv div:first-child {
-	margin-top: 0px;
 }
 
 #resultsDiv div img {

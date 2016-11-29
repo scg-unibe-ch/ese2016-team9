@@ -260,7 +260,7 @@ $(document).ready(function(){
 				<form:checkbox style="display:none" name="both" id="both" path="bothHouseAndFlat" />
 				<form:checkbox style="display:none" name="type" id="type" path="flat" />
 				<form:checkbox style="display:none" name="filtered" id="filtered" path="filtered" />
-				<form:errors path="noHouseNoFlat" cssClass="validationErrorText" /> <br />
+				<!-- <form:errors path="*" cssClass="validationErrorText" /> !--> <br />
 			</tr>
 			<tr>
 				<td><label for="numberOfRooms">Number Of Rooms (min.):</label></td>
