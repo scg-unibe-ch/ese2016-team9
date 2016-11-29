@@ -954,3 +954,7 @@ div.resultAd {
 div.resultAd h2 {
 	font-size: 1.5em;
 }
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+	height: 25em !important;	
+}
