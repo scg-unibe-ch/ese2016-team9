@@ -41,7 +41,7 @@
                         </div>
 					</div>
 					<div class="resultRight">
-						<h2>CHF ${ad.prize }</h2>
+						<h2>CHF ${ad.price }</h2>
 						<br /> <br />
 
 						<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"

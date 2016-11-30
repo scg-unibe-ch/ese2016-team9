@@ -51,7 +51,7 @@ public class Ad {
 	private Date moveInDate;
 
 	@Column(nullable = false)
-	private double prize;
+	private double price;
 
 	@Column(nullable = false)
 	private double squareFootage;
@@ -140,7 +140,7 @@ public class Ad {
 	private int wasOnHomepage = 0;
 	
 	@Column
-	private double auctionStartingPrize;
+	private double auctionStartingPrice;
 	
 	@Column
 	private double auctionStepPrice;
@@ -263,12 +263,12 @@ public class Ad {
 		this.moveInDate = moveInDate;
 	}
 
-	public double getPrize() {
-		return prize;
+	public double getPrice() {
+		return price;
 	}
 
-	public void setPrize(double prizePerMonth) {
-		this.prize = prizePerMonth;
+	public void setPrice(double pricePerMonth) {
+		this.price = pricePerMonth;
 	}
 
 	public double getSquareFootage() {
@@ -408,16 +408,16 @@ public class Ad {
 		this.auctionEndingDate = auctionEndingDate;
 	}
 
-	public double getAuctionStartingPrize() {
-		return auctionStartingPrize;
+	public double getAuctionStartingPrice() {
+		return auctionStartingPrice;
 	}
 
-	public void setAuctionStartingPrize(double auctionStartingPrize) {
-		this.auctionStartingPrize = auctionStartingPrize;
+	public void setAuctionStartingPrice(double auctionStartingPrice) {
+		this.auctionStartingPrice = auctionStartingPrice;
 	}
 	
 	public boolean isAuction() {
-		return this.auctionStartingPrize != 0 && this.auctionEndingDate != null; 
+		return this.auctionStartingPrice != 0 && this.auctionEndingDate != null; 
 	}
 
 	@Override
@@ -446,7 +446,7 @@ public class Ad {
 	public double getHighestBet() {
 		if (this.getLastBet() == null) {
 			if (this.isAuction()) {
-				return this.getAuctionStartingPrize();
+				return this.getAuctionStartingPrice();
 			} else {
 				return 0;
 			}

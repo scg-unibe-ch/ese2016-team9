@@ -29,7 +29,7 @@
 		<div id="resultsDiv" class="resultsDiv row">
 		<hr />			
 			<c:forEach var="ad" items="${ads}">
-				<div class="resultAd col-md-10" data-price="${ad.prize}" 
+				<div class="resultAd col-md-10" data-price="${ad.price}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
@@ -47,7 +47,7 @@
 						</p>
 					</div>
 					<div class="resultRight">
-						<h2>CHF ${ad.prize }</h2>
+						<h2>CHF ${ad.price }</h2>
 						<br /> <br />
 						<p>Available From: ${ad.moveInDate }</p>
 					</div>

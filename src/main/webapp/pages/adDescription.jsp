@@ -177,8 +177,8 @@
                     </tr>
 
                     <tr>
-                        <th>${shownAd.forSale ? "Prize" : "Monthly Rent"}</th>
-                        <td>${shownAd.prize}&#32;CHF</td>
+                        <th>${shownAd.forSale ? "Price" : "Monthly Rent"}</th>
+                        <td>${shownAd.price}&#32;CHF</td>
 
                     <tr>
                         <th>Available from</th>

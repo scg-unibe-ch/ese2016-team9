@@ -144,10 +144,10 @@
         </div>
         
         <div class="form-group">
-            <label for="field-Prize" class="col-sm-2 control-label">${isRentingAd ? "Prize per Month" : "Prize"}</label>
+            <label for="field-Price" class="col-sm-2 control-label">${isRentingAd ? "Price per Month" : "Price"}</label>
             <div class="col-sm-10">
-                <form:input id="field-Prize" type="number" path="prize" placeholder="Prize per month" step="0.05" class="form-control" />   
-                <form:errors path="prize" cssClass="validationErrorText" /> 
+                <form:input id="field-Price" type="number" path="price" placeholder="Price per month" step="0.05" class="form-control" />   
+                <form:errors path="price" cssClass="validationErrorText" /> 
             </div>
         </div>
         
@@ -168,7 +168,7 @@
         <div class="form-group">
             <label for="field-SquareFootage" class="col-sm-2 control-label">Square Meters</label>
             <div class="col-sm-10">
-                <form:input id="field-SquareFootage" type="number" path="squareFootage" placeholder="Prize per month" step="0.5" class="form-control"  /> 
+                <form:input id="field-SquareFootage" type="number" path="squareFootage" placeholder="Price per month" step="0.5" class="form-control"  /> 
                 <form:errors path="squareFootage" cssClass="validationErrorText" />
             </div>
         </div>

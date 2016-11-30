@@ -57,7 +57,7 @@ public class AdServiceTest {
 		PlaceAdForm placeAdForm = new PlaceAdForm();
 		placeAdForm.setCity("3018 - Bern");
 		placeAdForm.setHouseDescription("Test House description");
-		placeAdForm.setPrize(600.0);
+		placeAdForm.setPrice(600.0);
 		placeAdForm.setSquareFootage(50.0);
 		placeAdForm.setTitle("title");
 		placeAdForm.setStreet("Hauptstrasse 13");
@@ -97,7 +97,7 @@ public class AdServiceTest {
 		assertEquals("Bern", ad.getCity());
 		assertEquals(3018, ad.getZipcode());
 		assertEquals("Test House description", ad.getHouseDescription());
-		assertEquals(600, ad.getPrize(), 0);
+		assertEquals(600, ad.getPrice(), 0);
 		assertEquals(50, ad.getSquareFootage(), 0);
 		assertEquals("title", ad.getTitle());
 		assertEquals("Hauptstrasse 13", ad.getStreet());
@@ -118,7 +118,7 @@ public class AdServiceTest {
 		SearchForm searchForm = new SearchForm();
 		
 		searchForm.setRadius(10);
-		searchForm.setPrize(1500.0);
+		searchForm.setPrice(1500.0);
 		searchForm.setFlat(true);
 		searchForm.setDistanceToNearestPublicTransport(5000);
 		searchForm.setDistanceToNearestSchool(5000);
@@ -143,7 +143,7 @@ public class AdServiceTest {
 		PlaceAdForm placeAdForm = new PlaceAdForm();
 		placeAdForm.setCity("3018 - Bern");
 		placeAdForm.setHouseDescription("Test House description");
-		placeAdForm.setPrize(600);
+		placeAdForm.setPrice(600);
 		placeAdForm.setSquareFootage(50);
 		placeAdForm.setTitle("title");
 		placeAdForm.setStreet("Hauptstrasse 13");
@@ -166,7 +166,7 @@ public class AdServiceTest {
 		PlaceAdForm placeAdForm = new PlaceAdForm();
 		placeAdForm.setCity("3018 - Bern");
 		placeAdForm.setHouseDescription("Test House description");
-		placeAdForm.setPrize(600);
+		placeAdForm.setPrice(600);
 		placeAdForm.setSquareFootage(50);
 		placeAdForm.setTitle("title");
 		placeAdForm.setStreet("Hauptstrasse 13");

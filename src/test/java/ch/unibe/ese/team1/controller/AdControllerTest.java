@@ -159,7 +159,7 @@ public class AdControllerTest {
 		Ad adWithAuction = new Ad();
 		adWithAuction.setZipcode(5000);
 		adWithAuction.setCreationDate(new Date());
-		adWithAuction.setPrize(1000000);
+		adWithAuction.setPrice(1000000);
 		adWithAuction.setSquareFootage(60);
 		adWithAuction.setNumberOfRooms(3);
 		adWithAuction.setFlat(false);
@@ -182,7 +182,7 @@ public class AdControllerTest {
 		adWithAuction.setDistanceToNearestSchool(1);
 		adWithAuction.setDistanceToNearestSuperMarket(2);
 		adWithAuction.setAuctionEndingDate(cal.getTime());
-		adWithAuction.setAuctionStartingPrize(250000);
+		adWithAuction.setAuctionStartingPrice(250000);
 		adDao.save(adWithAuction);
 
 		return adWithAuction;

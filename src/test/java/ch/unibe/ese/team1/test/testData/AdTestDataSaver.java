@@ -70,7 +70,7 @@ public class AdTestDataSaver {
 		adBern.setZipcode(3011);
 		adBern.setMoveInDate(moveInDate1);
 		adBern.setCreationDate(creationDate1);
-		adBern.setPrize(400);
+		adBern.setPrice(400);
 		adBern.setSquareFootage(50);
 		adBern.setFlat(false);
 		adBern.setSmokers(false);
@@ -109,7 +109,7 @@ public class AdTestDataSaver {
 		adBern2.setZipcode(3012);
 		adBern2.setMoveInDate(moveInDate2);
 		adBern2.setCreationDate(creationDate2);
-		adBern2.setPrize(700);
+		adBern2.setPrice(700);
 		adBern2.setSquareFootage(60);
 		adBern2.setFlat(true);
 		adBern2.setSmokers(false);
@@ -148,7 +148,7 @@ public class AdTestDataSaver {
 		adBasel.setZipcode(4051);
 		adBasel.setMoveInDate(moveInDate3);
 		adBasel.setCreationDate(creationDate3);
-		adBasel.setPrize(480);
+		adBasel.setPrice(480);
 		adBasel.setSquareFootage(10);
 		adBasel.setFlat(true);
 		adBasel.setSmokers(true);
@@ -186,7 +186,7 @@ public class AdTestDataSaver {
 		adOlten.setZipcode(4600);
 		adOlten.setMoveInDate(moveInDate4);
 		adOlten.setCreationDate(creationDate4);
-		adOlten.setPrize(430);
+		adOlten.setPrice(430);
 		adOlten.setSquareFootage(60);
 		adOlten.setNumberOfRooms(1);
 		adOlten.setFlat(false);
@@ -222,7 +222,7 @@ public class AdTestDataSaver {
 		adNeuchâtel.setZipcode(2000);
 		adNeuchâtel.setMoveInDate(moveInDate5);
 		adNeuchâtel.setCreationDate(creationDate5);
-		adNeuchâtel.setPrize(410);
+		adNeuchâtel.setPrice(410);
 		adNeuchâtel.setSquareFootage(40);
 		adNeuchâtel.setFlat(true);
 		adNeuchâtel.setSmokers(true);
@@ -253,7 +253,7 @@ public class AdTestDataSaver {
 		adBiel.setZipcode(2503);
 		adBiel.setMoveInDate(moveInDate6);
 		adBiel.setCreationDate(creationDate6);
-		adBiel.setPrize(480);
+		adBiel.setPrice(480);
 		adBiel.setSquareFootage(10);
 		adBiel.setFlat(true);
 		adBiel.setSmokers(true);
@@ -288,7 +288,7 @@ public class AdTestDataSaver {
 		adZurich.setZipcode(8000);
 		adZurich.setMoveInDate(moveInDate7);
 		adZurich.setCreationDate(creationDate7);
-		adZurich.setPrize(480);
+		adZurich.setPrice(480);
 		adZurich.setSquareFootage(32);
 		adZurich.setFlat(false);
 		adZurich.setSmokers(false);
@@ -327,7 +327,7 @@ public class AdTestDataSaver {
 		adLuzern.setZipcode(6000);
 		adLuzern.setMoveInDate(moveInDate8);
 		adLuzern.setCreationDate(creationDate2);
-		adLuzern.setPrize(700);
+		adLuzern.setPrice(700);
 		adLuzern.setSquareFootage(60);
 		adLuzern.setFlat(true);
 		adLuzern.setSmokers(false);
@@ -365,7 +365,7 @@ public class AdTestDataSaver {
 		adAarau.setZipcode(5000);
 		adAarau.setMoveInDate(moveInDate3);
 		adAarau.setCreationDate(creationDate8);
-		adAarau.setPrize(800);
+		adAarau.setPrice(800);
 		adAarau.setSquareFootage(26);
 		adAarau.setFlat(true);
 		adAarau.setSmokers(true);
@@ -406,7 +406,7 @@ public class AdTestDataSaver {
 		adDavos.setZipcode(7260);
 		adDavos.setMoveInDate(moveInDate2);
 		adDavos.setCreationDate(creationDate4);
-		adDavos.setPrize(30000);
+		adDavos.setPrice(30000);
 		adDavos.setSquareFootage(74);
 		adDavos.setNumberOfRooms(4);
 		adDavos.setFlat(false);
@@ -444,7 +444,7 @@ public class AdTestDataSaver {
 		adLausanne.setZipcode(1000);
 		adLausanne.setMoveInDate(moveInDate5);
 		adLausanne.setCreationDate(creationDate5);
-		adLausanne.setPrize(360);
+		adLausanne.setPrice(360);
 		adLausanne.setNumberOfRooms(1);
 		adLausanne.setSquareFootage(8);
 		adLausanne.setFlat(false);
@@ -480,7 +480,7 @@ public class AdTestDataSaver {
 		adLocarno.setZipcode(6600);
 		adLocarno.setMoveInDate(moveInDate6);
 		adLocarno.setCreationDate(creationDate6);
-		adLocarno.setPrize(960);
+		adLocarno.setPrice(960);
 		adLocarno.setSquareFootage(42);
 		adLocarno.setNumberOfRooms(4);
 		adLocarno.setFlat(false);
@@ -513,7 +513,7 @@ public class AdTestDataSaver {
 		adTestRent.setMoveInDate(moveInDate8);
 		adTestRent.setCreationDate(creationDate2);
 		adTestRent.setNumberOfRooms(4);
-		adTestRent.setPrize(700);
+		adTestRent.setPrice(700);
 		adTestRent.setSquareFootage(60);
 		adTestRent.setFlat(true);
 		adTestRent.setSmokers(false);
@@ -541,7 +541,7 @@ public class AdTestDataSaver {
 		adTestSale.setZipcode(5000);
 		adTestSale.setMoveInDate(moveInDate8);
 		adTestSale.setCreationDate(creationDate2);
-		adTestSale.setPrize(1000);
+		adTestSale.setPrice(1000);
 		adTestSale.setSquareFootage(60);
 		adTestSale.setNumberOfRooms(3);
 		adTestSale.setFlat(true);
@@ -571,7 +571,7 @@ public class AdTestDataSaver {
 		adWithAuction.setZipcode(5000);
 		adWithAuction.setMoveInDate(moveInDate8);
 		adWithAuction.setCreationDate(creationDate2);
-		adWithAuction.setPrize(1000000);
+		adWithAuction.setPrice(1000000);
 		adWithAuction.setSquareFootage(60);
 		adWithAuction.setNumberOfRooms(3);
 		adWithAuction.setFlat(false);
@@ -594,7 +594,7 @@ public class AdTestDataSaver {
 		adWithAuction.setDistanceToNearestSchool(1);
 		adWithAuction.setDistanceToNearestSuperMarket(2);
 		adWithAuction.setAuctionEndingDate(cal.getTime());
-		adWithAuction.setAuctionStartingPrize(250000);
+		adWithAuction.setAuctionStartingPrice(250000);
 		adWithAuction.setOnHomepage(true);
 		adDao.save(adWithAuction);
 

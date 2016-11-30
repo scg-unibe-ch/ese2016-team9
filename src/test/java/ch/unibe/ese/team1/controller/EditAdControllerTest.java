@@ -93,7 +93,7 @@ public class EditAdControllerTest {
 				.param("title", "Beautiful Flat in biel")
 				.param("flat", "1")
 				.param("street", "teststreet")
-				.param("prize", "500")
+				.param("price", "500")
 				.param("squareFootage", "50")
 				.param("floor", "2")
 				.param("room", "2")
@@ -118,7 +118,7 @@ public class EditAdControllerTest {
 				.param("title", "Beautiful Flat in biel")
 				.param("flat", "1")
 				.param("street", "teststreet")
-				.param("prize", "500")
+				.param("price", "500")
 				.param("squareFootage", "50")
 				.param("floor", "2")
 				.param("room", "2")
@@ -137,7 +137,7 @@ public class EditAdControllerTest {
 		Ad adWithAuction = new Ad();
 		adWithAuction.setZipcode(5000);
 		adWithAuction.setCreationDate(new Date());
-		adWithAuction.setPrize(1000000);
+		adWithAuction.setPrice(1000000);
 		adWithAuction.setSquareFootage(60);
 		adWithAuction.setNumberOfRooms(3);
 		adWithAuction.setFlat(false);
@@ -160,7 +160,7 @@ public class EditAdControllerTest {
 		adWithAuction.setDistanceToNearestSchool(1);
 		adWithAuction.setDistanceToNearestSuperMarket(2);
 		adWithAuction.setAuctionEndingDate(cal.getTime());
-		adWithAuction.setAuctionStartingPrize(250000);
+		adWithAuction.setAuctionStartingPrice(250000);
 		adDao.save(adWithAuction);
 
 		return adWithAuction;

@@ -25,7 +25,7 @@ public class PlaceAdForm {
 	private String moveInDate;
 	
 	@Min(value = 1, message = "Has to be equal to 1 or more")
-	private double prize;
+	private double price;
 
 	@Min(value = 1, message = "Has to be equal to 1 or more")
 	private double squareFootage;
@@ -131,12 +131,12 @@ public class PlaceAdForm {
 		this.city = city;
 	}
 
-	public double getPrize() {
-		return prize;
+	public double getPrice() {
+		return price;
 	}
 
-	public void setPrize(double prize) {
-		this.prize = prize;
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 	public String getHouseDescription() {

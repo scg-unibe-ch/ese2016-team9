@@ -21,7 +21,7 @@
 			autoFocus : true
 		});
 		
-		var price = document.getElementById('prizeInput');
+		var price = document.getElementById('priceInput');
 		var radius = document.getElementById('radiusInput');
 		
 		if(price.value == null || price.value == "" || price.value == "0")
@@ -87,10 +87,10 @@ function validateType(form)
         </div>
 		
         <div class="form-group">
-            <label for="prize" class="col-sm-2 control-label">Price (max.):</label>
+            <label for="price" class="col-sm-2 control-label">Price (max.):</label>
             <div class="col-sm-10">
-                <form:input id="prizeInput" type="number" path="prize" min="100" step="0.05" class="form-control" value="100" />
-                <form:errors path="prize" cssClass="validationErrorText" />
+                <form:input id="priceInput" type="number" path="price" min="100" step="0.05" class="form-control" value="100" />
+                <form:errors path="price" cssClass="validationErrorText" />
             </div>
         </div>
 		

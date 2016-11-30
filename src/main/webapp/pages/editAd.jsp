@@ -155,15 +155,15 @@
 			</tr>
 
 			<tr>
-				<td><label for="field-Prize">Prize per month</label></td>
+				<td><label for="field-Price">Price per month</label></td>
 				<td><label for="field-RunningCosts">Running Costs per month</label></td>
 				<td><label for="field-SquareFootage">Square Meters</label></td>
 			</tr>
 			<tr>
 				<td>
-					<form:input id="field-Prize" type="number" path="prize"
-						placeholder="e.g. 500" step="0.05" value="${ad.prize }"/> <form:errors
-						path="prize" cssClass="validationErrorText" />CHF
+					<form:input id="field-Price" type="number" path="price"
+						placeholder="e.g. 500" step="0.05" value="${ad.price }"/> <form:errors
+						path="price" cssClass="validationErrorText" />CHF
 				</td>
 				<td>
 					<form:input id="field-RunningCosts" type="number" path="runningCosts"

@@ -150,15 +150,15 @@ function initMap() {
 	  var title = object.querySelector("#adTitle").innerHTML;
 	  var link = object.querySelector("#adTitle").href;
 	  var address = object.querySelector(".adAddress").innerHTML;
-	  var prize = object.querySelector(".adPrize").innerHTML;
+	  var price = object.querySelector(".adPrice").innerHTML;
 	  var moveInDate = object.querySelector(".adMoveInDate").innerHTML;
 	  var source = object.querySelector(".adImage").src;
 	  
-	  var content = "<style> img{ width: 200px; height: auto;} .prize{ font-size: 20px;}</style>"+
+	  var content = "<style> img{ width: 200px; height: auto;} .price{ font-size: 20px;}</style>"+
 	  		"<img src='" + source +"'></img>"+
 		  	"<a href='"+link+"'><h2>"+title+"</h2></a>"+
 		  	"<p>"+address+"</p>"+
-		  	"<p class='prize'><b>"+ prize +"</b></p>"+
+		  	"<p class='price'><b>"+ price +"</b></p>"+
 		  	"<span>"+moveInDate+"</span>"
 	  				
 	  
@@ -242,11 +242,11 @@ $(document).ready(function(){
 			placeholder="e.g. 5" step="5" />
 		km
 		<form:errors path="radius" cssClass="validationErrorText" />
-		<br /> <label for="prize">Price (max.):</label>
-		<form:input id="prizeInput" type="number" path="prize"
+		<br /> <label for="price">Price (max.):</label>
+		<form:input id="priceInput" type="number" path="price"
 			placeholder="e.g. 5" step="0.05" />
 		CHF
-		<form:errors path="prize" cssClass="validationErrorText" /><br />
+		<form:errors path="price" cssClass="validationErrorText" /><br />
 		
 		<br /><form:checkbox id="field-includeRunningCosts" path="includeRunningCosts" value="1" /><label>Running Costs included?</label>
 		
@@ -347,7 +347,7 @@ $(document).ready(function(){
 	<c:otherwise>
 		<div id="resultsDiv" class="resultsDiv">			
 			<c:forEach var="ad" items="${results}">
-				<div class="resultAd" data-price="${ad.prize}" 
+				<div class="resultAd" data-price="${ad.price}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
 						<a href="<c:url value='/ad?id=${ad.id}' />"><img
@@ -365,7 +365,7 @@ $(document).ready(function(){
 						</p>
 					</div>
 					<div class="resultRight">
-						<h2 class="adPrize">CHF ${ad.prize }</h2>
+						<h2 class="adPrice">CHF ${ad.price }</h2>
 						<br /> 
 						<p>
 							<i><c:choose>

@@ -75,7 +75,7 @@ public class SearchControllerTest {
 		ResultActions resultActions = this.mockMvc.perform(
 				post("/results").with(csrf())
 				.param("radius", "1000")
-				.param("prize", "100000")
+				.param("price", "100000")
 				.param("city", "3000 - Biel;Bienne")
 				.param("bothHouseAndFlat", "1")
 				.param("bothSellAndRent", "1")

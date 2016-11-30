@@ -99,7 +99,7 @@ function signOut() {
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a href="/profile/placeAd">Place an ad</a></li>
+                                    <li><a href="/profile/placeAd">Place a selling ad</a></li>
 									<li><a href="/profile/placeAd?rent=1">Place a renting ad</a></li>
                                     <li><a href="/profile/myHouses">My houses</a></li>
                                     <li><a href="/profile/listBets">Participated auctions</a></li>

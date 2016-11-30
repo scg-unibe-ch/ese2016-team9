@@ -56,7 +56,7 @@ public class BetService {
 			return BetService.VALIDATE_AUCTION_ENDED;
 		}
 		
-		if (betForm.getPrice() <= maxBet || betForm.getPrice() < ad.getAuctionStartingPrize()) {
+		if (betForm.getPrice() <= maxBet || betForm.getPrice() < ad.getAuctionStartingPrice()) {
 			return BetService.VALIDATE_PRICE_TO_LOW;
 		}
 		

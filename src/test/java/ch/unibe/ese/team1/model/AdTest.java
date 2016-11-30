@@ -33,7 +33,7 @@ public class AdTest {
 	
 	@Test
 	public void checkIfThereIsAnAuctionPriceIsEqualToAuction() {
-		this.ad.setAuctionStartingPrize(1000.50);
+		this.ad.setAuctionStartingPrice(1000.50);
 		assertFalse(this.ad.isAuction());
 	}
 	
@@ -46,14 +46,14 @@ public class AdTest {
 	@Test
 	public void checkIfThereIsAnAuctionEndDateAndStartingPriceIsEqualToAuction() {
 		this.ad.setAuctionEndingDate(new Date());
-		this.ad.setAuctionStartingPrize(1000.50);
+		this.ad.setAuctionStartingPrice(1000.50);
 		assertTrue(this.ad.isAuction());
 	}
 	
 	@Test
 	public void getLastBetPriceWorks() {
 		this.ad.setAuctionEndingDate(new Date());
-		this.ad.setAuctionStartingPrize(500.00);
+		this.ad.setAuctionStartingPrice(500.00);
 		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());
@@ -87,7 +87,7 @@ public class AdTest {
 	@Test
 	public void getLastBetPriceReturnsStartingPriceIfNoBetsAreMaken() {
 		this.ad.setAuctionEndingDate(new Date());
-		this.ad.setAuctionStartingPrize(500.00);
+		this.ad.setAuctionStartingPrice(500.00);
 		
 		assertEquals(500, this.ad.getHighestBet(), 0.1);
 	}
@@ -99,7 +99,7 @@ public class AdTest {
 		User user2 = new User();
 		
 		this.ad.setAuctionEndingDate(new Date());
-		this.ad.setAuctionStartingPrize(500.00);
+		this.ad.setAuctionStartingPrice(500.00);
 		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(new Date());

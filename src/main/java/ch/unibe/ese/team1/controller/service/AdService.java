@@ -118,7 +118,7 @@ public class AdService {
 		} catch (NumberFormatException e) {
 		}
 
-		ad.setPrize(placeAdForm.getPrize());
+		ad.setPrice(placeAdForm.getPrice());
 		ad.setSquareFootage(placeAdForm.getSquareFootage());
 		ad.setRunningCosts(placeAdForm.getRunningCosts());
 		
@@ -201,7 +201,7 @@ public class AdService {
 					placeAdForm.getAuctionEndingMinute()
 			);
 			ad.setAuctionEndingDate(calendar.getTime());
-			ad.setAuctionStartingPrize(placeAdForm.getAuctionStartingPrice());
+			ad.setAuctionStartingPrice(placeAdForm.getAuctionStartingPrice());
 			if (placeAdForm.getAuctionStepPrice() != 0.0) {
 				ad.setAuctionStepPrice(placeAdForm.getAuctionStepPrice());
 			}		
@@ -269,12 +269,12 @@ public class AdService {
 		// we use this method if we are looking for houses AND flats
 		if (searchForm.getBothHouseAndFlat()) {
 			results = adDao
-					.findByPrizeLessThan(searchForm.getPrize() + 1);
+					.findByPriceLessThan(searchForm.getPrice() + 1);
 		}
 		// we use this method if we are looking EITHER for houses OR for flats
 		else {
-			results = adDao.findByFlatAndPrizeLessThan(
-					searchForm.getFlat(), searchForm.getPrize() + 1);
+			results = adDao.findByFlatAndPriceLessThan(
+					searchForm.getFlat(), searchForm.getPrice() + 1);
 			
 		}
 		
@@ -283,7 +283,7 @@ public class AdService {
 			Iterator<Ad> iterator = results.iterator();
 			while(iterator.hasNext()) {
 				Ad ad = iterator.next();
-				if(ad.getPrize()+ad.getRunningCosts() > searchForm.getPrize())
+				if(ad.getPrice()+ad.getRunningCosts() > searchForm.getPrice())
 					iterator.remove();
 			}
 		}

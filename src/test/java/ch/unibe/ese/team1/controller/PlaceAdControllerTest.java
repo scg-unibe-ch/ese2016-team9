@@ -84,7 +84,7 @@ public class PlaceAdControllerTest {
 				.param("title", "testAd - placeAdFormIsNotValidWhenNotLoggedIn")
 				.param("flat", "1")
 				.param("street", "teststreet")
-				.param("prize", "500")
+				.param("price", "500")
 				.param("squareFootage", "50")
 				.param("floor", "2")
 				.param("room", "2")
@@ -108,7 +108,7 @@ public class PlaceAdControllerTest {
 				.param("title", "testAd - placeAdFormWillSaveAdEvenInBiel")
 				.param("flat", "1")
 				.param("street", "teststreet")
-				.param("prize", "500")
+				.param("price", "500")
 				.param("squareFootage", "50")
 				.param("floor", "2")
 				.param("room", "2")
@@ -134,7 +134,7 @@ public class PlaceAdControllerTest {
 				.param("title", "testAd - placeAdFormWillSaveAuctionData")
 				.param("flat", "1")
 				.param("street", "teststreet")
-				.param("prize", "500000")
+				.param("price", "500000")
 				.param("squareFootage", "50")
 				.param("floor", "2")
 				.param("room", "2")
@@ -158,7 +158,7 @@ public class PlaceAdControllerTest {
 		assertEquals(cal.get(Calendar.HOUR), adCal.get(Calendar.HOUR));
 		assertEquals(cal.get(Calendar.MINUTE), adCal.get(Calendar.MINUTE));
 		
-		assertEquals(150000.0, ad.getAuctionStartingPrize(),1);
+		assertEquals(150000.0, ad.getAuctionStartingPrice(),1);
 		assertTrue(ad.isAuction());
 		
 	}
