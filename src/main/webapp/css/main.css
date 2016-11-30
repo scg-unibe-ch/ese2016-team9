@@ -958,3 +958,7 @@ div.resultAd h2 {
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
 	height: 25em !important;	
 }
+
+.col-md-3 {
+    width: 32% !important;
+}
