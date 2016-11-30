@@ -244,7 +244,7 @@ $(document).ready(function(){
 		<form:errors path="radius" cssClass="validationErrorText" />
 		<br /> <label for="price">Price (max.):</label>
 		<form:input id="priceInput" type="number" path="price"
-			placeholder="e.g. 5" step="0.05" />
+			placeholder="e.g. 500" step="0.05" />
 		CHF
 		<form:errors path="price" cssClass="validationErrorText" /><br />
 		
