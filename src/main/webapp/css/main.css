@@ -672,6 +672,15 @@ img.visible {
 	cursor: pointer;
 }
 
+.ad-tabs{
+	margin-top: -32px;
+}
+
+#single-map {
+	min-height: 30em;
+	widht: 100%;
+}
+
 /* -------------------------------------------------------------------- */
 /* messages.jsp */
 
@@ -956,9 +965,37 @@ div.resultAd h2 {
 }
 
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
-	height: 25em !important;	
+	height: 32em !important;	
 }
 
 .col-md-3 {
     width: 32% !important;
 }
+
+#tabs { 
+    background: transparent; 
+    border: none; 
+} 
+#tabs .ui-widget-header { 
+    background: transparent; 
+    border: none; 
+    border-bottom: 1px solid #c0c0c0; 
+    -moz-border-radius: 0px; 
+    -webkit-border-radius: 0px; 
+    border-radius: 0px; 
+} 
+#tabs .ui-tabs-nav .ui-state-default { 
+    background: transparent; 
+    border: none; 
+} 
+#tabs .ui-tabs-nav .ui-state-active { 
+    background: transparent url(img/uiTabsArrow.png) no-repeat bottom center; 
+    border: none; 
+} 
+#tabs .ui-tabs-nav .ui-state-default a { 
+    color: #c0c0c0; 
+} 
+#tabs .ui-tabs-nav .ui-state-active a { 
+    color: #000000; 
+}
+
