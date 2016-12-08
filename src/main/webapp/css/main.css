@@ -989,7 +989,6 @@ div.resultAd h2 {
     border: none; 
 } 
 #tabs .ui-tabs-nav .ui-state-active { 
-    background: transparent url(img/uiTabsArrow.png) no-repeat bottom center; 
     border: none; 
 } 
 #tabs .ui-tabs-nav .ui-state-default a { 
