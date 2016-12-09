@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ch.unibe.ese.team1.controller.pojos.forms.SignupForm;
 import ch.unibe.ese.team1.model.User;
+import ch.unibe.ese.team1.model.UserPicture;
 import ch.unibe.ese.team1.model.UserRole;
 import ch.unibe.ese.team1.model.dao.UserDao;
 
@@ -32,6 +33,14 @@ public class SignupService {
 		user.setPassword(signupForm.getPassword());
 		user.setEnabled(true);
 		user.setGender(signupForm.getGender());
+		
+		if(signupForm.getImagePath() != "" && signupForm.getImagePath() != null){
+			UserPicture picture = new UserPicture();
+			picture.setFilePath(signupForm.getImagePath());
+			user.setPicture(picture);
+			picture.setUser(user);
+		}
+		
 		
 		Set<UserRole> userRoles = new HashSet<>();
 		UserRole role = new UserRole();

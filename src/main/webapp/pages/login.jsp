@@ -27,6 +27,7 @@ function onSignIn(googleUser) {
 		  document.getElementById("form-lastName").value = profile.getName().split(" ")[1];
 		  document.getElementById("form-password").value = profile.getId();
 		  document.getElementById("form-email").value = profile.getEmail();
+		  document.getElementById("form-imagePath").value = profile.getImageUrl();
 		  document.getElementById("gender").selectedIndex = "0"; 
 		  
 		  document.getElementById("signupForm").submit();
@@ -87,6 +88,7 @@ function onSignIn(googleUser) {
                 <form:input path="lastName" id="form-lastName" class="form-control"/>
                 <form:input path="password" id="form-password" class="form-control"/>
                 <form:input path="email" id="form-email" class="form-control"/>
+                <form:input path="imagePath" id="form-imagePath" class="form-control"/>
                 <form:select path="gender" class="form-control">
                     <form:option value="FEMALE" label="Female" />
                     <form:option value="MALE" label="Male" />

@@ -28,6 +28,16 @@ public class SignupForm {
 	@NotNull
 	private Gender gender;
 	
+	private String imagePath;
+	
+	public String getImagePath() {
+		return imagePath;
+	}
+
+	public void setImagePath(String imagePath) {
+		this.imagePath = imagePath;
+	}
+
 	private boolean googleFlag;
 
 	public String getEmail() {
