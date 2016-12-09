@@ -342,45 +342,15 @@ $(document).ready(function(){
 <div id="result-list">
 <c:choose>
 	<c:when test="${empty results}">
-		<p>No results found!
+        <p>No results found!</p>
 	</c:when>
 	<c:otherwise>
-		<div id="resultsDiv" class="resultsDiv">			
+		<div id="resultsDiv" class="resultsDiv container-fluid">			
 			<c:forEach var="ad" items="${results}">
-				<div class="resultAd" data-price="${ad.price}" 
-								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
-					<div class="resultLeft">
-						<a href="<c:url value='/ad?id=${ad.id}' />"><img
-							src="${ad.pictures[0].filePath}" class="adImage"/></a>
-						<h2>
-							<a class="link adTitle" id="adTitle" href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
-						</h2>
-						<p class="adAddress">${ad.street}, ${ad.zipcode} ${ad.city}</p>
-						<br />
-						<p>
-							<i><c:choose>
-									<c:when test="${ad.flat}">Flat</c:when>
-									<c:otherwise>House</c:otherwise>
-								</c:choose></i>
-						</p>
-					</div>
-					<div class="resultRight">
-						<h2 class="adPrice">CHF ${ad.price }</h2>
-						<br /> 
-						<p>
-							<i><c:choose>
-								<c:when test="${ad.forSale}">for Sale</c:when>
-								<c:otherwise>for Rent</c:otherwise>
-							   </c:choose></i>
-						</p>
-						
-
-						<fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate"
-							type="date" pattern="dd.MM.yyyy" />
-
-						<p class="adMoveInDate">Move-in date: ${formattedMoveInDate }</p>
-					</div>
-				</div>
+                <div class="resultAd col-md-12">
+                    <c:set var="ad" value="${ad}" scope="request" />
+                    <jsp:include page="adDisplay.jsp" />
+                </div>
 			</c:forEach>
 		</div>
 	</c:otherwise>

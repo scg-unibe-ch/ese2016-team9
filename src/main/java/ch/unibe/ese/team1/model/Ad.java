@@ -403,6 +403,17 @@ public class Ad {
 	public Date getAuctionEndingDate() {
 		return auctionEndingDate;
 	}
+	
+	public long getSecondsUntilAuctionEnding() {
+		if (this.auctionEndingDate == null) {
+			return 0;
+		}
+		if (this.isAuctionEnded()) {
+			return 0;
+		}
+		Date date = new Date();
+		return this.auctionEndingDate.getTime() - date.getTime();
+	}
 
 	public void setAuctionEndingDate(Date auctionEndingDate) {
 		this.auctionEndingDate = auctionEndingDate;

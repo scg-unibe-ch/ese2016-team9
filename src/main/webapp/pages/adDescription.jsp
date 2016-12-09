@@ -374,12 +374,23 @@
 
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner" role="listbox">
-						<c:forEach items="${shownAd.pictures}" var="picture"
-							varStatus="status">
-							<div class="item${status.first ? ' active' : ''}">
-								<img src="${picture.filePath}" style="margin: auto;" />
-							</div>
-						</c:forEach>
+                        
+                        <c:choose>
+                            <c:when test="${shownAd.pictures.size() == 0}">
+                                <div class="item active">
+                                    <img src="/img/house-placeholder.png" style="margin: auto" />
+                                </div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach items="${shownAd.pictures}" var="picture" varStatus="status">
+                                <div class="item${status.first ? ' active' : ''}">
+                                    <img src="${picture.filePath}" style="margin: auto;" />
+                                </div>
+                            </c:forEach>
+                            </c:otherwise>
+                        </c:choose>         
+                        
+
 					</div>
 
 					<!-- Controls -->

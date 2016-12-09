@@ -32,7 +32,7 @@
         <div class="container-fluid">   
             <div id="resultsDiv" class="resultsDiv row">		
                 <c:forEach var="ad" items="${newest}">
-                    <div class="resultAd col-md-3">
+                    <div class="resultAd col-sm-4 col-xs-12 col-md-4">
                         <c:set var="ad" value="${ad}" scope="request" />
                         <jsp:include page="adDisplay.jsp" />
                     </div>

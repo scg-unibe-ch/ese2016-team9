@@ -471,7 +471,6 @@ footer nav ul li {
 }
 
 #resultsDiv {
-	width: 100%;
 	margin-top: 10px;
 }
 
@@ -484,13 +483,12 @@ footer nav ul li {
 }
 
 #resultsDiv div {
-	padding-top: 20px;
-	margin-right: 10px;
-	margin-top: 20px;
-	border-style: solid;
-	border-color: #999;
-	border-width: 2px;
-	border-radius: 3px;
+}
+
+.resultAdBorder {
+    border: 2px solid #999 !important;
+    padding: 5px !important;  
+	border-radius: 3px !important;
 }
 
 #resultsDiv div img {
@@ -939,6 +937,7 @@ div.resultImage {
     width: 60%;
     display: inline-block;
     vertical-align: top;
+    position: relative;
 }
 
 div.resultRight {
@@ -955,9 +954,7 @@ div.resultRight {
 }
 
 div.resultAd {
-	padding-left: 15px;
-	height: 280px;
-	overflow: hidden;
+    margin-bottom: 15px;
 }
 
 div.resultAd h2 {
@@ -966,23 +963,6 @@ div.resultAd h2 {
 
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
 	height: 32em !important;	
-}
-
-.col-md-3 {
-    width: 32% !important;
-}
-
-.adIsAuction {
-	background-image: url('/img/auction-icon.png');
-	background-size: 50px 50px;
-	width:50px;
-	height:50px;
-	border: 1px solid black;
-	position: relative;
-	float:left;
-	top: -10px;
-	left: -20px;
-	display: block;
 }
 
 #tabs { 
@@ -1009,4 +989,24 @@ div.resultAd h2 {
 } 
 #tabs .ui-tabs-nav .ui-state-active a { 
     color: #000000; 
+}
+
+
+.imtip {
+    position: absolute;
+    bottom: 0;
+    left: 80px;
+    height: 40px !important;
+}
+
+.row {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+  flex-wrap: wrap;
+}
+.row > [class*='col-'] {
+  display: flex;
+  flex-direction: column;
 }
