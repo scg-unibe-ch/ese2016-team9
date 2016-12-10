@@ -158,7 +158,28 @@ public class AdController {
 			Iterable<Ad> ownAds = adService.getAdsByUser(user);
 
 			model.addObject("bookmarkedAdvertisements", user.getBookmarkedAds());
-			model.addObject("ownAdvertisements", ownAds);
+			return model;
+		} else {
+			model = new ModelAndView("home");
+		}
+
+		return model;
+	}
+	
+	/**
+	 * Fetches information about bookmarked houses and attaches this
+	 * information to the myBookmarks page in order to be displayed.
+	 */
+	@RequestMapping(value ="/profile/myBookmarks", method = RequestMethod.GET)
+	public ModelAndView myBookmarks(Principal principal){
+		ModelAndView model;
+		User user;
+		if(principal != null){
+			model = new ModelAndView("myBookmarks");
+			String username = principal.getName();
+			user = userService.findUserByUsername(username);
+
+			model.addObject("bookmarkedAdvertisements", user.getBookmarkedAds());
 			return model;
 		} else {
 			model = new ModelAndView("home");

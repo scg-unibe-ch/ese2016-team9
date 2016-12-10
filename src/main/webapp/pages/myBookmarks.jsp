@@ -14,21 +14,20 @@
 </script>
 
 
-<pre><a href="/">Home</a>   &gt;   My Houses</pre>
+<pre><a href="/">Home</a>   &gt;   My Bookmarks</pre>
 
 <c:choose>
-	<c:when test="${empty ownAdvertisements}">
-		<h1>My Advertisements</h1>
+	<c:when test="${empty bookmarkedAdvertisements}">
+		<h1>My Bookmarks</h1>
 		<hr />
-		<p>You have not advertised anything yet.</p>
-		<br /><br />
+		<p>You have not bookmarked anything yet.</p><br /><br />
 	</c:when>
 	<c:otherwise>
-	
+		
 		<div id="resultsDiv" class="resultsDiv row">
-		<h1>My Advertisements</h1>
+		<h1>My Bookmarks</h1>
 		<hr />			
-			<c:forEach var="ad" items="${ownAdvertisements}">
+			<c:forEach var="ad" items="${bookmarkedAdvertisements}">
 				<div class="resultAd col-md-3" data-price="${ad.price}" 
 								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
 					<div class="resultLeft">
@@ -53,10 +52,8 @@
 					</div>
 				</div>
 			</c:forEach>
-			<br /> <br />
 		</div>		
 	</c:otherwise>
 </c:choose>
-
 
 <c:import url="template/footer.jsp" />
