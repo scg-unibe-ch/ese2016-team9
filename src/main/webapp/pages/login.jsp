@@ -58,7 +58,10 @@ function onSignIn(googleUser) {
             </div>
 		</form>
 		<br />
+		<p>Login with Google:</p>
 		<div class="g-signin2" data-onsuccess="onSignIn"></div>
+		<br />
+		Or <a class="link" href="<c:url value="/signup" />">sign up</a> as a new user.
 		<br />
 		<h2>Test users</h2>
 
@@ -75,9 +78,8 @@ function onSignIn(googleUser) {
 			<li>Email: <i>hans@unibe.ch</i>, password: <i>password</i></li>
 			<li>Email: <i>mathilda@unibe.ch</i>, password: <i>password</i></li>
 		</ul>
-		<br />
 		
-			Or <a class="link" href="<c:url value="/signup" />">sign up</a> as a new user.
+			
 		
 	</c:otherwise>
 </c:choose>
