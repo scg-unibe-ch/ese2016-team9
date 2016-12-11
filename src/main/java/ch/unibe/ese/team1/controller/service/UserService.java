@@ -35,4 +35,13 @@ public class UserService {
 		userDao.save(user);
 	}
 
+	public void dislike(User ratingPerson) {
+		ratingPerson.setDislikes(ratingPerson.getDislikes() + 1);
+		userDao.save(ratingPerson);
+	}
+
+	public void like(User ratingPerson) {
+		ratingPerson.setLikes(ratingPerson.getLikes() + 1);
+		userDao.save(ratingPerson);
+	}
 }

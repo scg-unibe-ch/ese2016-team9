@@ -663,4 +663,46 @@ public class AdService {
 		
 		return ads.keySet();
 	}
+	
+	/**
+	 * Returns ads which a user has bets on
+	 * 
+	 * @param User user
+	 */
+	@Transactional
+	public Iterable<Ad> getAuctionsWhichShouldBeProcessed() {
+		Iterable<Ad> ads = this.adDao.findAll();
+		HashMap<Ad, Integer> returnAds = new HashMap<Ad, Integer>();
+
+		for(Ad ad : ads) {
+			if (ad.isAuction() && ad.isAuctionEnded() && !ad.isAuctionProcessed()) {
+				returnAds.put(ad, (int) ad.getId());
+			}
+		}
+
+		return returnAds.keySet();
+	}
+	
+	/**
+	 * Mark an auction as processed
+	 * 
+	 * @param Ad ad
+	 */
+	@Transactional
+	public void markProcessed(Ad ad) {
+		ad.setAuctionProcessed(true);
+		this.adDao.save(ad);
+	}
+
+	@Transactional
+	public void setUserRated(Ad ad) {
+		ad.setUserRated(true);
+		this.adDao.save(ad);
+	}
+	
+	@Transactional
+	public void setAdvertiserRated(Ad ad) {
+		ad.setAdvertiserRated(true);
+		this.adDao.save(ad);
+	}
 }

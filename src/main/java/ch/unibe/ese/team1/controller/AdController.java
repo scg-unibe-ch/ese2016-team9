@@ -157,7 +157,7 @@ public class AdController {
 
 			Iterable<Ad> ownAds = adService.getAdsByUser(user);
 
-			model.addObject("ownAdvertisements", ownAds);
+			model.addObject("ownAdvertisements", ownAds	);
 			return model;
 		} else {
 			model = new ModelAndView("home");
@@ -264,6 +264,88 @@ public class AdController {
 		return model;
 	}
 	
+	@RequestMapping(value = "/rateAd", method = RequestMethod.GET)
+	public ModelAndView rateAuctionAdGet(
+			@RequestParam("id") long id,
+			@RequestParam("rate") long rateId,
+			RedirectAttributes redirectAttributes,
+			Principal principal) {
+
+		Ad ad = adService.getAdById(id);
+
+		String username = principal.getName();
+		User user = userService.findUserByUsername(username);
+		User ratingPerson = userService.findUserById(rateId);
+		
+		if (!ad.isAuction() || !ad.isAuctionEnded()) {
+			throw new ForbiddenException();	
+		}
+		
+		if (!user.equals(ad.getUser()) && !user.equals(ad.getLastBiddingUser())) {
+			throw new ForbiddenException();	
+		}
+		
+		ModelAndView model = new ModelAndView("rate");
+		model.addObject("ad", ad);
+		model.addObject("rateUser", ratingPerson);
+		return model;
+	}
+	
+	@RequestMapping(value = "/rateAd", method = RequestMethod.POST)
+	public ModelAndView rateAuctionAdPost(
+			@RequestParam("id") long id,
+			@RequestParam("rate") long rateId,
+			@RequestParam("rating") String rating,
+			RedirectAttributes redirectAttributes,
+			Principal principal) {
+
+		Ad ad = adService.getAdById(id);
+
+		String username = principal.getName();
+		User user = userService.findUserByUsername(username);
+		User ratingPerson = userService.findUserById(rateId);
+
+		if (!ad.isAuction() || !ad.isAuctionEnded()) {
+			throw new ForbiddenException();	
+		}
+		
+		if (!user.equals(ad.getUser()) && !user.equals(ad.getLastBiddingUser())) {
+			throw new ForbiddenException();	
+		}
+
+		ModelAndView model = new ModelAndView("rate");
+		model = new ModelAndView("redirect:/ad?id=" + ad.getId());
+		if (user.equals(ad.getUser()) && ad.isUserRated()) {
+			redirectAttributes.addFlashAttribute(
+					"confirmationMessage",
+					"You cannot rate the user more than one time"
+			);
+		} else if (user.equals(ad.getLastBiddingUser()) && ad.isAdvertiserRated()) {
+			redirectAttributes.addFlashAttribute(
+					"confirmationMessage",
+					"You cannot rate the advertiser more than one time"
+			);
+		} else {
+			if (rating.equals("1")) {
+				this.userService.like(ratingPerson);
+			} else {
+				this.userService.dislike(ratingPerson);
+			}
+			
+			if (user.equals(ad.getUser())) {
+				this.adService.setUserRated(ad);
+			} else {
+				this.adService.setAdvertiserRated(ad);
+			}
+
+			redirectAttributes.addFlashAttribute(
+					"confirmationMessage",
+					"Your rating has been saved"
+			);
+		}
+		
+		return model;
+	}
 
 	@RequestMapping(value = "/ad/placeOnHomepage", method = RequestMethod.POST)
 	public ModelAndView placeOnHomepageFormPost(

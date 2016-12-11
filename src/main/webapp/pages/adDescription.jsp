@@ -443,15 +443,22 @@
 				<h2>Advertiser</h2>
 				<table id="advertiserTable" class="table">
 					<tr>
-						<td><c:choose>
+						<td>
+                            <c:choose>
 								<c:when test="${shownAd.user.picture.filePath != null}">
 									<img src="${shownAd.user.picture.filePath}">
 								</c:when>
 								<c:otherwise>
 									<img src="/img/avatar.png">
 								</c:otherwise>
-							</c:choose></td>
-
+							</c:choose>
+                        </td>
+                        <td>
+                            <p>
+                            <img src="/img/thumbs-up.png" style="width:12px; height:12px; display: inline" /> ${shownAd.user.likes}</p>
+                            <p><img src="/img/thumbs-down.png" style="width:12px; height:12px; display: inline" /> ${shownAd.user.dislikes}</p>
+                            
+                        </td>
 						<td>${shownAd.user.username}</td>
 
 						<td id="advertiserEmail"><c:choose>

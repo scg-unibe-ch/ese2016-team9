@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ch.unibe.ese.team1.controller.pojos.PictureMeta;
 import ch.unibe.ese.team1.controller.pojos.PictureUploader;
 import ch.unibe.ese.team1.controller.pojos.forms.PlaceAdForm;
 import ch.unibe.ese.team1.controller.service.AdService;
@@ -31,7 +32,6 @@ import ch.unibe.ese.team1.controller.service.MessageService;
 import ch.unibe.ese.team1.controller.service.UserService;
 import ch.unibe.ese.team1.controller.service.VisitService;
 import ch.unibe.ese.team1.model.Ad;
-import ch.unibe.ese.team1.model.PictureMeta;
 import ch.unibe.ese.team1.model.User;
 
 import com.fasterxml.jackson.core.JsonProcessingException;

@@ -66,6 +66,18 @@ public class User {
 	@ManyToMany(fetch = FetchType.EAGER)
 	private Set<Ad> bookmarkedAds;
 
+
+	@Column(nullable = false)
+	private int likes;
+
+	@Column(nullable = false)
+	private int dislikes;
+	
+	public User() {
+		this.likes = 0;
+		this.dislikes = 0;
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -191,6 +203,22 @@ public class User {
 		if (id != other.id)
 			return false;
 		return true;
+	}
+
+	public int getLikes() {
+		return likes;
+	}
+
+	public void setLikes(int likes) {
+		this.likes = likes;
+	}
+
+	public int getDislikes() {
+		return dislikes;
+	}
+
+	public void setDislikes(int dislikes) {
+		this.dislikes = dislikes;
 	}
 	
 }

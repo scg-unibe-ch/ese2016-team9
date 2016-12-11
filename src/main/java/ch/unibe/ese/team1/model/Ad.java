@@ -145,10 +145,22 @@ public class Ad {
 	@Column
 	private double auctionStepPrice;
 	
+	@Column(nullable = false)
+	private boolean auctionProcessed;
+	
+	@Column(nullable = false)
+	private boolean advertiserRated;
+	
+	@Column(nullable = false)
+	private boolean userRated;
+	
 	public static final double DEFAULT_AUCTION_STEP_PRICE = 10;
 	
 	public Ad () {
 		this.isOnHomepage = false;
+		this.auctionProcessed = false;
+		this.userRated = false;
+		this.advertiserRated = false;
 	}
 	
 	public Date getCreationDate() {
@@ -522,4 +534,30 @@ public class Ad {
 	public void wasOnHomepage() {
 		this.wasOnHomepage++;
 	}
+
+	public boolean isAuctionProcessed() {
+		return auctionProcessed;
+	}
+
+	public void setAuctionProcessed(boolean auctionProcessed) {
+		this.auctionProcessed = auctionProcessed;
+	}
+
+	public boolean isAdvertiserRated() {
+		return advertiserRated;
+	}
+
+	public void setAdvertiserRated(boolean advertiserRated) {
+		this.advertiserRated = advertiserRated;
+	}
+
+	public boolean isUserRated() {
+		return userRated;
+	}
+
+	public void setUserRated(boolean userRated) {
+		this.userRated = userRated;
+	}
+	
+	
 }

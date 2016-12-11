@@ -1,4 +1,4 @@
-package ch.unibe.ese.team1.model;
+package ch.unibe.ese.team1.controller.pojos;
 
 /**
  * Describes a picture with properties such as filename, file size etc. Objects

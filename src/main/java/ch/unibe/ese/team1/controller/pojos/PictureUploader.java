@@ -16,8 +16,6 @@ import java.util.stream.Collectors;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import ch.unibe.ese.team1.model.PictureMeta;
-
 /**
  * This class handles uploading any number of pictures of type
  * {@link MultipartFile} to the server.

@@ -566,7 +566,7 @@ public class AdTestDataSaver {
 		adDao.save(adTestSale);
 
 		Calendar cal = Calendar.getInstance();
-		cal.add(Calendar.DATE, 7);
+		cal.add(Calendar.SECOND, 1);
 		Ad adWithAuction = new Ad();
 		adWithAuction.setZipcode(5000);
 		adWithAuction.setMoveInDate(moveInDate8);

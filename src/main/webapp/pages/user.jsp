@@ -87,6 +87,19 @@
         <c:otherwise></c:otherwise>
     </c:choose>
     
+    <div>
+        <table class="table">
+            <tr>
+                <td><img src="/img/thumbs-up.png" style="width:15px" /></td>
+                <td>${user.likes}</td>
+            </tr>
+            <tr>
+                <td><img src="/img/thumbs-down.png" style="width:15px" /></td>
+                <td>${user.dislikes}</td>
+            </tr>
+        </table>
+    </div>
+    
 	<form>
 		<c:choose>
 			<c:when test="${principalID != null}">

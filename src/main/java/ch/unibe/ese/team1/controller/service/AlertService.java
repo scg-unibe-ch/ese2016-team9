@@ -84,6 +84,74 @@ public class AlertService {
 		alertDao.delete(id);
 	}
 
+	/** Triggers all alerts when an auction is finished */
+	@Transactional
+	public void triggerAuction(Ad ad) {
+		assert (ad.isAuction());
+		
+		User advertiser = ad.getUser();
+		User purchaser = ad.getLastBiddingUser();
+		
+		if (advertiser != null) {
+			Date now = new Date();
+			Message message = new Message();
+			message.setSubject("\\o/");
+			message.setText(getAuctionTextAdvertiser(ad, purchaser));
+			message.setSender(userDao.findByUsername("System"));
+			message.setRecipient(advertiser);
+			message.setState(MessageState.UNREAD);
+			message.setDateSent(now);
+			messageDao.save(message);
+		}
+		
+		if (purchaser != null) {
+			Date now = new Date();
+			Message message = new Message();
+			message.setSubject("\\o/");
+			message.setText(getAuctionTextPurchaser(ad, advertiser));
+			message.setSender(userDao.findByUsername("System"));
+			message.setRecipient(purchaser);
+			message.setState(MessageState.UNREAD);
+			message.setDateSent(now);
+			messageDao.save(message);
+			
+		}
+	}
+	
+	private String getAuctionTextPurchaser(Ad ad, User advertiser) {
+		return "Dear user,<br>good news. You have won this auction: <br />"
+				+ "<a class=\"link\" href=/ad?id="
+				+ ad.getId()
+				+ ">"
+				+ ad.getTitle()
+				+ "</a><br><br>"
+				+ "You can rate the advertiser on this page:<br>"
+				+ "<a class=\"link\" href=/rateAd?id="
+				+ ad.getId()
+				+ "&rate=" + advertiser.getId() + ">"
+				+ "Rate advertiser"
+				+ "</a><br><br>"
+				+ "If the advertiser does not sold you the property, please leave a remark at our customer support.<br>"
+				+ "Your a-Bec crew";
+	}
+
+	private String getAuctionTextAdvertiser(Ad ad, User purchaser) {
+		return "Dear user,<br>good news. You have sold this auction: <br />"
+				+ "<a class=\"link\" href=/ad?id="
+				+ ad.getId()
+				+ ">"
+				+ ad.getTitle()
+				+ "</a><br><br>"
+				+ "You can rate the purchaser on this page:<br>"
+				+ "<a class=\"link\" href=/rateAd?id="
+				+ ad.getId()
+				+ "&rate=" + purchaser.getId() + ">"
+				+ "Rate purchaser"
+				+ "</a><br><br>"
+				+ "If the purchaser does not give you any money, please leave a remark at our customer support.<br>"
+				+ "Your a-Bec crew";
+	}
+
 	/** Triggers all alerts when someone bets to an ad */
 	@Transactional
 	public void triggerAlerts(Bet bet) {
@@ -115,7 +183,6 @@ public class AlertService {
 			message.setDateSent(now);
 			messageDao.save(message);
 		}
-		
 	}
 	
 	/**

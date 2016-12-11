@@ -52,25 +52,49 @@
             </h2>
             <p class="resultAddress">${ad.street}, ${ad.zipcode} ${ad.city}</p>     
             <c:choose>
-                <c:when test="${ad.isAuction() && !ad.isAuctionEnded()}">
-                    <fmt:formatDate value="${ad.auctionEndingDate}" var="formattedAuctionEndingDate" type="date" pattern="MM/dd/yyyy HH:mm:ss" />
-                    <div style="display: inline">Auction ends in</div>
-                    <div style="display: inline" class="auctionTimerDisplay">${formattedAuctionEndingDate}</div>
+                <c:when test="${ad.isAuction()}">
                     <c:choose>
-                        <c:when test="${not empty user}">
-                            <fmt:formatNumber type="number" minFractionDigits="2" value="${ad.getHighestBet()}" var="formattedBet" />
+                        <c:when test="${!ad.isAuctionEnded()}">
+                            <fmt:formatDate value="${ad.auctionEndingDate}" var="formattedAuctionEndingDate" type="date" pattern="MM/dd/yyyy HH:mm:ss" />
+                            <div style="display: inline">Auction ends in</div>
+                            <div style="display: inline" class="auctionTimerDisplay">${formattedAuctionEndingDate}</div>
                             <c:choose>
-                                <c:when test="${ad.getLastBiddingUser().equals(user)}">
-                                    <p style="color:green">You are winning with CHF ${formattedBet}</p>
+                                <c:when test="${not empty user}">
+                                    <fmt:formatNumber type="number" minFractionDigits="2" value="${ad.getHighestBet()}" var="formattedBet" />
+                                    <c:choose>
+                                        <c:when test="${ad.getLastBiddingUser().equals(user)}">
+                                            <p style="color:green">You are winning with CHF ${formattedBet}</p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p style="color:red">You are losing, highest bet is at CHF ${formattedBet}</p>
+                                        </c:otherwise>
+                                    </c:choose>
+
+
                                 </c:when>
-                                <c:otherwise>
-                                    <p style="color:red">You are losing, highest bet is at CHF ${formattedBet}</p>
-                                </c:otherwise>
                             </c:choose>
-                            
-                            
                         </c:when>
+                        <c:otherwise>
+                            <fmt:formatDate value="${ad.auctionEndingDate}" var="formattedAuctionEndingDate" type="date" pattern="MM/dd/yyyy HH:mm:ss" />
+                            <p>Auction has ended!</p>
+                            <c:choose>
+                                <c:when test="${not empty user}">
+                                    <fmt:formatNumber type="number" minFractionDigits="2" value="${ad.getHighestBet()}" var="formattedBet" />
+                                    <c:choose>
+                                        <c:when test="${ad.getLastBiddingUser().equals(user)}">
+                                            <p style="color:green">You have won! Please pay CHF ${formattedBet}</p>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <p style="color:red">You have lost</p>
+                                        </c:otherwise>
+                                    </c:choose>
+
+
+                                </c:when>
+                            </c:choose>
+                        </c:otherwise>
                     </c:choose>
+                    
                 </c:when>
             </c:choose>
 
