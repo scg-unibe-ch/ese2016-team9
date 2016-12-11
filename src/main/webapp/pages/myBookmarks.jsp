@@ -14,45 +14,26 @@
 </script>
 
 
-<pre><a href="/">Home</a>   &gt;   My Bookmarks</pre>
-
+<pre><a href="/">Home</a> &gt; My Bookmarks</pre>
+<h1>My Bookmarks</h1>
 <c:choose>
 	<c:when test="${empty bookmarkedAdvertisements}">
-		<h1>My Bookmarks</h1>
-		<hr />
-		<p>You have not bookmarked anything yet.</p><br /><br />
+		<p>You have not bookmarked anything yet.</p>
 	</c:when>
 	<c:otherwise>
-		
-		<div id="resultsDiv" class="resultsDiv row">
-		<h1>My Bookmarks</h1>
-		<hr />			
-			<c:forEach var="ad" items="${bookmarkedAdvertisements}">
-				<div class="resultAd col-md-3" data-price="${ad.price}" 
-								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
-					<div class="resultLeft">
-						<a href="<c:url value='/ad?id=${ad.id}' />"><img
-							src="${ad.pictures[0].filePath}" /></a>
-						<h2>
-							<a href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
-						</h2>
-						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
-						<br />
-						<p>
-							<i><c:choose>
-									<c:when test="${ad.flat}">Flat</c:when>
-									<c:otherwise>House</c:otherwise>
-								</c:choose></i>
-						</p>
-					</div>
-					<div class="resultRight">
-						<h2>CHF ${ad.price }</h2>
-						<br /> <br />
-						<p>Available From: ${ad.moveInDate }</p>
-					</div>
-				</div>
-			</c:forEach>
-		</div>		
+	
+        <div class="container-fluid">
+            <div id="resultsDiv" class="resultsDiv row">
+            
+                <c:forEach var="ad" items="${bookmarkedAdvertisements}">
+                    <div class="resultAd col-sm-4 col-xs-12 col-md-4">
+                        <c:set var="ad" value="${ad}" scope="request" />
+                        <jsp:include page="adDisplay.jsp" />
+                    </div>
+                </c:forEach>
+                <br /> <br />
+            </div>		
+        </div>
 	</c:otherwise>
 </c:choose>
 

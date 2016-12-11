@@ -157,7 +157,7 @@ public class AdController {
 
 			Iterable<Ad> ownAds = adService.getAdsByUser(user);
 
-			model.addObject("bookmarkedAdvertisements", user.getBookmarkedAds());
+			model.addObject("ownAdvertisements", ownAds);
 			return model;
 		} else {
 			model = new ModelAndView("home");
