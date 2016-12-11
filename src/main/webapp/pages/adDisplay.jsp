@@ -56,6 +56,21 @@
                     <fmt:formatDate value="${ad.auctionEndingDate}" var="formattedAuctionEndingDate" type="date" pattern="MM/dd/yyyy HH:mm:ss" />
                     <div style="display: inline">Auction ends in</div>
                     <div style="display: inline" class="auctionTimerDisplay">${formattedAuctionEndingDate}</div>
+                    <c:choose>
+                        <c:when test="${not empty user}">
+                            <fmt:formatNumber type="number" minFractionDigits="2" value="${ad.getHighestBet()}" var="formattedBet" />
+                            <c:choose>
+                                <c:when test="${ad.getLastBiddingUser().equals(user)}">
+                                    <p style="color:green">You are winning with CHF ${formattedBet}</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <p style="color:red">You are losing, highest bet is at CHF ${formattedBet}</p>
+                                </c:otherwise>
+                            </c:choose>
+                            
+                            
+                        </c:when>
+                    </c:choose>
                 </c:when>
             </c:choose>
 

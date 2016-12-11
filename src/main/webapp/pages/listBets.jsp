@@ -16,7 +16,7 @@
 
 <pre><a href="/">Home</a> &gt; My participated auctions</pre>
 
-    
+    <h1>My participated auctions</h1>
 <c:choose>
 	<c:when test="${empty ads}">
 		
@@ -26,34 +26,19 @@
 	</c:when>
 	<c:otherwise>
 	
-		<div id="resultsDiv" class="resultsDiv row">
-		<hr />			
-			<c:forEach var="ad" items="${ads}">
-				<div class="resultAd col-md-10" data-price="${ad.price}" 
-								data-moveIn="${ad.moveInDate}" data-age="${ad.moveInDate}">
-					<div class="resultLeft">
-						<a href="<c:url value='/ad?id=${ad.id}' />"><img
-							src="${ad.pictures[0].filePath}" /></a>
-						<h2>
-							<a href="<c:url value='/ad?id=${ad.id}' />">${ad.title }</a>
-						</h2>
-						<p>${ad.street}, ${ad.zipcode} ${ad.city}</p>
-						<br />
-						<p>
-							<i><c:choose>
-									<c:when test="${ad.flat}">Flat</c:when>
-									<c:otherwise>House</c:otherwise>
-								</c:choose></i>
-						</p>
-					</div>
-					<div class="resultRight">
-						<h2>CHF ${ad.price }</h2>
-						<br /> <br />
-						<p>Available From: ${ad.moveInDate }</p>
-					</div>
-				</div>
-			</c:forEach>
-			<br /> <br />
+        <div class="container-fluid">
+            <div id="resultsDiv" class="resultsDiv row">
+            
+                <c:forEach var="ad" items="${ads}">
+                    <div class="resultAd col-sm-4 col-xs-12 col-md-4">
+                        <c:set var="ad" value="${ad}" scope="request" />
+                        <c:set var="user" value="${user}" scope="request" />
+                        <jsp:include page="adDisplay.jsp" />
+                    </div>
+                </c:forEach>
+                <br /> <br />
+            </div>		
+        </div>
 		</div>		
 	</c:otherwise>
 </c:choose>

@@ -235,6 +235,7 @@ public class ProfileController {
 		Iterable<Ad> ads = this.adService.getAdsByBetsForUser(user);
 		
 		model.addObject("ads", ads);
+		model.addObject("user", user);
 		return model;
 	}
 	
