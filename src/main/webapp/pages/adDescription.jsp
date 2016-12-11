@@ -78,143 +78,99 @@
 	}
 
 	function attachBookmarkedClickHandler() {
-		$("#bookmarkedButton")
-				.click(
-						function() {
-							$
-									.post(
-											"/bookmark",
-											{
-												id : shownAdvertisementID,
-												screening : false,
-												bookmarked : true
-											},
-											function(data) {
-												$('#bookmarkedButton')
-														.replaceWith(
-																$('<a class="right" id="bookmarkButton">'
-																		+ "Bookmark Ad"
-																		+ '</a>'));
-												switch (data) {
-												case 0:
-													alert("You must be logged in to bookmark ads.");
-													break;
-												case 1:
-													// Something went wrong with the principal object
-													alert("Return value 1. Please contact the WebAdmin.");
-													break;
-												case 2:
-													$('#bookmarkedButton')
-															.replaceWith(
-																	$('<a class="right" id="bookmarkButton">'
-																			+ "Bookmark Ad"
-																			+ '</a>'));
-													break;
-												default:
-													alert("Default error. Please contact the WebAdmin.");
-
-												}
-												attachBookmarkClickHandler();
-											});
-						});
+		$("#bookmarkedButton").click(function() {
+			$.post("/bookmark",
+				{
+					id : shownAdvertisementID,
+					screening : false,
+					bookmarked : true
+				},
+				function(data) {$('#bookmarkedButton').replaceWith(
+								$('<a class="right" id="bookmarkButton">'
+								+ "Bookmark Ad"
+								+ '</a>'));
+					switch (data) {
+					case 0:
+						alert("You must be logged in to bookmark ads.");
+						break;
+					case 1:
+						// Something went wrong with the principal object
+						alert("Return value 1. Please contact the WebAdmin.");
+						break;
+					case 2:
+						$('#bookmarkedButton').replaceWith(
+								$('<a class="right" id="bookmarkButton">'
+								+ "Bookmark Ad"
+								+ '</a>'));
+						break;
+					default:
+						alert("Default error. Please contact the WebAdmin.");
+					}
+					attachBookmarkClickHandler();
+				});
+		});
 	}
 
-	$(document)
-			.ready(
-					function() {
-						attachBookmarkClickHandler();
-						attachBookmarkedClickHandler();
+	$(document).ready(function() {
+		attachBookmarkClickHandler();
+		attachBookmarkedClickHandler();
+		$.post("/bookmark",
+			{
+				id : shownAdvertisementID,
+				screening : true,
+				bookmarked : true
+			},
+			function(data) {
+				if (data == 3) {
+					$('#bookmarkButton').replaceWith(
+							$('<a class="right" id="bookmarkedButton">'
+							+ "Bookmarked"
+							+ '</a>'));
+					attachBookmarkedClickHandler();
+				}
+				if (data == 4) {
+					$('#shownAdTitle').replaceWith(
+							$('<h1>'
+							+ "${shownAd.title}"
+							+ '</h1>'));
+				}
+			});
 
-						$
-								.post(
-										"/bookmark",
-										{
-											id : shownAdvertisementID,
-											screening : true,
-											bookmarked : true
-										},
-										function(data) {
-											if (data == 3) {
-												$('#bookmarkButton')
-														.replaceWith(
-																$('<a class="right" id="bookmarkedButton">'
-																		+ "Bookmarked"
-																		+ '</a>'));
-												attachBookmarkedClickHandler();
-											}
-											if (data == 4) {
-												$('#shownAdTitle')
-														.replaceWith(
-																$('<h1>'
-																		+ "${shownAd.title}"
-																		+ '</h1>'));
-											}
-										});
+		$("#newMsg").click(function() {
+			$("#content").children().animate({opacity : 0.4}, 300, function() {
+				$("#msgDiv").css("display", "block");
+				$("#msgDiv").css("opacity", "1");
+			});
+		});
 
-						$("#newMsg").click(function() {
-							$("#content").children().animate({
-								opacity : 0.4
-							}, 300, function() {
-								$("#msgDiv").css("display", "block");
-								$("#msgDiv").css("opacity", "1");
-							});
-						});
+		$("#messageCancel").click(function() {
+			$("#msgDiv").css("display", "none");
+			$("#msgDiv").css("opacity", "0");
+			$("#content").children().animate({opacity : 1}, 300);
+		});
 
-						$("#messageCancel").click(function() {
-							$("#msgDiv").css("display", "none");
-							$("#msgDiv").css("opacity", "0");
-							$("#content").children().animate({
-								opacity : 1
-							}, 300);
-						});
-
-						$("#messageSend")
-								.click(
-										function() {
-											if ($("#msgSubject").val() != ""
-													&& $("#msgTextarea").val() != "") {
-												var subject = $("#msgSubject")
-														.val();
-												var text = $("#msgTextarea")
-														.val();
-												var recipientEmail = "${shownAd.user.username}";
-												$
-														.post(
-																"profile/messages/sendMessage",
-																{
-																	subject : subject,
-																	text : text,
-																	recipientEmail : recipientEmail
-																},
-																function() {
-																	$("#msgDiv")
-																			.css(
-																					"display",
-																					"none");
-																	$("#msgDiv")
-																			.css(
-																					"opacity",
-																					"0");
-																	$(
-																			"#msgSubject")
-																			.val(
-																					"");
-																	$(
-																			"#msgTextarea")
-																			.val(
-																					"");
-																	$(
-																			"#content")
-																			.children()
-																			.animate(
-																					{
-																						opacity : 1
-																					},
-																					300);
-																})
-											}
-										});
-					});
+		$("#messageSend").click(function() {
+			if ($("#msgSubject").val() != ""&& $("#msgTextarea").val() != "") {
+				var subject = $("#msgSubject").val();
+				var text = $("#msgTextarea").val();
+				var recipientEmail = "${shownAd.user.username}";
+				$.post("profile/messages/sendMessage",
+						{
+							subject : subject,
+							text : text,
+							recipientEmail : recipientEmail
+						},
+						function() {
+							$("#msgDiv").css("display","none");
+							$("#msgDiv").css("opacity","0");
+							$("#msgSubject").val("");
+							$("#msgTextarea").val("");
+							$("#content").children().animate({opacity : 1},300);
+						})
+				confirm("Your Message has been sent.");
+			}
+		});
+	});
 </script>
 
 <script>
@@ -227,26 +183,29 @@
 
 		var geocoder = new google.maps.Geocoder();
 
-		geocoder.geocode({
-			'address' : address
-		}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
+		geocoder
+				.geocode(
+						{
+							'address' : address
+						},
+						function(results, status) {
+							if (status == google.maps.GeocoderStatus.OK) {
 
-				map = new google.maps.Map(document.getElementById('single-map'), {
-					center : results[0].geometry.location,
-					zoom : 13,
-				});
+								map = new google.maps.Map(document
+										.getElementById('single-map'), {
+									center : results[0].geometry.location,
+									zoom : 13,
+								});
 
-				marker = new google.maps.Marker({
-					title : title,
-					map : map,
-					position : results[0].geometry.location,
-				});
-			}
-			else {
-				document.getElementById("single-map").innerHTML = "Addresse konnte nicht gefunden werden";
-			}
-		});
+								marker = new google.maps.Marker({
+									title : title,
+									map : map,
+									position : results[0].geometry.location,
+								});
+							} else {
+								document.getElementById("single-map").innerHTML = "Addresse konnte nicht gefunden werden";
+							}
+						});
 	}
 
 	$(document).ready(function() {
@@ -312,7 +271,7 @@
 
 					<tr>
 						<th>Address</th>
-						<td id="adAddress">${shownAd.street}, ${shownAd.zipcode}
+						<td id="adAddress">${shownAd.street},${shownAd.zipcode}
 							${shownAd.city}</td>
 					</tr>
 
@@ -374,22 +333,23 @@
 
 					<!-- Wrapper for slides -->
 					<div class="carousel-inner" role="listbox">
-                        
-                        <c:choose>
-                            <c:when test="${shownAd.pictures.size() == 0}">
-                                <div class="item active">
-                                    <img src="/img/house-placeholder.png" style="margin: auto" />
-                                </div>
-                            </c:when>
-                            <c:otherwise>
-                                <c:forEach items="${shownAd.pictures}" var="picture" varStatus="status">
-                                <div class="item${status.first ? ' active' : ''}">
-                                    <img src="${picture.filePath}" style="margin: auto;" />
-                                </div>
-                            </c:forEach>
-                            </c:otherwise>
-                        </c:choose>         
-                        
+
+						<c:choose>
+							<c:when test="${shownAd.pictures.size() == 0}">
+								<div class="item active">
+									<img src="/img/house-placeholder.png" style="margin: auto" />
+								</div>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${shownAd.pictures}" var="picture"
+									varStatus="status">
+									<div class="item${status.first ? ' active' : ''}">
+										<img src="${picture.filePath}" style="margin: auto;" />
+									</div>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
+
 
 					</div>
 
