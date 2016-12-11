@@ -167,10 +167,17 @@
     <artifactId>xml-apis</artifactId>
     <version>1.4.01</version>
 </dependency>
+
+
+<dependency>
+    <groupId>ch.qos.logback</groupId>
+    <artifactId>logback-classic</artifactId>
+    <version>1.0.13</version>
+</dependency>
+
+    </dependencies>
 		
 		
-				
-	</dependencies>
 	<profiles>
 		<profile>
 			<id>jetty</id>
@@ -193,6 +200,8 @@
 						</webApp>
 						</configuration>
 						<executions>
+						
+						    
 							<execution>
 								<id>start-jetty</id>
 								<phase>pre-integration-test</phase>
