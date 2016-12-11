@@ -1010,3 +1010,7 @@ div.resultAd h2 {
   display: flex;
   flex-direction: column;
 }
+
+.pictureThumbnail img {
+    width: 25%;
+}
