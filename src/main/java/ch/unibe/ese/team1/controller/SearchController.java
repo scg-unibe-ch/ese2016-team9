@@ -47,6 +47,7 @@ public class SearchController {
 		if (!result.hasErrors()) {
 			ModelAndView model = new ModelAndView("results");
 			model.addObject("results", adService.queryResults(searchForm));
+			model.addObject("search", searchForm);
 			return model;
 		} else {
 			// go back

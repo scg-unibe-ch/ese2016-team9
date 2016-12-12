@@ -12,10 +12,10 @@
                     <c:choose>
                         <c:when test="${ad.pictures.size() == 0}">
 
-                            <img src="/img/house-placeholder.png" />
+                            <img class="adImage" src="/img/house-placeholder.png" />
                         </c:when>
                         <c:otherwise>
-                            <img src="${ad.pictures[0].filePath}" />
+                            <img class="adImage" src="${ad.pictures[0].filePath}" />
                         </c:otherwise>
                     </c:choose>            
                     <c:choose>
@@ -41,16 +41,16 @@
         <div class="col-sm-6">
             <fmt:formatNumber type="number" minFractionDigits="2" value="${ad.price}" var="formattedPrice" />
             <div class="container-fluid">
-                    <h2><small>CHF</small> ${formattedPrice}</h2>
+                    <h2 class="adPrice"><small>CHF</small> ${formattedPrice}</h2>
             </div>
         </div>
     </div>
     <div class="row">
         <div class="resultBottom">
             <h2>
-                <a class="link" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a>
+                <a class="link adTitle" href="<c:url value='/ad?id=${ad.id}' />">${ad.title}</a>
             </h2>
-            <p class="resultAddress">${ad.street}, ${ad.zipcode} ${ad.city}</p>     
+            <p class="resultAddress adAddress">${ad.street}, ${ad.zipcode} ${ad.city}</p>     
             <c:choose>
                 <c:when test="${ad.isAuction()}">
                     <c:choose>
@@ -100,7 +100,7 @@
 
             <fmt:formatDate value="${ad.moveInDate}" var="formattedMoveInDate" type="date" pattern="dd.MM.yyyy" />
 
-            <p>Available From: ${formattedMoveInDate }</p>
+            <p class="adMoveInDate">Available From: ${formattedMoveInDate }</p>
             <p>
                 <i>
                     <c:choose>

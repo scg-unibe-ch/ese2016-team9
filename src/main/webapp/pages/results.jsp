@@ -21,6 +21,14 @@ $( function() {
 
 <script>
 $(document).ready(function(){
+	$(".slider").each(function(){
+		var newValue = $(this).find(".distance-slider").val();
+		if(newValue == "5100")
+			$(this).find(".range").html(">5km");
+		else
+			$(this).find(".range").html(newValue + "m");
+	});
+	
 	$(".slider").mousemove(function(){
 		var newValue = $(this).find(".distance-slider").val();
 		if(newValue == "5100")
@@ -147,8 +155,8 @@ function initMap() {
   }
   
   function makeMarkersAndInfoWindows(object){
-	  var title = object.querySelector("#adTitle").innerHTML;
-	  var link = object.querySelector("#adTitle").href;
+	  var title = object.querySelector(".adTitle").innerHTML;
+	  var link = object.querySelector(".adTitle").href;
 	  var address = object.querySelector(".adAddress").innerHTML;
 	  var price = object.querySelector(".adPrice").innerHTML;
 	  var moveInDate = object.querySelector(".adMoveInDate").innerHTML;
@@ -277,19 +285,19 @@ $(document).ready(function(){
 			<tr>
 				<td><label for="distanceToNearestPublicTransport">Distance to nearest public transport (max.):</label></td>
 				<td class="slider"><form:input id="distanceToNearestPublicTransportInput" class ="distance-slider" type="range" path="distanceToNearestPublicTransport"
-					min="100" max="5100" value="5100" step="100" /><span class="range">>5km</span>
+					min="100" max="5100" step="100" /><span class="range"><!--  This is filled in with javascript after the page is loaded --></span>
 				</td>
 			</tr>
 			<tr>
 				<td><label for="distanceToNearestSuperMarket">Distance to nearest super market (max.):</label></td>
 				<td class="slider"><form:input id="distanceToNearestSuperMarketInput" class ="distance-slider" type="range" path="distanceToNearestSuperMarket"
-					min="100" max="5100" value="5100" step="100" /><span class="range">>5km</span>
+					min="100" max="5100" step="100" /><span class="range">!--  This is filled in with javascript after the page is loaded --></span>
 				</td>
 			</tr>
 			<tr>
 				<td><label for="distanceToNearestSchool">Distance to nearest school (max.):</label></td>
 				<td class="slider"><form:input id="distanceToNearestSchoolInput" class ="distance-slider" type="range" path="distanceToNearestSchool"
-					min="100" max="5100" value="5100" step="100" /><span class="range">>5km</span>
+					min="100" max="5100" step="100" /><span class="range">!--  This is filled in with javascript after the page is loaded --></span>
 				</td>
 			</tr>
 			<tr>

@@ -108,6 +108,8 @@ function validateType(form)
             <button type="submit" class="btn btn-default" tabindex="7" onClick="validateType(this.form)">Search</button>
             <button type="reset" class="btn btn-default" tabindex="8">Cancel</button>
         </div>
+        
+        <form:checkbox path="filtered" id="filtered" style="display: none"/>
 
 		
 	</fieldset>
