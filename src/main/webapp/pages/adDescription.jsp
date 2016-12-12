@@ -203,7 +203,7 @@
 									position : results[0].geometry.location,
 								});
 							} else {
-								document.getElementById("single-map").innerHTML = "Addresse konnte nicht gefunden werden";
+								document.getElementById("single-map").innerHTML = "This address does not exist";
 							}
 						});
 	}
@@ -392,6 +392,16 @@
 				<c:choose>
 					<c:when test="${shownAd.isAuction()}">
 						<h2>Auction</h2>
+						<c:choose>
+							<c:when test="${shownAd.isAuctionEnded()}">
+								<div style="color: red">This Auction has already ended</div>
+							</c:when>
+							<c:otherwise>
+								<fmt:formatDate value="${shownAd.auctionEndingDate}" var="formattedAuctionEndingDate" type="date" pattern="MM/dd/yyyy HH:mm:ss" />
+								<div style="font-size: 18px">Ends in:
+                         		<span class="auctionTimerDisplay">${formattedAuctionEndingDate}</span></div>
+							</c:otherwise>
+						</c:choose>
 						<table class="table">
 							<tr>
 								<th>User</th>
@@ -399,7 +409,7 @@
 								<th>Date</th>
 							</tr>
 							<c:choose>
-								<c:when test="${loggedIn}">
+								<c:when test="${loggedIn && !shownAd.isAuctionEnded()}">
 									<form:form method="post" modelAttribute="betForm"
 										action="/makeBet?id=${shownAd.id}" id="betForm"
 										autocomplete="off" class="form-horizontal"
