@@ -37,8 +37,7 @@ public class MessageScheduledTask {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    //@Scheduled(cron="*/5 * * * * MON-FRI")
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(cron="*/5 * * * * MON-FRI")
     public void processMessagesOnHold() {
         log.info("Started messagesOnHold processing at {}", dateFormat.format(new Date()));
         Iterable<User> users = this.userService.findUsersWhichHaveUnsentMessages();
