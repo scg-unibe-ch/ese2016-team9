@@ -123,9 +123,9 @@ public class SearchForm {
 	private int squareFootage;
 	private int numberOfRooms;
 	private String lastRenovation;
-	private int distanceToNearestSuperMarket;
-	private int distanceToNearestPublicTransport;
-	private int distanceToNearestSchool;
+	private int distanceToNearestSuperMarket = 5100;	//5100 is the default maximum value and stands for more than 5km
+	private int distanceToNearestPublicTransport = 5100;
+	private int distanceToNearestSchool = 5100;
 
 	private boolean houseHelper;
 

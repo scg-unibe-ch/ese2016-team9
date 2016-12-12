@@ -478,8 +478,8 @@ public class AdService {
 				}
 			}
 			
-			// distances
-			if (searchForm.getDistanceToNearestPublicTransport() > 0) {
+			// distances. Keep in mind that 5100 is per default the biggest distance. It means 5km or more.
+			if (searchForm.getDistanceToNearestPublicTransport() < 5100) {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
@@ -488,7 +488,7 @@ public class AdService {
 				}
 			}
 			
-			if (searchForm.getDistanceToNearestSchool() > 0) {
+			if (searchForm.getDistanceToNearestSchool() <5100) {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
@@ -497,7 +497,7 @@ public class AdService {
 				}
 			}
 			
-			if (searchForm.getDistanceToNearestSuperMarket() > 0) {
+			if (searchForm.getDistanceToNearestSuperMarket() < 5100) {
 				Iterator<Ad> iterator = locatedResults.iterator();
 				while (iterator.hasNext()) {
 					Ad ad = iterator.next();
