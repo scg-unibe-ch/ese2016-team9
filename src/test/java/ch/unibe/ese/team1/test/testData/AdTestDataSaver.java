@@ -597,6 +597,38 @@ public class AdTestDataSaver {
 		adWithAuction.setAuctionStartingPrice(250000);
 		adWithAuction.setOnHomepage(true);
 		adDao.save(adWithAuction);
+		
+		cal.add(Calendar.HOUR_OF_DAY, 16);
+		Ad adWithAuction2 = new Ad();
+		adWithAuction2.setZipcode(3005);
+		adWithAuction2.setMoveInDate(moveInDate8);
+		adWithAuction2.setCreationDate(creationDate2);
+		adWithAuction2.setPrice(1000000);
+		adWithAuction2.setSquareFootage(60);
+		adWithAuction2.setNumberOfRooms(3);
+		adWithAuction2.setFlat(false);
+		adWithAuction2.setSmokers(false);
+		adWithAuction2.setAnimals(false);
+		adWithAuction2.setHouseDescription(flatDescription8);
+		adWithAuction2.setUser(ese);
+		adWithAuction2.setTitle("Sweet House for Sale");
+		adWithAuction2.setStreet("Marzilistrasse 38");
+		adWithAuction2.setCity("Bern");
+		adWithAuction2.setGarden(true);
+		adWithAuction2.setBalcony(true);
+		adWithAuction2.setCellar(true);
+		adWithAuction2.setFurnished(false);
+		adWithAuction2.setCable(false);
+		adWithAuction2.setGarage(true);
+		adWithAuction2.setForSale(true);
+		adWithAuction2.setRunningCosts(300);
+		adWithAuction2.setDistanceToNearestPublicTransport(1);
+		adWithAuction2.setDistanceToNearestSchool(1);
+		adWithAuction2.setDistanceToNearestSuperMarket(2);
+		adWithAuction2.setAuctionEndingDate(cal.getTime());
+		adWithAuction2.setAuctionStartingPrice(250000);
+		adWithAuction2.setOnHomepage(true);
+		adDao.save(adWithAuction2);
 
 		/** place some bets **/
 		Calendar calBets = Calendar.getInstance();
@@ -625,6 +657,22 @@ public class AdTestDataSaver {
 		betDao.save(bet2);
 		betDao.save(bet3);
 		
+		calBets.add(Calendar.HOUR, 2);
+		Bet bet5 = new Bet();
+		bet5.setAd(adWithAuction2);
+		bet5.setPrice(350000);
+		bet5.setUser(jane);
+		bet5.setCreationDate(calBets.getTime());
+		
+		calBets.add(Calendar.HOUR, 2);
+		Bet bet6 = new Bet();
+		bet6.setAd(adWithAuction2);
+		bet6.setPrice(400000);
+		bet6.setUser(oprah);
+		bet6.setCreationDate(calBets.getTime());
+		
+		betDao.save(bet5);
+		betDao.save(bet6);
 		
 	}
 

@@ -278,6 +278,14 @@ public class AdService {
 			
 		}
 		
+		//removes finished auctions 
+		Iterator<Ad> auctionIterator = results.iterator();
+		while(auctionIterator.hasNext()) {
+			Ad ad = auctionIterator.next();
+			if(ad.isAuction() && ad.isAuctionEnded())
+				auctionIterator.remove();
+		}
+		
 		//includes the running costs. 
 		if(searchForm.getIncludeRunningCosts()){
 			Iterator<Ad> iterator = results.iterator();
@@ -624,14 +632,15 @@ public class AdService {
 		for (Ad homepageAd : homepageAds) {
 			homepageAd.wasOnHomepage();
 			this.adDao.save(homepageAd);
-			ads.add(homepageAd);
+			if(!homepageAd.isAuction() || (homepageAd.isAuction() && !homepageAd.isAuctionEnded()))
+				ads.add(homepageAd);
 		}
 		
 		if (ads.size() < count) {
 			Iterable<Ad> lowAds = adDao.findAll();
 			ArrayList<Ad> listLowAds = new ArrayList<Ad>();
 			for (Ad lowAd : lowAds) {
-				if (lowAd.isOnHomepage()) {
+				if (lowAd.isOnHomepage() || (lowAd.isAuction() && lowAd.isAuctionEnded())) {
 					continue;
 				}
 				listLowAds.add(lowAd);
