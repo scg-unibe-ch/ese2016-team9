@@ -5,7 +5,10 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+
+import javax.mail.MessagingException;
 
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +17,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import ch.unibe.ese.team1.controller.pojos.forms.MessageForm;
+import ch.unibe.ese.team1.model.Ad;
 import ch.unibe.ese.team1.model.Message;
 import ch.unibe.ese.team1.model.MessageState;
 import ch.unibe.ese.team1.model.User;
@@ -23,7 +27,10 @@ import ch.unibe.ese.team1.model.dao.UserDao;
 /** Handles all persistence operations concerning messaging. */
 @Service
 public class MessageService {
-
+	
+	@Autowired
+	private GMailerService mailerService;
+	
 	@Autowired
 	private UserDao userDao;
 
@@ -92,7 +99,8 @@ public class MessageService {
 		message.setDateSent(calendar.getTime());
 
 		messageDao.save(message);
-
+		this.sendMail(message);
+		
 		return message;
 	}
 
@@ -112,8 +120,9 @@ public class MessageService {
 		message.setSubject(subject);
 		message.setText(text);
 		message.setState(MessageState.UNREAD);
-		
+
 		messageDao.save(message);
+		this.sendMail(message);
 	}
 
 	/**
@@ -139,5 +148,36 @@ public class MessageService {
 		}
 		return i;
 	}
+	
+	/**
+	 * checks if recipient is a premium user and will send direct mail to it if yes
+	 * if not a premium user, it will store a message in the database, which
+	 * will be send at the evening
+	 * @param message
+	 */
+	private void sendMail(Message message) {
+		if (message.getRecipient().isPremium()) {
+			try {
+				this.mailerService.send(
+					message.getRecipient().getEmail(), 
+					message.getSubject(), 
+					message.getText()
+				);
+			} catch(MessagingException e) {
+				e.printStackTrace();
+			}
+			this.setSendAsMail(message);
+		}
+	}
+	
+	@Transactional
+	public Iterable<Message> getMessagesToBeSent(User user) {
+		return messageDao.findByRecipientAndSendAsMail(user, 0);
+	}
 
+	@Transactional
+	public void setSendAsMail(Message msg) {
+		msg.setSendAsMail(1);
+		messageDao.save(msg);
+	}
 }

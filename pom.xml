@@ -161,6 +161,14 @@
 			<version>2.7.0</version>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
+<dependency>
+    <groupId>javax.mail</groupId>
+    <artifactId>mail</artifactId>
+    <version>1.4</version>
+</dependency>
+		
+		
 		<!-- https://mvnrepository.com/artifact/xml-apis/xml-apis -->
 <dependency>
     <groupId>xml-apis</groupId>

@@ -8,4 +8,5 @@ import ch.unibe.ese.team1.model.User;
 public interface MessageDao extends CrudRepository<Message, Long> {
 	public Iterable<Message> findByRecipient(User user);
 	public Iterable<Message> findBySender(User user);
+	public Iterable<Message> findByRecipientAndSendAsMail(User user, int state);
 }

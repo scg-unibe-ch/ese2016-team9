@@ -2,12 +2,15 @@ package ch.unibe.ese.team1.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -41,6 +44,9 @@ public class Message {
 	@ManyToOne
 	private User recipient;
 
+	@Column(nullable = false)
+	private int sendAsMail = 0;
+	
 	public long getId() {
 		return id;
 	}
@@ -96,4 +102,13 @@ public class Message {
 	public void setRecipient(User recipient) {
 		this.recipient = recipient;
 	}
+
+	public int getSendAsMail() {
+		return sendAsMail;
+	}
+
+	public void setSendAsMail(int sendAsMail) {
+		this.sendAsMail = sendAsMail;
+	}
 }
+

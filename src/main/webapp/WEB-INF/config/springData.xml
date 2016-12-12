@@ -46,7 +46,7 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="true"/>
-                <property name="showSql" value="true"/>
+                <property name="showSql" value="false"/>
                 <property name="databasePlatform" value="org.hibernate.dialect.MySQLDialect"/>
                 <property name="database" value="MYSQL"/>
             </bean>
@@ -68,7 +68,8 @@
 
     <task:annotation-driven />
     <context:annotation-config/>
-    <context:component-scan base-package="ch.unibe.ese.team1.model, ch.unibe.ese.team1.controller.service"/>
+    <context:component-scan base-package="ch.unibe.ese.team1.model, ch.unibe.ese.team1.controller.service"/>    
     
   	<bean id="auctionScheduledTask" class="ch.unibe.ese.team1.task.AuctionScheduledTask"></bean>
+  	<bean id="MessageScheduledTask" class="ch.unibe.ese.team1.task.MessageScheduledTask"></bean>
 </beans>
