@@ -208,7 +208,7 @@
             </div>
             
             <div class="form-group">
-                <label for="endAuctionHour" class="col-sm-2 control-label">To</label>
+                <label for="endAuctionHour" class="col-sm-2 control-label">Time</label>
                 <div class="col-sm-10">
                     <select id="endAuctionHour" path="auctionEndingHour">
                         <%

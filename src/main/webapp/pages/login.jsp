@@ -61,7 +61,7 @@ function onSignIn(googleUser) {
 		<p>Login with Google:</p>
 		<div class="g-signin2" data-onsuccess="onSignIn"></div>
 		<br />
-		Or <a class="link" href="<c:url value="/signup" />">sign up</a> as a new user.
+		Or <a class="link" href="<c:url value="/signup" />"><b>sign up</b></a> as a new user.
 		<br />
 		<h2>Test users</h2>
 
