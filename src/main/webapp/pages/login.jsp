@@ -63,21 +63,9 @@ function onSignIn(googleUser) {
 		<br />
 		Or <a class="link" href="<c:url value="/signup" />"><b>sign up</b></a> as a new user.
 		<br />
-		<h2>Test users</h2>
+		
 
-		<ul class="test-users">
-			<li>Email: <i>ese@unibe.ch</i>, password: <i>ese</i></li>
-			<li>Email: <i>jane@doe.com</i>, password: <i>password</i></li>
-			<li>Email: <i>user@bern.com</i>, password: <i>password</i></li>
-			<li>Email: <i>oprah@winfrey.com</i>, password: <i>password</i></li>
-		</ul>
-		<br />
-
-		<h2>Dudes for AdBern</h2>
-		<ul class="test-users">
-			<li>Email: <i>hans@unibe.ch</i>, password: <i>password</i></li>
-			<li>Email: <i>mathilda@unibe.ch</i>, password: <i>password</i></li>
-		</ul>
+		
 		
 			
 		
