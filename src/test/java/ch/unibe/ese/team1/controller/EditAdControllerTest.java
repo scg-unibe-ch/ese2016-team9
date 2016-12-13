@@ -2,12 +2,15 @@ package ch.unibe.ese.team1.controller;
 
 import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.io.FileInputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.regex.Matcher;
@@ -19,6 +22,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpSession;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -27,9 +33,11 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.htmlunit.MockMvcWebClientBuilder;
 import org.springframework.test.web.servlet.htmlunit.MockMvcWebConnection;
+import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
@@ -38,8 +46,10 @@ import org.springframework.web.context.WebApplicationContext;
 
 import ch.unibe.ese.team1.controller.service.AdService;
 import ch.unibe.ese.team1.model.Ad;
+import ch.unibe.ese.team1.model.AdPicture;
 import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.dao.AdDao;
+import ch.unibe.ese.team1.model.dao.AdPictureDao;
 import ch.unibe.ese.team1.model.dao.UserDao;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -64,7 +74,14 @@ public class EditAdControllerTest {
     private AdDao adDao;
     
     @Autowired
+    private AdPictureDao adPictureDao;
+    
+    
+    @Autowired
     private UserDao userDao;
+
+    @Autowired
+    MockHttpSession httpSession;
     
 	@Before
 	public void setup() throws Exception {
@@ -166,6 +183,142 @@ public class EditAdControllerTest {
 		return adWithAuction;
 	}
 	
+
+	@Test
+	public void canSeeEditAdForm() throws Exception {
+		this.login();
+
+		User ese = userDao.findByUsername("ese@unibe.ch");
+		Ad ad = this.generateAuctionAd(ese);
+		
+		this.mockMvc.perform(
+				get("/profile/editAd?id=" + ad.getId())
+				).andExpect(status().is2xxSuccessful());
+				
+	}
+	
+
+	@Test
+	public void canUploadPicture() throws Exception {
+		this.login();
+
+		// Need first to access Edit Page so picture uploader is init
+		User ese = userDao.findByUsername("ese@unibe.ch");
+		Ad ad = this.generateAuctionAd(ese);
+		
+		this.mockMvc.perform(
+				get("/profile/editAd?id=" + ad.getId())
+				).andExpect(status().is2xxSuccessful());
+		
+		
+		MockMultipartFile file = new MockMultipartFile("test.jpg", "test.jpg", "image/jpeg", new FileInputStream("src/test/files/test.jpg"));
+        MockMultipartHttpServletRequestBuilder mockMultipartHttpServletRequestBuilder = (MockMultipartHttpServletRequestBuilder) fileUpload("/profile/editAd/uploadPictures").accept(MediaType.ALL).session(httpSession);
+        mockMultipartHttpServletRequestBuilder.file(file);
+        mockMultipartHttpServletRequestBuilder.content("whatever");
+
+        ResultActions resultActions = mockMvc.perform(mockMultipartHttpServletRequestBuilder);
+
+        resultActions.andExpect(status().is2xxSuccessful());
+	}
+	
+
+	@Test
+	public void canUploadPicturesAndGetThemBack() throws Exception {
+		this.login();
+		
+		// Need first to access Edit Page so picture uploader is init
+		User ese = userDao.findByUsername("ese@unibe.ch");
+		Ad ad = this.generateAuctionAd(ese);
+		
+		this.mockMvc.perform(
+				get("/profile/editAd?id=" + ad.getId())
+				).andExpect(status().is2xxSuccessful());
+
+		
+		MockMultipartFile file = new MockMultipartFile("test.jpg", "test.jpg", "image/jpeg", new FileInputStream("src/test/files/test.jpg"));
+        MockMultipartHttpServletRequestBuilder mockMultipartHttpServletRequestBuilder = (MockMultipartHttpServletRequestBuilder) fileUpload("/profile/editAd/uploadPictures").accept(MediaType.ALL).session(httpSession);
+        mockMultipartHttpServletRequestBuilder.file(file);
+        mockMultipartHttpServletRequestBuilder.content("whatever");
+
+        ResultActions resultActions = mockMvc.perform(mockMultipartHttpServletRequestBuilder);
+
+        resultActions.andExpect(status().is2xxSuccessful());
+
+        MvcResult result = this.mockMvc.perform(
+				post("/profile/editAd/getUploadedPictures")
+				).andExpect(status().is2xxSuccessful()).andReturn();
+		
+		assertTrue(result.getResponse().getContentAsString().contains("test.jpg"));
+        
+	}
+	
+
+	@Test
+	public void canDeleteUploadedPictures() throws Exception {
+		this.login();
+		
+		// Need first to access Edit Page so picture uploader is init
+		User ese = userDao.findByUsername("ese@unibe.ch");
+		Ad ad = this.generateAuctionAd(ese);
+		
+		this.mockMvc.perform(
+				get("/profile/editAd?id=" + ad.getId())
+				).andExpect(status().is2xxSuccessful());
+
+		
+		MockMultipartFile file = new MockMultipartFile("test.jpg", "test.jpg", "image/jpeg", new FileInputStream("src/test/files/test.jpg"));
+        MockMultipartHttpServletRequestBuilder mockMultipartHttpServletRequestBuilder = (MockMultipartHttpServletRequestBuilder) fileUpload("/profile/editAd/uploadPictures").accept(MediaType.ALL).session(httpSession);
+        mockMultipartHttpServletRequestBuilder.file(file);
+        mockMultipartHttpServletRequestBuilder.content("whatever");
+
+        ResultActions resultActions = mockMvc.perform(mockMultipartHttpServletRequestBuilder);
+
+        resultActions.andExpect(status().is2xxSuccessful());
+
+        MvcResult result = this.mockMvc.perform(
+				post("/profile/editAd/getUploadedPictures")
+				).andExpect(status().is2xxSuccessful()).andReturn();
+		
+        String in = result.getResponse().getContentAsString();
+		
+        Pattern p = Pattern.compile(".*\"url\":\"(.*)\".*");
+        Matcher m = p.matcher(in);
+        assertTrue(m.matches());
+        
+        String url = m.group(1);
+        
+        this.mockMvc.perform(
+				post("/profile/editAd/deletePicture")
+				.param("url", url)
+				).andExpect(status().is2xxSuccessful());
+	}
+	
+	
+	@Test
+	public void canDeleteExistingPicturesFromAd() throws Exception {
+		this.login();
+		
+		// Need first to access Edit Page so picture uploader is init
+		User ese = userDao.findByUsername("ese@unibe.ch");
+		Ad ad = this.generateAuctionAd(ese);
+		AdPicture picture = new AdPicture();
+		picture.setFilePath("src/test/files/test.jpg");
+		ArrayList<AdPicture> pictures = new ArrayList<AdPicture>();
+		pictures.add(picture);
+		ad.setPictures(pictures);
+		
+		picture = this.adPictureDao.save(picture);
+		ad = this.adDao.save(ad);
+		this.mockMvc.perform(
+				post("/profile/editAd/deletePictureFromAd")
+				.param("adId", ""+ad.getId())
+				.param("pictureId", ""+picture.getId())
+						
+				).andExpect(status().is2xxSuccessful());
+
+		Ad ad2 = this.adDao.findOne(ad.getId());
+		assertEquals(0, ad2.getPictures().size());
+	}
 }
 
 

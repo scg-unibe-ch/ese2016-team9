@@ -4,8 +4,13 @@ import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.fileUpload;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -19,6 +24,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpSession;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
@@ -27,14 +35,17 @@ import org.springframework.test.context.support.DirtiesContextTestExecutionListe
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.htmlunit.MockMvcWebClientBuilder;
 import org.springframework.test.web.servlet.htmlunit.MockMvcWebConnection;
+import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-
+import com.google.gson.JsonObject;
+import com.google.gson.stream.JsonReader;
 
 import ch.unibe.ese.team1.controller.service.AdService;
 import ch.unibe.ese.team1.model.Ad;
@@ -57,6 +68,9 @@ public class PlaceAdControllerTest {
     @Autowired
     private WebApplicationContext context;
 
+    @Autowired
+    MockHttpSession httpSession;
+    
     @Autowired
     private Filter springSecurityFilterChain;
     
@@ -161,6 +175,92 @@ public class PlaceAdControllerTest {
 		assertEquals(150000.0, ad.getAuctionStartingPrice(),1);
 		assertTrue(ad.isAuction());
 		
+	}
+	
+	@Test
+	public void canSeePlaceAdForm() throws Exception {
+		this.login();
+		this.mockMvc.perform(
+				get("/profile/placeAd")
+				).andExpect(status().is2xxSuccessful())
+				.andExpect(model().attributeDoesNotExist("isRentingAd"));
+				
+	}
+	
+
+	@Test
+	public void canSeePlaceAdFormWithRentOption() throws Exception {
+		this.login();
+		this.mockMvc.perform(
+				get("/profile/placeAd?rent=1")
+				).andExpect(status().is2xxSuccessful())
+				.andExpect(model().attributeExists("isRentingAd"));
+	}
+	
+
+	@Test
+	public void canUploadPicture() throws Exception {
+		this.login();
+		MockMultipartFile file = new MockMultipartFile("test.jpg", "test.jpg", "image/jpeg", new FileInputStream("src/test/files/test.jpg"));
+        MockMultipartHttpServletRequestBuilder mockMultipartHttpServletRequestBuilder = (MockMultipartHttpServletRequestBuilder) fileUpload("/profile/placeAd/uploadPictures").accept(MediaType.ALL).session(httpSession);
+        mockMultipartHttpServletRequestBuilder.file(file);
+        mockMultipartHttpServletRequestBuilder.content("whatever");
+
+        ResultActions resultActions = mockMvc.perform(mockMultipartHttpServletRequestBuilder);
+
+        resultActions.andExpect(status().is2xxSuccessful());
+	}
+	
+
+	@Test
+	public void canUploadPicturesAndGetThemBack() throws Exception {
+		this.login();
+		MockMultipartFile file = new MockMultipartFile("test.jpg", "test.jpg", "image/jpeg", new FileInputStream("src/test/files/test.jpg"));
+        MockMultipartHttpServletRequestBuilder mockMultipartHttpServletRequestBuilder = (MockMultipartHttpServletRequestBuilder) fileUpload("/profile/placeAd/uploadPictures").accept(MediaType.ALL).session(httpSession);
+        mockMultipartHttpServletRequestBuilder.file(file);
+        mockMultipartHttpServletRequestBuilder.content("whatever");
+
+        ResultActions resultActions = mockMvc.perform(mockMultipartHttpServletRequestBuilder);
+
+        resultActions.andExpect(status().is2xxSuccessful());
+
+        MvcResult result = this.mockMvc.perform(
+				post("/profile/placeAd/getUploadedPictures")
+				).andExpect(status().is2xxSuccessful()).andReturn();
+		
+		assertTrue(result.getResponse().getContentAsString().contains("test.jpg"));
+        
+	}
+	
+
+	@Test
+	public void canDeleteUploadedPictures() throws Exception {
+		this.login();
+		MockMultipartFile file = new MockMultipartFile("test.jpg", "test.jpg", "image/jpeg", new FileInputStream("src/test/files/test.jpg"));
+        MockMultipartHttpServletRequestBuilder mockMultipartHttpServletRequestBuilder = (MockMultipartHttpServletRequestBuilder) fileUpload("/profile/placeAd/uploadPictures").accept(MediaType.ALL).session(httpSession);
+        mockMultipartHttpServletRequestBuilder.file(file);
+        mockMultipartHttpServletRequestBuilder.content("whatever");
+
+        ResultActions resultActions = mockMvc.perform(mockMultipartHttpServletRequestBuilder);
+
+        resultActions.andExpect(status().is2xxSuccessful());
+
+        MvcResult result = this.mockMvc.perform(
+				post("/profile/placeAd/getUploadedPictures")
+				).andExpect(status().is2xxSuccessful()).andReturn();
+		
+        String in = result.getResponse().getContentAsString();
+		
+        Pattern p = Pattern.compile(".*\"url\":\"(.*)\".*");
+        Matcher m = p.matcher(in);
+        assertTrue(m.matches());
+        
+        String url = m.group(1);
+        
+        this.mockMvc.perform(
+				post("/profile/placeAd/deletePicture")
+				.param("url", url)
+				).andExpect(status().is2xxSuccessful());
 	}
 	
 	private Ad getAdFromUrl(String url) {
