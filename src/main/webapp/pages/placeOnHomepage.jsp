@@ -24,7 +24,7 @@
 <pre>Place ad on homepage</pre>
 
     <p align="center">
-        Do you wan't to place your ad to the homepage of a-Bec? It costs only <b>10.00.-</b>. Please submit your credit card credentials.
+        Do you wan't to place your ad on the homepage of a-Bec? It costs only <b>10.00.-</b>. Please submit your credit card credentials.
     </p>
     
     <form class="form-horizontal" method="post">
