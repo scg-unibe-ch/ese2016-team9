@@ -151,7 +151,7 @@ public class MessageControllerTest {
 	@Test
 	public void sendThroughPostMessageList() throws Exception {
 		this.login();
-		User jane = userDao.findByUsername("jane@doe.com");
+		User jane = userDao.findByUsername("ese@unibe.ch");
 		int total = 0;
 		int count = 0;
 		for (Message msg : this.messageDao.findByRecipient(jane)) {
@@ -242,7 +242,7 @@ public class MessageControllerTest {
 	@Test
 	public void sendThroughSendMethod() throws Exception {
 		this.login();
-		User jane = userDao.findByUsername("jane@doe.com");
+		User jane = userDao.findByUsername("ese@unibe.ch");
 		int total = 0;
 		int count = 0;
 		for (Message msg : this.messageDao.findByRecipient(jane)) {
