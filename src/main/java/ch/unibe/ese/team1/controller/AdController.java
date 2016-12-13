@@ -150,19 +150,13 @@ public class AdController {
 	public ModelAndView myHouses(Principal principal) {
 		ModelAndView model;
 		User user;
-		if (principal != null) {
-			model = new ModelAndView("myHouses");
-			String username = principal.getName();
-			user = userService.findUserByUsername(username);
+		model = new ModelAndView("myHouses");
+		String username = principal.getName();
+		user = userService.findUserByUsername(username);
 
-			Iterable<Ad> ownAds = adService.getAdsByUser(user);
+		Iterable<Ad> ownAds = adService.getAdsByUser(user);
 
-			model.addObject("ownAdvertisements", ownAds	);
-			return model;
-		} else {
-			model = new ModelAndView("home");
-		}
-
+		model.addObject("ownAdvertisements", ownAds	);
 		return model;
 	}
 	
@@ -174,17 +168,11 @@ public class AdController {
 	public ModelAndView myBookmarks(Principal principal){
 		ModelAndView model;
 		User user;
-		if(principal != null){
-			model = new ModelAndView("myBookmarks");
-			String username = principal.getName();
-			user = userService.findUserByUsername(username);
+		model = new ModelAndView("myBookmarks");
+		String username = principal.getName();
+		user = userService.findUserByUsername(username);
 
-			model.addObject("bookmarkedAdvertisements", user.getBookmarkedAds());
-			return model;
-		} else {
-			model = new ModelAndView("home");
-		}
-
+		model.addObject("bookmarkedAdvertisements", user.getBookmarkedAds());
 		return model;
 	}
 
@@ -277,7 +265,7 @@ public class AdController {
 		User user = userService.findUserByUsername(username);
 		User ratingPerson = userService.findUserById(rateId);
 		
-		if (!ad.isAuction() || !ad.isAuctionEnded()) {
+		if (ad == null || !ad.isAuction() || !ad.isAuctionEnded()) {
 			throw new ForbiddenException();	
 		}
 		

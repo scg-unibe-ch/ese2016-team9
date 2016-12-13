@@ -1,11 +1,11 @@
 package ch.unibe.ese.team1.controller;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -21,12 +21,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import ch.unibe.ese.team1.controller.service.AdService;
+import ch.unibe.ese.team1.controller.service.AlertService;
 import ch.unibe.ese.team1.model.Ad;
+import ch.unibe.ese.team1.model.Alert;
 import ch.unibe.ese.team1.model.Bet;
 import ch.unibe.ese.team1.model.User;
 import ch.unibe.ese.team1.model.dao.AdDao;
@@ -39,7 +40,7 @@ import ch.unibe.ese.team1.model.dao.UserDao;
 		"file:src/main/webapp/WEB-INF/config/springSecurity.xml"})
 
 @WebAppConfiguration
-public class SearchControllerTest {
+public class AlertControllerTest {
 	private MockMvc mockMvc;
 	
     @Autowired
@@ -49,68 +50,82 @@ public class SearchControllerTest {
     private Filter springSecurityFilterChain;
     
     @Autowired
-    private AdDao adDao;
-    
-    @Autowired
-    private AdService adService;
+    private AlertService alertService;
     
     @Autowired
     private UserDao userDao;
     
-    @Autowired
-    private BetDao betDao;
     
 	@Before
 	public void setup() throws Exception {
 		mockMvc = MockMvcBuilders
                 .webAppContextSetup(context)
+                .defaultRequest(get("/").with(user("ese@unibe.ch").roles("USER")))
                 .addFilters(springSecurityFilterChain)
                 .build();
-		
-	}
-
-	@Test
-	public void shouldBeAbleToSearchForBiel() throws Exception {
-		
-		ResultActions resultActions = this.mockMvc.perform(
-				post("/results").with(csrf())
-				.param("radius", "1000")
-				.param("price", "100000")
-				.param("city", "3000 - Biel;Bienne")
-				.param("bothHouseAndFlat", "1")
-				.param("bothSellAndRent", "1")
-				.param("noHouseNoFlat", "0")
-				.param("noSellNoRent", "0")				
-				).andExpect(status().is2xxSuccessful());
-		
-		resultActions.andExpect(model().errorCount(0));
-		
-	}
-
-	@Test
-	public void searchFormIsAccessible() throws Exception {
-		ResultActions resultActions = this.mockMvc.perform(
-				get("/searchAd").with(csrf())
-				).andExpect(status().is2xxSuccessful());
-		
 	}
 	
 	@Test
-	public void resultsWillShowFormIfPostIsInvalid() throws Exception {
-		ResultActions resultActions = this.mockMvc.perform(
-				post("/results").with(csrf())
+	public void canSeeAlertPage() throws Exception {
+		this.mockMvc.perform(
+				get("/profile/alerts")			
+				).andExpect(status().is2xxSuccessful());
+	}
+		
+	@Test
+	public void canMakeAnAlert() throws Exception {
+		User ese = userDao.findByUsername("ese@unibe.ch");
+		int count = 0;
+		for (Alert alert : alertService.getAlertsByUser(ese)) {
+			count++;
+		}
+		int total = count;
+		
+		this.mockMvc.perform(
+				post("/profile/alerts")
 				.param("radius", "1000")
 				.param("price", "100000")
-				.param("city", "")
+				.param("city", "3000 - Biel;Bienne")
+				.param("numberOfRooms", "3")
+				.param("squareFootage", "40")
 				.param("bothHouseAndFlat", "1")
-				.param("bothSellAndRent", "1")
 				.param("noHouseNoFlat", "0")
-				.param("noSellNoRent", "0")				
+				.param("noSellNoRent", "0")							
+				).andExpect(status().is2xxSuccessful());
+		count = 0;
+		for (Alert alert : alertService.getAlertsByUser(ese)) {
+			count++;
+		}
+		assertEquals(total + 1, count);
+	}
+	
+	@Test
+	public void deleteAlertWorks() throws Exception {
+		User ese = userDao.findByUsername("ese@unibe.ch");
+		int count = 0;
+		long lastId = 0;
+		for (Alert alert : alertService.getAlertsByUser(ese)) {
+			count++;
+			lastId = alert.getId();
+		}
+		int total = count;
+		
+		this.mockMvc.perform(
+				get("/profile/alerts/deleteAlert")
+				.param("id", ""+lastId)							
 				).andExpect(status().is2xxSuccessful());
 		
-		resultActions.andExpect(model().attributeDoesNotExist("results"));
-		
+		count = 0;
+		for (Alert alert : alertService.getAlertsByUser(ese)) {
+			count++;
+		}
+		assertEquals(total - 1, count);
 	}
+	
+	@Test
+	public void canSeeDisclamerPage() throws Exception {
+		this.mockMvc.perform(
+				get("/disclaimer")			
+				).andExpect(status().is2xxSuccessful());
+	}	
 }
-
-
