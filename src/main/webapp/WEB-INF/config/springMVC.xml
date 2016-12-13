@@ -48,4 +48,9 @@
     <bean id="validator" factory-bean="validatorFactory"
         factory-method="getValidator" />
 
+
+	<mvc:interceptors>
+		<bean id="LogInterceptor" class="ch.unibe.ese.team1.interceptor.LogInterceptor"></bean>
+	</mvc:interceptors> 
+	
 </beans>

@@ -72,4 +72,5 @@
     
   	<bean id="auctionScheduledTask" class="ch.unibe.ese.team1.task.AuctionScheduledTask"></bean>
   	<bean id="MessageScheduledTask" class="ch.unibe.ese.team1.task.MessageScheduledTask"></bean>
+  	
 </beans>
