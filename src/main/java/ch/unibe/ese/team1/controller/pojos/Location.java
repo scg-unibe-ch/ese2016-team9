@@ -1,4 +1,4 @@
-package ch.unibe.ese.team1.model;
+package ch.unibe.ese.team1.controller.pojos;
 
 /**
  * Represents a zip code and the data that belongs to it. Is not marked as

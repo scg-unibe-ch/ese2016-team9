@@ -9,8 +9,8 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import ch.unibe.ese.team1.controller.pojos.Location;
 import ch.unibe.ese.team1.controller.service.GeoDataService;
-import ch.unibe.ese.team1.model.Location;
 
 /** This form is used for searching for an ad. */
 public class SearchForm {
