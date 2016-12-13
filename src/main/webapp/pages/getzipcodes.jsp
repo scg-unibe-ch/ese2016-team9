@@ -1,5 +1,5 @@
 <%@page import="java.util.Iterator"%>
-<%@page import="ch.unibe.ese.team1.model.Location"%>
+<%@page import="ch.unibe.ese.team1.controller.pojos.Location"%>
 <%@page import="java.util.List"%>
 <%@page import="ch.unibe.ese.team1.controller.service.GeoDataService"%>
 <%@page
