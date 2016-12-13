@@ -48,7 +48,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <button type="submit" class="btn btn-default">Place ad to the homepage</button>
+                <button type="submit" class="btn btn-default">Place ad on the homepage</button>
             </div>
         </div>
     </form>
