@@ -627,7 +627,7 @@ public class AdTestDataSaver {
 		adWithAuction2.setDistanceToNearestSuperMarket(2);
 		adWithAuction2.setAuctionEndingDate(cal.getTime());
 		adWithAuction2.setAuctionStartingPrice(250000);
-		adWithAuction2.setOnHomepage(true);
+		adWithAuction2.setOnHomepage(false);
 		adDao.save(adWithAuction2);
 
 		/** place some bets **/
